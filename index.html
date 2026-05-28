@@ -114,6 +114,37 @@ html,body{width:100%;min-height:100vh;background:var(--bg);color:var(--txt);font
 
 .footer{padding:20px 64px;display:flex;align-items:center;justify-content:center;background:var(--bg2);border-top:1px solid var(--line)}
 .footer-txt{font-size:11px;color:var(--txt4);letter-spacing:.02em}
+
+/* Showcase */
+.showcase{padding:48px 64px;border-top:1px solid var(--line);background:var(--bg)}
+.sc-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);margin-bottom:20px}
+.proj-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+.proj-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.proj-status{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.proj-status.active{color:#1a6b3a}
+.proj-status.done{color:var(--txt4)}
+.proj-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+.proj-name{font-size:14px;font-weight:500;color:var(--txt);line-height:1.3}
+.proj-role{font-size:11px;color:var(--txt3)}
+.proj-stat{font-size:11px;color:var(--txt2);line-height:1.6;flex:1;margin-top:2px}
+.proj-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.sc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
+.sc-col-title{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.art-item{padding:10px 0;border-bottom:1px solid var(--line)}
+.art-item:last-child{border-bottom:none}
+.art-link{font-size:12px;color:var(--txt);font-weight:500;text-decoration:none;display:block;margin-bottom:2px;line-height:1.4}
+.art-link:hover{color:var(--txt3)}
+.art-meta{font-size:10px;color:var(--txt4)}
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.photo-ph{background:var(--bg3);border-radius:6px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
+.photo-ph i{font-size:18px;color:var(--txt4)}
+.port-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.port-item:last-child{border-bottom:none}
+.port-ico{width:30px;height:30px;background:var(--bg3);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--line)}
+.port-ico i{font-size:14px;color:var(--txt3)}
+.port-name{font-size:12px;font-weight:500;color:var(--txt);display:block;line-height:1.3}
+.port-sub{font-size:10px;color:var(--txt4)}
+.sc-empty{font-size:11px;color:var(--txt4);text-align:center;padding:24px 0;font-style:italic}
 </style>
 </head>
 <body>
@@ -192,6 +223,25 @@ html,body{width:100%;min-height:100vh;background:var(--bg);color:var(--txt);font
   </div>
 </div>
 
+<div class="showcase">
+  <div class="sc-label" id="sc-lbl">Project Showcase</div>
+  <div class="proj-strip" id="proj-strip"></div>
+  <div class="sc-grid">
+    <div>
+      <div class="sc-col-title" id="sc-art-t">Articles &amp; Research</div>
+      <div id="sc-articles"></div>
+    </div>
+    <div>
+      <div class="sc-col-title" id="sc-photo-t">Photos</div>
+      <div id="sc-photos"></div>
+    </div>
+    <div>
+      <div class="sc-col-title" id="sc-port-t">Portfolio &amp; Prototypes</div>
+      <div id="sc-portfolio"></div>
+    </div>
+  </div>
+</div>
+
 <div class="footer"><span class="footer-txt" id="ftr">Open to Product Manager and Business Analyst opportunities in Toronto</span></div>
 
 <script>
@@ -200,15 +250,15 @@ function pct(y){return((y-START)/RANGE*100).toFixed(3)+'%'}
 function ym(y,m){return y+(m-1)/12}
 
 const SEGS=[
-  {row:0,cat:'academic',name:'Lakehead University',sub:'Thunder Bay, ON',start:ym(2017,9),end:ym(2021,5)},
-  {row:1,cat:'academic',name:'Bank of Canada Competition',sub:'Ottawa, ON',start:ym(2019,9),end:ym(2020,2)},
-  {row:2,cat:'other',name:'Elite Alliance',sub:'North York, ON',start:ym(2021,8),end:ym(2022,2)},
-  {row:2,cat:'work',name:'HSBC Bank of Canada',sub:'Toronto, ON',start:ym(2022,2),end:ym(2024,4)},
-  {row:2,cat:'work',name:'RBC (acquired)',sub:'Toronto, ON',start:ym(2024,4),end:ym(2024,7),acquired:true},
-  {row:2,cat:'work',name:'Futu Securities',sub:'Shenzhen, CN',start:ym(2024,9),end:ym(2024,12)},
-  {row:3,cat:'project',name:'ChainCatcher / Trendverse',sub:'Shenzhen, CN',start:ym(2025,4),end:ym(2025,8)},
-  {row:3,cat:'project',name:'Flipflop Labs / PathPort',sub:'Shenzhen, CN',start:ym(2025,8),end:ym(2026,1)},
-  {row:4,cat:'project',name:'Harena',sub:'Toronto, ON',start:ym(2025,10),end:ym(2026,5)},
+  {cat:'academic',name:'Lakehead University',sub:'Thunder Bay, ON',start:ym(2017,9),end:ym(2021,5)},
+  {cat:'academic',name:'Bank of Canada Competition',sub:'Ottawa, ON',start:ym(2019,9),end:ym(2020,2)},
+  {cat:'other',name:'Elite Alliance',sub:'North York, ON',start:ym(2021,8),end:ym(2022,2)},
+  {cat:'work',name:'HSBC Bank of Canada',sub:'Toronto, ON',start:ym(2022,2),end:ym(2024,4)},
+  {cat:'work',name:'RBC (acquired)',sub:'Toronto, ON',start:ym(2024,4),end:ym(2024,7),acquired:true},
+  {cat:'work',name:'Futu Securities',sub:'Shenzhen, CN',start:ym(2024,9),end:ym(2024,12)},
+  {cat:'project',name:'ChainCatcher / Trendverse',sub:'Shenzhen, CN',start:ym(2025,4),end:ym(2025,8)},
+  {cat:'project',name:'Flipflop Labs / PathPort',sub:'Shenzhen, CN',start:ym(2025,8),end:ym(2026,1)},
+  {cat:'project',name:'Harena',sub:'Toronto, ON',start:ym(2025,10),end:ym(2026,5)},
 ];
 
 function buildTimeline(){
@@ -224,28 +274,40 @@ function buildTimeline(){
     axis.appendChild(s);
   }
   outer.appendChild(axis);
+  // Auto-pack: assign each seg to the first row it fits without overlap
+  const rowIvs=[];
+  const rowAssign=SEGS.map(s=>{
+    for(let r=0;r<rowIvs.length;r++){
+      if(!rowIvs[r].some(iv=>s.start<iv.end&&s.end>iv.start)){
+        rowIvs[r].push({start:s.start,end:s.end});
+        return r;
+      }
+    }
+    rowIvs.push([{start:s.start,end:s.end}]);
+    return rowIvs.length-1;
+  });
   const rowsEl=document.createElement('div');
   rowsEl.className='tl-rows';
-  const rows=[];
-  for(let i=0;i<5;i++){
+  const rows=Array.from({length:rowIvs.length},()=>{
     const r=document.createElement('div');
     r.className='tl-row';
-    rows.push(r);
     rowsEl.appendChild(r);
-  }
+    return r;
+  });
   const fmt=y=>{
     const yr=Math.floor(y);
     const mo=Math.round((y-yr)*12)+1;
     const ms=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     return ms[Math.max(0,Math.min(11,mo-1))]+' '+yr;
   };
-  SEGS.forEach(s=>{
+  SEGS.forEach((s,i)=>{
+    const ri=rowAssign[i];
     if(s.acquired){
       const arr=document.createElement('div');
       arr.className='tl-arrow';
       arr.style.left=pct(s.start);
       arr.style.width='20px';
-      rows[s.row].appendChild(arr);
+      rows[ri].appendChild(arr);
     }
     const el=document.createElement('div');
     el.className='tl-seg';
@@ -255,7 +317,7 @@ function buildTimeline(){
     const endLabel=s.end>=2026.4?'Present':fmt(s.end);
     el.title=s.name+' · '+fmt(s.start)+' – '+endLabel+' · '+s.sub;
     el.innerHTML='<div class="tl-seg-inner"><span class="tl-seg-name">'+s.name+'</span><span class="tl-seg-sub">'+s.sub+'</span></div>';
-    rows[s.row].appendChild(el);
+    rows[ri].appendChild(el);
   });
   outer.appendChild(rowsEl);
 }
@@ -319,7 +381,26 @@ en:{
     {cat:'AI & Tech',tags:['Prompt engineering','LLM product design','MCP','API integration','Web3','Tokenomics']},
     {cat:'Communication',tags:['Cross-functional','Investor relations','Bilingual EN/ZH','Technical writing']},
     {cat:'Certifications',tags:['CSC — Canadian Securities','Mutual Fund Advisor (MFDA)']},
-  ]
+  ],
+  showcase:{
+    lbl:'Project Showcase',artT:'Articles & Research',photoT:'Photos',portT:'Portfolio & Prototypes',
+    projects:[
+      {name:'Harena — AI Fintech Platform',status:'active',statusLabel:'Active',role:'Co-founder & Product Manager',stat:'Building from zero · 5 major product pivots · solo full-stack delivery · investor pipeline active',links:[{label:'Prototype',icon:'ti-layout',href:'#'},{label:'Dev Log',icon:'ti-code',href:'#'}]},
+      {name:'PathPort / Flipflop Labs',status:'done',statusLabel:'Completed',role:'Overseas Operations Lead',stat:'1,000+ ambassadors in 2 months · platform weekly traffic 10x · 60-page bilingual whitepaper · Hong Kong keynote',links:[{label:'PathPort',icon:'ti-world',href:'#'},{label:'Whitepaper',icon:'ti-file-text',href:'#'},{label:'HK Photos',icon:'ti-photo',href:'#'}]},
+      {name:'Trendverse Lab / ChainCatcher',status:'done',statusLabel:'Completed',role:'Research Analyst & Editor',stat:'10+ long-form reports across major crypto platforms · #1 monthly readership on Foresight News',links:[{label:'Articles',icon:'ti-pencil',href:'https://paragraph.com/sepremelouis.eth'},{label:'Trendverse Lab',icon:'ti-brand-medium',href:'#'}]},
+    ],
+    articles:[
+      {title:'U.S. CLARITY Act & Singapore MAS Regulatory Framework',meta:'Trendverse Lab · ChainCatcher · 2025',href:'https://paragraph.com/sepremelouis.eth'},
+      {title:'DeFi Macro Outlook & Market Structure Analysis',meta:'ChainCatcher · 2025',href:'https://paragraph.com/sepremelouis.eth'},
+      {title:'#1 Monthly Read — Foresight News All-Platform Rankings',meta:'Foresight News · 2025',href:'https://paragraph.com/sepremelouis.eth'},
+    ],
+    photos:[],
+    portfolio:[
+      {name:'Harena App Prototype',sub:'AI fintech · Figma + Claude Code + Lovable',icon:'ti-layout',href:'#'},
+      {name:'PathPort Website',sub:'Web3 ambassador platform · live deployment',icon:'ti-world',href:'#'},
+      {name:'Engram Knowledge Tool',sub:'Private knowledge workspace · Cloudflare + D1',icon:'ti-brain',href:'https://engram-b14.pages.dev'},
+    ],
+  }
 },
 zh:{
   tag:'产品与数据分析专业人士 — 经济学、金融科技与新兴技术',
@@ -379,7 +460,26 @@ zh:{
     {cat:'AI与技术',tags:['提示词工程','LLM产品设计','MCP','API接入','Web3','代币经济学']},
     {cat:'沟通',tags:['跨职能协作','投资人关系','中英双语','技术文档']},
     {cat:'资质证书',tags:['CSC加拿大证券课程','共同基金顾问执照(MFDA)']},
-  ]
+  ],
+  showcase:{
+    lbl:'项目展示',artT:'文章与研究',photoT:'照片',portT:'产品与作品集',
+    projects:[
+      {name:'Harena — AI金融平台',status:'active',statusLabel:'进行中',role:'联合创始人 & 产品经理',stat:'从零构建 · 5次重大方向调整 · 独立全栈交付 · 投资人对接进行中',links:[{label:'产品原型',icon:'ti-layout',href:'#'},{label:'开发日志',icon:'ti-code',href:'#'}]},
+      {name:'PathPort / Flipflop Labs',status:'done',statusLabel:'已完成',role:'海外市场运营负责人',stat:'2个月内扩展至1000+大使 · 平台周活流量10倍 · 60+页中英文白皮书 · 香港峰会路演',links:[{label:'PathPort网站',icon:'ti-world',href:'#'},{label:'白皮书',icon:'ti-file-text',href:'#'},{label:'香港照片',icon:'ti-photo',href:'#'}]},
+      {name:'Trendverse Lab / 链捕手',status:'done',statusLabel:'已完成',role:'研究员 & 编辑',stat:'在主流加密媒体发布10+篇深度报告 · Foresight News当月全平台阅读量第一',links:[{label:'已发表文章',icon:'ti-pencil',href:'https://paragraph.com/sepremelouis.eth'},{label:'Trendverse Lab',icon:'ti-brand-medium',href:'#'}]},
+    ],
+    articles:[
+      {title:'美国CLARITY法案与新加坡MAS监管框架研究',meta:'Trendverse Lab · 链捕手 · 2025',href:'https://paragraph.com/sepremelouis.eth'},
+      {title:'DeFi宏观展望与市场结构分析',meta:'链捕手 · 2025',href:'https://paragraph.com/sepremelouis.eth'},
+      {title:'月度全平台阅读榜第一 — Foresight News',meta:'Foresight News · 2025',href:'https://paragraph.com/sepremelouis.eth'},
+    ],
+    photos:[],
+    portfolio:[
+      {name:'Harena应用原型',sub:'AI金融科技 · Figma + Claude Code + Lovable',icon:'ti-layout',href:'#'},
+      {name:'PathPort官网',sub:'Web3大使平台 · 已上线部署',icon:'ti-world',href:'#'},
+      {name:'Engram知识工具',sub:'个人知识工作台 · Cloudflare + D1',icon:'ti-brain',href:'https://engram-b14.pages.dev'},
+    ],
+  }
 }
 };
 
@@ -406,6 +506,19 @@ function renderEntries(id,arr){
 
 function renderSkills(skills){
   document.getElementById('skills-content').innerHTML=skills.map(s=>`<div class="skill-group"><div class="skill-group-label">${s.cat}</div><div class="skill-tags">${s.tags.map(t=>`<span class="skill-tag">${t}</span>`).join('')}</div></div>`).join('');
+}
+
+function renderShowcase(d){
+  const sc=d.showcase;
+  document.getElementById('sc-lbl').textContent=sc.lbl;
+  document.getElementById('sc-art-t').textContent=sc.artT;
+  document.getElementById('sc-photo-t').textContent=sc.photoT;
+  document.getElementById('sc-port-t').textContent=sc.portT;
+  document.getElementById('proj-strip').innerHTML=sc.projects.map(p=>`<div class="proj-card"><div class="proj-status ${p.status}"><span class="proj-dot"></span>${p.statusLabel}</div><div class="proj-name">${p.name}</div><div class="proj-role">${p.role}</div><div class="proj-stat">${p.stat}</div><div class="proj-links">${p.links.map(l=>`<a class="proof-tag" href="${l.href}" target="_blank"><i class="ti ${l.icon}"></i>${l.label}</a>`).join('')}</div></div>`).join('');
+  document.getElementById('sc-articles').innerHTML=sc.articles.map(a=>`<div class="art-item"><a class="art-link" href="${a.href}" target="_blank">${a.title}</a><span class="art-meta">${a.meta}</span></div>`).join('');
+  const ph=document.getElementById('sc-photos');
+  ph.innerHTML=sc.photos.length?sc.photos.map(p=>`<div class="photo-grid"><img src="${p}" style="border-radius:6px;width:100%"/></div>`).join(''):`<div class="sc-empty">Coming soon</div>`;
+  document.getElementById('sc-portfolio').innerHTML=sc.portfolio.map(p=>`<a class="port-item" href="${p.href}" target="_blank"><div class="port-ico"><i class="ti ${p.icon}"></i></div><div><span class="port-name">${p.name}</span><span class="port-sub">${p.sub}</span></div></a>`).join('');
 }
 
 function toggleOther(){
@@ -438,6 +551,7 @@ function setLang(lang){
   renderEntries('other-entries',d.other);
   renderEntries('web3-entries',d.web3);
   renderSkills(d.skills);
+  renderShowcase(d);
 }
 
 buildTimeline();
