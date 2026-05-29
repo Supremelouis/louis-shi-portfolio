@@ -3,559 +3,688 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Weiqi Shi — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<title>Weiqi Shi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#ffffff;--bg2:#f5f5f5;--bg3:#e8e8e8;
-  --txt:#36454f;--txt2:#506070;--txt3:#708090;--txt4:#a0aab4;
-  --line:#d3d3d3;
-  --cat-academic:#36454f;--cat-work:#708090;--cat-project:#4a5a65;--cat-other:#8a9aa6;
+  --space:#050d1a;--space2:#071428;
+  --glass:rgba(255,255,255,.04);--glass2:rgba(255,255,255,.08);--gb:rgba(255,255,255,.1);
+  --txt:#e2eaf8;--txt2:#8fa3c0;--txt3:#546882;
+  --a1:#00d4b8;--a2:#7c6af7;--a3:#4fd89a;
+  --line:rgba(255,255,255,.1);
 }
-html,body{width:100%;min-height:100vh;background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{background:var(--space);color:var(--txt);font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-.hdr{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;padding:48px 64px 36px;border-bottom:1px solid var(--line)}
-.hdr-name{font-family:'DM Serif Display',serif;font-size:56px;line-height:1;letter-spacing:-1.5px;margin-bottom:10px}
-.hdr-tag{font-size:16px;font-weight:300;color:var(--txt2);max-width:540px;margin-bottom:18px;line-height:1.5}
-.hdr-meta{display:flex;gap:24px;flex-wrap:wrap}
-.hdr-meta-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt3)}
-.hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:14px;padding-top:4px}
-.avatar{width:68px;height:68px;border-radius:50%;background:var(--bg3);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:22px;color:var(--txt2)}
-.lang-toggle{display:flex;background:var(--bg3);border-radius:20px;padding:3px;gap:2px}
-.lang-btn{padding:5px 14px;border-radius:16px;border:none;background:none;font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--txt3);transition:all .2s}
-.lang-btn.active{background:var(--bg);color:var(--txt);font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+/* Stars */
+#stars-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
-.contacts{padding:16px 64px;border-bottom:1px solid var(--line);display:flex;gap:28px;align-items:center;flex-wrap:wrap;background:var(--bg)}
-.cl{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt3);text-decoration:none;transition:color .15s}
-.cl:hover{color:var(--txt)}
-.cl i{font-size:14px}
-.dl-btn{margin-left:auto;padding:7px 18px;background:var(--txt);color:var(--bg);border:none;border-radius:20px;font-size:12px;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;letter-spacing:.02em;transition:opacity .15s}
-.dl-btn:hover{opacity:.75}
+/* Aurora */
+.aurora-wrap{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden}
+.aur{position:absolute;border-radius:50%;filter:blur(90px);opacity:.12}
+.aur.a1{width:700px;height:400px;top:-120px;left:-80px;background:radial-gradient(ellipse,var(--a1),transparent 70%);animation:d1 22s ease-in-out infinite alternate}
+.aur.a2{width:600px;height:350px;top:80px;right:-80px;background:radial-gradient(ellipse,var(--a2),transparent 70%);animation:d2 28s ease-in-out infinite alternate}
+.aur.a3{width:500px;height:280px;bottom:120px;left:35%;background:radial-gradient(ellipse,var(--a3),transparent 70%);animation:d3 18s ease-in-out infinite alternate;opacity:.07}
+@keyframes d1{from{transform:translate(0,0) scale(1)}to{transform:translate(180px,90px) scale(1.25)}}
+@keyframes d2{from{transform:translate(0,0)}to{transform:translate(-140px,70px) scale(1.2)}}
+@keyframes d3{from{transform:translate(0,0)}to{transform:translate(70px,-50px)}}
 
-.tl-section{padding:36px 64px;border-bottom:1px solid var(--line);background:var(--bg)}
-.tl-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);margin-bottom:20px}
+.page{position:relative;z-index:2}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:24px;padding:0 64px;height:54px;background:rgba(5,13,26,.75);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-name{font-family:'DM Serif Display',serif;font-size:17px;color:var(--txt);margin-right:auto;text-decoration:none}
+.nav-links{display:flex;gap:28px}
+.nav-link{font-size:12px;color:var(--txt2);text-decoration:none;letter-spacing:.04em;transition:color .2s}
+.nav-link:hover{color:var(--a1)}
+.lang-toggle{display:flex;background:rgba(255,255,255,.06);border-radius:20px;padding:3px;gap:2px;margin-left:8px}
+.lang-btn{padding:4px 12px;border-radius:14px;border:none;background:none;font-size:11px;font-family:'Inter',sans-serif;cursor:pointer;color:var(--txt2);transition:all .2s}
+.lang-btn.active{background:rgba(255,255,255,.12);color:var(--txt);font-weight:500}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 64px 48px;position:relative}
+.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--a1);margin-bottom:22px}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(58px,9vw,118px);line-height:.93;letter-spacing:-3px;background:linear-gradient(135deg,#fff 0%,var(--a1) 55%,var(--a2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:22px}
+.hero-sub{font-size:15px;font-weight:300;color:var(--txt2);max-width:480px;margin:0 auto 48px;line-height:1.75}
+.hero-stats{display:flex;gap:0;justify-content:center;margin-bottom:44px;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 32px}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat-num{font-size:26px;font-weight:600;background:linear-gradient(135deg,#fff,var(--a1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-lbl{font-size:10px;color:var(--txt3);letter-spacing:.07em;text-transform:uppercase}
+.hero-actions{display:flex;gap:12px;justify-content:center}
+.btn-primary{padding:10px 28px;background:var(--a1);color:#050d1a;border:none;border-radius:24px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary:hover{filter:brightness(1.15);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,184,.3)}
+.btn-ghost{padding:10px 28px;background:rgba(255,255,255,.06);color:var(--txt);border:1px solid var(--line);border-radius:24px;font-size:13px;cursor:pointer;text-decoration:none;transition:all .25s;display:inline-flex;align-items:center;gap:6px}
+.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9px;color:var(--txt3);letter-spacing:.1em;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* Timeline strip */
+.tl-strip{padding:24px 64px;background:rgba(5,13,26,.85);backdrop-filter:blur(10px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tl-strip-label{font-size:9px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--txt3);margin-bottom:12px}
 .tl-outer{position:relative;width:100%}
-.tl-axis{position:relative;height:18px;margin-bottom:8px}
-.tl-yr{font-size:10px;color:var(--txt4);position:absolute;transform:translateX(-50%)}
-.tl-rows{display:flex;flex-direction:column;gap:6px;margin-top:4px}
-.tl-row{position:relative;height:34px}
-.tl-seg{position:absolute;height:26px;top:4px;border-radius:4px;display:flex;align-items:center;overflow:hidden;cursor:default;transition:filter .15s}
-.tl-seg:hover{filter:brightness(.85)}
-.tl-seg-inner{padding:0 8px;min-width:0;width:100%}
-.tl-seg-name{font-size:10px;font-weight:500;color:#fff;display:block;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tl-seg-sub{font-size:9px;color:rgba(255,255,255,.7);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tl-seg[data-cat="academic"]{background:var(--cat-academic)}
-.tl-seg[data-cat="work"]{background:var(--cat-work)}
-.tl-seg[data-cat="project"]{background:var(--cat-project)}
-.tl-seg[data-cat="other"]{background:var(--cat-other)}
-.tl-arrow{position:absolute;top:11px;display:flex;align-items:center;z-index:2;pointer-events:none}
-.tl-arrow::before{content:'→';font-size:11px;color:var(--txt3);background:var(--bg);padding:0 2px}
-.tl-legend{display:flex;gap:20px;margin-top:14px;flex-wrap:wrap}
-.tl-legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--txt3)}
-.tl-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.tl-axis{position:relative;height:14px;margin-bottom:5px}
+.tl-yr{font-size:9px;color:var(--txt3);position:absolute;transform:translateX(-50%)}
+.tl-rows{display:flex;flex-direction:column;gap:4px}
+.tl-row{position:relative;height:26px}
+.tl-seg{position:absolute;height:18px;top:4px;border-radius:3px;display:flex;align-items:center;overflow:hidden;cursor:pointer;transition:filter .15s,transform .15s}
+.tl-seg:hover{filter:brightness(1.4);transform:scaleY(1.15)}
+.tl-seg-inner{padding:0 6px;min-width:0;width:100%}
+.tl-seg-name{font-size:8.5px;font-weight:500;color:#fff;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl-seg[data-cat="academic"]{background:rgba(0,212,184,.55)}
+.tl-seg[data-cat="work"]{background:rgba(124,106,247,.6)}
+.tl-seg[data-cat="project"]{background:rgba(79,216,154,.5)}
+.tl-seg[data-cat="other"]{background:rgba(143,163,192,.4)}
+.tl-arrow{position:absolute;top:6px;z-index:2;pointer-events:none;font-size:10px;color:var(--a2)}
+.tl-legend{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+.tl-leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--txt2)}
+.tl-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
 
-.body-grid{display:grid;grid-template-columns:1fr 1fr 260px;border-bottom:1px solid var(--line)}
-.col-main{border-right:1px solid var(--line)}
-.col-mid{border-right:1px solid var(--line)}
-.col-skills{background:var(--bg2)}
+/* Divider */
+.aurora-divider{height:1px;background:linear-gradient(90deg,transparent,var(--a1),var(--a2),transparent);opacity:.25}
 
-.sec-block{padding:36px 40px;border-bottom:1px solid var(--line)}
-.sec-block:last-child{border-bottom:none}
-.sec-title{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:5px;color:var(--txt)}
-.sec-subtitle{font-size:11px;color:var(--txt4);margin-bottom:22px}
+/* Section shared */
+.section{padding:88px 64px;position:relative;z-index:2}
+.section-inner{max-width:1160px;margin:0 auto}
+.sec-eyebrow{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--a1);margin-bottom:10px}
+.sec-title{font-family:'DM Serif Display',serif;font-size:36px;color:var(--txt);margin-bottom:44px;line-height:1.1}
 
-.academic-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.acad-card{background:var(--bg2);border-radius:8px;padding:16px;border:1px solid var(--line)}
-.acad-inst{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:2px}
-.acad-meta{font-size:11px;color:var(--txt3);margin-bottom:8px}
-.acad-tags{display:flex;gap:5px;flex-wrap:wrap}
-.acad-tag{font-size:10px;padding:2px 7px;background:var(--bg3);border-radius:8px;color:var(--txt3)}
-.comp-card{grid-column:1/-1;background:var(--bg2);border-radius:8px;padding:16px;border:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
-.comp-org{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:2px}
-.comp-role{font-size:12px;color:var(--txt2);margin-bottom:4px}
-.comp-desc{font-size:11px;color:var(--txt3);line-height:1.5}
-.comp-date{font-size:11px;color:var(--txt4);text-align:right;white-space:nowrap}
-.comp-loc{font-size:11px;color:var(--txt4);text-align:right}
-.proof-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-.proof-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:3px 9px;background:var(--bg3);border-radius:10px;color:var(--txt3);text-decoration:none;transition:background .15s;border:1px solid var(--line)}
-.proof-tag:hover{background:var(--line)}
+/* Featured */
+.featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat-card{background:var(--glass);border:1px solid var(--gb);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .3s;display:flex;flex-direction:column}
+.feat-card:hover{transform:translateY(-7px);border-color:rgba(0,212,184,.3);box-shadow:0 24px 64px rgba(0,0,0,.5),0 0 0 1px rgba(0,212,184,.12)}
+.feat-img{width:100%;aspect-ratio:16/10;background:var(--glass2);border-bottom:1px solid var(--gb);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
+.feat-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.feat-img-ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--txt3);font-size:11px}
+.feat-img-ph i{font-size:30px}
+.feat-body{padding:20px;display:flex;flex-direction:column;flex:1}
+.feat-badge{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border-radius:10px;margin-bottom:10px;width:fit-content}
+.feat-badge.article{background:rgba(0,212,184,.15);color:var(--a1)}
+.feat-badge.project{background:rgba(124,106,247,.15);color:var(--a2)}
+.feat-badge.startup{background:rgba(79,216,154,.15);color:var(--a3)}
+.feat-title{font-size:14px;font-weight:600;color:var(--txt);margin-bottom:7px;line-height:1.35}
+.feat-meta{font-size:11px;color:var(--txt2);line-height:1.55;flex:1;margin-bottom:16px}
+.feat-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:var(--a1);text-decoration:none;transition:gap .2s;width:fit-content}
+.feat-link:hover{gap:9px}
 
-.entry{padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer}
-.entry:last-child{border-bottom:none}
-.entry-hdr{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
-.entry-org{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:1px}
-.entry-role{font-size:11px;color:var(--txt3);margin-bottom:4px}
-.entry-summary{font-size:12px;color:var(--txt2);line-height:1.5;margin-top:5px}
-.entry-date{font-size:10px;color:var(--txt4);text-align:right;white-space:nowrap}
-.entry-loc{font-size:10px;color:var(--txt4);text-align:right}
-.chevron{font-size:12px;color:var(--txt4);transition:transform .25s;display:inline-block;margin-left:5px}
-.entry.open .chevron{transform:rotate(180deg)}
-.entry-detail{max-height:0;overflow:hidden;transition:max-height .35s ease}
-.entry.open .entry-detail{max-height:800px}
-.detail-inner{padding:12px 0 4px}
-.dbullets{list-style:none;display:flex;flex-direction:column;gap:6px}
-.dbullets li{font-size:12px;color:var(--txt2);padding-left:14px;position:relative;line-height:1.5}
-.dbullets li::before{content:'—';position:absolute;left:0;color:var(--txt4)}
+/* Articles */
+.articles-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.art-card{background:var(--glass);border:1px solid var(--gb);border-radius:12px;overflow:hidden;transition:all .25s;text-decoration:none;color:inherit;display:block}
+.art-card:hover{transform:translateY(-4px);border-color:rgba(0,212,184,.2);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.art-img{width:100%;aspect-ratio:16/9;background:var(--glass2);display:flex;align-items:center;justify-content:center;color:var(--txt3);position:relative;overflow:hidden}
+.art-img i{font-size:24px}
+.art-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.art-body{padding:14px}
+.art-title{font-size:12px;font-weight:500;color:var(--txt);margin-bottom:5px;line-height:1.45}
+.art-meta{font-size:10px;color:var(--txt3)}
 
-.other-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 0;color:var(--txt3);font-size:12px;user-select:none;border-bottom:1px solid var(--line)}
-.other-toggle i.oc{transition:transform .25s}
-.other-toggle.open i.oc{transform:rotate(180deg)}
-.other-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.other-body.open{max-height:600px}
+/* Portfolio grid */
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.port-card{background:var(--glass);border:1px solid var(--gb);border-radius:12px;overflow:hidden;transition:all .25s;text-decoration:none;color:inherit;display:block}
+.port-card:hover{transform:translateY(-4px);border-color:rgba(124,106,247,.3);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.port-img{width:100%;aspect-ratio:4/3;background:var(--glass2);display:flex;align-items:center;justify-content:center;color:var(--txt3);position:relative;overflow:hidden}
+.port-img i{font-size:22px}
+.port-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.port-body{padding:14px}
+.port-name{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:3px}
+.port-sub{font-size:10px;color:var(--txt3)}
 
-.skills-col-inner{padding:36px 24px;position:sticky;top:0}
-.skills-title{font-family:'DM Serif Display',serif;font-size:18px;margin-bottom:20px;color:var(--txt)}
-.skill-group{margin-bottom:18px}
-.skill-group-label{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--txt4);margin-bottom:7px}
-.skill-tags{display:flex;flex-wrap:wrap;gap:5px}
-.skill-tag{font-size:11px;padding:3px 9px;background:var(--bg3);border-radius:10px;color:var(--txt2);border:1px solid var(--line)}
+/* Engram */
+.engram-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:56px;align-items:center;background:var(--glass);border:1px solid var(--gb);border-radius:20px;padding:48px}
+.engram-eyebrow{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--a1);margin-bottom:12px}
+.engram-title{font-family:'DM Serif Display',serif;font-size:30px;color:var(--txt);margin-bottom:14px}
+.engram-desc{font-size:13px;color:var(--txt2);line-height:1.75;margin-bottom:22px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
+.chip{font-size:10px;padding:4px 10px;background:rgba(255,255,255,.07);border:1px solid var(--gb);border-radius:10px;color:var(--txt2)}
+.engram-visual{background:var(--glass2);border:1px solid var(--gb);border-radius:12px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;color:var(--txt3);flex-direction:column;gap:10px;font-size:12px;position:relative;overflow:hidden}
+.engram-visual i{font-size:32px}
+.engram-visual img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
 
-.footer{padding:20px 64px;display:flex;align-items:center;justify-content:center;background:var(--bg2);border-top:1px solid var(--line)}
-.footer-txt{font-size:11px;color:var(--txt4);letter-spacing:.02em}
+/* Experience */
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.exp-col-head{font-family:'DM Serif Display',serif;font-size:20px;color:var(--txt);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.exp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.exp-card{background:var(--glass);border:1px solid var(--gb);border-radius:12px;padding:16px;margin-bottom:10px;cursor:pointer;transition:border-color .2s}
+.exp-card:hover{border-color:rgba(0,212,184,.25)}
+.exp-hdr{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.exp-org{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:2px}
+.exp-role{font-size:11px;color:var(--txt2);margin-bottom:4px}
+.exp-summary{font-size:11px;color:var(--txt3);line-height:1.5}
+.exp-right{text-align:right;flex-shrink:0}
+.exp-date{font-size:10px;color:var(--txt3)}
+.exp-chev{font-size:12px;color:var(--txt3);transition:transform .25s;display:block;margin-top:4px}
+.exp-card.open .exp-chev{transform:rotate(180deg)}
+.exp-detail{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.exp-card.open .exp-detail{max-height:600px}
+.exp-detail-inner{padding:12px 0 4px}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:6px}
+.exp-bullets li{font-size:11px;color:var(--txt2);padding-left:14px;position:relative;line-height:1.5}
+.exp-bullets li::before{content:'—';position:absolute;left:0;color:var(--a1);font-size:10px}
 
-/* Showcase */
-.showcase{padding:48px 64px;border-top:1px solid var(--line);background:var(--bg)}
-.sc-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt4);margin-bottom:20px}
-.proj-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
-.proj-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:6px}
-.proj-status{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
-.proj-status.active{color:#36454f}
-.proj-status.done{color:var(--txt4)}
-.proj-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
-.proj-name{font-size:14px;font-weight:500;color:var(--txt);line-height:1.3}
-.proj-role{font-size:11px;color:var(--txt3)}
-.proj-stat{font-size:11px;color:var(--txt2);line-height:1.6;flex:1;margin-top:2px}
-.proj-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.sc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
-.sc-col-title{font-size:13px;font-weight:500;color:var(--txt);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.art-item{padding:10px 0;border-bottom:1px solid var(--line)}
-.art-item:last-child{border-bottom:none}
-.art-link{font-size:12px;color:var(--txt);font-weight:500;text-decoration:none;display:block;margin-bottom:2px;line-height:1.4}
-.art-link:hover{color:var(--txt3)}
-.art-meta{font-size:10px;color:var(--txt4)}
-.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.photo-ph{background:var(--bg3);border-radius:6px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;border:1px solid var(--line)}
-.photo-ph i{font-size:18px;color:var(--txt4)}
-.port-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
-.port-item:last-child{border-bottom:none}
-.port-ico{width:30px;height:30px;background:var(--bg3);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--line)}
-.port-ico i{font-size:14px;color:var(--txt3)}
-.port-name{font-size:12px;font-weight:500;color:var(--txt);display:block;line-height:1.3}
-.port-sub{font-size:10px;color:var(--txt4)}
-.sc-empty{font-size:11px;color:var(--txt4);text-align:center;padding:24px 0;font-style:italic}
+/* Skills Network */
+.skills-wrap{background:var(--glass);border:1px solid var(--gb);border-radius:20px;padding:40px;display:flex;gap:40px;align-items:center}
+.skills-svg-wrap{flex:1;min-width:0}
+#skills-svg{width:100%;max-width:460px;height:320px;display:block;margin:0 auto;overflow:visible}
+.skills-legend{width:210px;flex-shrink:0}
+.sk-leg-item{padding:9px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:opacity .2s}
+.sk-leg-item:last-child{border-bottom:none}
+.sk-leg-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.sk-leg-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.sk-leg-tag{font-size:9px;padding:2px 7px;background:rgba(255,255,255,.06);border-radius:8px;color:var(--txt3)}
+.sk-line{transition:stroke-opacity .3s}
+
+/* Academic */
+.acad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.acad-card{background:var(--glass);border:1px solid var(--gb);border-radius:12px;padding:18px;transition:border-color .2s}
+.acad-card:hover{border-color:rgba(0,212,184,.2)}
+.acad-deg{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:3px}
+.acad-school{font-size:11px;color:var(--a1);margin-bottom:3px}
+.acad-meta{font-size:10px;color:var(--txt3);margin-bottom:10px}
+.acad-tags{display:flex;flex-wrap:wrap;gap:5px}
+.acad-tag{font-size:9px;padding:2px 7px;background:rgba(255,255,255,.06);border-radius:8px;color:var(--txt3)}
+
+/* Contact */
+.contact-section{padding:80px 64px;z-index:2;position:relative;border-top:1px solid var(--line);text-align:center}
+.contact-title{font-family:'DM Serif Display',serif;font-size:32px;color:var(--txt);margin-bottom:10px}
+.contact-sub{font-size:14px;color:var(--txt2);margin-bottom:36px}
+.contact-links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.contact-link{display:flex;align-items:center;gap:7px;padding:10px 22px;background:var(--glass);border:1px solid var(--gb);border-radius:24px;font-size:12px;color:var(--txt2);text-decoration:none;transition:all .2s}
+.contact-link:hover{border-color:rgba(0,212,184,.35);color:var(--a1);transform:translateY(-1px)}
+.contact-link i{font-size:15px}
+.footer-note{font-size:10px;color:var(--txt3);margin-top:44px;letter-spacing:.04em}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* Responsive */
+@media(max-width:900px){
+  .nav{padding:0 24px}
+  .hero,.section{padding:80px 24px 60px}
+  .tl-strip{padding:20px 24px}
+  .featured-grid,.exp-grid,.acad-grid,.articles-row,.portfolio-grid{grid-template-columns:1fr}
+  .engram-wrap{grid-template-columns:1fr;padding:28px}
+  .skills-wrap{flex-direction:column}
+  .skills-legend{width:100%}
+}
 </style>
 </head>
 <body>
 
-<div class="hdr">
+<canvas id="stars-canvas"></canvas>
+<div class="aurora-wrap">
+  <div class="aur a1"></div>
+  <div class="aur a2"></div>
+  <div class="aur a3"></div>
+</div>
+
+<div class="page">
+
+<!-- Nav -->
+<nav class="nav">
+  <a class="nav-name" href="#hero">Weiqi Shi</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#highlights">Work</a>
+    <a class="nav-link" href="#experience">Experience</a>
+    <a class="nav-link" href="#skills">Skills</a>
+    <a class="nav-link" href="#contact">Contact</a>
+  </div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('zh')">中文</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
   <div>
-    <div class="hdr-name">Weiqi Shi</div>
-    <div class="hdr-tag" id="hdr-tag">Product &amp; analytics professional — economics, fintech, and emerging technology</div>
-    <div class="hdr-meta">
-      <span class="hdr-meta-item"><i class="ti ti-map-pin"></i><span id="m-loc">North York, ON · Canada</span></span>
-      <span class="hdr-meta-item"><i class="ti ti-school"></i><span>Lakehead University</span></span>
-      <span class="hdr-meta-item"><i class="ti ti-language"></i><span>EN / 中文</span></span>
+    <div class="hero-eyebrow" id="hero-eyebrow">Product · Fintech · Web3</div>
+    <h1 class="hero-name">Weiqi Shi</h1>
+    <p class="hero-sub" id="hero-sub">Building at the intersection of finance, technology, and emerging markets</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">$20M+</span><span class="stat-lbl" id="s-aum">AUM Managed</span></div>
+      <div class="stat"><span class="stat-num">1,000+</span><span class="stat-lbl" id="s-amb">Ambassadors Built</span></div>
+      <div class="stat"><span class="stat-num">#1</span><span class="stat-lbl" id="s-art">Foresight News</span></div>
+      <div class="stat"><span class="stat-num">5+</span><span class="stat-lbl" id="s-prod">Products Shipped</span></div>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary"><span id="h-cta">Get in Touch</span></a>
+      <a href="#highlights" class="btn-ghost"><span id="h-work">View Work ↓</span></a>
     </div>
   </div>
-  <div class="hdr-right">
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('zh')">中文</button>
-    </div>
-    <div class="avatar">WS</div>
-  </div>
-</div>
+  <div class="scroll-hint"><span>scroll</span><i class="ti ti-chevron-down"></i></div>
+</section>
 
-<div class="contacts">
-  <a class="cl" href="mailto:weiqi.shi919@gmail.com"><i class="ti ti-mail"></i>weiqi.shi919@gmail.com</a>
-  <a class="cl" href="https://linkedin.com/in/shi-weiqi-55052619a" target="_blank"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
-  <a class="cl" href="https://paragraph.com/sepremelouis.eth" target="_blank"><i class="ti ti-pencil"></i><span id="cl-writing">Research &amp; Writing</span></a>
-  <button class="dl-btn"><i class="ti ti-download"></i><span id="dl-lbl">Download Resume</span></button>
-</div>
-
-<div class="tl-section">
-  <div class="tl-label" id="tl-lbl">Career Timeline</div>
+<!-- Timeline -->
+<div class="tl-strip" id="timeline">
+  <div class="tl-strip-label" id="tl-lbl">Career Timeline · 2017 — Present</div>
   <div class="tl-outer" id="tl-outer"></div>
   <div class="tl-legend">
-    <div class="tl-legend-item"><div class="tl-dot" style="background:var(--cat-academic)"></div><span id="leg-a">Academic</span></div>
-    <div class="tl-legend-item"><div class="tl-dot" style="background:var(--cat-work)"></div><span id="leg-w">Finance &amp; Banking</span></div>
-    <div class="tl-legend-item"><div class="tl-dot" style="background:var(--cat-project)"></div><span id="leg-p">Web3 &amp; Startup</span></div>
-    <div class="tl-legend-item"><div class="tl-dot" style="background:var(--cat-other)"></div><span id="leg-o">Other</span></div>
+    <div class="tl-leg-item"><div class="tl-dot" style="background:rgba(0,212,184,.7)"></div><span id="leg-a">Academic</span></div>
+    <div class="tl-leg-item"><div class="tl-dot" style="background:rgba(124,106,247,.7)"></div><span id="leg-w">Finance &amp; Banking</span></div>
+    <div class="tl-leg-item"><div class="tl-dot" style="background:rgba(79,216,154,.6)"></div><span id="leg-p">Web3 &amp; Startup</span></div>
+    <div class="tl-leg-item"><div class="tl-dot" style="background:rgba(143,163,192,.5)"></div><span id="leg-o">Other</span></div>
   </div>
 </div>
 
-<div class="body-grid">
-  <div class="col-main">
-    <div class="sec-block">
-      <div class="sec-title" id="sec-acad">Academic</div>
-      <div class="sec-subtitle" id="sec-acad-sub">Lakehead University · Thunder Bay, ON · Sep 2017 – May 2021</div>
-      <div class="academic-grid" id="acad-grid"></div>
-    </div>
-    <div class="sec-block">
-      <div class="sec-title" id="sec-fin">Finance &amp; Banking</div>
-      <div class="sec-subtitle" id="sec-fin-sub">HSBC · RBC · Futu Securities</div>
-      <div id="fin-entries"></div>
-    </div>
-    <div class="sec-block">
-      <div class="other-toggle" id="other-toggle" onclick="toggleOther()">
-        <span id="sec-other">Other Experience</span>
-        <i class="ti ti-chevron-down oc"></i>
+<div class="aurora-divider"></div>
+
+<!-- Featured Highlights -->
+<section class="section" id="highlights">
+  <div class="section-inner">
+    <div class="reveal"><div class="sec-eyebrow" id="f-ey">Featured</div><h2 class="sec-title" id="f-t">Highlights</h2></div>
+    <div class="featured-grid reveal" id="featured-grid"></div>
+  </div>
+</section>
+
+<div class="aurora-divider"></div>
+
+<!-- Articles -->
+<section class="section" id="articles">
+  <div class="section-inner">
+    <div class="reveal"><div class="sec-eyebrow" id="a-ey">Published Work</div><h2 class="sec-title" id="a-t">Articles &amp; Research</h2></div>
+    <div class="articles-row reveal" id="articles-row"></div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section class="section" id="portfolio">
+  <div class="section-inner">
+    <div class="reveal"><div class="sec-eyebrow" id="p-ey">Built &amp; Shipped</div><h2 class="sec-title" id="p-t">Portfolio</h2></div>
+    <div class="portfolio-grid reveal" id="portfolio-grid"></div>
+  </div>
+</section>
+
+<div class="aurora-divider"></div>
+
+<!-- Engram -->
+<section class="section" id="engram">
+  <div class="section-inner">
+    <div class="engram-wrap reveal">
+      <div>
+        <div class="engram-eyebrow" id="eg-ey">Featured Project</div>
+        <h2 class="engram-title">Engram</h2>
+        <p class="engram-desc" id="eg-desc">A private knowledge workspace for builders — turning daily work and AI conversations into structured, reviewable long-term memory. Built solo from concept to production.</p>
+        <div class="chips">
+          <span class="chip">React + TypeScript</span><span class="chip">Cloudflare Workers</span>
+          <span class="chip">D1 SQLite</span><span class="chip">Claude API</span><span class="chip">MCP Protocol</span>
+        </div>
+        <a href="https://engram-b14.pages.dev" class="btn-primary" target="_blank"><i class="ti ti-external-link"></i><span id="eg-cta">View Live</span></a>
       </div>
-      <div class="other-body" id="other-body">
-        <div id="other-entries"></div>
+      <div class="engram-visual">
+        <!-- Replace src below with actual screenshot path -->
+        <!-- <img src="engram-screenshot.png" alt="Engram"/> -->
+        <i class="ti ti-layout-dashboard"></i>
+        <span id="eg-ph">Screenshot coming soon</span>
       </div>
     </div>
   </div>
-  <div class="col-mid">
-    <div class="sec-block" style="border-bottom:none;height:100%">
-      <div class="sec-title" id="sec-web3">Web3 &amp; Startup Work</div>
-      <div class="sec-subtitle" id="sec-web3-sub">ChainCatcher · Flipflop Labs · Harena</div>
-      <div id="web3-entries"></div>
-    </div>
-  </div>
-  <div class="col-skills">
-    <div class="skills-col-inner">
-      <div class="skills-title" id="sec-skills">Skills</div>
-      <div id="skills-content"></div>
-    </div>
-  </div>
-</div>
+</section>
 
-<div class="showcase">
-  <div class="sc-label" id="sc-lbl">Project Showcase</div>
-  <div class="proj-strip" id="proj-strip"></div>
-  <div class="sc-grid">
-    <div>
-      <div class="sc-col-title" id="sc-art-t">Articles &amp; Research</div>
-      <div id="sc-articles"></div>
-    </div>
-    <div>
-      <div class="sc-col-title" id="sc-photo-t">Photos</div>
-      <div id="sc-photos"></div>
-    </div>
-    <div>
-      <div class="sc-col-title" id="sc-port-t">Portfolio &amp; Prototypes</div>
-      <div id="sc-portfolio"></div>
+<div class="aurora-divider"></div>
+
+<!-- Experience -->
+<section class="section" id="experience">
+  <div class="section-inner">
+    <div class="reveal"><div class="sec-eyebrow" id="ex-ey">Background</div><h2 class="sec-title" id="ex-t">Experience</h2></div>
+    <div class="exp-grid">
+      <div class="reveal">
+        <div class="exp-col-head"><span class="exp-dot" style="background:var(--a2)"></span><span id="ex-fin">Finance &amp; Banking</span></div>
+        <div id="fin-entries"></div>
+      </div>
+      <div class="reveal">
+        <div class="exp-col-head"><span class="exp-dot" style="background:var(--a3)"></span><span id="ex-web3">Web3 &amp; Startup</span></div>
+        <div id="web3-entries"></div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="footer"><span class="footer-txt" id="ftr">Open to Product Manager and Business Analyst opportunities in Toronto</span></div>
+<!-- Skills -->
+<section class="section" id="skills">
+  <div class="section-inner">
+    <div class="reveal"><div class="sec-eyebrow" id="sk-ey">Capability Map</div><h2 class="sec-title" id="sk-t">Skills Network</h2></div>
+    <div class="skills-wrap reveal">
+      <div class="skills-svg-wrap"><svg id="skills-svg" viewBox="0 0 460 320"></svg></div>
+      <div class="skills-legend" id="skills-legend"></div>
+    </div>
+  </div>
+</section>
+
+<div class="aurora-divider"></div>
+
+<!-- Academic -->
+<section class="section" id="academic">
+  <div class="section-inner">
+    <div class="reveal"><div class="sec-eyebrow" id="ac-ey">Education</div><h2 class="sec-title" id="ac-t">Academic</h2></div>
+    <div class="acad-grid reveal" id="acad-grid"></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <div class="sec-eyebrow" id="ct-ey">Let's Connect</div>
+    <h2 class="contact-title" id="ct-t">Get in Touch</h2>
+    <p class="contact-sub" id="ct-sub">Open to Product Manager and Business Analyst opportunities in Toronto</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:weiqi.shi919@gmail.com"><i class="ti ti-mail"></i>weiqi.shi919@gmail.com</a>
+      <a class="contact-link" href="https://linkedin.com/in/shi-weiqi-55052619a" target="_blank"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
+      <a class="contact-link" href="https://paragraph.com/sepremelouis.eth" target="_blank"><i class="ti ti-pencil"></i><span id="ct-wr">Research &amp; Writing</span></a>
+    </div>
+    <div class="footer-note" id="ct-ft">© 2026 Weiqi Shi · Built with Claude Code</div>
+  </div>
+</section>
+
+</div>
 
 <script>
+// ── Stars ──
+(function(){
+  const c=document.getElementById('stars-canvas'),ctx=c.getContext('2d');
+  function rs(){c.width=window.innerWidth;c.height=window.innerHeight}
+  rs();window.addEventListener('resize',rs);
+  const S=Array.from({length:200},()=>({x:Math.random(),y:Math.random(),r:Math.random()*1.3+.2,o:Math.random(),s:(Math.random()-.5)*.003}));
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    S.forEach(s=>{s.o+=s.s;if(s.o>1||s.o<0)s.s*=-1;ctx.beginPath();ctx.arc(s.x*c.width,s.y*c.height,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${Math.max(0,Math.min(1,s.o))})`;ctx.fill()});
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── Timeline ──
 const START=2017.67,END=2026.5,RANGE=END-START;
 function pct(y){return((y-START)/RANGE*100).toFixed(3)+'%'}
 function ym(y,m){return y+(m-1)/12}
-
 const SEGS=[
-  {cat:'academic',name:'Lakehead University',sub:'Thunder Bay, ON',start:ym(2017,9),end:ym(2021,5)},
-  {cat:'academic',name:'Bank of Canada Competition',sub:'Ottawa, ON',start:ym(2019,9),end:ym(2020,2)},
-  {cat:'other',name:'Elite Alliance',sub:'North York, ON',start:ym(2021,8),end:ym(2022,2)},
-  {cat:'work',name:'HSBC Bank of Canada',sub:'Toronto, ON',start:ym(2022,2),end:ym(2024,4)},
-  {cat:'work',name:'RBC (acquired)',sub:'Toronto, ON',start:ym(2024,4),end:ym(2024,7),acquired:true},
-  {cat:'work',name:'Futu Securities',sub:'Shenzhen, CN',start:ym(2024,9),end:ym(2024,12)},
-  {cat:'project',name:'ChainCatcher / Trendverse',sub:'Shenzhen, CN',start:ym(2025,4),end:ym(2025,8)},
-  {cat:'project',name:'Flipflop Labs / PathPort',sub:'Shenzhen, CN',start:ym(2025,8),end:ym(2026,1)},
-  {cat:'project',name:'Harena',sub:'Toronto, ON',start:ym(2025,10),end:ym(2026,5)},
+  {cat:'academic',name:'Lakehead University',sub:'Thunder Bay',start:ym(2017,9),end:ym(2021,5)},
+  {cat:'academic',name:'Bank of Canada Competition',sub:'Ottawa',start:ym(2019,9),end:ym(2020,2)},
+  {cat:'other',name:'Elite Alliance',sub:'North York',start:ym(2021,8),end:ym(2022,2)},
+  {cat:'work',name:'HSBC Bank of Canada',sub:'Toronto',start:ym(2022,2),end:ym(2024,4)},
+  {cat:'work',name:'RBC (acquired)',sub:'Toronto',start:ym(2024,4),end:ym(2024,7),acquired:true},
+  {cat:'work',name:'Futu Securities',sub:'Shenzhen',start:ym(2024,9),end:ym(2024,12)},
+  {cat:'project',name:'ChainCatcher / Trendverse',sub:'Shenzhen',start:ym(2025,4),end:ym(2025,8)},
+  {cat:'project',name:'Flipflop / PathPort',sub:'Shenzhen',start:ym(2025,8),end:ym(2026,1)},
+  {cat:'project',name:'Harena',sub:'Toronto',start:ym(2025,10),end:ym(2026,5)},
 ];
-
 function buildTimeline(){
-  const outer=document.getElementById('tl-outer');
-  outer.innerHTML='';
-  const axis=document.createElement('div');
-  axis.className='tl-axis';
+  const outer=document.getElementById('tl-outer');outer.innerHTML='';
+  const axis=document.createElement('div');axis.className='tl-axis';
   for(let y=2017;y<=2027;y++){
-    const s=document.createElement('span');
-    s.className='tl-yr';
-    s.textContent=y;
-    s.style.left=pct(y);
-    axis.appendChild(s);
+    const s=document.createElement('span');s.className='tl-yr';s.textContent=y;s.style.left=pct(y);axis.appendChild(s);
   }
   outer.appendChild(axis);
-  // Auto-pack: assign each seg to the first row it fits without overlap
-  const rowIvs=[];
-  const rowAssign=SEGS.map(s=>{
-    for(let r=0;r<rowIvs.length;r++){
-      if(!rowIvs[r].some(iv=>s.start<iv.end&&s.end>iv.start)){
-        rowIvs[r].push({start:s.start,end:s.end});
-        return r;
-      }
+  const rivs=[],ra=SEGS.map(s=>{
+    for(let r=0;r<rivs.length;r++){
+      if(!rivs[r].some(iv=>s.start<iv.end&&s.end>iv.start)){rivs[r].push({start:s.start,end:s.end});return r}
     }
-    rowIvs.push([{start:s.start,end:s.end}]);
-    return rowIvs.length-1;
+    rivs.push([{start:s.start,end:s.end}]);return rivs.length-1;
   });
-  const rowsEl=document.createElement('div');
-  rowsEl.className='tl-rows';
-  const rows=Array.from({length:rowIvs.length},()=>{
-    const r=document.createElement('div');
-    r.className='tl-row';
-    rowsEl.appendChild(r);
-    return r;
-  });
-  const fmt=y=>{
-    const yr=Math.floor(y);
-    const mo=Math.round((y-yr)*12)+1;
-    const ms=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return ms[Math.max(0,Math.min(11,mo-1))]+' '+yr;
-  };
+  const rowsEl=document.createElement('div');rowsEl.className='tl-rows';
+  const rows=Array.from({length:rivs.length},()=>{const r=document.createElement('div');r.className='tl-row';rowsEl.appendChild(r);return r});
+  const fmt=y=>{const yr=Math.floor(y),mo=Math.round((y-yr)*12)+1;return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][Math.max(0,Math.min(11,mo-1))]+' '+yr};
   SEGS.forEach((s,i)=>{
-    const ri=rowAssign[i];
-    if(s.acquired){
-      const arr=document.createElement('div');
-      arr.className='tl-arrow';
-      arr.style.left=pct(s.start);
-      arr.style.width='20px';
-      rows[ri].appendChild(arr);
-    }
-    const el=document.createElement('div');
-    el.className='tl-seg';
-    el.dataset.cat=s.cat;
-    el.style.left=pct(s.start);
-    el.style.width=(((s.end-s.start)/RANGE)*100).toFixed(3)+'%';
-    const endLabel=s.end>=2026.4?'Present':fmt(s.end);
-    el.title=s.name+' · '+fmt(s.start)+' – '+endLabel+' · '+s.sub;
-    el.innerHTML='<div class="tl-seg-inner"><span class="tl-seg-name">'+s.name+'</span><span class="tl-seg-sub">'+s.sub+'</span></div>';
+    const ri=ra[i];
+    if(s.acquired){const arr=document.createElement('div');arr.className='tl-arrow';arr.style.left=pct(s.start);arr.textContent='→';rows[ri].appendChild(arr)}
+    const el=document.createElement('div');el.className='tl-seg';el.dataset.cat=s.cat;
+    el.style.left=pct(s.start);el.style.width=(((s.end-s.start)/RANGE)*100).toFixed(3)+'%';
+    el.title=s.name+' · '+fmt(s.start)+' – '+(s.end>=2026.4?'Present':fmt(s.end));
+    el.innerHTML=`<div class="tl-seg-inner"><span class="tl-seg-name">${s.name}</span></div>`;
     rows[ri].appendChild(el);
   });
   outer.appendChild(rowsEl);
 }
 
+// ── Skills Network ──
+const SK=[
+  {id:'pm',label:'Product',sub:'Manager',x:230,y:160,r:34,c:'#00d4b8',ctr:true},
+  {id:'fin',label:'Finance',sub:'& Banking',x:70,y:70,r:25,c:'#7c6af7',tags:['$20M+ AUM','CSC · MFDA','Investment','Client Mgmt','Risk']},
+  {id:'ai',label:'AI &',sub:'Tech',x:390,y:55,r:25,c:'#00d4b8',tags:['Claude Code','LLM Design','MCP · API','Prompt Eng','Lovable']},
+  {id:'web3',label:'Web3',sub:'& DeFi',x:410,y:270,r:25,c:'#4fd89a',tags:['Tokenomics','DeFi Research','Whitepapers','GTM','Smart Contracts']},
+  {id:'data',label:'Data',sub:'Analysis',x:230,y:295,r:25,c:'#7c6af7',tags:['SQL · Excel','Tableau','Fin. Modeling','Econometrics','Quant']},
+  {id:'comm',label:'Comm',sub:'& Writing',x:60,y:270,r:25,c:'#4fd89a',tags:['Bilingual EN/ZH','Investor Relations','PRD · Specs','Tech Writing','Pitching']},
+];
+function buildSkillsNetwork(){
+  const svg=document.getElementById('skills-svg');svg.innerHTML='';
+  const ns='http://www.w3.org/2000/svg';
+  const defs=document.createElementNS(ns,'defs');
+  SK.filter(n=>!n.ctr).forEach(n=>{
+    const g=document.createElementNS(ns,'linearGradient');
+    g.id='gl-'+n.id;g.setAttribute('gradientUnits','userSpaceOnUse');
+    const c=SK[0];g.setAttribute('x1',c.x);g.setAttribute('y1',c.y);g.setAttribute('x2',n.x);g.setAttribute('y2',n.y);
+    [[0,'#00d4b8',.35],[1,n.c,.35]].forEach(([off,col,op])=>{
+      const s=document.createElementNS(ns,'stop');s.setAttribute('offset',off===0?'0%':'100%');
+      s.setAttribute('stop-color',col);s.setAttribute('stop-opacity',op);g.appendChild(s);
+    });
+    defs.appendChild(g);
+  });
+  svg.appendChild(defs);
+  const ctr=SK[0];
+  SK.filter(n=>!n.ctr).forEach(n=>{
+    const l=document.createElementNS(ns,'line');
+    l.setAttribute('x1',ctr.x);l.setAttribute('y1',ctr.y);l.setAttribute('x2',n.x);l.setAttribute('y2',n.y);
+    l.setAttribute('stroke','url(#gl-'+n.id+')');l.setAttribute('stroke-width','1.5');l.setAttribute('stroke-dasharray','4 3');
+    l.classList.add('sk-line');l.dataset.node=n.id;svg.appendChild(l);
+  });
+  SK.forEach(n=>{
+    const g=document.createElementNS(ns,'g');g.style.cursor='pointer';
+    if(n.ctr){
+      [52,42].forEach((r,i)=>{
+        const ring=document.createElementNS(ns,'circle');ring.setAttribute('cx',n.x);ring.setAttribute('cy',n.y);ring.setAttribute('r',r);
+        ring.setAttribute('fill','none');ring.setAttribute('stroke',n.c);ring.setAttribute('stroke-width','1');ring.setAttribute('opacity',i===0?.12:.2);
+        const an=document.createElementNS(ns,'animate');an.setAttribute('attributeName','r');an.setAttribute('values',`${r};${r+5};${r}`);an.setAttribute('dur',`${3+i*1.5}s`);an.setAttribute('repeatCount','indefinite');
+        ring.appendChild(an);g.appendChild(ring);
+      });
+    }
+    const c=document.createElementNS(ns,'circle');
+    c.setAttribute('cx',n.x);c.setAttribute('cy',n.y);c.setAttribute('r',n.r);
+    c.setAttribute('fill',n.ctr?'rgba(0,212,184,.12)':'rgba(255,255,255,.04)');
+    c.setAttribute('stroke',n.c);c.setAttribute('stroke-width',n.ctr?'1.5':'1');
+    c.setAttribute('stroke-opacity',n.ctr?'1':'.5');g.appendChild(c);
+    const t1=document.createElementNS(ns,'text');
+    t1.setAttribute('x',n.x);t1.setAttribute('y',n.y+(n.sub?-3:3));t1.setAttribute('text-anchor','middle');
+    t1.setAttribute('font-family','Inter');t1.setAttribute('font-size',n.ctr?'11':'9.5');t1.setAttribute('font-weight',n.ctr?'600':'500');t1.setAttribute('fill','#e2eaf8');t1.textContent=n.label;g.appendChild(t1);
+    if(n.sub){
+      const t2=document.createElementNS(ns,'text');
+      t2.setAttribute('x',n.x);t2.setAttribute('y',n.y+(n.ctr?9:8));t2.setAttribute('text-anchor','middle');
+      t2.setAttribute('font-family','Inter');t2.setAttribute('font-size',n.ctr?'10':'8.5');t2.setAttribute('fill','#8fa3c0');t2.textContent=n.sub;g.appendChild(t2);
+    }
+    if(!n.ctr){
+      const hit=document.createElementNS(ns,'circle');hit.setAttribute('cx',n.x);hit.setAttribute('cy',n.y);hit.setAttribute('r',n.r+10);hit.setAttribute('fill','transparent');g.appendChild(hit);
+      g.addEventListener('mouseenter',()=>hlNode(n.id));g.addEventListener('mouseleave',()=>hlNode(null));
+    }
+    svg.appendChild(g);
+  });
+}
+function hlNode(id){
+  document.querySelectorAll('.sk-line').forEach(l=>{l.style.strokeOpacity=(!id||l.dataset.node===id)?'1':'.08'});
+  document.querySelectorAll('.sk-leg-item').forEach(el=>{el.style.opacity=(!id||el.dataset.id===id)?'1':'.25'});
+}
+function buildSkillsLegend(){
+  const leg=document.getElementById('skills-legend');leg.innerHTML='';
+  SK.filter(n=>!n.ctr).forEach(n=>{
+    const d=document.createElement('div');d.className='sk-leg-item';d.dataset.id=n.id;
+    d.innerHTML=`<div class="sk-leg-title" style="color:${n.c}">${n.label} ${n.sub}</div><div class="sk-leg-tags">${n.tags.map(t=>`<span class="sk-leg-tag">${t}</span>`).join('')}</div>`;
+    d.addEventListener('mouseenter',()=>hlNode(n.id));d.addEventListener('mouseleave',()=>hlNode(null));
+    leg.appendChild(d);
+  });
+}
+
+// ── Data ──
 const DATA={
 en:{
-  tag:'Product & analytics professional — economics, fintech, and emerging technology',
-  dl:'Download Resume',writing:'Research & Writing',tlLbl:'Career Timeline',
-  legA:'Academic',legW:'Finance & Banking',legP:'Web3 & Startup',legO:'Other',
-  secAcad:'Academic',secAcadSub:'Lakehead University · Thunder Bay, ON · Sep 2017 – May 2021',
-  secFin:'Finance & Banking',secFinSub:'HSBC · RBC · Futu Securities',
-  secOther:'Other Experience',
-  secWeb3:'Web3 & Startup Work',secWeb3Sub:'ChainCatcher · Flipflop Labs · Harena',
-  secSkills:'Skills',
-  ftr:'Open to Product Manager and Business Analyst opportunities in Toronto',
-  acad:[
-    {title:'Master of Economics',meta:'GPA 3.9/4.0 · Sep 2020 – May 2021',tags:["Dean Braun's Medal","Research Award $10K","Econometrics","Quantitative modelling"]},
-    {title:'Bachelor of Math & Economics',meta:'GPA 3.5/4.0 · Sep 2017 – Sep 2020',tags:['Entry Scholarship $17.5K','Calculus 100%','3yr Teaching Assistant']},
+  heroEyebrow:'Product · Fintech · Web3',heroSub:'Building at the intersection of finance, technology, and emerging markets',
+  sAum:'AUM Managed',sAmb:'Ambassadors Built',sArt:'Foresight News',sProd:'Products Shipped',
+  hCta:'Get in Touch',hWork:'View Work ↓',
+  tlLbl:'Career Timeline · 2017 — Present',legA:'Academic',legW:'Finance & Banking',legP:'Web3 & Startup',legO:'Other',
+  fEy:'Featured',fT:'Highlights',aEy:'Published Work',aT:'Articles & Research',pEy:'Built & Shipped',pT:'Portfolio',
+  egEy:'Featured Project',egDesc:'A private knowledge workspace for builders — turning daily work and AI conversations into structured, reviewable long-term memory. Built solo from concept to production.',egCta:'View Live',egPh:'Screenshot coming soon',
+  exEy:'Background',exT:'Experience',exFin:'Finance & Banking',exWeb3:'Web3 & Startup',
+  skEy:'Capability Map',skT:'Skills Network',acEy:'Education',acT:'Academic',
+  ctEy:"Let's Connect",ctT:'Get in Touch',ctSub:'Open to Product Manager and Business Analyst opportunities in Toronto',ctWr:'Research & Writing',ctFt:'© 2026 Weiqi Shi · Built with Claude Code',
+  featured:[
+    {badge:'article',badgeLbl:'Article',title:'#1 on Foresight News — Web3 Regulatory Analysis',meta:'U.S. CLARITY Act & Singapore MAS · Top monthly readership all platforms · Trendverse Lab × ChainCatcher · 2025',href:'https://paragraph.com/sepremelouis.eth',img:''},
+    {badge:'project',badgeLbl:'Project',title:'PathPort — 1,000+ Ambassadors in 60 Days',meta:'Web3 ambassador platform · Africa & Southeast Asia · Hong Kong keynote · 60-page bilingual whitepaper',href:'#',img:''},
+    {badge:'startup',badgeLbl:'Startup',title:'Harena — AI Financial Intelligence Platform',meta:'Co-founder & PM · 5 major product pivots · Solo full-stack delivery · Investor pipeline active · Toronto',href:'https://engram-b14.pages.dev',img:''},
   ],
-  comp:{org:'Bank of Canada Monetary Policy Competition',role:'Team Lead · Lakehead University',date:'Sep 2019 – Feb 2020',loc:'Ottawa, ON',
-    desc:'Led team of 5 students + 4 faculty to national finals. Presented monetary policy brief to Governor Stephen Poloz. Formal commendation received.',
-    proofs:[{label:'Competition report',icon:'ti-file-text',href:'#'},{label:'Ottawa photos',icon:'ti-photo',href:'#'},{label:'Press coverage',icon:'ti-news',href:'#'}]},
+  articles:[
+    {title:'U.S. CLARITY Act & Singapore MAS Regulatory Framework',meta:'Trendverse Lab · ChainCatcher · 2025',href:'https://paragraph.com/sepremelouis.eth',img:''},
+    {title:'DeFi Macro Outlook & Market Structure Analysis',meta:'ChainCatcher · 2025',href:'https://paragraph.com/sepremelouis.eth',img:''},
+    {title:'Foresight News #1 — Monthly All-Platform Rankings',meta:'Foresight News · 2025',href:'https://paragraph.com/sepremelouis.eth',img:''},
+  ],
+  portfolio:[
+    {name:'Harena App',sub:'AI fintech · Figma + Claude Code + Lovable',href:'#',img:''},
+    {name:'PathPort Website',sub:'Web3 ambassador platform · Live deployment',href:'#',img:''},
+    {name:'Engram',sub:'Knowledge workspace · Cloudflare + D1 + MCP',href:'https://engram-b14.pages.dev',img:''},
+  ],
   fin:[
-    {org:'HSBC Bank of Canada',role:'Personal Banker → Premium Banker',date:'Feb 2022 – Apr 2024',loc:'Toronto, ON',
-      summary:'2 years · sole front-desk operator for months · passed 3 major audits · promoted in 13 months · $1M+ new business in first quarter',
-      bullets:['Managed 500+ clients with $20M+ AUM across investment, lending, and savings products','Promoted to Premium Banker within 13 months — opened $1M+ in new business in first quarter','Sole operator for entire branch front desk for several months; independently passed 3 major regulatory audits','Led digital adoption initiative — +20% mobile banking enrollment among client base'],
-      proofs:[{label:'CSC Certificate',icon:'ti-certificate',href:'#'}]},
-    {org:'RBC (HSBC Canada acquired)',role:'Banking Advisor',date:'Apr 2024 – Jul 2024',loc:'Toronto, ON',
+    {org:'HSBC Bank of Canada',role:'Personal Banker → Premium Banker',date:'Feb 2022 – Apr 2024',
+      summary:'$20M+ AUM · 500+ clients · Promoted in 13 months · 3 regulatory audits passed independently',
+      bullets:['Managed 500+ clients with $20M+ AUM across investment, lending, and savings','Promoted to Premium Banker within 13 months — $1M+ new business in first quarter','Sole front-desk operator for months; independently passed 3 major regulatory audits','Led digital adoption — +20% mobile banking enrollment']},
+    {org:'RBC (HSBC Canada Acquisition)',role:'Banking Advisor',date:'Apr – Jul 2024',
       summary:'Lived through complete bank acquisition · role and portfolio transferred intact',
-      bullets:['Experienced full acquisition process as HSBC Canada was absorbed by RBC in 2024','Continued managing existing client portfolio through transition period'],
-      proofs:[]},
-    {org:'Futu Securities International',role:'Financial Advisor — Singapore Market',date:'Sep 2024 – Dec 2024',loc:'Shenzhen, China',
-      summary:'Remote · 20%+ conversion rate in month one · top of cohort',
-      bullets:['Fully operational within 1 week of training on complex multi-asset platform','Achieved 20%+ activation conversion rate in first month — top performer in cohort','High-volume daily outreach across Singapore retail investor base'],
-      proofs:[]},
-  ],
-  other:[
-    {org:'Elite Alliance Service Inc.',role:'Case Analyst & Operations Lead',date:'Aug 2021 – Feb 2022',loc:'North York, ON',
-      summary:'Immigration and study consultancy — copywriting team lead + client case analysis',
-      bullets:['Led copywriting department — training, task allocation, quality control','Conducted client needs assessments; designed and tracked case solutions','Ran online and offline client acquisition campaigns'],
-      proofs:[]},
+      bullets:['Experienced full acquisition as HSBC Canada was absorbed by RBC in 2024','Continued managing existing client portfolio through transition period']},
+    {org:'Futu Securities International',role:'Financial Advisor — Singapore Market',date:'Sep – Dec 2024',
+      summary:'20%+ conversion rate in month one · top of cohort · remote',
+      bullets:['Fully operational within 1 week on complex multi-asset platform','20%+ activation conversion rate in first month — top cohort performer','High-volume daily outreach across Singapore retail investor base']},
   ],
   web3:[
-    {org:'Harena — AI Fintech Startup',role:'Co-founder & Product Manager',date:'Oct 2025 – Present',loc:'Toronto, ON',
-      summary:'AI financial intelligence platform from zero — solo front-end delivery, 5 major pivots, investor relations',
-      bullets:['Led product strategy through 5 major pivots · authored PRDs, user flows, technical specs','Full front-end UI delivery using Figma, Claude Code, Lovable, OpenAI','Explored prediction markets, stock tokenisation, and EA product directions','Managed investor pipeline — pitch decks, demos, business case documentation','Building backend independently: local deployment, cloud setup, MCP, API integration'],
-      proofs:[{label:'Product prototypes',icon:'ti-layout',href:'#'},{label:'Dev log',icon:'ti-code',href:'#'}]},
-    {org:'Flipflop Labs / PathPort',role:'Overseas Operations Lead',date:'Aug 2025 – Jan 2026',loc:'Shenzhen, China',
-      summary:'Ambassador program → 1,000+ members in 2 months · platform traffic 10x · Hong Kong keynote',
-      bullets:['Designed Footprint Ambassador Program — Africa & Southeast Asia markets','Scaled to 1,000+ ambassadors in 2 months · weekly active traffic grew 10x','Authored 60+ page bilingual whitepaper — tokenomics, architecture, GTM strategy','Built PathPort website independently — architecture, UI, content, deployment','Keynote at Hong Kong summit · 10+ AMAs across 5–6 countries, thousands of participants'],
-      proofs:[{label:'PathPort website',icon:'ti-world',href:'#'},{label:'Whitepaper PDF',icon:'ti-file-text',href:'#'},{label:'HK event photos',icon:'ti-photo',href:'#'}]},
-    {org:'ChainCatcher / Trendverse Lab',role:'Research Analyst & Editor',date:'Apr 2025 – Aug 2025',loc:'Shenzhen, China',
-      summary:'Web3 journalist · Foresight News #1 article of the month · independent research brand',
-      bullets:['Reported on DeFi, macro, and regulatory developments for ChainCatcher','Analyzed U.S. CLARITY Act and Singapore MAS frameworks with legal professionals','Co-built Trendverse Lab — 10+ long-form reports across major crypto media platforms','One article ranked #1 in monthly readership across all platforms on Foresight News'],
-      proofs:[{label:'Published articles',icon:'ti-pencil',href:'https://paragraph.com/sepremelouis.eth'},{label:'Trendverse Lab',icon:'ti-brand-medium',href:'#'}]},
+    {org:'Harena — AI Fintech Startup',role:'Co-founder & Product Manager',date:'Oct 2025 – Present',
+      summary:'Building from zero · 5 major pivots · solo full-stack · investor pipeline active',
+      bullets:['Led product strategy through 5 major pivots · authored PRDs, user flows, technical specs','Full front-end delivery: Figma, Claude Code, Lovable, OpenAI','Explored prediction markets, stock tokenisation, EA product directions','Investor pipeline — pitch decks, demos, business case documentation','Backend: local deployment, cloud setup, MCP, API integration']},
+    {org:'Flipflop Labs / PathPort',role:'Overseas Operations Lead',date:'Aug 2025 – Jan 2026',
+      summary:'1,000+ ambassadors in 2 months · 10x traffic · HK keynote · 60-page whitepaper',
+      bullets:['Footprint Ambassador Program — Africa & Southeast Asia markets','Scaled to 1,000+ ambassadors in 2 months; weekly active traffic 10x','60+ page bilingual whitepaper — tokenomics, architecture, GTM strategy','PathPort website: architecture, UI, content, deployment — solo','Hong Kong keynote · 10+ AMAs across 5–6 countries']},
+    {org:'ChainCatcher / Trendverse Lab',role:'Research Analyst & Editor',date:'Apr – Aug 2025',
+      summary:'#1 Foresight News · 10+ long-form reports · independent research brand',
+      bullets:['DeFi, macro, and regulatory reporting for ChainCatcher','U.S. CLARITY Act & Singapore MAS analysis with legal professionals','Co-built Trendverse Lab — 10+ reports across major crypto platforms','#1 monthly readership on Foresight News across all platforms']},
   ],
-  skills:[
-    {cat:'Product',tags:['Requirements','PRD','User flows','Roadmapping','Competitive analysis','Acceptance criteria']},
-    {cat:'Design & Prototyping',tags:['Figma','Lovable','Claude Code','Wireframing','UI delivery']},
-    {cat:'Data & Analysis',tags:['SQL','Excel','Tableau','Financial modelling','Econometrics']},
-    {cat:'AI & Tech',tags:['Prompt engineering','LLM product design','MCP','API integration','Web3','Tokenomics']},
-    {cat:'Communication',tags:['Cross-functional','Investor relations','Bilingual EN/ZH','Technical writing']},
-    {cat:'Certifications',tags:['CSC — Canadian Securities','Mutual Fund Advisor (MFDA)']},
+  acad:[
+    {deg:'Master of Economics',school:'Lakehead University',meta:'GPA 3.9/4.0 · Sep 2020 – May 2021',tags:["Dean Braun's Medal","Research Award $10K","Econometrics","Quantitative modelling"]},
+    {deg:'Bachelor of Math & Economics',school:'Lakehead University',meta:'GPA 3.5/4.0 · Sep 2017 – May 2020',tags:['Entry Scholarship $17.5K','Calculus 100%','3yr Teaching Assistant']},
+    {deg:'Bank of Canada Competition',school:'National Finals · Ottawa, ON',meta:'Sep 2019 – Feb 2020',tags:['Team Lead','Governor Poloz','5 students + 4 faculty','Formal commendation']},
   ],
-  showcase:{
-    lbl:'Project Showcase',artT:'Articles & Research',photoT:'Photos',portT:'Portfolio & Prototypes',
-    projects:[
-      {name:'Harena — AI Fintech Platform',status:'active',statusLabel:'Active',role:'Co-founder & Product Manager',stat:'Building from zero · 5 major product pivots · solo full-stack delivery · investor pipeline active',links:[{label:'Prototype',icon:'ti-layout',href:'#'},{label:'Dev Log',icon:'ti-code',href:'#'}]},
-      {name:'PathPort / Flipflop Labs',status:'done',statusLabel:'Completed',role:'Overseas Operations Lead',stat:'1,000+ ambassadors in 2 months · platform weekly traffic 10x · 60-page bilingual whitepaper · Hong Kong keynote',links:[{label:'PathPort',icon:'ti-world',href:'#'},{label:'Whitepaper',icon:'ti-file-text',href:'#'},{label:'HK Photos',icon:'ti-photo',href:'#'}]},
-      {name:'Trendverse Lab / ChainCatcher',status:'done',statusLabel:'Completed',role:'Research Analyst & Editor',stat:'10+ long-form reports across major crypto platforms · #1 monthly readership on Foresight News',links:[{label:'Articles',icon:'ti-pencil',href:'https://paragraph.com/sepremelouis.eth'},{label:'Trendverse Lab',icon:'ti-brand-medium',href:'#'}]},
-    ],
-    articles:[
-      {title:'U.S. CLARITY Act & Singapore MAS Regulatory Framework',meta:'Trendverse Lab · ChainCatcher · 2025',href:'https://paragraph.com/sepremelouis.eth'},
-      {title:'DeFi Macro Outlook & Market Structure Analysis',meta:'ChainCatcher · 2025',href:'https://paragraph.com/sepremelouis.eth'},
-      {title:'#1 Monthly Read — Foresight News All-Platform Rankings',meta:'Foresight News · 2025',href:'https://paragraph.com/sepremelouis.eth'},
-    ],
-    photos:[],
-    portfolio:[
-      {name:'Harena App Prototype',sub:'AI fintech · Figma + Claude Code + Lovable',icon:'ti-layout',href:'#'},
-      {name:'PathPort Website',sub:'Web3 ambassador platform · live deployment',icon:'ti-world',href:'#'},
-      {name:'Engram Knowledge Tool',sub:'Private knowledge workspace · Cloudflare + D1',icon:'ti-brain',href:'https://engram-b14.pages.dev'},
-    ],
-  }
 },
 zh:{
-  tag:'产品与数据分析专业人士 — 经济学、金融科技与新兴技术',
-  dl:'下载简历',writing:'文章与研究',tlLbl:'职业时间轴',
-  legA:'学术',legW:'金融与银行',legP:'Web3与创业',legO:'其他',
-  secAcad:'学术背景',secAcadSub:'莱克黑德大学 · 桑德贝, ON · 2017年9月 – 2021年5月',
-  secFin:'金融与银行',secFinSub:'汇丰 · RBC · 富途证券',
-  secOther:'其他经历',
-  secWeb3:'Web3与创业工作',secWeb3Sub:'链捕手 · Flipflop Labs · Harena',
-  secSkills:'技能',
-  ftr:'正在寻找多伦多产品经理和商业分析师职位',
-  acad:[
-    {title:'经济学硕士',meta:'GPA 3.9/4.0 · 2020年9月 – 2021年5月',tags:['院长奖章','研究奖 $10K','计量经济学','量化建模']},
-    {title:'数学经济学学士',meta:'GPA 3.5/4.0 · 2017年9月 – 2020年9月',tags:['入学奖学金 $17.5K','微积分满分','3年助教']},
+  heroEyebrow:'产品 · 金融科技 · Web3',heroSub:'在金融、科技与新兴市场交叉点上构建产品',
+  sAum:'管理资产规模',sAmb:'大使计划规模',sArt:'Foresight News',sProd:'产品上线数量',
+  hCta:'联系我',hWork:'查看作品 ↓',
+  tlLbl:'职业时间轴 · 2017 — 至今',legA:'学术',legW:'金融与银行',legP:'Web3与创业',legO:'其他',
+  fEy:'精选',fT:'亮点',aEy:'已发布文章',aT:'文章与研究',pEy:'已构建与上线',pT:'作品集',
+  egEy:'重点项目',egDesc:'面向构建者的私人知识工作台 —— 将日常工作和 AI 对话转化为结构化、可回顾的长期记忆。从零独立构建到上线。',egCta:'查看线上版本',egPh:'截图即将上传',
+  exEy:'背景',exT:'工作经历',exFin:'金融与银行',exWeb3:'Web3与创业',
+  skEy:'能力图谱',skT:'技能网络',acEy:'教育背景',acT:'学历',
+  ctEy:'保持联系',ctT:'联系我',ctSub:'正在寻找多伦多产品经理和商业分析师职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
+  featured:[
+    {badge:'article',badgeLbl:'文章',title:'Foresight News 月榜第一 — Web3监管分析',meta:'美国CLARITY法案与新加坡MAS框架 · 全平台月度阅读量第一 · Trendverse Lab × 链捕手 · 2025',href:'https://paragraph.com/sepremelouis.eth',img:''},
+    {badge:'project',badgeLbl:'项目',title:'PathPort — 60天扩展至1000+大使',meta:'Web3大使平台 · 非洲与东南亚市场 · 香港路演 · 60+页中英文白皮书',href:'#',img:''},
+    {badge:'startup',badgeLbl:'创业',title:'Harena — AI 金融智能平台',meta:'联合创始人 & 产品经理 · 5次重大方向调整 · 独立全栈交付 · 投资人对接进行中',href:'https://engram-b14.pages.dev',img:''},
   ],
-  comp:{org:'加拿大国家银行货币政策竞赛',role:'团队队长 · 莱克黑德大学',date:'2019年9月 – 2020年2月',loc:'渥太华',
-    desc:'带领5名学生+4位教授进入全国决赛，在行长Stephen Poloz面前汇报货币政策报告，获正式表彰。',
-    proofs:[{label:'竞赛报告',icon:'ti-file-text',href:'#'},{label:'渥太华照片',icon:'ti-photo',href:'#'},{label:'媒体报道',icon:'ti-news',href:'#'}]},
+  articles:[
+    {title:'美国CLARITY法案与新加坡MAS监管框架研究',meta:'Trendverse Lab · 链捕手 · 2025',href:'https://paragraph.com/sepremelouis.eth',img:''},
+    {title:'DeFi宏观展望与市场结构分析',meta:'链捕手 · 2025',href:'https://paragraph.com/sepremelouis.eth',img:''},
+    {title:'Foresight News月度全平台阅读量第一',meta:'Foresight News · 2025',href:'https://paragraph.com/sepremelouis.eth',img:''},
+  ],
+  portfolio:[
+    {name:'Harena 应用原型',sub:'AI金融科技 · Figma + Claude Code + Lovable',href:'#',img:''},
+    {name:'PathPort 官网',sub:'Web3大使平台 · 已上线部署',href:'#',img:''},
+    {name:'Engram 知识工具',sub:'个人知识工作台 · Cloudflare + D1 + MCP',href:'https://engram-b14.pages.dev',img:''},
+  ],
   fin:[
-    {org:'汇丰银行加拿大',role:'个人银行顾问 → 高端客户经理',date:'2022年2月 – 2024年4月',loc:'多伦多',
-      summary:'2年 · 独撑分行前台数月 · 独立完成3次大审计 · 13个月晋升 · 首季开单超$100万',
-      bullets:['管理500+客户，资产超$2000万，覆盖投资、贷款、储蓄产品','13个月内晋升为高端客户经理，入职首季开单超$100万','独自支撑整个分行前台数月，独立通过3次大型监管审计','推动数字化 — 客户移动银行注册率提升20%'],
-      proofs:[{label:'CSC证书',icon:'ti-certificate',href:'#'}]},
-    {org:'RBC（收购汇丰加拿大）',role:'银行顾问',date:'2024年4月 – 2024年7月',loc:'多伦多',
+    {org:'汇丰银行加拿大',role:'个人银行顾问 → 高端客户经理',date:'2022年2月 – 2024年4月',
+      summary:'AUM $2000万+ · 500+客户 · 13个月晋升 · 独立完成3次监管审计',
+      bullets:['管理500+客户，资产超$2000万，覆盖投资、贷款、储蓄产品','13个月晋升为高端客户经理，入职首季开单超$100万','独撑分行前台数月，独立通过3次大型监管审计','推动数字化，客户移动银行注册率提升20%']},
+    {org:'RBC（收购汇丰加拿大）',role:'银行顾问',date:'2024年4月 – 7月',
       summary:'亲历完整并购过程，职位与客户组合完整移交',
-      bullets:['经历汇丰加拿大被RBC完整收购过程','过渡期间持续管理现有客户组合'],
-      proofs:[]},
-    {org:'富途证券国际',role:'理财顾问 — 新加坡市场',date:'2024年9月 – 2024年12月',loc:'深圳',
-      summary:'远程 · 首月转化率超20% · 团队最佳',
-      bullets:['一周培训后独立上岗，快速掌握复杂多资产交易平台','首月激活转化率超20%，团队表现第一','高强度日常跟进，覆盖新加坡零售投资者市场'],
-      proofs:[]},
-  ],
-  other:[
-    {org:'Elite Alliance Service Inc.',role:'案例分析师 & 运营负责人',date:'2021年8月 – 2022年2月',loc:'北约克, ON',
-      summary:'留学移民机构 — 文案团队负责人 + 客户案例分析',
-      bullets:['负责文案部门日常分工、培训与质量管控','面对面及线上客户需求访谈，设计并跟踪解决方案','策划线上线下客户获取营销活动'],
-      proofs:[]},
+      bullets:['经历汇丰加拿大被RBC完整收购过程','过渡期间持续管理现有客户组合']},
+    {org:'富途证券国际',role:'理财顾问 — 新加坡市场',date:'2024年9月 – 12月',
+      summary:'首月转化率超20% · 团队最佳 · 远程',
+      bullets:['一周培训后独立上岗，快速掌握复杂多资产平台','首月激活转化率超20%，团队表现第一','高强度日常跟进，覆盖新加坡零售投资者市场']},
   ],
   web3:[
-    {org:'Harena — AI金融科技创业',role:'联合创始人 & 产品经理',date:'2025年10月 – 至今',loc:'多伦多',
-      summary:'从零构建AI金融智能平台 — 独立完成前端交付，经历5次大方向调整，管理投资人对接',
-      bullets:['主导产品战略，经历5次大调整，编写PRD、用户流程图和技术规格文档','使用Figma、Claude Code、Lovable、OpenAI独立完成完整前端UI交付','研究预测市场、股票代币化、EA等产品方向','管理投资人对接全流程 — 路演PPT、产品演示、商业计划','自学后端：本地部署、云端搭建、MCP、API接入'],
-      proofs:[{label:'产品原型图',icon:'ti-layout',href:'#'},{label:'开发日志',icon:'ti-code',href:'#'}]},
-    {org:'Flipflop Labs / PathPort',role:'海外市场运营负责人',date:'2025年8月 – 2026年1月',loc:'深圳（远程）',
-      summary:'大使计划2个月扩展至1000+人 · 平台流量增长10倍 · 香港路演',
-      bullets:['设计并落地脚印大使计划 — 覆盖非洲与东南亚市场','2个月内扩展至1000+大使，平台周活流量增长10倍','独立撰写60+页中英文白皮书 — 代币经济学、技术架构、GTM策略','独立完成PathPort网站的架构、UI、内容与部署','香港线下峰会路演（数百人）· 10+场线上AMA覆盖5-6个国家'],
-      proofs:[{label:'PathPort网站',icon:'ti-world',href:'#'},{label:'白皮书PDF',icon:'ti-file-text',href:'#'},{label:'香港活动照片',icon:'ti-photo',href:'#'}]},
-    {org:'链捕手 / Trendverse Lab',role:'研究员 & 编辑',date:'2025年4月 – 2025年8月',loc:'深圳',
-      summary:'Web3记者 · Foresight News月度全平台阅读榜第一 · 独立研究品牌',
-      bullets:['为链捕手报道DeFi、宏观及监管动态','与律师协作研究美国CLARITY Act和新加坡MAS监管框架','联合创建Trendverse Lab，在主流加密媒体发布10+篇深度报告','一篇文章登顶Foresight News当月全平台阅读量第一'],
-      proofs:[{label:'已发表文章',icon:'ti-pencil',href:'https://paragraph.com/sepremelouis.eth'},{label:'Trendverse Lab',icon:'ti-brand-medium',href:'#'}]},
+    {org:'Harena — AI金融科技创业',role:'联合创始人 & 产品经理',date:'2025年10月 – 至今',
+      summary:'从零构建 · 5次重大调整 · 独立全栈交付 · 投资人对接',
+      bullets:['5次重大产品方向调整，编写PRD、用户流程图、技术规格','使用Figma、Claude Code、Lovable独立完成完整前端交付','研究预测市场、股票代币化、EA等产品方向','管理投资人对接全流程 — 路演PPT、产品演示','独立搭建后端：本地部署、云端、MCP、API接入']},
+    {org:'Flipflop Labs / PathPort',role:'海外市场运营负责人',date:'2025年8月 – 2026年1月',
+      summary:'2个月1000+大使 · 流量10倍 · 香港路演 · 60+页白皮书',
+      bullets:['脚印大使计划 — 非洲与东南亚市场','2个月扩展至1000+大使，平台周活流量10倍','独立撰写60+页中英文白皮书','独立完成PathPort网站全流程','香港线下峰会路演 · 10+场线上AMA']},
+    {org:'链捕手 / Trendverse Lab',role:'研究员 & 编辑',date:'2025年4月 – 8月',
+      summary:'Foresight News #1 · 10+篇深度报告 · 独立研究品牌',
+      bullets:['为链捕手报道DeFi、宏观及监管动态','与律师协作研究CLARITY法案和MAS框架','联合创建Trendverse Lab，发布10+篇深度报告','登顶Foresight News当月全平台阅读量第一']},
   ],
-  skills:[
-    {cat:'产品',tags:['需求分析','PRD撰写','用户流程','路线规划','竞品分析','验收标准']},
-    {cat:'设计与原型',tags:['Figma','Lovable','Claude Code','线框图','前端交付']},
-    {cat:'数据与分析',tags:['SQL','Excel','Tableau','金融建模','计量经济学']},
-    {cat:'AI与技术',tags:['提示词工程','LLM产品设计','MCP','API接入','Web3','代币经济学']},
-    {cat:'沟通',tags:['跨职能协作','投资人关系','中英双语','技术文档']},
-    {cat:'资质证书',tags:['CSC加拿大证券课程','共同基金顾问执照(MFDA)']},
+  acad:[
+    {deg:'经济学硕士',school:'莱克黑德大学',meta:'GPA 3.9/4.0 · 2020年9月 – 2021年5月',tags:['院长奖章','研究奖 $10K','计量经济学','量化建模']},
+    {deg:'数学经济学学士',school:'莱克黑德大学',meta:'GPA 3.5/4.0 · 2017年9月 – 2020年9月',tags:['入学奖学金 $17.5K','微积分满分','3年助教']},
+    {deg:'加拿大国家银行货币政策竞赛',school:'全国决赛 · 渥太华',meta:'2019年9月 – 2020年2月',tags:['团队队长','行长Stephen Poloz','5名学生+4位教授','获正式表彰']},
   ],
-  showcase:{
-    lbl:'项目展示',artT:'文章与研究',photoT:'照片',portT:'产品与作品集',
-    projects:[
-      {name:'Harena — AI金融平台',status:'active',statusLabel:'进行中',role:'联合创始人 & 产品经理',stat:'从零构建 · 5次重大方向调整 · 独立全栈交付 · 投资人对接进行中',links:[{label:'产品原型',icon:'ti-layout',href:'#'},{label:'开发日志',icon:'ti-code',href:'#'}]},
-      {name:'PathPort / Flipflop Labs',status:'done',statusLabel:'已完成',role:'海外市场运营负责人',stat:'2个月内扩展至1000+大使 · 平台周活流量10倍 · 60+页中英文白皮书 · 香港峰会路演',links:[{label:'PathPort网站',icon:'ti-world',href:'#'},{label:'白皮书',icon:'ti-file-text',href:'#'},{label:'香港照片',icon:'ti-photo',href:'#'}]},
-      {name:'Trendverse Lab / 链捕手',status:'done',statusLabel:'已完成',role:'研究员 & 编辑',stat:'在主流加密媒体发布10+篇深度报告 · Foresight News当月全平台阅读量第一',links:[{label:'已发表文章',icon:'ti-pencil',href:'https://paragraph.com/sepremelouis.eth'},{label:'Trendverse Lab',icon:'ti-brand-medium',href:'#'}]},
-    ],
-    articles:[
-      {title:'美国CLARITY法案与新加坡MAS监管框架研究',meta:'Trendverse Lab · 链捕手 · 2025',href:'https://paragraph.com/sepremelouis.eth'},
-      {title:'DeFi宏观展望与市场结构分析',meta:'链捕手 · 2025',href:'https://paragraph.com/sepremelouis.eth'},
-      {title:'月度全平台阅读榜第一 — Foresight News',meta:'Foresight News · 2025',href:'https://paragraph.com/sepremelouis.eth'},
-    ],
-    photos:[],
-    portfolio:[
-      {name:'Harena应用原型',sub:'AI金融科技 · Figma + Claude Code + Lovable',icon:'ti-layout',href:'#'},
-      {name:'PathPort官网',sub:'Web3大使平台 · 已上线部署',icon:'ti-world',href:'#'},
-      {name:'Engram知识工具',sub:'个人知识工作台 · Cloudflare + D1',icon:'ti-brain',href:'https://engram-b14.pages.dev'},
-    ],
-  }
 }
 };
 
+// ── Render ──
+function renderFeatured(d){
+  document.getElementById('featured-grid').innerHTML=d.featured.map(f=>`
+    <div class="feat-card">
+      <div class="feat-img">${f.img?`<img src="${f.img}" alt="${f.title}"/>`:`<div class="feat-img-ph"><i class="ti ti-photo"></i><span>Image placeholder</span></div>`}</div>
+      <div class="feat-body">
+        <span class="feat-badge ${f.badge}">${f.badgeLbl}</span>
+        <div class="feat-title">${f.title}</div>
+        <div class="feat-meta">${f.meta}</div>
+        <a class="feat-link" href="${f.href}" target="_blank">View <i class="ti ti-arrow-right"></i></a>
+      </div>
+    </div>`).join('');
+}
+function renderArticles(d){
+  document.getElementById('articles-row').innerHTML=d.articles.map(a=>`
+    <a class="art-card" href="${a.href}" target="_blank">
+      <div class="art-img">${a.img?`<img src="${a.img}" alt="${a.title}"/>`:`<i class="ti ti-file-text"></i>`}</div>
+      <div class="art-body"><div class="art-title">${a.title}</div><div class="art-meta">${a.meta}</div></div>
+    </a>`).join('');
+}
+function renderPortfolio(d){
+  document.getElementById('portfolio-grid').innerHTML=d.portfolio.map(p=>`
+    <a class="port-card" href="${p.href}" target="_blank">
+      <div class="port-img">${p.img?`<img src="${p.img}" alt="${p.name}"/>`:`<i class="ti ti-layout-dashboard"></i>`}</div>
+      <div class="port-body"><div class="port-name">${p.name}</div><div class="port-sub">${p.sub}</div></div>
+    </a>`).join('');
+}
+function renderExp(id,entries){
+  const c=document.getElementById(id);c.innerHTML='';
+  entries.forEach(e=>{
+    const div=document.createElement('div');div.className='exp-card';
+    div.innerHTML=`<div class="exp-hdr"><div><div class="exp-org">${e.org}</div><div class="exp-role">${e.role}</div><div class="exp-summary">${e.summary}</div></div><div class="exp-right"><div class="exp-date">${e.date}</div><i class="ti ti-chevron-down exp-chev"></i></div></div><div class="exp-detail"><div class="exp-detail-inner"><ul class="exp-bullets">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div></div>`;
+    div.addEventListener('click',()=>div.classList.toggle('open'));
+    c.appendChild(div);
+  });
+}
 function renderAcad(d){
-  const g=document.getElementById('acad-grid');
-  g.innerHTML=d.acad.map(a=>`<div class="acad-card"><div class="acad-inst">${a.title}</div><div class="acad-meta">${a.meta}</div><div class="acad-tags">${a.tags.map(t=>`<span class="acad-tag">${t}</span>`).join('')}</div></div>`).join('');
-  const c=d.comp;
-  g.innerHTML+=`<div class="comp-card"><div><div class="comp-org">${c.org}</div><div class="comp-role">${c.role}</div><div class="comp-desc">${c.desc}</div><div class="proof-row">${c.proofs.map(p=>`<a class="proof-tag" href="${p.href}" target="_blank"><i class="ti ${p.icon}"></i>${p.label}</a>`).join('')}</div></div><div style="text-align:right;flex-shrink:0"><div class="comp-date">${c.date}</div><div class="comp-loc">${c.loc}</div></div></div>`;
-}
-
-function makeEntry(e){
-  const div=document.createElement('div');
-  div.className='entry';
-  div.innerHTML=`<div class="entry-hdr"><div><div class="entry-org">${e.org}<i class="ti ti-chevron-down chevron"></i></div><div class="entry-role">${e.role}</div><div class="entry-summary">${e.summary}</div></div><div style="text-align:right;flex-shrink:0"><div class="entry-date">${e.date}</div><div class="entry-loc">${e.loc}</div></div></div><div class="entry-detail"><div class="detail-inner"><ul class="dbullets">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>${e.proofs&&e.proofs.length?`<div class="proof-row" style="margin-top:10px">${e.proofs.map(p=>`<a class="proof-tag" href="${p.href}" target="_blank"><i class="ti ${p.icon}"></i>${p.label}</a>`).join('')}</div>`:''}</div></div>`;
-  div.addEventListener('click',()=>div.classList.toggle('open'));
-  return div;
-}
-
-function renderEntries(id,arr){
-  const c=document.getElementById(id);
-  c.innerHTML='';
-  arr.forEach(e=>c.appendChild(makeEntry(e)));
-}
-
-function renderSkills(skills){
-  document.getElementById('skills-content').innerHTML=skills.map(s=>`<div class="skill-group"><div class="skill-group-label">${s.cat}</div><div class="skill-tags">${s.tags.map(t=>`<span class="skill-tag">${t}</span>`).join('')}</div></div>`).join('');
-}
-
-function renderShowcase(d){
-  const sc=d.showcase;
-  document.getElementById('sc-lbl').textContent=sc.lbl;
-  document.getElementById('sc-art-t').textContent=sc.artT;
-  document.getElementById('sc-photo-t').textContent=sc.photoT;
-  document.getElementById('sc-port-t').textContent=sc.portT;
-  document.getElementById('proj-strip').innerHTML=sc.projects.map(p=>`<div class="proj-card"><div class="proj-status ${p.status}"><span class="proj-dot"></span>${p.statusLabel}</div><div class="proj-name">${p.name}</div><div class="proj-role">${p.role}</div><div class="proj-stat">${p.stat}</div><div class="proj-links">${p.links.map(l=>`<a class="proof-tag" href="${l.href}" target="_blank"><i class="ti ${l.icon}"></i>${l.label}</a>`).join('')}</div></div>`).join('');
-  document.getElementById('sc-articles').innerHTML=sc.articles.map(a=>`<div class="art-item"><a class="art-link" href="${a.href}" target="_blank">${a.title}</a><span class="art-meta">${a.meta}</span></div>`).join('');
-  const ph=document.getElementById('sc-photos');
-  ph.innerHTML=sc.photos.length?sc.photos.map(p=>`<div class="photo-grid"><img src="${p}" style="border-radius:6px;width:100%"/></div>`).join(''):`<div class="sc-empty">Coming soon</div>`;
-  document.getElementById('sc-portfolio').innerHTML=sc.portfolio.map(p=>`<a class="port-item" href="${p.href}" target="_blank"><div class="port-ico"><i class="ti ${p.icon}"></i></div><div><span class="port-name">${p.name}</span><span class="port-sub">${p.sub}</span></div></a>`).join('');
-}
-
-function toggleOther(){
-  document.getElementById('other-toggle').classList.toggle('open');
-  document.getElementById('other-body').classList.toggle('open');
+  document.getElementById('acad-grid').innerHTML=d.acad.map(a=>`
+    <div class="acad-card"><div class="acad-deg">${a.deg}</div><div class="acad-school">${a.school}</div><div class="acad-meta">${a.meta}</div><div class="acad-tags">${a.tags.map(t=>`<span class="acad-tag">${t}</span>`).join('')}</div></div>`).join('');
 }
 
 function setLang(lang){
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',(lang==='en'&&b.textContent==='EN')||(lang==='zh'&&b.textContent==='中文')));
   const d=DATA[lang];
-  document.getElementById('hdr-tag').textContent=d.tag;
-  document.getElementById('dl-lbl').textContent=d.dl;
-  document.getElementById('cl-writing').textContent=d.writing;
-  document.getElementById('tl-lbl').textContent=d.tlLbl;
-  document.getElementById('leg-a').textContent=d.legA;
-  document.getElementById('leg-w').textContent=d.legW;
-  document.getElementById('leg-p').textContent=d.legP;
-  document.getElementById('leg-o').textContent=d.legO;
-  document.getElementById('sec-acad').textContent=d.secAcad;
-  document.getElementById('sec-acad-sub').textContent=d.secAcadSub;
-  document.getElementById('sec-fin').textContent=d.secFin;
-  document.getElementById('sec-fin-sub').textContent=d.secFinSub;
-  document.getElementById('sec-other').textContent=d.secOther;
-  document.getElementById('sec-web3').textContent=d.secWeb3;
-  document.getElementById('sec-web3-sub').textContent=d.secWeb3Sub;
-  document.getElementById('sec-skills').textContent=d.secSkills;
-  document.getElementById('ftr').textContent=d.ftr;
-  renderAcad(d);
-  renderEntries('fin-entries',d.fin);
-  renderEntries('other-entries',d.other);
-  renderEntries('web3-entries',d.web3);
-  renderSkills(d.skills);
-  renderShowcase(d);
+  const m={'hero-eyebrow':d.heroEyebrow,'hero-sub':d.heroSub,'s-aum':d.sAum,'s-amb':d.sAmb,'s-art':d.sArt,'s-prod':d.sProd,'h-cta':d.hCta,'h-work':d.hWork,'tl-lbl':d.tlLbl,'leg-a':d.legA,'leg-w':d.legW,'leg-p':d.legP,'leg-o':d.legO,'f-ey':d.fEy,'f-t':d.fT,'a-ey':d.aEy,'a-t':d.aT,'p-ey':d.pEy,'p-t':d.pT,'eg-ey':d.egEy,'eg-desc':d.egDesc,'eg-cta':d.egCta,'eg-ph':d.egPh,'ex-ey':d.exEy,'ex-t':d.exT,'ex-fin':d.exFin,'ex-web3':d.exWeb3,'sk-ey':d.skEy,'sk-t':d.skT,'ac-ey':d.acEy,'ac-t':d.acT,'ct-ey':d.ctEy,'ct-t':d.ctT,'ct-sub':d.ctSub,'ct-wr':d.ctWr,'ct-ft':d.ctFt};
+  Object.entries(m).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.textContent=val});
+  renderFeatured(d);renderArticles(d);renderPortfolio(d);
+  renderExp('fin-entries',d.fin);renderExp('web3-entries',d.web3);renderAcad(d);
 }
 
+// ── Scroll reveal ──
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ── Init ──
 buildTimeline();
+buildSkillsNetwork();
+buildSkillsLegend();
 setLang('en');
+initReveal();
 </script>
 </body>
 </html>
