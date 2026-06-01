@@ -48,33 +48,40 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:48px;display:flex;ali
 /* Timeline — milestone style */
 .tl{padding:14px 0 18px;border-bottom:1px solid var(--line)}
 .tl-lbl{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:12px}
-.tl-outer{position:relative;width:100%;height:230px;overflow:visible}
+.tl-outer{position:relative;width:100%;height:270px;overflow:visible}
 /* Spine bar */
-.tl2-spine{position:absolute;left:0;right:0;top:50%;height:10px;transform:translateY(-50%);background:linear-gradient(90deg,#94a3b8 0%,#f59e0b 15%,#7c3aed 40%,#7c3aed 65%,#059669 78%,#4f46e5 100%);border-radius:5px;box-shadow:0 2px 12px rgba(79,70,229,.18);z-index:1}
-/* Node anchor — zero-size, centered on spine */
-.tl2-nd{position:absolute;top:50%;transform:translate(-50%,-50%);width:40px;height:40px;z-index:5;overflow:visible}
+.tl2-spine{position:absolute;left:0;right:0;top:50%;height:10px;transform:translateY(-50%);background:linear-gradient(90deg,#78909c 0%,#78909c 10%,#d32f2f 14%,#d32f2f 20%,#78909c 24%,#78909c 30%,#db0011 34%,#db0011 45%,#005daa 47%,#005daa 53%,#f4533b 56%,#f4533b 64%,#059669 68%,#059669 79%,#0891b2 81%,#0891b2 89%,#4f46e5 91%,#4f46e5 100%);border-radius:5px;box-shadow:0 2px 12px rgba(79,70,229,.15);z-index:1}
+/* Node anchor — 44×44, centered on spine */
+.tl2-nd{position:absolute;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;z-index:5;overflow:visible}
 .tl2-nd:hover{z-index:30}
-/* Circle on spine */
-.tl2-circ{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:white;border:2.5px solid;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1);transition:transform .2s,box-shadow .2s;cursor:default}
-.tl2-nd:hover .tl2-circ{transform:translate(-50%,-50%) scale(1.12);box-shadow:0 4px 16px rgba(0,0,0,.15)}
-.tl2-circ i{font-size:15px}
+/* Circle on spine — shows company logo */
+.tl2-circ{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:white;border:2.5px solid;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .2s,box-shadow .2s;cursor:default;overflow:hidden}
+.tl2-nd:hover .tl2-circ{transform:translate(-50%,-50%) scale(1.15);box-shadow:0 4px 16px rgba(0,0,0,.18)}
+.tl2-circ img{width:28px;height:28px;object-fit:contain}
+.tl2-circ i{font-size:16px}
 /* Card wrapper — above the spine */
-.tl2-up{position:absolute;bottom:calc(50% + 22px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column-reverse;align-items:center;gap:0}
+.tl2-up{position:absolute;bottom:calc(50% + 24px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column-reverse;align-items:center}
 /* Card wrapper — below the spine */
-.tl2-dn{position:absolute;top:calc(50% + 22px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0}
+.tl2-dn{position:absolute;top:calc(50% + 24px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
 /* Connector line */
-.tl2-line{width:1.5px;height:20px;opacity:.3;flex-shrink:0}
+.tl2-line{width:1.5px;height:18px;opacity:.3;flex-shrink:0}
 /* Card */
-.tl2-card{background:white;border:1px solid var(--cb);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.07);width:156px;padding:8px 9px;display:flex;align-items:center;gap:8px;transition:box-shadow .2s,transform .2s;cursor:default;flex-shrink:0}
+.tl2-card{background:white;border:1px solid var(--cb);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.07);width:158px;padding:8px 9px;display:flex;align-items:center;gap:8px;transition:box-shadow .2s,transform .2s;cursor:default;flex-shrink:0}
 .tl2-nd:hover .tl2-up .tl2-card{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
 .tl2-nd:hover .tl2-dn .tl2-card{transform:translateY(3px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
-/* Icon oval inside card */
-.tl2-oval{width:46px;height:34px;border-radius:8px;background:#f1f3f7;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
-.tl2-oval img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.tl2-oval i{font-size:15px}
+/* Logo oval inside card */
+.tl2-oval{width:38px;height:38px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.tl2-oval img{width:28px;height:28px;object-fit:contain}
+.tl2-oval i{font-size:16px}
 .tl2-info{flex:1;min-width:0}
-.tl2-name{font-size:9.5px;font-weight:600;color:var(--txt);line-height:1.3;margin-bottom:1px}
-.tl2-sub{font-size:8.5px;color:var(--txt3);line-height:1.3}
+.tl2-name{font-size:9.5px;font-weight:600;color:var(--txt);line-height:1.3;margin-bottom:2px}
+.tl2-role{font-size:8px;color:var(--txt2);line-height:1.4}
+/* Date + location meta — on spine, opposite to card */
+.tl2-meta-a{position:absolute;top:50px;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none;white-space:nowrap}
+.tl2-meta-b{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none;white-space:nowrap}
+.tl2-date{font-size:8px;font-weight:600;color:var(--txt2);margin-bottom:2px}
+.tl2-loc{display:inline-flex;align-items:center;gap:3px;font-size:7.5px;color:white;background:rgba(0,0,0,.22);padding:1px 6px;border-radius:8px}
+.tl2-loc i{font-size:7px}
 /* Legend */
 .tl-leg{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap}
 .tl-leg-i{display:flex;align-items:center;gap:5px;font-size:9.5px;color:var(--txt2)}
@@ -332,38 +339,70 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:48px;display:flex;ali
 </div><!-- /page -->
 
 <script>
-// Timeline — milestone nodes, alternating above/below spine
+// Timeline — 9 milestone nodes with logos, dates on axis
 const TL_EVENTS=[
-  {label:'Lakehead University',sub:'BSc + MSc Economics · 2017–2021',icon:'ti-school',color:'#94a3b8',pos:4,side:'above',img:''},
-  {label:'Bank of Canada',sub:'National Finals · Ottawa · 2019–20',icon:'ti-trophy',color:'#f59e0b',pos:18,side:'below',img:''},
-  {label:'Elite Alliance',sub:'Case Analyst & Ops · 2021–22',icon:'ti-briefcase',color:'#94a3b8',pos:33,side:'above',img:''},
-  {label:'HSBC → RBC',sub:'Premium Banker · 2022–24',icon:'ti-building-bank',color:'#7c3aed',pos:49,side:'below',img:''},
-  {label:'Futu Securities',sub:'Financial Advisor · 2024',icon:'ti-chart-candle',color:'#7c3aed',pos:65,side:'above',img:''},
-  {label:'ChainCatcher · PathPort',sub:'Web3 Research & Ops · 2025',icon:'ti-world',color:'#059669',pos:79,side:'below',img:''},
-  {label:'Harena',sub:'Co-founder & PM · 2025–Present',icon:'ti-brain',color:'#4f46e5',pos:94,side:'above',img:''},
+  {label:'Lakehead University',role:'BSc Math & Economics\nMSc Economics',
+   logo:'https://logo.clearbit.com/lakeheadu.ca',icon:'ti-school',color:'#1a5c2a',
+   pos:4,side:'above',date:'Sep 2017 – May 2021',loc:'Thunder Bay, ON'},
+  {label:"Governor's Challenge",role:'Team Lead · Bank of Canada',
+   logo:'https://logo.clearbit.com/bankofcanada.ca',icon:'ti-trophy',color:'#d32f2f',
+   pos:15,side:'below',date:'Sep 2019 – Feb 2020',loc:'Ottawa, ON'},
+  {label:'Elite Alliance',role:'Case Analyst & Operations Lead',
+   logo:null,icon:'ti-briefcase',color:'#78909c',
+   pos:26,side:'above',date:'Aug 2021 – Feb 2022',loc:'North York, ON'},
+  {label:'HSBC Bank of Canada',role:'Personal Banker → Premium Banker',
+   logo:'https://logo.clearbit.com/hsbc.com',icon:'ti-building-bank',color:'#db0011',
+   pos:38,side:'below',date:'Feb 2022 – Apr 2024',loc:'Toronto, ON'},
+  {label:'RBC',role:'Banking Advisor',
+   logo:'https://logo.clearbit.com/rbc.com',icon:'ti-building-bank',color:'#005daa',
+   pos:49,side:'above',date:'Apr 2024 – Jul 2024',loc:'Toronto, ON'},
+  {label:'Futu Securities',role:'Financial Advisor',
+   logo:'https://logo.clearbit.com/futubull.com',icon:'ti-chart-candle',color:'#f4533b',
+   pos:60,side:'below',date:'Sep 2024 – Dec 2024',loc:'Shenzhen, CN'},
+  {label:'ChainCatcher',role:'Research Analyst & Editor',
+   logo:'https://logo.clearbit.com/chaincatcher.com',icon:'ti-pencil',color:'#059669',
+   pos:71,side:'above',date:'Apr 2025 – Aug 2025',loc:'Shenzhen, CN'},
+  {label:'Flipflop Labs / PathPort',role:'Overseas Operations Lead',
+   logo:null,icon:'ti-world',color:'#0891b2',
+   pos:82,side:'below',date:'Aug 2025 – Jan 2026',loc:'Shenzhen, CN'},
+  {label:'Harena',role:'Co-founder & Product Manager',
+   logo:null,icon:'ti-brain',color:'#4f46e5',
+   pos:93,side:'above',date:'Oct 2025 – Present',loc:'Toronto, ON'},
 ];
 
 function buildTL(){
   const o=document.getElementById('tl-outer');o.innerHTML='';
-  // Spine bar
+  // Spine
   const bar=document.createElement('div');bar.className='tl2-spine';o.appendChild(bar);
   // Nodes
   TL_EVENTS.forEach(e=>{
     const nd=document.createElement('div');nd.className='tl2-nd';nd.style.left=e.pos+'%';
-    // Circle with icon
-    const circ=document.createElement('div');circ.className='tl2-circ';
-    circ.style.borderColor=e.color;
-    circ.innerHTML=`<i class="ti ${e.icon}" style="color:${e.color}"></i>`;
+    // Circle — logo image or icon fallback
+    const circ=document.createElement('div');circ.className='tl2-circ';circ.style.borderColor=e.color;
+    if(e.logo){
+      const img=document.createElement('img');img.src=e.logo;img.alt=e.label;
+      img.onerror=()=>{img.replaceWith(Object.assign(document.createElement('i'),{className:`ti ${e.icon}`,style:`color:${e.color}`}))};
+      circ.appendChild(img);
+    } else {
+      circ.innerHTML=`<i class="ti ${e.icon}" style="color:${e.color}"></i>`;
+    }
     nd.appendChild(circ);
-    // Card + connector wrapper (above or below)
+    // Card + connector (above or below)
     const wrap=document.createElement('div');wrap.className=e.side==='above'?'tl2-up':'tl2-dn';
     const line=document.createElement('div');line.className='tl2-line';line.style.background=e.color;
     const card=document.createElement('div');card.className='tl2-card';
-    const ovalbg=e.color+'22';
-    card.innerHTML=`<div class="tl2-oval" style="background:${ovalbg}">${e.img?`<img src="${e.img}" alt="${e.label}"/>`:`<i class="ti ${e.icon}" style="color:${e.color}"></i>`}</div><div class="tl2-info"><div class="tl2-name">${e.label}</div><div class="tl2-sub">${e.sub}</div></div>`;
+    const ovalBg=e.color+'18';
+    const logoHtml=e.logo?`<img src="${e.logo}" alt="${e.label}" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`+`<i class="ti ${e.icon}" style="color:${e.color};display:none"></i>`:`<i class="ti ${e.icon}" style="color:${e.color}"></i>`;
+    const roleHtml=e.role.split('\n').map(r=>`<span>${r}</span>`).join('<br/>');
+    card.innerHTML=`<div class="tl2-oval" style="background:${ovalBg}">${logoHtml}</div><div class="tl2-info"><div class="tl2-name">${e.label}</div><div class="tl2-role">${roleHtml}</div></div>`;
     if(e.side==='above'){wrap.appendChild(card);wrap.appendChild(line);}
     else{wrap.appendChild(line);wrap.appendChild(card);}
     nd.appendChild(wrap);
+    // Date + location meta — on spine, opposite side to card
+    const meta=document.createElement('div');
+    meta.className=e.side==='above'?'tl2-meta-a':'tl2-meta-b';
+    meta.innerHTML=`<div class="tl2-date">${e.date}</div><div class="tl2-loc"><i class="ti ti-map-pin"></i>${e.loc}</div>`;
+    nd.appendChild(meta);
     o.appendChild(nd);
   });
 }
