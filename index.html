@@ -4,535 +4,555 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Weiqi Shi</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f4f6f9;
-  --card:#ffffff;
-  --cb:#e4e7ec;
-  --sh:0 1px 3px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.05);
-  --sh-h:0 4px 20px rgba(0,0,0,.1),0 1px 4px rgba(0,0,0,.06);
-  --txt:#0f172a;--txt2:#64748b;--txt3:#94a3b8;
-  --ac:#4f46e5;--pur:#7c3aed;--grn:#059669;
-  --line:#e8eaee;
+  --txt:#1d1d1f;--txt2:#6e6e73;--txt3:#a1a1a6;
+  --ac:#0071e3;--ac2:#5e5ce6;
+  --glass:rgba(255,255,255,.55);--glass2:rgba(255,255,255,.7);--gb:rgba(255,255,255,.65);
+  --line:rgba(0,0,0,.08);
+  --sh:0 1px 2px rgba(0,0,0,.04),0 8px 30px rgba(0,0,0,.06);
+  --sh-h:0 4px 12px rgba(0,0,0,.08),0 18px 50px rgba(0,0,0,.12);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-size:13px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{
+  color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Inter','PingFang SC','Microsoft YaHei',sans-serif;
+  font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background:
+    radial-gradient(1200px 800px at 12% 8%,#eaf0f7 0%,transparent 55%),
+    radial-gradient(1000px 700px at 88% 18%,#f3ece6 0%,transparent 50%),
+    radial-gradient(1100px 900px at 70% 95%,#ece8f3 0%,transparent 55%),
+    linear-gradient(160deg,#f3f4f7 0%,#eef0f3 50%,#f1ece9 100%);
+  background-attachment:fixed;
+}
 
-/* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:48px;display:flex;align-items:center;gap:20px;padding:0 20px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav-brand{font-family:'DM Serif Display',serif;font-size:16px;color:var(--txt);text-decoration:none;margin-right:auto}
-.nav-link{font-size:11px;color:var(--txt2);text-decoration:none;letter-spacing:.04em;transition:color .15s}
-.nav-link:hover{color:var(--ac)}
-.ltog{display:flex;background:#f1f3f7;border-radius:18px;padding:3px;gap:2px}
-.lb{padding:3px 11px;border-radius:13px;border:none;background:none;font-size:11px;font-family:'Inter',sans-serif;cursor:pointer;color:var(--txt2);transition:all .18s}
-.lb.on{background:#fff;color:var(--txt);font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+/* ── Floating nav pill ── */
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;width:calc(100% - 36px);max-width:1180px;
+  display:flex;align-items:center;gap:18px;padding:9px 12px 9px 14px;
+  background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid var(--gb);border-radius:24px;box-shadow:var(--sh);
+  animation:navDrop .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes navDrop{from{opacity:0;transform:translateX(-50%) translateY(-16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.nav-id{display:flex;align-items:center;gap:9px;margin-right:auto}
+.nav-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#cfd6e6,#e7ddd4);border:1px solid var(--gb);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--txt2);flex-shrink:0}
+.nav-av img{width:100%;height:100%;object-fit:cover}
+.nav-id-txt{display:flex;flex-direction:column;line-height:1.15}
+.nav-id-name{font-size:13px;font-weight:600;color:var(--txt)}
+.nav-id-sub{font-size:10px;color:var(--txt3)}
+.nav-links{display:flex;gap:4px}
+.nav-link{font-size:12.5px;color:var(--txt2);text-decoration:none;padding:7px 13px;border-radius:14px;transition:all .2s;cursor:pointer}
+.nav-link:hover{color:var(--txt);background:rgba(255,255,255,.6)}
+.ltog{display:flex;background:rgba(0,0,0,.05);border-radius:16px;padding:2px}
+.lb{padding:5px 11px;border-radius:14px;border:none;background:none;font-size:11px;font-family:inherit;cursor:pointer;color:var(--txt2);transition:all .2s}
+.lb.on{background:#fff;color:var(--txt);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.nav-cta{width:38px;height:38px;border-radius:50%;background:var(--txt);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;text-decoration:none}
+.nav-cta:hover{transform:scale(1.08);background:var(--ac)}
+.nav-cta i{font-size:16px}
 
-/* Page */
-.page{max-width:1260px;margin:0 auto;padding:64px 18px 32px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
 
-/* Header */
-.hdr{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end;padding:24px 0 18px;border-bottom:1px solid var(--line)}
-.hdr-name{font-family:'DM Serif Display',serif;font-size:clamp(38px,5.5vw,68px);line-height:.94;letter-spacing:-2px;color:var(--txt);margin-bottom:7px}
-.hdr-tag{font-size:13px;color:var(--txt2);font-weight:300}
-.hdr-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-.contact-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
-.cl{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--txt2);text-decoration:none;transition:color .15s}
-.cl:hover{color:var(--ac)}
-.cl i{font-size:13px}
-.dl{padding:6px 16px;background:var(--ac);color:#fff;border:none;border-radius:20px;font-size:11px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;display:flex;align-items:center;gap:5px;transition:filter .15s}
-.dl:hover{filter:brightness(1.1)}
+/* ── Hero ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1.02fr;gap:40px;align-items:center;padding:96px 0 60px}
+.hero-eyebrow{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:22px;opacity:0;animation:rise .8s .15s cubic-bezier(.2,.8,.2,1) both}
+.hero-title{font-size:clamp(40px,5.2vw,68px);font-weight:700;letter-spacing:-.03em;line-height:1.04;margin-bottom:24px;opacity:0;animation:rise .8s .25s cubic-bezier(.2,.8,.2,1) both}
+.hero-title .grad{background:linear-gradient(120deg,#0071e3,#5e5ce6 60%,#bf5af2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:16px;font-weight:300;color:var(--txt2);max-width:430px;line-height:1.65;margin-bottom:34px;opacity:0;animation:rise .8s .35s cubic-bezier(.2,.8,.2,1) both}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:rise .8s .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.btn{padding:13px 26px;border-radius:24px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .25s;border:none}
+.btn-primary{background:var(--txt);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.2);background:var(--ac)}
+.btn-ghost{background:var(--glass2);color:var(--txt);border:1px solid var(--gb);backdrop-filter:blur(20px)}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh)}
 
-/* Timeline — milestone style */
-.tl{padding:14px 0 18px;border-bottom:1px solid var(--line)}
-.tl-lbl{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:12px}
-.tl-outer{position:relative;width:100%;height:270px;overflow:visible}
-/* Spine bar */
-.tl2-spine{position:absolute;left:0;right:0;top:50%;height:10px;transform:translateY(-50%);background:linear-gradient(90deg,#78909c 0%,#78909c 10%,#d32f2f 14%,#d32f2f 20%,#78909c 24%,#78909c 30%,#db0011 34%,#db0011 45%,#005daa 47%,#005daa 53%,#f4533b 56%,#f4533b 64%,#059669 68%,#059669 79%,#0891b2 81%,#0891b2 89%,#4f46e5 91%,#4f46e5 100%);border-radius:5px;box-shadow:0 2px 12px rgba(79,70,229,.15);z-index:1}
-/* Node anchor — 44×44, centered on spine */
-.tl2-nd{position:absolute;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;z-index:5;overflow:visible}
+/* Hero visual: portrait + floating glass cards */
+.hero-visual{position:relative;height:560px;opacity:0;animation:rise 1s .35s cubic-bezier(.2,.8,.2,1) both}
+.portrait{position:absolute;right:0;top:50%;transform:translateY(-50%);width:380px;height:500px;border-radius:32px;overflow:hidden;
+  background:linear-gradient(160deg,#dfe4ee,#e9e0d6);border:1px solid var(--gb);box-shadow:var(--sh-h)}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--txt3);font-size:12px;text-align:center;padding:20px}
+.portrait-ph i{font-size:42px}
+/* Floating glass cards */
+.fcard{position:absolute;background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid var(--gb);border-radius:20px;padding:14px 16px;box-shadow:var(--sh);width:230px;z-index:5}
+.fcard-ico{width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;margin-bottom:9px;border:1px solid var(--gb)}
+.fcard-ico i{font-size:17px;color:var(--ac)}
+.fcard-txt{font-size:12.5px;color:var(--txt);line-height:1.45;font-weight:400}
+.fc1{top:18px;left:0;animation:float1 6s ease-in-out infinite}
+.fc2{top:200px;left:-26px;animation:float2 7s ease-in-out infinite}
+.fc3{bottom:34px;left:8px;animation:float3 6.5s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+@keyframes float3{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* Caption card over portrait bottom */
+.pcap{position:absolute;right:18px;bottom:18px;left:auto;width:auto;max-width:330px;
+  background:rgba(20,20,22,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:13px 16px;z-index:6}
+.pcap-t{font-size:12.5px;font-weight:600;color:#fff;margin-bottom:2px}
+.pcap-s{font-size:11px;color:rgba(255,255,255,.75)}
+.scroll-hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* ── Section shells ── */
+.section{padding:60px 0}
+.sec-head{margin-bottom:38px;text-align:center}
+.sec-eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
+.sec-title{font-size:clamp(28px,3.6vw,40px);font-weight:700;letter-spacing:-.02em;color:var(--txt)}
+.sec-sub{font-size:14px;color:var(--txt2);margin-top:8px;font-weight:300}
+
+/* Glass panel */
+.panel{background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid var(--gb);border-radius:26px;box-shadow:var(--sh)}
+
+/* ── Timeline ── */
+.tl-panel{padding:30px 26px 22px;margin-bottom:18px}
+.tl-outer{position:relative;width:100%;height:280px;overflow:visible}
+.tl2-spine{position:absolute;left:10px;right:10px;top:50%;height:8px;transform:translateY(-50%);border-radius:5px;z-index:1;
+  background:linear-gradient(90deg,#86b39a 0%,#86b39a 9%,#e08a8a 13%,#e08a8a 19%,#aab4c2 23%,#aab4c2 29%,#e58a8f 33%,#e58a8f 44%,#7aa7d6 47%,#7aa7d6 53%,#f0a48f 57%,#f0a48f 64%,#73c3a8 68%,#73c3a8 78%,#6cc3d6 81%,#6cc3d6 89%,#9b97f0 92%,#9b97f0 100%);
+  box-shadow:0 2px 14px rgba(0,0,0,.1)}
+.tl2-nd{position:absolute;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;z-index:5}
 .tl2-nd:hover{z-index:30}
-/* Circle on spine — shows company logo */
-.tl2-circ{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:white;border:2.5px solid;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .2s,box-shadow .2s;cursor:default;overflow:hidden}
-.tl2-nd:hover .tl2-circ{transform:translate(-50%,-50%) scale(1.15);box-shadow:0 4px 16px rgba(0,0,0,.18)}
+.tl2-circ{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border:2.5px solid;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 10px rgba(0,0,0,.12);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;cursor:default;overflow:hidden}
+.tl2-nd:hover .tl2-circ{transform:translate(-50%,-50%) scale(1.18);box-shadow:0 6px 20px rgba(0,0,0,.2)}
 .tl2-circ img{width:28px;height:28px;object-fit:contain}
-.tl2-circ i{font-size:16px}
-/* Card wrapper — above the spine */
-.tl2-up{position:absolute;bottom:calc(50% + 24px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column-reverse;align-items:center}
-/* Card wrapper — below the spine */
-.tl2-dn{position:absolute;top:calc(50% + 24px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
-/* Connector line */
-.tl2-line{width:1.5px;height:18px;opacity:.3;flex-shrink:0}
-/* Card */
-.tl2-card{background:white;border:1px solid var(--cb);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.07);width:158px;padding:8px 9px;display:flex;align-items:center;gap:8px;transition:box-shadow .2s,transform .2s;cursor:default;flex-shrink:0}
-.tl2-nd:hover .tl2-up .tl2-card{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
-.tl2-nd:hover .tl2-dn .tl2-card{transform:translateY(3px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
-/* Logo oval inside card */
-.tl2-oval{width:38px;height:38px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
-.tl2-oval img{width:28px;height:28px;object-fit:contain}
+.tl2-circ i{font-size:17px}
+.tl2-up{position:absolute;bottom:calc(50% + 26px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column-reverse;align-items:center}
+.tl2-dn{position:absolute;top:calc(50% + 26px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
+.tl2-line{width:1.5px;height:18px;opacity:.35;flex-shrink:0}
+.tl2-card{background:var(--glass2);backdrop-filter:blur(14px);border:1px solid var(--gb);border-radius:13px;box-shadow:0 2px 10px rgba(0,0,0,.06);
+  width:162px;padding:9px 10px;display:flex;align-items:center;gap:9px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;cursor:default;flex-shrink:0}
+.tl2-nd:hover .tl2-up .tl2-card{transform:translateY(-4px);box-shadow:var(--sh-h)}
+.tl2-nd:hover .tl2-dn .tl2-card{transform:translateY(4px);box-shadow:var(--sh-h)}
+.tl2-oval{width:38px;height:38px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.tl2-oval img{width:27px;height:27px;object-fit:contain}
 .tl2-oval i{font-size:16px}
 .tl2-info{flex:1;min-width:0}
-.tl2-name{font-size:9.5px;font-weight:600;color:var(--txt);line-height:1.3;margin-bottom:2px}
-.tl2-role{font-size:8px;color:var(--txt2);line-height:1.4}
-/* Date + location meta — on spine, opposite to card */
-.tl2-meta-a{position:absolute;top:50px;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none;white-space:nowrap}
-.tl2-meta-b{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none;white-space:nowrap}
-.tl2-date{font-size:8px;font-weight:600;color:var(--txt2);margin-bottom:2px}
-.tl2-loc{display:inline-flex;align-items:center;gap:3px;font-size:7.5px;color:white;background:rgba(0,0,0,.22);padding:1px 6px;border-radius:8px}
-.tl2-loc i{font-size:7px}
-/* Legend */
-.tl-leg{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap}
-.tl-leg-i{display:flex;align-items:center;gap:5px;font-size:9.5px;color:var(--txt2)}
-.tl-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+.tl2-name{font-size:10px;font-weight:600;color:var(--txt);line-height:1.3;margin-bottom:2px}
+.tl2-role{font-size:8.5px;color:var(--txt2);line-height:1.4}
+.tl2-meta-a{position:absolute;top:54px;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none;white-space:nowrap}
+.tl2-meta-b{position:absolute;bottom:54px;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none;white-space:nowrap}
+.tl2-date{font-size:8.5px;font-weight:600;color:var(--txt2);margin-bottom:3px}
+.tl2-loc{display:inline-flex;align-items:center;gap:3px;font-size:8px;color:var(--txt2);background:rgba(255,255,255,.7);border:1px solid var(--gb);padding:1px 7px;border-radius:9px}
+.tl2-loc i{font-size:8px}
 
-/* Card */
-.card{background:var(--card);border:1px solid var(--cb);border-radius:10px;box-shadow:var(--sh);transition:box-shadow .2s,border-color .2s}
-.card.lift:hover{box-shadow:var(--sh-h);transform:translateY(-2px)}
-
-/* Image placeholder */
-.imgw{position:relative;overflow:hidden;background:#f0f2f6;flex-shrink:0}
-.imgw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.imgw-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--txt3);font-size:10px;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,0,0,.015) 10px,rgba(0,0,0,.015) 20px)}
-.imgw-ph i{font-size:18px}
-.r169{aspect-ratio:16/9}
-.r43{aspect-ratio:4/3}
-
-/* Badge */
-.badge{display:inline-block;font-size:8.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:8px;margin-bottom:6px}
-.ba{background:#eef2ff;color:var(--ac)}
-.bp{background:#f5f3ff;color:var(--pur)}
-.bs{background:#ecfdf5;color:var(--grn)}
-
-/* Main grid: 2 cols */
-.main-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:12px}
-
-/* Scroll strip */
-.strip-label{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
-.scroll-wrap{overflow-x:auto;overflow-y:visible;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
-.scroll-wrap::-webkit-scrollbar{height:4px}
-.scroll-wrap::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
-.scroll-inner{display:flex;gap:10px;width:max-content}
-.sc-card{width:240px;flex-shrink:0;display:flex;flex-direction:column;cursor:pointer}
-.sc-card .imgw{border-radius:8px 8px 0 0}
-.sc-card .card-body{padding:11px 13px;flex:1;display:flex;flex-direction:column}
-.sc-title{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:3px;line-height:1.35}
-.sc-meta{font-size:10px;color:var(--txt2);line-height:1.4;flex:1;margin-bottom:7px}
-.see{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:500;color:var(--ac);text-decoration:none;transition:gap .15s}
-.see:hover{gap:6px}
-
-/* Projects col */
-.proj-col{display:flex;flex-direction:column;gap:10px}
-.proj-card{display:flex;flex-direction:column}
-.proj-card .imgw{border-radius:8px 8px 0 0}
-.proj-body{padding:12px 14px}
-.proj-title{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:3px}
-.proj-meta{font-size:10px;color:var(--txt2);line-height:1.45;margin-bottom:7px}
-
-/* Lower grid */
-.lower{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;margin-top:12px}
-
-/* Engram */
-.engram-card{display:grid;grid-template-columns:1fr 1.1fr;overflow:hidden}
-.engram-info{padding:20px;display:flex;flex-direction:column;justify-content:center}
-.eg-ey{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ac);margin-bottom:8px}
-.eg-name{font-family:'DM Serif Display',serif;font-size:22px;color:var(--txt);margin-bottom:7px}
-.eg-desc{font-size:11px;color:var(--txt2);line-height:1.65;margin-bottom:12px}
-.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
-.chip{font-size:9px;padding:3px 8px;background:#f1f3f7;border:1px solid var(--cb);border-radius:7px;color:var(--txt2)}
-.engram-img{background:#f0f2f6}
-.btn-s{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;background:var(--ac);color:#fff;border:none;border-radius:20px;font-size:11px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;text-decoration:none;transition:filter .15s,transform .15s}
-.btn-s:hover{filter:brightness(1.08);transform:translateY(-1px)}
-
-/* Skills */
-.skills-card{padding:16px;display:flex;flex-direction:column;gap:10px}
-.sk-head{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3)}
-#sk-svg{width:100%;height:190px;overflow:visible;display:block}
-.sk-chips{display:flex;flex-wrap:wrap;gap:4px;min-height:36px}
-.sk-chip{font-size:9px;padding:2px 7px;background:#f1f3f7;border:1px solid var(--cb);border-radius:7px;color:var(--txt2);transition:all .15s}
-.sk-chip.hl{background:#eef2ff;border-color:rgba(79,70,229,.25);color:var(--ac)}
-.sk-hint{font-size:10px;color:var(--txt3)}
-.sk-leg{display:flex;flex-wrap:wrap;gap:8px}
-.sk-leg-item{font-size:9.5px;color:var(--txt2);display:flex;align-items:center;gap:4px;cursor:pointer;transition:color .15s}
-.sk-leg-item:hover{color:var(--txt)}
-.sk-dot{width:6px;height:6px;border-radius:50%}
-
-/* Experience — hover overlay, no layout shift */
-.exp-sect{margin-top:12px}
-.exp-head{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.exp-col-lbl{font-size:11px;font-weight:600;color:var(--txt);margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.exp-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-
-/* Each card: static height, overlay floats below */
-.ec-wrap{position:relative;margin-bottom:6px}
+/* ── Experience cards ── */
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.exp-col-lbl{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:12px;display:flex;align-items:center;gap:7px;padding-left:4px}
+.exp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ec-wrap{position:relative;margin-bottom:8px}
 .ec-wrap:last-child{margin-bottom:0}
 .ec-wrap:hover{z-index:60}
-.ec-static{background:var(--card);border:1px solid var(--cb);border-radius:8px;padding:11px 13px;transition:border-color .18s,border-radius .18s,box-shadow .18s;cursor:default}
-.ec-wrap:hover .ec-static{border-color:var(--ac);border-bottom-left-radius:0;border-bottom-right-radius:0;box-shadow:0 0 0 0 transparent}
-.ec-org{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:1px}
-.ec-role{font-size:10px;color:var(--txt2);margin-bottom:3px}
-.ec-sum{font-size:10px;color:var(--txt3);line-height:1.4}
-.ec-date{font-size:9.5px;color:var(--txt3);text-align:right;white-space:nowrap;flex-shrink:0}
-
-/* Hover overlay — absolute, no layout shift */
-.ec-overlay{position:absolute;top:100%;left:0;right:0;z-index:60;background:var(--card);border:1px solid var(--ac);border-top:none;border-radius:0 0 8px 8px;padding:10px 13px 13px;box-shadow:0 8px 24px rgba(79,70,229,.12),0 2px 8px rgba(0,0,0,.08);opacity:0;pointer-events:none;transform:translateY(-3px);transition:opacity .18s,transform .18s}
+.ec-static{background:var(--glass);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  border:1px solid var(--gb);border-radius:16px;padding:14px 16px;transition:all .25s cubic-bezier(.2,.8,.2,1);cursor:default;box-shadow:var(--sh)}
+.ec-wrap:hover .ec-static{border-bottom-left-radius:0;border-bottom-right-radius:0;border-color:rgba(0,113,227,.4);box-shadow:0 4px 14px rgba(0,113,227,.1)}
+.ec-org{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:2px}
+.ec-role{font-size:11px;color:var(--ac);margin-bottom:4px;font-weight:500}
+.ec-sum{font-size:11px;color:var(--txt2);line-height:1.45}
+.ec-date{font-size:10px;color:var(--txt3);text-align:right;white-space:nowrap;flex-shrink:0;font-weight:500}
+.ec-overlay{position:absolute;top:100%;left:0;right:0;z-index:60;background:var(--glass2);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid rgba(0,113,227,.4);border-top:none;border-radius:0 0 16px 16px;padding:12px 16px 15px;
+  box-shadow:0 16px 40px rgba(0,0,0,.14);opacity:0;pointer-events:none;transform:translateY(-4px);transition:opacity .22s,transform .22s}
 .ec-wrap:hover .ec-overlay{opacity:1;pointer-events:auto;transform:translateY(0)}
-.ec-bul{list-style:none;display:flex;flex-direction:column;gap:5px}
-.ec-bul li{font-size:10px;color:var(--txt2);padding-left:12px;position:relative;line-height:1.5}
-.ec-bul li::before{content:'—';position:absolute;left:0;color:var(--ac);font-size:9px}
+.ec-bul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.ec-bul li{font-size:11px;color:var(--txt2);padding-left:14px;position:relative;line-height:1.5}
+.ec-bul li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--ac)}
 
-/* Academic + Contact strip */
-.bottom{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;margin-top:12px;padding-top:14px;border-top:1px solid var(--line)}
-.acad-head{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
-.acad-row{display:flex;gap:8px;flex-wrap:wrap}
-.ac-card{background:var(--card);border:1px solid var(--cb);border-radius:8px;padding:12px;box-shadow:var(--sh);flex:1;min-width:170px;transition:border-color .18s}
-.ac-card:hover{border-color:rgba(79,70,229,.3)}
-.ac-d{font-size:11px;font-weight:600;color:var(--txt);margin-bottom:2px}
-.ac-s{font-size:10px;color:var(--ac);margin-bottom:2px}
-.ac-m{font-size:9.5px;color:var(--txt3);margin-bottom:6px}
-.ac-tags{display:flex;flex-wrap:wrap;gap:4px}
-.ac-t{font-size:8.5px;padding:2px 6px;background:#f1f3f7;border-radius:6px;color:var(--txt3)}
-.contact-col{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
-.ct-head{font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3)}
-.open-tag{font-size:9px;padding:3px 10px;background:#eef2ff;border:1px solid rgba(79,70,229,.2);border-radius:12px;color:var(--ac)}
-.ct-links{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
-.cl2{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--txt2);text-decoration:none;transition:color .15s}
-.cl2:hover{color:var(--ac)}
-.cl2 i{font-size:13px}
-.ft-note{font-size:9.5px;color:var(--txt3);margin-top:10px;text-align:right}
+/* ── Work / Portfolio ── */
+.work-strip-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin:0 0 12px 4px}
+.scroll-wrap{overflow-x:auto;overflow-y:visible;padding:4px 0 12px;scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+.scroll-wrap::-webkit-scrollbar{height:5px}
+.scroll-wrap::-webkit-scrollbar-thumb{background:rgba(0,0,0,.14);border-radius:3px}
+.scroll-inner{display:flex;gap:14px;width:max-content;padding-left:2px}
+.sc-card{width:262px;flex-shrink:0;display:flex;flex-direction:column;cursor:pointer;text-decoration:none;color:inherit;overflow:hidden;border-radius:20px;
+  background:var(--glass);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:1px solid var(--gb);box-shadow:var(--sh);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.sc-card:hover{transform:translateY(-6px);box-shadow:var(--sh-h)}
+.imgw{position:relative;overflow:hidden;background:rgba(0,0,0,.04);flex-shrink:0}
+.imgw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.imgw-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--txt3)}
+.imgw-ph i{font-size:26px}
+.r169{aspect-ratio:16/9}
+.sc-body{padding:14px 16px;display:flex;flex-direction:column;flex:1}
+.badge{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:9px;margin-bottom:9px;width:fit-content}
+.ba{background:rgba(0,113,227,.1);color:var(--ac)}
+.bp{background:rgba(94,92,230,.1);color:var(--ac2)}
+.bs{background:rgba(16,185,129,.12);color:#059669}
+.sc-title{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:4px;line-height:1.35}
+.sc-meta{font-size:11px;color:var(--txt2);line-height:1.45;flex:1;margin-bottom:9px}
+.see{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:var(--ac);text-decoration:none;transition:gap .2s}
+.see:hover{gap:8px}
 
-/* Reveal */
-.rv{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+/* Engram feature */
+.engram{display:grid;grid-template-columns:1fr 1.1fr;overflow:hidden;margin-top:18px}
+.engram-info{padding:34px 36px;display:flex;flex-direction:column;justify-content:center}
+.eg-ey{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:10px}
+.eg-name{font-size:30px;font-weight:700;letter-spacing:-.02em;color:var(--txt);margin-bottom:10px}
+.eg-desc{font-size:13px;color:var(--txt2);line-height:1.7;margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.chip{font-size:10px;padding:4px 10px;background:rgba(255,255,255,.6);border:1px solid var(--gb);border-radius:10px;color:var(--txt2)}
+.engram-img{background:rgba(0,0,0,.04);position:relative;min-height:230px}
+.engram-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.engram-img .imgw-ph{flex-direction:column;gap:8px;font-size:12px}
+
+/* ── Skill Orb Map ── */
+.orb-panel{padding:20px;margin-top:6px}
+.orb-stage{position:relative;width:100%;height:540px;max-width:860px;margin:0 auto}
+#orb-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.orb-label{position:absolute;pointer-events:auto;cursor:default;transition:transform .25s}
+.ol-center{transform:translate(-50%,-50%)}
+.ol-r{transform:translateY(-50%)}
+.ol-r:hover{transform:translateY(-50%) scale(1.05)}
+.ol-l{transform:translate(-100%,-50%)}
+.ol-l:hover{transform:translate(-100%,-50%) scale(1.05)}
+.ol-cat{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--txt3);margin-bottom:3px}
+.ol-desc{font-size:12.5px;font-weight:500;color:var(--txt);line-height:1.45;white-space:nowrap}
+.ol-l .ol-cat,.ol-l .ol-desc{text-align:right}
+.ol-c-name{font-size:15px;font-weight:700;color:var(--txt)}
+.ol-c-sub{font-size:11px;color:var(--txt2);margin-top:2px}
+
+/* ── Contact ── */
+.contact{padding:70px 0 50px;text-align:center}
+.contact-title{font-size:clamp(30px,4vw,46px);font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.contact-sub{font-size:15px;color:var(--txt2);margin-bottom:34px;font-weight:300}
+.contact-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.contact-link{display:flex;align-items:center;gap:8px;padding:12px 24px;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--gb);border-radius:24px;font-size:13px;color:var(--txt);text-decoration:none;transition:all .25s;box-shadow:var(--sh)}
+.contact-link:hover{transform:translateY(-3px);box-shadow:var(--sh-h);color:var(--ac)}
+.contact-link i{font-size:16px}
+.ft-note{font-size:11px;color:var(--txt3);margin-top:44px;letter-spacing:.03em}
+
+/* ── Scroll reveal ── */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .rv.on{opacity:1;transform:none}
+
+/* ── Responsive ── */
+@media(max-width:920px){
+  nav{gap:10px;padding:8px 10px}
+  .nav-links{display:none}
+  .nav-id-sub{display:none}
+  .hero{grid-template-columns:1fr;gap:20px;padding:110px 0 40px;text-align:center}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-actions{justify-content:center}
+  .hero-visual{height:480px;margin-top:20px}
+  .portrait{left:50%;right:auto;transform:translate(-50%,-50%);width:300px;height:420px}
+  .fc1{left:0;top:0}.fc2{left:-6px}.fc3{left:0;bottom:60px}
+  .fcard{width:190px}
+  .exp-grid{grid-template-columns:1fr}
+  .engram{grid-template-columns:1fr}
+  .orb-stage{height:600px}
+}
 </style>
 </head>
 <body>
 
 <!-- Nav -->
 <nav>
-  <a class="nav-brand" href="#">WS</a>
-  <a class="nav-link" href="#showcase">Work</a>
-  <a class="nav-link" href="#exp-sect">Experience</a>
-  <a class="nav-link" href="#skills-card">Skills</a>
-  <a class="nav-link" href="#contact-col">Contact</a>
+  <div class="nav-id">
+    <div class="nav-av">
+      <!-- <img src="portrait.jpg" alt="Weiqi Shi"/> -->
+      WS
+    </div>
+    <div class="nav-id-txt">
+      <span class="nav-id-name">Weiqi Shi</span>
+      <span class="nav-id-sub" id="nav-sub">Product · Fintech · Web3</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="#experience" id="nav-exp">Experience</a>
+    <a class="nav-link" href="#work" id="nav-work">Work</a>
+    <a class="nav-link" href="#skills" id="nav-skills">Skills</a>
+    <a class="nav-link" href="#contact" id="nav-contact">Contact</a>
+  </div>
   <div class="ltog">
     <button class="lb on" onclick="setLang('en')">EN</button>
-    <button class="lb" onclick="setLang('zh')">中文</button>
+    <button class="lb" onclick="setLang('zh')">中</button>
   </div>
+  <a class="nav-cta" href="#contact"><i class="ti ti-send"></i></a>
 </nav>
 
-<div class="page">
+<div class="wrap">
 
-<!-- Header -->
-<header class="hdr rv">
-  <div>
-    <h1 class="hdr-name">Weiqi Shi</h1>
-    <p class="hdr-tag" id="h-tag">Product Manager · Fintech · Web3 · Toronto, ON</p>
-  </div>
-  <div class="hdr-right">
-    <div class="contact-row">
-      <a class="cl" href="mailto:weiqi.shi919@gmail.com"><i class="ti ti-mail"></i>weiqi.shi919@gmail.com</a>
-      <a class="cl" href="https://linkedin.com/in/shi-weiqi-55052619a" target="_blank"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
-      <a class="cl" href="https://paragraph.com/sepremelouis.eth" target="_blank"><i class="ti ti-pencil"></i><span id="h-wr">Writing</span></a>
-      <button class="dl"><i class="ti ti-download"></i><span id="h-dl">Resume</span></button>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow" id="h-eyebrow">Product · Fintech · Web3</div>
+    <h1 class="hero-title" id="h-title">Building where finance meets <span class="grad">emerging tech</span></h1>
+    <p class="hero-sub" id="h-sub">Product manager and independent builder — from $20M banking portfolios to Web3 platforms and AI products. I ship end to end.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#work" id="h-cta1">View Work</a>
+      <a class="btn btn-ghost" href="#" id="h-cta2"><i class="ti ti-download"></i>Resume</a>
     </div>
   </div>
-</header>
-
-<!-- Timeline -->
-<div class="tl rv">
-  <div class="tl-lbl" id="tl-lbl">Career Timeline · 2017 — Present</div>
-  <div class="tl-outer" id="tl-outer"></div>
-  <div class="tl-leg">
-    <div class="tl-leg-i"><div class="tl-dot" style="background:#94a3b8"></div><span id="lg-a">Academic</span></div>
-    <div class="tl-leg-i"><div class="tl-dot" style="background:#f59e0b"></div><span id="lg-c">Competition</span></div>
-    <div class="tl-leg-i"><div class="tl-dot" style="background:#94a3b8"></div><span id="lg-o">Other</span></div>
-    <div class="tl-leg-i"><div class="tl-dot" style="background:#7c3aed"></div><span id="lg-w">Finance</span></div>
-    <div class="tl-leg-i"><div class="tl-dot" style="background:#059669"></div><span id="lg-p">Web3</span></div>
-    <div class="tl-leg-i"><div class="tl-dot" style="background:#4f46e5"></div><span id="lg-s">Startup</span></div>
-  </div>
-</div>
-
-<!-- Main grid: scroll strip | projects -->
-<div class="main-grid rv" id="showcase">
-
-  <!-- Left: horizontal scroll strip -->
-  <div>
-    <div class="strip-label" id="sc-lbl">Showcase — Articles &amp; Portfolio</div>
-    <div class="scroll-wrap">
-      <div class="scroll-inner" id="scroll-inner"></div>
+  <div class="hero-visual">
+    <div class="portrait">
+      <!-- Drop your photo here: replace the placeholder below with <img src="portrait.jpg" alt="Weiqi Shi"/> -->
+      <!-- <img src="portrait.jpg" alt="Weiqi Shi"/> -->
+      <div class="portrait-ph"><i class="ti ti-user-circle"></i><span id="por-ph">Portrait photo<br/>— drop portrait.jpg here</span></div>
+      <div class="pcap">
+        <div class="pcap-t" id="pcap-t">Weiqi Shi</div>
+        <div class="pcap-s" id="pcap-s">Product · Fintech · Web3 · Toronto</div>
+      </div>
+    </div>
+    <div class="fcard fc1">
+      <div class="fcard-ico"><i class="ti ti-school"></i></div>
+      <div class="fcard-txt" id="fc1">MSc Economics · Dean's Medal</div>
+    </div>
+    <div class="fcard fc2">
+      <div class="fcard-ico"><i class="ti ti-trending-up"></i></div>
+      <div class="fcard-txt" id="fc2">$20M+ AUM managed at HSBC</div>
+    </div>
+    <div class="fcard fc3">
+      <div class="fcard-ico"><i class="ti ti-world"></i></div>
+      <div class="fcard-txt" id="fc3">1,000+ Web3 ambassadors built</div>
     </div>
   </div>
+  <div class="scroll-hint"><span>scroll</span><i class="ti ti-chevron-down"></i></div>
+</section>
 
-  <!-- Right: project cards -->
-  <div>
-    <div class="strip-label" id="proj-lbl">Projects</div>
-    <div class="proj-col" id="proj-col"></div>
+<!-- Experience -->
+<section class="section" id="experience">
+  <div class="sec-head rv">
+    <div class="sec-eyebrow" id="se-exp-ey">Journey</div>
+    <h2 class="sec-title" id="se-exp-t">Experience</h2>
+    <p class="sec-sub" id="se-exp-s">A continuous path of building — 2017 to today</p>
   </div>
+  <div class="panel tl-panel rv">
+    <div class="tl-outer" id="tl-outer"></div>
+  </div>
+  <div class="exp-grid rv">
+    <div>
+      <div class="exp-col-lbl"><span class="exp-dot" style="background:#5e5ce6"></span><span id="ex-fin">Finance &amp; Banking</span></div>
+      <div id="fin-entries"></div>
+    </div>
+    <div>
+      <div class="exp-col-lbl"><span class="exp-dot" style="background:#10b981"></span><span id="ex-web3">Web3 &amp; Startup</span></div>
+      <div id="web3-entries"></div>
+    </div>
+  </div>
+</section>
 
-</div>
-
-<!-- Lower: Engram + Skills -->
-<div class="lower rv">
-
-  <div class="card engram-card">
+<!-- Work / Portfolio -->
+<section class="section" id="work">
+  <div class="sec-head rv">
+    <div class="sec-eyebrow" id="se-work-ey">Selected</div>
+    <h2 class="sec-title" id="se-work-t">Work &amp; Portfolio</h2>
+    <p class="sec-sub" id="se-work-s">Articles, products, and platforms I've shipped</p>
+  </div>
+  <div class="rv">
+    <div class="work-strip-lbl" id="strip-lbl">Articles &amp; Portfolio — scroll →</div>
+    <div class="scroll-wrap"><div class="scroll-inner" id="scroll-inner"></div></div>
+  </div>
+  <div class="panel engram rv">
     <div class="engram-info">
       <div class="eg-ey" id="eg-ey">Featured Build</div>
       <div class="eg-name">Engram</div>
-      <div class="eg-desc" id="eg-desc">Private knowledge workspace for builders — AI conversations → structured long-term memory. Built solo end-to-end.</div>
+      <div class="eg-desc" id="eg-desc">Private knowledge workspace for builders — AI conversations into structured long-term memory. Built solo end to end.</div>
       <div class="chips">
         <span class="chip">React · TS</span><span class="chip">Cloudflare Workers</span>
         <span class="chip">D1 SQLite</span><span class="chip">Claude API</span><span class="chip">MCP</span>
       </div>
-      <a class="btn-s" href="https://engram-b14.pages.dev" target="_blank"><i class="ti ti-external-link"></i><span id="eg-cta">View Live</span></a>
+      <a class="btn btn-primary" href="https://engram-b14.pages.dev" target="_blank" style="width:fit-content"><i class="ti ti-external-link"></i><span id="eg-cta">View Live</span></a>
     </div>
-    <div class="imgw engram-img">
-      <!-- <img src="engram-screenshot.png" alt="Engram"/> -->
+    <div class="engram-img">
+      <!-- <img src="engram.png" alt="Engram"/> -->
       <div class="imgw-ph"><i class="ti ti-layout-dashboard"></i><span id="eg-ph">Screenshot coming soon</span></div>
     </div>
   </div>
+</section>
 
-  <div class="card skills-card" id="skills-card">
-    <div class="sk-head" id="sk-head">Skills Network</div>
-    <svg id="sk-svg" viewBox="0 0 340 190"></svg>
-    <div class="sk-chips" id="sk-chips"><span class="sk-hint" id="sk-hint">Hover a node to explore</span></div>
-    <div class="sk-leg" id="sk-leg"></div>
+<!-- Skills Orb -->
+<section class="section" id="skills">
+  <div class="sec-head rv">
+    <div class="sec-eyebrow" id="se-sk-ey">Capability</div>
+    <h2 class="sec-title" id="se-sk-t">Skill Map</h2>
+    <p class="sec-sub" id="se-sk-s">Six capabilities orbiting one product core</p>
   </div>
-
-</div>
-
-<!-- Experience — hover overlay -->
-<div class="exp-sect rv" id="exp-sect">
-  <div class="exp-head" id="exp-head">Experience</div>
-  <div class="exp-grid">
-    <div>
-      <div class="exp-col-lbl"><span class="exp-dot" style="background:var(--pur)"></span><span id="ex-fin">Finance &amp; Banking</span></div>
-      <div id="fin-entries"></div>
-    </div>
-    <div>
-      <div class="exp-col-lbl"><span class="exp-dot" style="background:var(--grn)"></span><span id="ex-web3">Web3 &amp; Startup</span></div>
-      <div id="web3-entries"></div>
+  <div class="panel orb-panel rv">
+    <div class="orb-stage" id="orb-stage">
+      <svg id="orb-svg" viewBox="0 0 800 540" preserveAspectRatio="xMidYMid meet"></svg>
     </div>
   </div>
-</div>
+</section>
 
-<!-- Academic + Contact -->
-<div class="bottom rv">
-  <div>
-    <div class="acad-head" id="ac-head">Academic</div>
-    <div class="acad-row" id="acad-row"></div>
-  </div>
-  <div class="contact-col" id="contact-col">
-    <div class="ct-head" id="ct-head">Contact</div>
-    <div class="open-tag" id="ct-open">Open to PM &amp; BA roles · Toronto</div>
-    <div class="ct-links">
-      <a class="cl2" href="mailto:weiqi.shi919@gmail.com"><i class="ti ti-mail"></i>weiqi.shi919@gmail.com</a>
-      <a class="cl2" href="https://linkedin.com/in/shi-weiqi-55052619a" target="_blank"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
-      <a class="cl2" href="https://paragraph.com/sepremelouis.eth" target="_blank"><i class="ti ti-pencil"></i><span id="ct-wr">Research &amp; Writing</span></a>
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="rv">
+    <div class="sec-eyebrow" id="ct-ey">Let's Connect</div>
+    <h2 class="contact-title" id="ct-t">Get in Touch</h2>
+    <p class="contact-sub" id="ct-sub">Open to Product Manager &amp; Business Analyst roles in Toronto</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:weiqi.shi919@gmail.com"><i class="ti ti-mail"></i>weiqi.shi919@gmail.com</a>
+      <a class="contact-link" href="https://linkedin.com/in/shi-weiqi-55052619a" target="_blank"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
+      <a class="contact-link" href="https://paragraph.com/sepremelouis.eth" target="_blank"><i class="ti ti-pencil"></i><span id="ct-wr">Research &amp; Writing</span></a>
     </div>
     <div class="ft-note" id="ct-ft">© 2026 Weiqi Shi · Built with Claude Code</div>
   </div>
+</section>
+
 </div>
 
-</div><!-- /page -->
-
 <script>
-// Timeline — 9 milestone nodes with logos, dates on axis
+// ── Timeline (9 nodes, logos, dates+location on spine) ──
 const TL_EVENTS=[
-  {label:'Lakehead University',role:'BSc Math & Economics\nMSc Economics',
-   logo:'https://logo.clearbit.com/lakeheadu.ca',icon:'ti-school',color:'#1a5c2a',
-   pos:4,side:'above',date:'Sep 2017 – May 2021',loc:'Thunder Bay, ON'},
-  {label:"Governor's Challenge",role:'Team Lead · Bank of Canada',
-   logo:'https://logo.clearbit.com/bankofcanada.ca',icon:'ti-trophy',color:'#d32f2f',
-   pos:15,side:'below',date:'Sep 2019 – Feb 2020',loc:'Ottawa, ON'},
-  {label:'Elite Alliance',role:'Case Analyst & Operations Lead',
-   logo:null,icon:'ti-briefcase',color:'#78909c',
-   pos:26,side:'above',date:'Aug 2021 – Feb 2022',loc:'North York, ON'},
-  {label:'HSBC Bank of Canada',role:'Personal Banker → Premium Banker',
-   logo:'https://logo.clearbit.com/hsbc.com',icon:'ti-building-bank',color:'#db0011',
-   pos:38,side:'below',date:'Feb 2022 – Apr 2024',loc:'Toronto, ON'},
-  {label:'RBC',role:'Banking Advisor',
-   logo:'https://logo.clearbit.com/rbc.com',icon:'ti-building-bank',color:'#005daa',
-   pos:49,side:'above',date:'Apr 2024 – Jul 2024',loc:'Toronto, ON'},
-  {label:'Futu Securities',role:'Financial Advisor',
-   logo:'https://logo.clearbit.com/futubull.com',icon:'ti-chart-candle',color:'#f4533b',
-   pos:60,side:'below',date:'Sep 2024 – Dec 2024',loc:'Shenzhen, CN'},
-  {label:'ChainCatcher',role:'Research Analyst & Editor',
-   logo:'https://logo.clearbit.com/chaincatcher.com',icon:'ti-pencil',color:'#059669',
-   pos:71,side:'above',date:'Apr 2025 – Aug 2025',loc:'Shenzhen, CN'},
-  {label:'Flipflop Labs / PathPort',role:'Overseas Operations Lead',
-   logo:null,icon:'ti-world',color:'#0891b2',
-   pos:82,side:'below',date:'Aug 2025 – Jan 2026',loc:'Shenzhen, CN'},
-  {label:'Harena',role:'Co-founder & Product Manager',
-   logo:null,icon:'ti-brain',color:'#4f46e5',
-   pos:93,side:'above',date:'Oct 2025 – Present',loc:'Toronto, ON'},
+  {label:'Lakehead University',role:'BSc Math & Economics\nMSc Economics',logo:'https://logo.clearbit.com/lakeheadu.ca',icon:'ti-school',color:'#1a5c2a',pos:5,side:'above',date:'Sep 2017 – May 2021',loc:'Thunder Bay, ON'},
+  {label:"Governor's Challenge",role:'Team Lead · Bank of Canada',logo:'https://logo.clearbit.com/bankofcanada.ca',icon:'ti-trophy',color:'#d32f2f',pos:16,side:'below',date:'Sep 2019 – Feb 2020',loc:'Ottawa, ON'},
+  {label:'Elite Alliance',role:'Case Analyst & Operations Lead',logo:null,icon:'ti-briefcase',color:'#78909c',pos:27,side:'above',date:'Aug 2021 – Feb 2022',loc:'North York, ON'},
+  {label:'HSBC Bank of Canada',role:'Personal Banker → Premium Banker',logo:'https://logo.clearbit.com/hsbc.com',icon:'ti-building-bank',color:'#db0011',pos:39,side:'below',date:'Feb 2022 – Apr 2024',loc:'Toronto, ON'},
+  {label:'RBC',role:'Banking Advisor',logo:'https://logo.clearbit.com/rbc.com',icon:'ti-building-bank',color:'#005daa',pos:50,side:'above',date:'Apr 2024 – Jul 2024',loc:'Toronto, ON'},
+  {label:'Futu Securities',role:'Financial Advisor',logo:'https://logo.clearbit.com/futubull.com',icon:'ti-chart-candle',color:'#f4533b',pos:61,side:'below',date:'Sep 2024 – Dec 2024',loc:'Shenzhen, CN'},
+  {label:'ChainCatcher',role:'Research Analyst & Editor',logo:'https://logo.clearbit.com/chaincatcher.com',icon:'ti-pencil',color:'#059669',pos:72,side:'above',date:'Apr 2025 – Aug 2025',loc:'Shenzhen, CN'},
+  {label:'Flipflop Labs / PathPort',role:'Overseas Operations Lead',logo:null,icon:'ti-world',color:'#0891b2',pos:83,side:'below',date:'Aug 2025 – Jan 2026',loc:'Shenzhen, CN'},
+  {label:'Harena',role:'Co-founder & Product Manager',logo:null,icon:'ti-brain',color:'#4f46e5',pos:94,side:'above',date:'Oct 2025 – Present',loc:'Toronto, ON'},
 ];
-
 function buildTL(){
   const o=document.getElementById('tl-outer');o.innerHTML='';
-  // Spine
   const bar=document.createElement('div');bar.className='tl2-spine';o.appendChild(bar);
-  // Nodes
   TL_EVENTS.forEach(e=>{
-    const nd=document.createElement('div');nd.className='tl2-nd';nd.style.left=e.pos+'%';
-    // Circle — logo image or icon fallback
+    const nd=document.createElement('div');nd.className='tl2-nd';nd.style.left=`calc(10px + ${e.pos}% * (100% - 20px) / 100%)`;
+    nd.style.left=`calc(10px + (100% - 20px) * ${e.pos/100})`;
     const circ=document.createElement('div');circ.className='tl2-circ';circ.style.borderColor=e.color;
-    if(e.logo){
-      const img=document.createElement('img');img.src=e.logo;img.alt=e.label;
-      img.onerror=()=>{img.replaceWith(Object.assign(document.createElement('i'),{className:`ti ${e.icon}`,style:`color:${e.color}`}))};
-      circ.appendChild(img);
-    } else {
-      circ.innerHTML=`<i class="ti ${e.icon}" style="color:${e.color}"></i>`;
-    }
+    if(e.logo){const img=document.createElement('img');img.src=e.logo;img.alt=e.label;img.onerror=()=>img.replaceWith(Object.assign(document.createElement('i'),{className:`ti ${e.icon}`,style:`color:${e.color}`}));circ.appendChild(img);}
+    else circ.innerHTML=`<i class="ti ${e.icon}" style="color:${e.color}"></i>`;
     nd.appendChild(circ);
-    // Card + connector (above or below)
     const wrap=document.createElement('div');wrap.className=e.side==='above'?'tl2-up':'tl2-dn';
     const line=document.createElement('div');line.className='tl2-line';line.style.background=e.color;
     const card=document.createElement('div');card.className='tl2-card';
-    const ovalBg=e.color+'18';
-    const logoHtml=e.logo?`<img src="${e.logo}" alt="${e.label}" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`+`<i class="ti ${e.icon}" style="color:${e.color};display:none"></i>`:`<i class="ti ${e.icon}" style="color:${e.color}"></i>`;
-    const roleHtml=e.role.split('\n').map(r=>`<span>${r}</span>`).join('<br/>');
-    card.innerHTML=`<div class="tl2-oval" style="background:${ovalBg}">${logoHtml}</div><div class="tl2-info"><div class="tl2-name">${e.label}</div><div class="tl2-role">${roleHtml}</div></div>`;
-    if(e.side==='above'){wrap.appendChild(card);wrap.appendChild(line);}
-    else{wrap.appendChild(line);wrap.appendChild(card);}
+    const logoHtml=e.logo?`<img src="${e.logo}" alt="" onerror="this.style.display='none';this.nextSibling.style.display='block'"><i class="ti ${e.icon}" style="color:${e.color};display:none"></i>`:`<i class="ti ${e.icon}" style="color:${e.color}"></i>`;
+    const roleHtml=e.role.split('\n').join('<br/>');
+    card.innerHTML=`<div class="tl2-oval" style="background:${e.color}18">${logoHtml}</div><div class="tl2-info"><div class="tl2-name">${e.label}</div><div class="tl2-role">${roleHtml}</div></div>`;
+    if(e.side==='above'){wrap.appendChild(card);wrap.appendChild(line);}else{wrap.appendChild(line);wrap.appendChild(card);}
     nd.appendChild(wrap);
-    // Date + location meta — on spine, opposite side to card
-    const meta=document.createElement('div');
-    meta.className=e.side==='above'?'tl2-meta-a':'tl2-meta-b';
+    const meta=document.createElement('div');meta.className=e.side==='above'?'tl2-meta-a':'tl2-meta-b';
     meta.innerHTML=`<div class="tl2-date">${e.date}</div><div class="tl2-loc"><i class="ti ti-map-pin"></i>${e.loc}</div>`;
     nd.appendChild(meta);
     o.appendChild(nd);
   });
 }
 
-// Skills
-const SK=[
-  {id:'pm',label:'Product',x:170,y:95,r:26,c:'#4f46e5',ctr:true},
-  {id:'fin',label:'Finance',x:45,y:40,r:18,c:'#7c3aed',tags:['$20M+ AUM','CSC·MFDA','Investment','Risk Mgmt']},
-  {id:'ai',label:'AI & Tech',x:295,y:36,r:18,c:'#4f46e5',tags:['Claude Code','LLM Design','MCP·API','Prompt Eng']},
-  {id:'web3',label:'Web3',x:308,y:158,r:18,c:'#059669',tags:['Tokenomics','DeFi','GTM','Whitepapers']},
-  {id:'data',label:'Data',x:170,y:178,r:18,c:'#7c3aed',tags:['SQL·Excel','Tableau','Fin. Modeling','Econometrics']},
-  {id:'comm',label:'Comms',x:38,y:158,r:18,c:'#059669',tags:['Bilingual','Investor Rel.','PRD·Specs','Tech Writing']},
-];
-function buildSK(){
-  const svg=document.getElementById('sk-svg');svg.innerHTML='';
-  const ns='http://www.w3.org/2000/svg';
-  const ctr=SK[0];
-  SK.filter(n=>!n.ctr).forEach(n=>{
-    const l=document.createElementNS(ns,'line');
-    l.setAttribute('x1',ctr.x);l.setAttribute('y1',ctr.y);l.setAttribute('x2',n.x);l.setAttribute('y2',n.y);
-    l.setAttribute('stroke','#e4e7ec');l.setAttribute('stroke-width','1.5');l.setAttribute('stroke-dasharray','3 3');
-    l.dataset.node=n.id;l.classList.add('sk-l');svg.appendChild(l);
+// ── Skill Orb Map (light) ──
+const ORB={
+  cx:400,cy:270,VW:800,VH:540,
+  nodes:[
+    {id:'ai',x:300,y:118,c:'#ff4d6d',side:'r'},
+    {id:'logic',x:560,y:140,c:'#00b4d8',side:'r'},
+    {id:'web3',x:600,y:285,c:'#f4a000',side:'r'},
+    {id:'data',x:545,y:440,c:'#8b5cf6',side:'r'},
+    {id:'comm',x:255,y:445,c:'#3b82f6',side:'l'},
+    {id:'fin',x:215,y:280,c:'#10b981',side:'l'},
+  ]
+};
+function buildOrb(d){
+  const svg=document.getElementById('orb-svg');const ns='http://www.w3.org/2000/svg';
+  svg.innerHTML='';
+  const stage=document.getElementById('orb-stage');
+  stage.querySelectorAll('.orb-label').forEach(el=>el.remove());
+  // defs: glow filter + orb gradient
+  const defs=document.createElementNS(ns,'defs');
+  defs.innerHTML=`
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <radialGradient id="orbCore" cx="42%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="30%" stop-color="#7dd3fc"/>
+      <stop offset="65%" stop-color="#5b8def"/><stop offset="100%" stop-color="#6366f1"/>
+    </radialGradient>
+    <radialGradient id="orbGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7dd3fc" stop-opacity=".5"/><stop offset="100%" stop-color="#7dd3fc" stop-opacity="0"/>
+    </radialGradient>`;
+  svg.appendChild(defs);
+  const cx=ORB.cx,cy=ORB.cy;
+  // curved glowing connectors
+  ORB.nodes.forEach((n,i)=>{
+    const mx=(cx+n.x)/2,my=(cy+n.y)/2;
+    const dx=n.x-cx,dy=n.y-cy;const len=Math.hypot(dx,dy);
+    const off=42*(i%2?1:-1);
+    const ctrlx=mx+(-dy/len)*off,ctrly=my+(dx/len)*off;
+    const path=document.createElementNS(ns,'path');
+    const dStr=`M${cx},${cy} Q${ctrlx},${ctrly} ${n.x},${n.y}`;
+    path.setAttribute('d',dStr);path.setAttribute('fill','none');path.setAttribute('stroke',n.c);
+    path.setAttribute('stroke-width','1.6');path.setAttribute('stroke-opacity','.55');path.setAttribute('filter','url(#glow)');path.setAttribute('stroke-linecap','round');
+    const L=path.getTotalLength?260:260;
+    path.style.strokeDasharray=300;path.style.strokeDashoffset=300;
+    path.style.animation=`draw 1.4s ${.2+i*.12}s cubic-bezier(.2,.8,.2,1) forwards`;
+    svg.appendChild(path);
   });
-  SK.forEach(n=>{
-    const g=document.createElementNS(ns,'g');g.style.cursor='pointer';
-    if(n.ctr){
-      [38,30].forEach((r,i)=>{
-        const ring=document.createElementNS(ns,'circle');
-        ring.setAttribute('cx',n.x);ring.setAttribute('cy',n.y);ring.setAttribute('r',r);
-        ring.setAttribute('fill','none');ring.setAttribute('stroke',n.c);
-        ring.setAttribute('stroke-width','1');ring.setAttribute('opacity',i===0?.15:.25);
-        const an=document.createElementNS(ns,'animate');
-        an.setAttribute('attributeName','r');an.setAttribute('values',`${r};${r+3};${r}`);
-        an.setAttribute('dur',`${3+i}s`);an.setAttribute('repeatCount','indefinite');
-        ring.appendChild(an);g.appendChild(ring);
-      });
-    }
-    const c=document.createElementNS(ns,'circle');
-    c.setAttribute('cx',n.x);c.setAttribute('cy',n.y);c.setAttribute('r',n.r);
-    c.setAttribute('fill',n.ctr?'rgba(79,70,229,.08)':'rgba(79,70,229,.04)');
-    c.setAttribute('stroke',n.c);c.setAttribute('stroke-width',n.ctr?'1.5':'1');
-    c.setAttribute('stroke-opacity',n.ctr?'1':'.6');g.appendChild(c);
-    const t=document.createElementNS(ns,'text');
-    t.setAttribute('x',n.x);t.setAttribute('y',n.y+4);t.setAttribute('text-anchor','middle');
-    t.setAttribute('font-family','Inter');t.setAttribute('font-size',n.ctr?'10':'9');
-    t.setAttribute('font-weight',n.ctr?'600':'500');t.setAttribute('fill','#0f172a');t.textContent=n.label;
-    g.appendChild(t);
-    if(!n.ctr){
-      const hit=document.createElementNS(ns,'circle');hit.setAttribute('cx',n.x);hit.setAttribute('cy',n.y);hit.setAttribute('r',n.r+8);hit.setAttribute('fill','transparent');g.appendChild(hit);
-      g.addEventListener('mouseenter',()=>hlSK(n.id));g.addEventListener('mouseleave',()=>hlSK(null));
-    }
-    svg.appendChild(g);
+  // outer orb glow
+  const glow=document.createElementNS(ns,'circle');glow.setAttribute('cx',cx);glow.setAttribute('cy',cy);glow.setAttribute('r',120);glow.setAttribute('fill','url(#orbGlow)');svg.appendChild(glow);
+  // core orb
+  const core=document.createElementNS(ns,'circle');core.setAttribute('cx',cx);core.setAttribute('cy',cy);core.setAttribute('r',66);core.setAttribute('fill','url(#orbCore)');
+  core.style.transformOrigin=`${cx}px ${cy}px`;core.style.animation='breathe 5s ease-in-out infinite';svg.appendChild(core);
+  // node dots
+  ORB.nodes.forEach((n,i)=>{
+    const halo=document.createElementNS(ns,'circle');halo.setAttribute('cx',n.x);halo.setAttribute('cy',n.y);halo.setAttribute('r',14);halo.setAttribute('fill',n.c);halo.setAttribute('opacity','.18');halo.setAttribute('filter','url(#glow)');svg.appendChild(halo);
+    const dot=document.createElementNS(ns,'circle');dot.setAttribute('cx',n.x);dot.setAttribute('cy',n.y);dot.setAttribute('r',8);dot.setAttribute('fill',n.c);dot.setAttribute('filter','url(#glow)');
+    dot.style.transformOrigin=`${n.x}px ${n.y}px`;dot.style.animation=`pulse 3s ${i*.4}s ease-in-out infinite`;svg.appendChild(dot);
   });
-}
-function hlSK(id){
-  document.querySelectorAll('.sk-l').forEach(l=>{l.setAttribute('stroke',!id||l.dataset.node===id?'#4f46e5':'#e4e7ec');l.setAttribute('stroke-opacity',!id||l.dataset.node===id?'.6':'.5')});
-  const chips=document.getElementById('sk-chips');
-  if(!id){chips.innerHTML='<span class="sk-hint" id="sk-hint">Hover a node to explore</span>';return}
-  const node=SK.find(n=>n.id===id);
-  chips.innerHTML=node.tags.map(t=>`<span class="sk-chip hl">${t}</span>`).join('')+SK.filter(n=>!n.ctr&&n.id!==id).flatMap(n=>n.tags).map(t=>`<span class="sk-chip">${t}</span>`).join('');
-}
-function buildSKLeg(){
-  document.getElementById('sk-leg').innerHTML=SK.filter(n=>!n.ctr).map(n=>`<span class="sk-leg-item" onmouseenter="hlSK('${n.id}')" onmouseleave="hlSK(null)"><span class="sk-dot" style="background:${n.c}"></span>${n.label}</span>`).join('');
+  // center label
+  const cl=document.createElement('div');cl.className='orb-label ol-center';cl.style.left=(cx/ORB.VW*100)+'%';cl.style.top=(cy/ORB.VH*100)+'%';
+  cl.innerHTML=`<div class="ol-c-name" style="text-align:center;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.25)">${d.orbCore}</div><div class="ol-c-sub" style="text-align:center;color:rgba(255,255,255,.85)">${d.orbCoreSub}</div>`;
+  stage.appendChild(cl);
+  // node labels (HTML overlay), anchored to inner edge so they never clip
+  ORB.nodes.forEach(n=>{
+    const info=d.orb[n.id];
+    const lbl=document.createElement('div');lbl.className='orb-label '+(n.side==='l'?'ol-l':'ol-r');
+    const lx=n.side==='l'?n.x-24:n.x+24;
+    lbl.style.left=(lx/ORB.VW*100)+'%';lbl.style.top=(n.y/ORB.VH*100)+'%';
+    lbl.innerHTML=`<div class="ol-cat">${info.cat}</div><div class="ol-desc">${info.desc}</div>`;
+    stage.appendChild(lbl);
+  });
 }
 
-// Build scroll strip
+// ── Builders ──
 function buildStrip(items){
   const inner=document.getElementById('scroll-inner');inner.innerHTML='';
   items.forEach(it=>{
-    const div=document.createElement('div');div.className='card lift sc-card';
-    div.innerHTML=`<div class="imgw r169">${it.img?`<img src="${it.img}" alt="${it.title}"/>`:`<div class="imgw-ph"><i class="ti ${it.icon||'ti-photo'}"></i></div>`}</div><div class="card-body"><span class="badge ${it.badgeCls}">${it.badgeLbl}</span><div class="sc-title">${it.title}</div><div class="sc-meta">${it.meta}</div><a class="see" href="${it.href}" target="_blank">${it.linkLbl} <i class="ti ti-arrow-right"></i></a></div>`;
-    inner.appendChild(div);
+    const a=document.createElement('a');a.className='sc-card';a.href=it.href;a.target='_blank';
+    a.innerHTML=`<div class="imgw r169">${it.img?`<img src="${it.img}" alt="">`:`<div class="imgw-ph"><i class="ti ${it.icon||'ti-photo'}"></i></div>`}</div><div class="sc-body"><span class="badge ${it.badgeCls}">${it.badgeLbl}</span><div class="sc-title">${it.title}</div><div class="sc-meta">${it.meta}</div><span class="see">${it.linkLbl} <i class="ti ti-arrow-right"></i></span></div>`;
+    inner.appendChild(a);
   });
 }
-
-// Build project col
-function buildProj(items){
-  const col=document.getElementById('proj-col');col.innerHTML='';
-  items.forEach(p=>{
-    const div=document.createElement('div');div.className='card lift proj-card';
-    div.innerHTML=`<div class="imgw r169">${p.img?`<img src="${p.img}" alt="${p.title}"/>`:`<div class="imgw-ph"><i class="ti ${p.icon}"></i></div>`}</div><div class="proj-body"><span class="badge ${p.badgeCls}">${p.badgeLbl}</span><div class="proj-title">${p.title}</div><div class="proj-meta">${p.meta}</div><a class="see" href="${p.href}" target="_blank">${p.linkLbl} <i class="ti ti-arrow-right"></i></a></div>`;
-    col.appendChild(div);
-  });
-}
-
-// Build experience with hover overlay
 function buildExp(id,entries){
   const c=document.getElementById(id);c.innerHTML='';
   entries.forEach(e=>{
     const wrap=document.createElement('div');wrap.className='ec-wrap';
-    wrap.innerHTML=`
-      <div class="ec-static">
-        <div style="display:flex;justify-content:space-between;gap:10px;align-items:start">
-          <div><div class="ec-org">${e.org}</div><div class="ec-role">${e.role}</div><div class="ec-sum">${e.sum}</div></div>
-          <div class="ec-date">${e.date}</div>
-        </div>
-      </div>
-      <div class="ec-overlay">
-        <ul class="ec-bul">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
-      </div>`;
+    wrap.innerHTML=`<div class="ec-static"><div style="display:flex;justify-content:space-between;gap:10px;align-items:start"><div><div class="ec-org">${e.org}</div><div class="ec-role">${e.role}</div><div class="ec-sum">${e.sum}</div></div><div class="ec-date">${e.date}</div></div></div><div class="ec-overlay"><ul class="ec-bul">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>`;
     c.appendChild(wrap);
   });
 }
 
-// Build academic
-function buildAcad(acad){
-  document.getElementById('acad-row').innerHTML=acad.map(a=>`<div class="ac-card"><div class="ac-d">${a.deg}</div><div class="ac-s">${a.school}</div><div class="ac-m">${a.meta}</div><div class="ac-tags">${a.tags.map(t=>`<span class="ac-t">${t}</span>`).join('')}</div></div>`).join('');
-}
-
-// Data
+// ── Data ──
 const D={
 en:{
-  hTag:'Product Manager · Fintech · Web3 · Toronto, ON',hWr:'Writing',hDl:'Resume',
-  tlLbl:'Career Timeline · 2017 — Present',lgA:'Academic',lgW:'Finance',lgP:'Web3 & Startup',lgO:'Other',
-  scLbl:'Showcase — Articles & Portfolio',projLbl:'Projects',
-  egEy:'Featured Build',egDesc:'Private knowledge workspace for builders — AI conversations → structured long-term memory. Built solo end-to-end.',egCta:'View Live',egPh:'Screenshot coming soon',
-  skHead:'Skills Network',skHint:'Hover a node to explore',
-  expHead:'Experience',exFin:'Finance & Banking',exWeb3:'Web3 & Startup',
-  acHead:'Academic',ctHead:'Contact',ctOpen:'Open to PM & BA roles · Toronto',ctWr:'Research & Writing',ctFt:'© 2026 Weiqi Shi · Built with Claude Code',
+  navSub:'Product · Fintech · Web3',navExp:'Experience',navWork:'Work',navSkills:'Skills',navContact:'Contact',
+  hEyebrow:'Product · Fintech · Web3',
+  hTitle:'Building where finance meets <span class="grad">emerging tech</span>',
+  hSub:'Product manager and independent builder — from $20M banking portfolios to Web3 platforms and AI products. I ship end to end.',
+  hCta1:'View Work',hCta2:'Resume',porPh:'Portrait photo<br/>— drop portrait.jpg here',
+  pcapT:'Weiqi Shi',pcapS:'Product · Fintech · Web3 · Toronto',
+  fc1:"MSc Economics · Dean's Medal",fc2:'$20M+ AUM managed at HSBC',fc3:'1,000+ Web3 ambassadors built',
+  seExpEy:'Journey',seExpT:'Experience',seExpS:'A continuous path of building — 2017 to today',
+  exFin:'Finance & Banking',exWeb3:'Web3 & Startup',
+  seWorkEy:'Selected',seWorkT:'Work & Portfolio',seWorkS:"Articles, products, and platforms I've shipped",
+  stripLbl:'Articles & Portfolio — scroll →',
+  egEy:'Featured Build',egDesc:'Private knowledge workspace for builders — AI conversations into structured long-term memory. Built solo end to end.',egCta:'View Live',egPh:'Screenshot coming soon',
+  seSkEy:'Capability',seSkT:'Skill Map',seSkS:'Six capabilities orbiting one product core',
+  orbCore:'Product',orbCoreSub:'Manager',
+  orb:{
+    ai:{cat:'AI & Tech',desc:'Claude Code · LLM · MCP / API'},
+    logic:{cat:'Product Logic',desc:'Feature architecture · User flows'},
+    web3:{cat:'Web3',desc:'Tokenomics · DeFi'},
+    data:{cat:'Data',desc:'SQL · Modeling · Econometrics'},
+    comm:{cat:'Communication',desc:'Bilingual · Investor relations'},
+    fin:{cat:'Finance',desc:'Investment · Risk · AUM'},
+  },
+  ctEy:"Let's Connect",ctT:'Get in Touch',ctSub:'Open to Product Manager & Business Analyst roles in Toronto',ctWr:'Research & Writing',ctFt:'© 2026 Weiqi Shi · Built with Claude Code',
   strip:[
     {title:'#1 on Foresight News — Web3 Regulatory Analysis',meta:'U.S. CLARITY Act & Singapore MAS · #1 all-platform monthly read · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-article',badgeCls:'ba',badgeLbl:'Article',linkLbl:'Read',img:''},
     {title:'DeFi Macro Outlook & Market Structure',meta:'ChainCatcher · Trendverse Lab · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-file-text',badgeCls:'ba',badgeLbl:'Article',linkLbl:'Read',img:''},
     {title:'Trendverse Lab — Independent Research Brand',meta:'10+ long-form reports across major crypto platforms · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-file-text',badgeCls:'ba',badgeLbl:'Article',linkLbl:'Read',img:''},
-    {title:'Harena App Prototype',meta:'AI fintech · Figma + Claude Code + Lovable · 2025–26',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'Portfolio',linkLbl:'View',img:''},
-    {title:'PathPort Website',meta:'Web3 ambassador platform · Solo build · Live deployment',href:'#',icon:'ti-world',badgeCls:'bp',badgeLbl:'Portfolio',linkLbl:'View',img:''},
+    {title:'PathPort — 1,000+ Ambassadors in 60 Days',meta:'Web3 platform · HK keynote · 60-page whitepaper · traffic 10×',href:'#',icon:'ti-world',badgeCls:'bp',badgeLbl:'Project',linkLbl:'View',img:''},
+    {title:'Harena — AI Financial Intelligence',meta:'Co-founder & PM · Solo full-stack · investor pipeline · 2025–26',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'Startup',linkLbl:'View',img:''},
     {title:'Engram Knowledge Tool',meta:'Cloudflare Workers + D1 + Claude API + MCP · Live',href:'https://engram-b14.pages.dev',icon:'ti-layout-dashboard',badgeCls:'bs',badgeLbl:'Portfolio',linkLbl:'View',img:''},
-  ],
-  projects:[
-    {title:'PathPort — 1,000+ Ambassadors in 60 Days',meta:'Web3 ambassador platform · Africa & SE Asia · Hong Kong keynote · 60-page bilingual whitepaper · traffic 10×',href:'#',icon:'ti-world',badgeCls:'bp',badgeLbl:'Project',linkLbl:'View project',img:''},
-    {title:'Harena — AI Financial Intelligence',meta:'Co-founder & PM · 5 major pivots · Solo full-stack delivery · Investor pipeline active · Toronto',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'Startup',linkLbl:'View project',img:''},
   ],
   fin:[
     {org:'HSBC Bank of Canada',role:'Personal Banker → Premium Banker',date:'Feb 2022 – Apr 2024',sum:'$20M+ AUM · 500+ clients · Promoted 13 months · 3 audits',bullets:['Managed 500+ clients with $20M+ AUM across investment, lending, savings','Promoted to Premium Banker in 13 months — $1M+ new business in first quarter','Sole front-desk operator for months; passed 3 major regulatory audits independently','Led digital adoption — +20% mobile banking enrollment']},
@@ -544,31 +564,38 @@ en:{
     {org:'Flipflop Labs / PathPort',role:'Overseas Operations Lead',date:'Aug 2025 – Jan 2026',sum:'1,000+ ambassadors 2 months · 10× traffic · HK keynote',bullets:['Footprint Ambassador Program — Africa & Southeast Asia markets','1,000+ ambassadors in 2 months; weekly active traffic 10×','60+ page bilingual whitepaper — tokenomics, architecture, GTM strategy','PathPort website: architecture, UI, content, deployment — solo','Hong Kong keynote · 10+ AMAs across 5–6 countries']},
     {org:'ChainCatcher / Trendverse Lab',role:'Research Analyst & Editor',date:'Apr – Aug 2025',sum:'#1 Foresight News · 10+ long-form reports · research brand',bullets:['DeFi, macro, and regulatory reporting for ChainCatcher','U.S. CLARITY Act & Singapore MAS analysis with legal professionals','Co-built Trendverse Lab — 10+ reports across major crypto platforms','#1 monthly readership on Foresight News all platforms']},
   ],
-  acad:[
-    {deg:'Master of Economics',school:'Lakehead University',meta:'GPA 3.9/4.0 · 2020 – 2021',tags:["Dean's Medal","Research Award $10K","Econometrics"]},
-    {deg:'Bachelor Math & Economics',school:'Lakehead University',meta:'GPA 3.5/4.0 · 2017 – 2020',tags:['Scholarship $17.5K','Calculus 100%','3yr TA']},
-    {deg:'Bank of Canada Competition',school:'National Finals · Ottawa',meta:'Sep 2019 – Feb 2020',tags:['Team Lead','Governor Poloz','Commendation']},
-  ],
 },
 zh:{
-  hTag:'产品经理 · 金融科技 · Web3 · 多伦多',hWr:'文章研究',hDl:'简历',
-  tlLbl:'职业时间轴 · 2017 — 至今',lgA:'学术',lgW:'金融',lgP:'Web3与创业',lgO:'其他',
-  scLbl:'展示 — 文章与作品',projLbl:'项目',
-  egEy:'重点项目',egDesc:'面向构建者的私人知识工作台 — AI对话 → 结构化长期记忆。独立端到端构建。',egCta:'查看线上版本',egPh:'截图即将上传',
-  skHead:'技能网络',skHint:'悬停节点探索技能',
-  expHead:'工作经历',exFin:'金融与银行',exWeb3:'Web3与创业',
-  acHead:'学历',ctHead:'联系方式',ctOpen:'寻找多伦多PM·BA职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
+  navSub:'产品 · 金融科技 · Web3',navExp:'经历',navWork:'作品',navSkills:'能力',navContact:'联系',
+  hEyebrow:'产品 · 金融科技 · WEB3',
+  hTitle:'在金融与<span class="grad">新兴科技</span>的交汇处构建',
+  hSub:'产品经理 / 独立构建者 —— 从 $2000 万银行资产组合，到 Web3 平台与 AI 产品，端到端交付。',
+  hCta1:'查看作品',hCta2:'下载简历',porPh:'肖像照片<br/>— 放入 portrait.jpg',
+  pcapT:'Weiqi Shi',pcapS:'产品 · 金融科技 · Web3 · 多伦多',
+  fc1:'经济学硕士 · 院长奖章',fc2:'汇丰 $2000万+ 资产管理',fc3:'1000+ Web3 大使搭建',
+  seExpEy:'历程',seExpT:'个人经历',seExpS:'持续构建的成长路径 —— 2017 至今',
+  exFin:'金融与银行',exWeb3:'Web3与创业',
+  seWorkEy:'精选',seWorkT:'作品展示',seWorkS:'我交付的文章、产品与平台',
+  stripLbl:'文章与作品 — 左右滑动 →',
+  egEy:'重点项目',egDesc:'面向构建者的私人知识工作台 —— 将 AI 对话转化为结构化长期记忆。独立端到端构建。',egCta:'查看线上版本',egPh:'截图即将上传',
+  seSkEy:'能力',seSkT:'能力图谱',seSkS:'六大能力围绕产品核心运转',
+  orbCore:'产品',orbCoreSub:'Product Manager',
+  orb:{
+    ai:{cat:'AI & Tech',desc:'Claude Code · LLM · MCP / API'},
+    logic:{cat:'Product Logic',desc:'功能架构 · 用户路径'},
+    web3:{cat:'Web3',desc:'代币经济 · DeFi'},
+    data:{cat:'Data',desc:'SQL · 建模 · 计量经济'},
+    comm:{cat:'Communication',desc:'中英双语 · 投资人关系'},
+    fin:{cat:'Finance',desc:'投资 · 风控 · 资产'},
+  },
+  ctEy:'保持联系',ctT:'联系我',ctSub:'寻找多伦多产品经理与商业分析师职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
   strip:[
-    {title:'Foresight News月榜第一 — Web3监管分析',meta:'美国CLARITY法案与新加坡MAS框架 · 全平台月度阅读量第一 · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-article',badgeCls:'ba',badgeLbl:'文章',linkLbl:'阅读',img:''},
+    {title:'Foresight News月榜第一 — Web3监管分析',meta:'美国CLARITY法案与新加坡MAS · 全平台月度阅读量第一 · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-article',badgeCls:'ba',badgeLbl:'文章',linkLbl:'阅读',img:''},
     {title:'DeFi宏观展望与市场结构分析',meta:'链捕手 · Trendverse Lab · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-file-text',badgeCls:'ba',badgeLbl:'文章',linkLbl:'阅读',img:''},
     {title:'Trendverse Lab — 独立研究品牌',meta:'在主流加密媒体发布10+篇深度报告 · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-file-text',badgeCls:'ba',badgeLbl:'文章',linkLbl:'阅读',img:''},
-    {title:'Harena应用原型',meta:'AI金融科技 · Figma + Claude Code + Lovable · 2025–26',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'作品',linkLbl:'查看',img:''},
-    {title:'PathPort官网',meta:'Web3大使平台 · 独立开发 · 已上线部署',href:'#',icon:'ti-world',badgeCls:'bp',badgeLbl:'作品',linkLbl:'查看',img:''},
+    {title:'PathPort — 60天扩展至1000+大使',meta:'Web3平台 · 香港路演 · 60+页白皮书 · 流量10倍',href:'#',icon:'ti-world',badgeCls:'bp',badgeLbl:'项目',linkLbl:'查看',img:''},
+    {title:'Harena — AI金融智能平台',meta:'联合创始人 & PM · 独立全栈 · 投资人对接 · 2025–26',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'创业',linkLbl:'查看',img:''},
     {title:'Engram知识工具',meta:'Cloudflare Workers + D1 + Claude API + MCP · 线上运行',href:'https://engram-b14.pages.dev',icon:'ti-layout-dashboard',badgeCls:'bs',badgeLbl:'作品',linkLbl:'查看',img:''},
-  ],
-  projects:[
-    {title:'PathPort — 60天扩展至1000+大使',meta:'Web3大使平台 · 非洲与东南亚 · 香港路演 · 60+页中英文白皮书 · 流量10倍',href:'#',icon:'ti-world',badgeCls:'bp',badgeLbl:'项目',linkLbl:'查看项目',img:''},
-    {title:'Harena — AI金融智能平台',meta:'联合创始人 & PM · 5次重大方向调整 · 独立全栈交付 · 投资人对接进行中',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'创业',linkLbl:'查看项目',img:''},
   ],
   fin:[
     {org:'汇丰银行加拿大',role:'个人银行顾问 → 高端客户经理',date:'2022年2月 – 2024年4月',sum:'AUM $2000万+ · 500+客户 · 13个月晋升 · 3次审计',bullets:['管理500+客户，资产超$2000万，覆盖投资、贷款、储蓄产品','13个月晋升，入职首季开单超$100万','独撑分行前台数月，独立通过3次大型监管审计','推动数字化，客户移动银行注册率提升20%']},
@@ -580,31 +607,39 @@ zh:{
     {org:'Flipflop Labs / PathPort',role:'海外市场运营负责人',date:'2025年8月 – 2026年1月',sum:'2个月1000+大使 · 流量10倍 · 香港路演',bullets:['脚印大使计划 — 非洲与东南亚市场','2个月扩展至1000+大使，平台周活流量10倍','独立撰写60+页中英文白皮书','独立完成PathPort网站全流程','香港线下峰会路演 · 10+场线上AMA']},
     {org:'链捕手 / Trendverse Lab',role:'研究员 & 编辑',date:'2025年4月 – 8月',sum:'Foresight News #1 · 10+篇深度报告 · 研究品牌',bullets:['为链捕手报道DeFi、宏观及监管动态','与律师协作研究CLARITY法案和MAS框架','联合创建Trendverse Lab，发布10+篇深度报告','登顶Foresight News当月全平台阅读量第一']},
   ],
-  acad:[
-    {deg:'经济学硕士',school:'莱克黑德大学',meta:'GPA 3.9/4.0 · 2020 – 2021',tags:['院长奖章','研究奖 $10K','计量经济学']},
-    {deg:'数学经济学学士',school:'莱克黑德大学',meta:'GPA 3.5/4.0 · 2017 – 2020',tags:['奖学金 $17.5K','微积分满分','3年助教']},
-    {deg:'加拿大国家银行货币政策竞赛',school:'全国决赛 · 渥太华',meta:'2019 – 2020',tags:['团队队长','行长Poloz','获正式表彰']},
-  ],
 }
 };
 
+function setText(id,html){const el=document.getElementById(id);if(el)el.innerHTML=html}
 function setLang(lang){
-  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',(lang==='en'&&b.textContent==='EN')||(lang==='zh'&&b.textContent==='中文')));
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',(lang==='en'&&b.textContent==='EN')||(lang==='zh'&&b.textContent==='中')));
   const d=D[lang];
-  const m={'h-tag':d.hTag,'h-wr':d.hWr,'h-dl':d.hDl,'tl-lbl':d.tlLbl,'lg-a':d.lgA,'lg-w':d.lgW,'lg-p':d.lgP,'lg-o':d.lgO,'sc-lbl':d.scLbl,'proj-lbl':d.projLbl,'eg-ey':d.egEy,'eg-desc':d.egDesc,'eg-cta':d.egCta,'eg-ph':d.egPh,'sk-head':d.skHead,'exp-head':d.expHead,'ex-fin':d.exFin,'ex-web3':d.exWeb3,'ac-head':d.acHead,'ct-head':d.ctHead,'ct-open':d.ctOpen,'ct-wr':d.ctWr,'ct-ft':d.ctFt};
-  Object.entries(m).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.textContent=v});
-  const hint=document.getElementById('sk-hint');if(hint)hint.textContent=d.skHint;
-  buildStrip(d.strip);buildProj(d.projects);
-  buildExp('fin-entries',d.fin);buildExp('web3-entries',d.web3);buildAcad(d.acad);
+  setText('nav-sub',d.navSub);setText('nav-exp',d.navExp);setText('nav-work',d.navWork);setText('nav-skills',d.navSkills);setText('nav-contact',d.navContact);
+  setText('h-eyebrow',d.hEyebrow);setText('h-title',d.hTitle);setText('h-sub',d.hSub);
+  setText('h-cta1',d.hCta1);document.getElementById('h-cta2').innerHTML=`<i class="ti ti-download"></i>${d.hCta2}`;
+  setText('por-ph',d.porPh);setText('pcap-t',d.pcapT);setText('pcap-s',d.pcapS);
+  setText('fc1',d.fc1);setText('fc2',d.fc2);setText('fc3',d.fc3);
+  setText('se-exp-ey',d.seExpEy);setText('se-exp-t',d.seExpT);setText('se-exp-s',d.seExpS);
+  setText('ex-fin',d.exFin);setText('ex-web3',d.exWeb3);
+  setText('se-work-ey',d.seWorkEy);setText('se-work-t',d.seWorkT);setText('se-work-s',d.seWorkS);setText('strip-lbl',d.stripLbl);
+  setText('eg-ey',d.egEy);setText('eg-desc',d.egDesc);setText('eg-cta',d.egCta);setText('eg-ph',d.egPh);
+  setText('se-sk-ey',d.seSkEy);setText('se-sk-t',d.seSkT);setText('se-sk-s',d.seSkS);
+  setText('ct-ey',d.ctEy);setText('ct-t',d.ctT);setText('ct-sub',d.ctSub);setText('ct-wr',d.ctWr);setText('ct-ft',d.ctFt);
+  buildStrip(d.strip);buildExp('fin-entries',d.fin);buildExp('web3-entries',d.web3);buildOrb(d);
 }
 
 // Scroll reveal
 function initRv(){
-  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}})},{threshold:.06});
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}}),{threshold:.08});
   document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 }
 
-buildTL();buildSK();buildSKLeg();setLang('en');initRv();
+// keyframes injected
+const st=document.createElement('style');
+st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
+document.head.appendChild(st);
+
+buildTL();setLang('en');initRv();
 </script>
 </body>
 </html>
