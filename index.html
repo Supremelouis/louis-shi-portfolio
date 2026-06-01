@@ -139,6 +139,43 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .tl2-loc{display:inline-flex;align-items:center;gap:3px;font-size:8px;color:var(--txt2);background:rgba(255,255,255,.7);border:1px solid var(--gb);padding:1px 7px;border-radius:9px}
 .tl2-loc i{font-size:8px}
 
+/* ── Phase cards (career chapters) ── */
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start;margin-bottom:30px}
+.phase-card{background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--gb);border-radius:22px;box-shadow:var(--sh);padding:24px 22px 18px;transition:box-shadow .3s,transform .3s}
+.phase-card:hover{box-shadow:var(--sh-h)}
+.phase-stack{position:relative;height:160px;display:flex;align-items:center;justify-content:center;margin-bottom:22px}
+.pimg{position:absolute;width:118px;height:150px;border-radius:13px;overflow:hidden;border:3px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.16);background:#e9ecf2;transition:transform .42s cubic-bezier(.2,.8,.2,1)}
+.pimg img{width:100%;height:100%;object-fit:cover}
+.pimg-ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--txt3)}
+.pimg-ph i{font-size:22px}
+.pimg.l{transform:translateX(-46px) rotate(-9deg) translateY(7px)}
+.pimg.c{z-index:3}
+.pimg.r{transform:translateX(46px) rotate(9deg) translateY(7px)}
+.phase-card:hover .pimg.l{transform:translateX(-70px) rotate(-13deg) translateY(0)}
+.phase-card:hover .pimg.r{transform:translateX(70px) rotate(13deg) translateY(0)}
+.phase-card:hover .pimg.c{transform:translateY(-9px)}
+.phase-title-row{display:flex;align-items:baseline;gap:9px;margin-bottom:7px;flex-wrap:wrap}
+.phase-num{font-size:21px;font-weight:700;font-style:italic;letter-spacing:-.02em}
+.phase-title{font-size:16px;font-weight:700;color:var(--txt)}
+.phase-period{font-size:11px;color:var(--txt3);font-weight:500;margin-left:auto}
+.phase-role{font-size:12px;font-weight:600;color:var(--ac);margin-bottom:8px}
+.phase-intro{font-size:12px;color:var(--txt2);line-height:1.6;margin-bottom:14px}
+.phase-kw{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:16px}
+.phase-kw-lbl{font-size:10px;color:var(--txt3);font-weight:600;margin-right:2px}
+.phase-kw-tag{font-size:10px;padding:3px 9px;background:rgba(255,255,255,.6);border:1px solid var(--gb);border-radius:9px;color:var(--txt2)}
+.phase-toggle{display:flex;align-items:center;gap:6px;width:100%;justify-content:center;padding:9px;background:rgba(255,255,255,.5);border:1px solid var(--gb);border-radius:13px;font-size:11px;font-weight:500;font-family:inherit;color:var(--txt);cursor:pointer;transition:all .2s}
+.phase-toggle:hover{background:#fff;color:var(--ac)}
+.phase-toggle i{font-size:13px;transition:transform .25s}
+.phase-card.open .phase-toggle i{transform:rotate(180deg)}
+.phase-detail{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.phase-card.open .phase-detail{max-height:1600px}
+.phase-detail-inner{padding-top:6px}
+.phase-role-item{padding:12px 0;border-top:1px solid var(--line)}
+.pr-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.pr-org{font-size:11.5px;font-weight:600;color:var(--txt)}
+.pr-date{font-size:9.5px;color:var(--txt3);white-space:nowrap;flex-shrink:0}
+.tl-sub-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);text-align:center;margin-bottom:14px}
+
 /* ── Experience cards ── */
 .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .exp-col-lbl{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:12px;display:flex;align-items:center;gap:7px;padding-left:4px}
@@ -240,6 +277,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   .fc1{left:0;top:0}.fc2{left:-6px}.fc3{left:0;bottom:60px}
   .fcard{width:190px}
   .exp-grid{grid-template-columns:1fr}
+  .phase-grid{grid-template-columns:1fr}
   .engram{grid-template-columns:1fr}
   .orb-stage{height:600px}
 }
@@ -315,18 +353,10 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     <h2 class="sec-title" id="se-exp-t">Experience</h2>
     <p class="sec-sub" id="se-exp-s">A continuous path of building — 2017 to today</p>
   </div>
+  <div class="phase-grid rv" id="phase-grid"></div>
+  <div class="tl-sub-lbl rv" id="tl-sub-lbl">Full timeline</div>
   <div class="panel tl-panel rv">
     <div class="tl-outer" id="tl-outer"></div>
-  </div>
-  <div class="exp-grid rv">
-    <div>
-      <div class="exp-col-lbl"><span class="exp-dot" style="background:#5e5ce6"></span><span id="ex-fin">Finance &amp; Banking</span></div>
-      <div id="fin-entries"></div>
-    </div>
-    <div>
-      <div class="exp-col-lbl"><span class="exp-dot" style="background:#10b981"></span><span id="ex-web3">Web3 &amp; Startup</span></div>
-      <div id="web3-entries"></div>
-    </div>
   </div>
 </section>
 
@@ -508,12 +538,26 @@ function buildStrip(items){
     inner.appendChild(a);
   });
 }
-function buildExp(id,entries){
-  const c=document.getElementById(id);c.innerHTML='';
-  entries.forEach(e=>{
-    const wrap=document.createElement('div');wrap.className='ec-wrap';
-    wrap.innerHTML=`<div class="ec-static"><div style="display:flex;justify-content:space-between;gap:10px;align-items:start"><div><div class="ec-org">${e.org}</div><div class="ec-role">${e.role}</div><div class="ec-sum">${e.sum}</div></div><div class="ec-date">${e.date}</div></div></div><div class="ec-overlay"><ul class="ec-bul">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>`;
-    c.appendChild(wrap);
+function buildPhases(phases,kwLabel,detailsLabel){
+  const g=document.getElementById('phase-grid');g.innerHTML='';
+  phases.forEach(p=>{
+    const card=document.createElement('div');card.className='phase-card';
+    const imgs=p.images.map((src,i)=>{
+      const cls=['l','c','r'][i]||'c';
+      return `<div class="pimg ${cls}">${src?`<img src="${src}" alt="">`:`<div class="pimg-ph"><i class="ti ti-photo"></i></div>`}</div>`;
+    }).join('');
+    const kw=p.keywords.map(k=>`<span class="phase-kw-tag">${k}</span>`).join('');
+    const detail=p.roles.map(r=>`<div class="phase-role-item"><div class="pr-head"><span class="pr-org">${r.org}</span><span class="pr-date">${r.date}</span></div><ul class="ec-bul">${r.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>`).join('');
+    card.innerHTML=`
+      <div class="phase-stack">${imgs}</div>
+      <div class="phase-title-row"><span class="phase-num" style="color:${p.color}">${p.num}</span><span class="phase-title">${p.title}</span><span class="phase-period">${p.period}</span></div>
+      <div class="phase-role">${p.role}</div>
+      <div class="phase-intro">${p.intro}</div>
+      <div class="phase-kw"><span class="phase-kw-lbl">${kwLabel}</span>${kw}</div>
+      <button class="phase-toggle"><span>${detailsLabel}</span><i class="ti ti-chevron-down"></i></button>
+      <div class="phase-detail"><div class="phase-detail-inner">${detail}</div></div>`;
+    card.querySelector('.phase-toggle').addEventListener('click',()=>card.classList.toggle('open'));
+    g.appendChild(card);
   });
 }
 
@@ -527,8 +571,8 @@ en:{
   hCta1:'View Work',hCta2:'Resume',porPh:'Portrait photo<br/>— drop portrait.jpg here',
   pcapT:'Weiqi Shi',pcapS:'Product · Fintech · Web3 · Toronto',
   fc1:"MSc Economics · Dean's Medal",fc2:'$20M+ AUM managed at HSBC',fc3:'1,000+ Web3 ambassadors built',
-  seExpEy:'Journey',seExpT:'Experience',seExpS:'A continuous path of building — 2017 to today',
-  exFin:'Finance & Banking',exWeb3:'Web3 & Startup',
+  seExpEy:'Journey',seExpT:'Experience',seExpS:'Three chapters of continuous building — 2017 to today',
+  kwLabel:'Keywords',detailsLabel:'What I did',tlSubLbl:'Full timeline',
   seWorkEy:'Selected',seWorkT:'Work & Portfolio',seWorkS:"Articles, products, and platforms I've shipped",
   stripLbl:'Articles & Portfolio — scroll →',
   egEy:'Featured Build',egDesc:'Private knowledge workspace for builders — AI conversations into structured long-term memory. Built solo end to end.',egCta:'View Live',egPh:'Screenshot coming soon',
@@ -551,15 +595,32 @@ en:{
     {title:'Harena — AI Financial Intelligence',meta:'Co-founder & PM · Solo full-stack · investor pipeline · 2025–26',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'Startup',linkLbl:'View',img:''},
     {title:'Engram Knowledge Tool',meta:'Cloudflare Workers + D1 + Claude API + MCP · Live',href:'https://engram-b14.pages.dev',icon:'ti-layout-dashboard',badgeCls:'bs',badgeLbl:'Portfolio',linkLbl:'View',img:''},
   ],
-  fin:[
-    {org:'HSBC Bank of Canada',role:'Personal Banker → Premium Banker',date:'Feb 2022 – Apr 2024',sum:'$20M+ AUM · 500+ clients · Promoted 13 months · 3 audits',bullets:['Managed 500+ clients with $20M+ AUM across investment, lending, savings','Promoted to Premium Banker in 13 months — $1M+ new business in first quarter','Sole front-desk operator for months; passed 3 major regulatory audits independently','Led digital adoption — +20% mobile banking enrollment']},
-    {org:'RBC (HSBC Canada Acquisition)',role:'Banking Advisor',date:'Apr – Jul 2024',sum:'Lived through complete bank acquisition · portfolio intact',bullets:['Experienced full acquisition as HSBC Canada absorbed by RBC','Continued managing existing client portfolio through transition']},
-    {org:'Futu Securities International',role:'Financial Advisor — Singapore Market',date:'Sep – Dec 2024',sum:'20%+ conversion month one · top of cohort · remote',bullets:['Operational within 1 week on complex multi-asset platform','20%+ activation conversion in first month — top cohort performer','High-volume daily outreach across Singapore retail investor base']},
-  ],
-  web3:[
-    {org:'Harena — AI Fintech Startup',role:'Co-founder & Product Manager',date:'Oct 2025 – Present',sum:'Building from zero · 5 pivots · solo full-stack · investors',bullets:['5 major product pivots · authored PRDs, user flows, technical specs','Full front-end: Figma, Claude Code, Lovable, OpenAI','Prediction markets, stock tokenisation, EA directions explored','Investor pipeline — pitch decks, demos, business case documentation','Backend: local deployment, cloud, MCP, API integration']},
-    {org:'Flipflop Labs / PathPort',role:'Overseas Operations Lead',date:'Aug 2025 – Jan 2026',sum:'1,000+ ambassadors 2 months · 10× traffic · HK keynote',bullets:['Footprint Ambassador Program — Africa & Southeast Asia markets','1,000+ ambassadors in 2 months; weekly active traffic 10×','60+ page bilingual whitepaper — tokenomics, architecture, GTM strategy','PathPort website: architecture, UI, content, deployment — solo','Hong Kong keynote · 10+ AMAs across 5–6 countries']},
-    {org:'ChainCatcher / Trendverse Lab',role:'Research Analyst & Editor',date:'Apr – Aug 2025',sum:'#1 Foresight News · 10+ long-form reports · research brand',bullets:['DeFi, macro, and regulatory reporting for ChainCatcher','U.S. CLARITY Act & Singapore MAS analysis with legal professionals','Co-built Trendverse Lab — 10+ reports across major crypto platforms','#1 monthly readership on Foresight News all platforms']},
+  phases:[
+    {num:'I',title:'Learning',period:'2017 – 2021',color:'#4f46e5',role:'Economics Student & Researcher',
+     intro:'BSc Math & Economics + MSc Economics at Lakehead. National finalist at the Bank of Canada Governor’s Challenge, with the Dean’s Medal and research awards.',
+     keywords:['Economics','Quant Modeling','Competition','Research'],images:['','',''],
+     roles:[
+       {org:'BSc Mathematics & Economics · Lakehead',date:'2017 – 2020',bullets:['GPA 3.5/4.0 · Entry Scholarship $17.5K','100% in Calculus · 3 years as Teaching Assistant']},
+       {org:'MSc Economics · Lakehead',date:'2020 – 2021',bullets:['GPA 3.9/4.0 · Dean Braun’s Medal','Research Award $10K · econometrics & quantitative modelling']},
+       {org:'Governor’s Challenge · Bank of Canada',date:'2019 – 2020',bullets:['Team Lead — led 5 students + 4 faculty to national finals','Presented monetary policy brief to Governor Stephen Poloz · formal commendation']},
+     ]},
+    {num:'II',title:'Finance',period:'2021 – 2024',color:'#7c3aed',role:'Banking & Wealth Advisor',
+     intro:'From operations analyst to HSBC Premium Banker managing $20M+ AUM — then through the RBC acquisition and Futu’s Singapore market.',
+     keywords:['Wealth Management','Client Relations','Investment','Compliance'],images:['','',''],
+     roles:[
+       {org:'Elite Alliance · Case Analyst & Ops Lead',date:'Aug 2021 – Feb 2022',bullets:['Led copywriting department — training, allocation, quality control','Client needs assessment & case-solution design','Online + offline client acquisition campaigns']},
+       {org:'HSBC Bank of Canada · Personal → Premium Banker',date:'Feb 2022 – Apr 2024',bullets:['Managed 500+ clients with $20M+ AUM','Promoted to Premium Banker in 13 months — $1M+ new business in Q1','Sole front-desk operator for months; passed 3 regulatory audits','Led digital adoption — +20% mobile banking enrollment']},
+       {org:'RBC · Banking Advisor (HSBC acquisition)',date:'Apr – Jul 2024',bullets:['Lived through the full HSBC Canada → RBC acquisition','Continued managing client portfolio through transition']},
+       {org:'Futu Securities Intl · Financial Advisor',date:'Sep – Dec 2024',bullets:['Operational within 1 week on a complex multi-asset platform','20%+ conversion in month one — top of cohort','High-volume outreach across Singapore retail investors']},
+     ]},
+    {num:'III',title:'Web3 & Product',period:'2025 – Present',color:'#059669',role:'Researcher → Ops Lead → Product Manager',
+     intro:'Web3 research at ChainCatcher, scaled PathPort to 1,000+ ambassadors, now co-founding Harena — an AI fintech product built solo, end to end.',
+     keywords:['Product Management','Web3','Growth Ops','Full-stack Delivery'],images:['','',''],
+     roles:[
+       {org:'ChainCatcher / Trendverse Lab · Research Analyst',date:'Apr – Aug 2025',bullets:['DeFi, macro & regulatory reporting','U.S. CLARITY Act & Singapore MAS analysis with legal pros','#1 monthly readership on Foresight News across all platforms']},
+       {org:'Flipflop Labs / PathPort · Overseas Ops Lead',date:'Aug 2025 – Jan 2026',bullets:['Footprint Ambassador Program — Africa & SE Asia','1,000+ ambassadors in 2 months · weekly traffic 10×','60+ page bilingual whitepaper · solo-built PathPort site','Hong Kong keynote · 10+ AMAs across 5–6 countries']},
+       {org:'Harena · Co-founder & Product Manager',date:'Oct 2025 – Present',bullets:['5 major product pivots · PRDs, user flows, specs','Full front-end: Figma, Claude Code, Lovable, OpenAI','Investor pipeline — pitch decks, demos, business cases','Backend: local deploy, cloud, MCP, API integration']},
+     ]},
   ],
 },
 zh:{
@@ -570,8 +631,8 @@ zh:{
   hCta1:'查看作品',hCta2:'下载简历',porPh:'肖像照片<br/>— 放入 portrait.jpg',
   pcapT:'Weiqi Shi',pcapS:'产品 · 金融科技 · Web3 · 多伦多',
   fc1:'经济学硕士 · 院长奖章',fc2:'汇丰 $2000万+ 资产管理',fc3:'1000+ Web3 大使搭建',
-  seExpEy:'历程',seExpT:'个人经历',seExpS:'持续构建的成长路径 —— 2017 至今',
-  exFin:'金融与银行',exWeb3:'Web3与创业',
+  seExpEy:'历程',seExpT:'个人经历',seExpS:'三个阶段，持续构建的成长脉络 —— 2017 至今',
+  kwLabel:'关键词',detailsLabel:'具体做了什么',tlSubLbl:'完整时间线',
   seWorkEy:'精选',seWorkT:'作品展示',seWorkS:'我交付的文章、产品与平台',
   stripLbl:'文章与作品 — 左右滑动 →',
   egEy:'重点项目',egDesc:'面向构建者的私人知识工作台 —— 将 AI 对话转化为结构化长期记忆。独立端到端构建。',egCta:'查看线上版本',egPh:'截图即将上传',
@@ -594,15 +655,32 @@ zh:{
     {title:'Harena — AI金融智能平台',meta:'联合创始人 & PM · 独立全栈 · 投资人对接 · 2025–26',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'创业',linkLbl:'查看',img:''},
     {title:'Engram知识工具',meta:'Cloudflare Workers + D1 + Claude API + MCP · 线上运行',href:'https://engram-b14.pages.dev',icon:'ti-layout-dashboard',badgeCls:'bs',badgeLbl:'作品',linkLbl:'查看',img:''},
   ],
-  fin:[
-    {org:'汇丰银行加拿大',role:'个人银行顾问 → 高端客户经理',date:'2022年2月 – 2024年4月',sum:'AUM $2000万+ · 500+客户 · 13个月晋升 · 3次审计',bullets:['管理500+客户，资产超$2000万，覆盖投资、贷款、储蓄产品','13个月晋升，入职首季开单超$100万','独撑分行前台数月，独立通过3次大型监管审计','推动数字化，客户移动银行注册率提升20%']},
-    {org:'RBC（收购汇丰加拿大）',role:'银行顾问',date:'2024年4月 – 7月',sum:'亲历完整并购过程，职位与客户组合完整移交',bullets:['经历汇丰加拿大被RBC完整收购过程','过渡期间持续管理现有客户组合']},
-    {org:'富途证券国际',role:'理财顾问 — 新加坡市场',date:'2024年9月 – 12月',sum:'首月转化率超20% · 团队最佳 · 远程',bullets:['一周培训后独立上岗，快速掌握复杂多资产平台','首月激活转化率超20%，团队表现第一','高强度日常跟进，覆盖新加坡零售投资者市场']},
-  ],
-  web3:[
-    {org:'Harena — AI金融科技创业',role:'联合创始人 & 产品经理',date:'2025年10月 – 至今',sum:'从零构建 · 5次调整 · 独立全栈 · 投资人对接',bullets:['5次重大产品方向调整，编写PRD、用户流程图、技术规格','使用Figma、Claude Code、Lovable独立完成完整前端交付','研究预测市场、股票代币化、EA等产品方向','管理投资人对接全流程 — 路演PPT、产品演示','独立搭建后端：本地部署、云端、MCP、API接入']},
-    {org:'Flipflop Labs / PathPort',role:'海外市场运营负责人',date:'2025年8月 – 2026年1月',sum:'2个月1000+大使 · 流量10倍 · 香港路演',bullets:['脚印大使计划 — 非洲与东南亚市场','2个月扩展至1000+大使，平台周活流量10倍','独立撰写60+页中英文白皮书','独立完成PathPort网站全流程','香港线下峰会路演 · 10+场线上AMA']},
-    {org:'链捕手 / Trendverse Lab',role:'研究员 & 编辑',date:'2025年4月 – 8月',sum:'Foresight News #1 · 10+篇深度报告 · 研究品牌',bullets:['为链捕手报道DeFi、宏观及监管动态','与律师协作研究CLARITY法案和MAS框架','联合创建Trendverse Lab，发布10+篇深度报告','登顶Foresight News当月全平台阅读量第一']},
+  phases:[
+    {num:'I',title:'学习阶段',period:'2017 – 2021',color:'#4f46e5',role:'经济学学生 / 研究者',
+     intro:'莱克黑德大学数学经济本科 + 经济学硕士。加拿大央行 Governor’s Challenge 货币政策竞赛全国决赛，院长奖章与研究奖。',
+     keywords:['经济学','量化建模','竞赛','研究'],images:['','',''],
+     roles:[
+       {org:'数学经济学学士 · 莱克黑德大学',date:'2017 – 2020',bullets:['GPA 3.5/4.0 · 入学奖学金 $17.5K','微积分满分 · 3年助教']},
+       {org:'经济学硕士 · 莱克黑德大学',date:'2020 – 2021',bullets:['GPA 3.9/4.0 · 院长奖章','研究奖 $10K · 计量经济学与量化建模']},
+       {org:'Governor’s Challenge · 加拿大央行',date:'2019 – 2020',bullets:['团队队长 —— 带领5名学生+4位教授进入全国决赛','在行长 Stephen Poloz 面前汇报货币政策报告 · 获正式表彰']},
+     ]},
+    {num:'II',title:'金融阶段',period:'2021 – 2024',color:'#7c3aed',role:'银行 / 财富顾问',
+     intro:'从运营分析师到汇丰高端客户经理，管理 $2000 万+ 资产；亲历 RBC 收购，并征战富途新加坡市场。',
+     keywords:['财富管理','客户关系','投资顾问','合规'],images:['','',''],
+     roles:[
+       {org:'Elite Alliance · 案例分析师 & 运营负责人',date:'2021年8月 – 2022年2月',bullets:['负责文案部门 —— 培训、分工、质量管控','客户需求评估与案例方案设计','线上线下客户获取营销活动']},
+       {org:'汇丰银行加拿大 · 个人 → 高端客户经理',date:'2022年2月 – 2024年4月',bullets:['管理500+客户，资产超 $2000万','13个月晋升高端客户经理 —— 首季开单超 $100万','独撑分行前台数月，独立通过3次监管审计','推动数字化 —— 移动银行注册率提升20%']},
+       {org:'RBC · 银行顾问（汇丰被收购）',date:'2024年4月 – 7月',bullets:['亲历汇丰加拿大被 RBC 完整收购','过渡期间持续管理客户组合']},
+       {org:'富途证券国际 · 理财顾问',date:'2024年9月 – 12月',bullets:['一周内独立上岗，掌握复杂多资产平台','首月转化率超20% —— 团队第一','高强度跟进新加坡零售投资者']},
+     ]},
+    {num:'III',title:'Web3 与产品',period:'2025 – 至今',color:'#059669',role:'研究员 → 运营负责人 → 产品经理',
+     intro:'链捕手 Web3 研究，PathPort 2个月扩展至 1000+ 大使，现联合创立 Harena —— 独立端到端构建的 AI 金融产品。',
+     keywords:['产品管理','Web3','增长运营','全栈交付'],images:['','',''],
+     roles:[
+       {org:'链捕手 / Trendverse Lab · 研究员',date:'2025年4月 – 8月',bullets:['DeFi、宏观与监管报道','与律师协作研究 CLARITY 法案和 MAS 框架','登顶 Foresight News 当月全平台阅读量第一']},
+       {org:'Flipflop Labs / PathPort · 海外运营负责人',date:'2025年8月 – 2026年1月',bullets:['脚印大使计划 —— 非洲与东南亚市场','2个月扩展至 1000+ 大使 · 周活流量10倍','60+页中英文白皮书 · 独立搭建 PathPort 网站','香港峰会路演 · 10+场线上AMA，覆盖5-6个国家']},
+       {org:'Harena · 联合创始人 & 产品经理',date:'2025年10月 – 至今',bullets:['5次重大产品方向调整 · PRD、用户流程、技术规格','完整前端：Figma、Claude Code、Lovable、OpenAI','投资人对接 —— 路演PPT、产品演示、商业计划','后端：本地部署、云端、MCP、API 接入']},
+     ]},
   ],
 }
 };
@@ -617,12 +695,12 @@ function setLang(lang){
   setText('por-ph',d.porPh);setText('pcap-t',d.pcapT);setText('pcap-s',d.pcapS);
   setText('fc1',d.fc1);setText('fc2',d.fc2);setText('fc3',d.fc3);
   setText('se-exp-ey',d.seExpEy);setText('se-exp-t',d.seExpT);setText('se-exp-s',d.seExpS);
-  setText('ex-fin',d.exFin);setText('ex-web3',d.exWeb3);
+  setText('tl-sub-lbl',d.tlSubLbl);
   setText('se-work-ey',d.seWorkEy);setText('se-work-t',d.seWorkT);setText('se-work-s',d.seWorkS);setText('strip-lbl',d.stripLbl);
   setText('eg-ey',d.egEy);setText('eg-desc',d.egDesc);setText('eg-cta',d.egCta);setText('eg-ph',d.egPh);
   setText('se-sk-ey',d.seSkEy);setText('se-sk-t',d.seSkT);setText('se-sk-s',d.seSkS);
   setText('ct-ey',d.ctEy);setText('ct-t',d.ctT);setText('ct-sub',d.ctSub);setText('ct-wr',d.ctWr);setText('ct-ft',d.ctFt);
-  buildStrip(d.strip);buildExp('fin-entries',d.fin);buildExp('web3-entries',d.web3);buildOrb(d);
+  buildStrip(d.strip);buildPhases(d.phases,d.kwLabel,d.detailsLabel);buildOrb(d);
 }
 
 // Scroll reveal
