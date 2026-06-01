@@ -52,19 +52,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:48px;display:flex;ali
 .tl-axis{position:relative;height:13px;margin-bottom:4px}
 .tl-yr{font-size:8.5px;color:var(--txt3);position:absolute;transform:translateX(-50%)}
 .tl-rows{display:flex;flex-direction:column;gap:3px}
-.tl-row{position:relative;height:22px}
-.tl-seg{position:absolute;height:16px;top:3px;border-radius:3px;display:flex;align-items:center;overflow:hidden;cursor:pointer;transition:filter .15s,transform .15s}
-.tl-seg:hover{filter:brightness(.85);transform:scaleY(1.15)}
-.tl-seg-inner{padding:0 5px;min-width:0;width:100%}
-.tl-seg-name{font-size:8px;font-weight:500;color:#fff;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tl-seg[data-cat="academic"]{background:#4f46e5}
-.tl-seg[data-cat="work"]{background:#7c3aed}
-.tl-seg[data-cat="project"]{background:#059669}
-.tl-seg[data-cat="other"]{background:#94a3b8}
-.tl-arrow{position:absolute;top:5px;font-size:9px;color:var(--pur)}
-.tl-leg{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap}
-.tl-leg-i{display:flex;align-items:center;gap:4px;font-size:9.5px;color:var(--txt2)}
-.tl-dot{width:6px;height:6px;border-radius:2px;flex-shrink:0}
+/* Timeline — band row (academic background) */
+.tl-band-row{position:relative;height:14px;margin-bottom:5px}
+.tl-band{position:absolute;height:5px;top:4px;border-radius:3px;opacity:.25;pointer-events:none}
+.tl-band-lbl{position:absolute;font-size:8px;color:#94a3b8;top:50%;transform:translateY(-50%);white-space:nowrap;display:flex;align-items:center;gap:3px;pointer-events:none;padding-left:4px}
+/* Timeline work rows */
+.tl-rows{display:flex;flex-direction:column;gap:5px;margin-top:2px}
+.tl-row{position:relative;height:28px}
+/* Segment wrapper — allows tooltip overflow */
+.tl-sw{position:absolute;top:2px;height:24px;overflow:visible;z-index:5;transition:z-index 0s}
+.tl-sw:hover{z-index:30}
+/* Segment bar */
+.tl-sb{height:100%;border-radius:5px;display:flex;align-items:center;padding:0 6px;gap:4px;overflow:hidden;cursor:pointer;transition:filter .15s,box-shadow .15s;width:100%}
+.tl-sb:hover{filter:brightness(.85);box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.tl-sb i{font-size:10px;color:rgba(255,255,255,.92);flex-shrink:0}
+.tl-sb-name{font-size:8.5px;font-weight:500;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Tooltip */
+.tl-tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--cb);border-radius:9px;padding:9px 12px;box-shadow:0 4px 18px rgba(0,0,0,.1);white-space:nowrap;z-index:50;pointer-events:none;opacity:0;transition:opacity .15s;min-width:190px}
+.tl-sw:hover .tl-tip{opacity:1}
+.tl-tip-top{display:flex;align-items:center;gap:7px;margin-bottom:4px}
+.tl-tip-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.tl-tip-name{font-size:11px;font-weight:600;color:var(--txt)}
+.tl-tip-role{font-size:10px;color:var(--txt2);margin-bottom:2px}
+.tl-tip-date{font-size:9.5px;color:var(--txt3)}
+/* Acquired marker */
+.tl-acq{position:absolute;top:8px;font-size:10px;color:var(--pur);z-index:4;pointer-events:none;font-weight:600}
+.tl-leg{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap}
+.tl-leg-i{display:flex;align-items:center;gap:5px;font-size:9.5px;color:var(--txt2)}
+.tl-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
 
 /* Card */
 .card{background:var(--card);border:1px solid var(--cb);border-radius:10px;box-shadow:var(--sh);transition:box-shadow .2s,border-color .2s}
@@ -225,9 +240,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:48px;display:flex;ali
   <div class="tl-lbl" id="tl-lbl">Career Timeline · 2017 — Present</div>
   <div class="tl-outer" id="tl-outer"></div>
   <div class="tl-leg">
-    <div class="tl-leg-i"><div class="tl-dot" style="background:#4f46e5"></div><span id="lg-a">Academic</span></div>
+    <div class="tl-leg-i"><div class="tl-dot" style="background:#cbd5e1;border-radius:1px;height:4px"></div><span id="lg-a">Academic</span></div>
+    <div class="tl-leg-i"><div class="tl-dot" style="background:#f59e0b"></div><span id="lg-c">Competition</span></div>
     <div class="tl-leg-i"><div class="tl-dot" style="background:#7c3aed"></div><span id="lg-w">Finance</span></div>
-    <div class="tl-leg-i"><div class="tl-dot" style="background:#059669"></div><span id="lg-p">Web3 &amp; Startup</span></div>
+    <div class="tl-leg-i"><div class="tl-dot" style="background:#059669"></div><span id="lg-p">Web3</span></div>
+    <div class="tl-leg-i"><div class="tl-dot" style="background:#4f46e5"></div><span id="lg-s">Startup</span></div>
     <div class="tl-leg-i"><div class="tl-dot" style="background:#94a3b8"></div><span id="lg-o">Other</span></div>
   </div>
 </div>
@@ -320,34 +337,64 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:48px;display:flex;ali
 const START=2017.67,END=2026.5,RANGE=END-START;
 function pct(y){return((y-START)/RANGE*100).toFixed(3)+'%'}
 function ym(y,m){return y+(m-1)/12}
+
+// Academic background band (separate, thin)
+const ACAD_BAND={name:'Lakehead University',start:ym(2017,9),end:ym(2021,5),color:'#cbd5e1'};
+
+// Work segments — auto-packed, each with icon + tooltip data
 const SEGS=[
-  {cat:'academic',name:'Lakehead University',start:ym(2017,9),end:ym(2021,5)},
-  {cat:'academic',name:'Bank of Canada',start:ym(2019,9),end:ym(2020,2)},
-  {cat:'other',name:'Elite Alliance',start:ym(2021,8),end:ym(2022,2)},
-  {cat:'work',name:'HSBC Bank of Canada',start:ym(2022,2),end:ym(2024,4)},
-  {cat:'work',name:'RBC (acquired)',start:ym(2024,4),end:ym(2024,7),acquired:true},
-  {cat:'work',name:'Futu Securities',start:ym(2024,9),end:ym(2024,12)},
-  {cat:'project',name:'ChainCatcher / Trendverse',start:ym(2025,4),end:ym(2025,8)},
-  {cat:'project',name:'Flipflop / PathPort',start:ym(2025,8),end:ym(2026,1)},
-  {cat:'project',name:'Harena',start:ym(2025,10),end:ym(2026,5)},
+  {cat:'competition',name:'Bank of Canada',full:'Bank of Canada Competition',role:'Team Lead · Monetary Policy',icon:'ti-trophy',color:'#f59e0b',start:ym(2019,9),end:ym(2020,2)},
+  {cat:'other',name:'Elite Alliance',full:'Elite Alliance Service Inc.',role:'Case Analyst & Operations Lead',icon:'ti-briefcase',color:'#94a3b8',start:ym(2021,8),end:ym(2022,2)},
+  {cat:'finance',name:'HSBC',full:'HSBC Bank of Canada',role:'Personal Banker → Premium Banker',icon:'ti-building-bank',color:'#7c3aed',start:ym(2022,2),end:ym(2024,4)},
+  {cat:'finance',name:'RBC',full:'RBC (HSBC Canada acquired)',role:'Banking Advisor',icon:'ti-building-bank',color:'#7c3aed',start:ym(2024,4),end:ym(2024,7),acquired:true},
+  {cat:'finance',name:'Futu',full:'Futu Securities International',role:'Financial Advisor · Singapore',icon:'ti-chart-candle',color:'#7c3aed',start:ym(2024,9),end:ym(2024,12)},
+  {cat:'web3',name:'ChainCatcher',full:'ChainCatcher / Trendverse Lab',role:'Research Analyst & Editor',icon:'ti-pencil',color:'#059669',start:ym(2025,4),end:ym(2025,8)},
+  {cat:'web3',name:'PathPort',full:'Flipflop Labs / PathPort',role:'Overseas Operations Lead',icon:'ti-world',color:'#059669',start:ym(2025,8),end:ym(2026,1)},
+  {cat:'startup',name:'Harena',full:'Harena — AI Fintech Startup',role:'Co-founder & Product Manager',icon:'ti-brain',color:'#4f46e5',start:ym(2025,10),end:ym(2026,5)},
 ];
+
 function buildTL(){
   const o=document.getElementById('tl-outer');o.innerHTML='';
+  const fmt=y=>{const yr=Math.floor(y),mo=Math.round((y-yr)*12)+1;return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][Math.max(0,Math.min(11,mo-1))]+' '+yr};
+
+  // Year axis
   const ax=document.createElement('div');ax.className='tl-axis';
   for(let y=2017;y<=2027;y++){const s=document.createElement('span');s.className='tl-yr';s.textContent=y;s.style.left=pct(y);ax.appendChild(s)}
   o.appendChild(ax);
-  const ri=[],ra=SEGS.map(s=>{for(let r=0;r<ri.length;r++){if(!ri[r].some(v=>s.start<v.end&&s.end>v.start)){ri[r].push({start:s.start,end:s.end});return r}}ri.push([{start:s.start,end:s.end}]);return ri.length-1});
+
+  // Academic background band
+  const bandRow=document.createElement('div');bandRow.className='tl-band-row';
+  const band=document.createElement('div');band.className='tl-band';
+  band.style.cssText=`left:${pct(ACAD_BAND.start)};width:${((ACAD_BAND.end-ACAD_BAND.start)/RANGE*100).toFixed(3)}%;background:${ACAD_BAND.color}`;
+  const bandLbl=document.createElement('div');bandLbl.className='tl-band-lbl';
+  bandLbl.style.left=`calc(${pct(ACAD_BAND.start)} + 4px)`;
+  bandLbl.innerHTML=`<i class="ti ti-school" style="font-size:8px"></i>Lakehead University · BSc + MSc Economics · 2017–2021`;
+  bandRow.appendChild(band);bandRow.appendChild(bandLbl);
+  o.appendChild(bandRow);
+
+  // Auto-pack work segments
+  const ri=[],ra=SEGS.map(s=>{
+    for(let r=0;r<ri.length;r++){if(!ri[r].some(v=>s.start<v.end&&s.end>v.start)){ri[r].push({start:s.start,end:s.end});return r}}
+    ri.push([{start:s.start,end:s.end}]);return ri.length-1;
+  });
   const rw=document.createElement('div');rw.className='tl-rows';
   const rows=Array.from({length:ri.length},()=>{const r=document.createElement('div');r.className='tl-row';rw.appendChild(r);return r});
-  const fmt=y=>{const yr=Math.floor(y),mo=Math.round((y-yr)*12)+1;return['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][Math.max(0,Math.min(11,mo-1))]+' '+yr};
+
   SEGS.forEach((s,i)=>{
     const ri2=ra[i];
-    if(s.acquired){const a=document.createElement('div');a.className='tl-arrow';a.style.left=pct(s.start);a.textContent='→';rows[ri2].appendChild(a)}
-    const el=document.createElement('div');el.className='tl-seg';el.dataset.cat=s.cat;
-    el.style.left=pct(s.start);el.style.width=(((s.end-s.start)/RANGE)*100).toFixed(3)+'%';
-    el.title=s.name+' · '+fmt(s.start)+' – '+(s.end>=2026.4?'Present':fmt(s.end));
-    el.innerHTML=`<div class="tl-seg-inner"><span class="tl-seg-name">${s.name}</span></div>`;
-    rows[ri2].appendChild(el);
+    if(s.acquired){const a=document.createElement('div');a.className='tl-acq';a.style.left=`calc(${pct(s.start)} - 12px)`;a.textContent='→';rows[ri2].appendChild(a)}
+    const wPct=(s.end-s.start)/RANGE*100;
+    const wrap=document.createElement('div');wrap.className='tl-sw';
+    wrap.style.cssText=`left:${pct(s.start)};width:${wPct.toFixed(3)}%`;
+    // Segment bar
+    const sb=document.createElement('div');sb.className='tl-sb';sb.style.background=s.color;
+    sb.innerHTML=`<i class="ti ${s.icon}"></i>${wPct>4.5?`<span class="tl-sb-name">${s.name}</span>`:''}`;
+    // Tooltip
+    const tip=document.createElement('div');tip.className='tl-tip';
+    const endLbl=s.end>=2026.4?'Present':fmt(s.end);
+    tip.innerHTML=`<div class="tl-tip-top"><span class="tl-tip-dot" style="background:${s.color}"></span><span class="tl-tip-name">${s.full}</span></div><div class="tl-tip-role">${s.role}</div><div class="tl-tip-date">${fmt(s.start)} – ${endLbl}</div>`;
+    wrap.appendChild(sb);wrap.appendChild(tip);
+    rows[ri2].appendChild(wrap);
   });
   o.appendChild(rw);
 }
