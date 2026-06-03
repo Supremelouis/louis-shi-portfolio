@@ -181,11 +181,11 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .pd-period{font-size:11px;color:var(--txt3);font-weight:500;margin-left:auto}
 .pd-role-sub{font-size:12px;font-weight:600;color:var(--ac);margin-bottom:6px}
 .pd-roles{display:flex;flex-direction:column}
-.pd-role{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
-.pd-logo{width:72px;height:50px;border-radius:12px;background:#fff;border:1px solid var(--gb);box-shadow:var(--sh);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px}
-.pd-logo img{max-width:100%;max-height:100%;object-fit:contain}
-.pd-logo i{font-size:21px;color:var(--txt3)}
-.pd-role-main{flex:1;min-width:0}
+.pd-role{position:relative;padding:18px 0;border-top:1px solid var(--line);overflow:hidden}
+/* company logo as a large faint watermark on the right */
+.pd-role-bg{position:absolute;right:-4px;top:50%;transform:translateY(-50%);height:86%;max-height:130px;width:42%;opacity:.1;pointer-events:none;z-index:0;display:flex;align-items:center;justify-content:flex-end;-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-image:linear-gradient(90deg,transparent,#000 45%)}
+.pd-role-bg img{height:100%;max-width:100%;object-fit:contain;object-position:right center}
+.pd-role-main{position:relative;z-index:1}
 .pd-role-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:13px}
 .pd-org{font-size:13px;font-weight:600;color:var(--txt)}
 .pd-date{font-size:10px;color:var(--txt3);white-space:nowrap;flex-shrink:0;font-weight:500}
@@ -550,12 +550,10 @@ function buildPhases(phases,labels){
 function buildPhaseDetail(){
   const p=PHASES[activePhase];if(!p)return;
   const roles=p.roles.map(r=>{
-    const logo=r.logo
-      ? `<img src="${r.logo}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="ti ${r.icon||'ti-briefcase'}" style="display:none"></i>`
-      : `<i class="ti ${r.icon||'ti-briefcase'}"></i>`;
+    const bg=r.logo?`<div class="pd-role-bg"><img src="${r.logo}" alt="" onerror="this.parentElement.style.display='none'"></div>`:'';
     return `
     <div class="pd-role">
-      <div class="pd-logo">${logo}</div>
+      ${bg}
       <div class="pd-role-main">
         <div class="pd-role-head"><span class="pd-org">${r.org}</span><span class="pd-date">${r.date}</span></div>
         <div class="pd-cols">
