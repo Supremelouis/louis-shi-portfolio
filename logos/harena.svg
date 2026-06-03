@@ -1,8 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80">
-  <!-- HARENA logo: blue text with dark equal sign embedded in E -->
-  <text x="0" y="64" font-family="Arial Black,Arial,sans-serif" font-size="72" font-weight="900" letter-spacing="-1" fill="#4A9FD4">HAR</text>
-  <!-- Dark equals sign replacing "E" middle -->
-  <rect x="220" y="22" width="46" height="10" rx="2" fill="#1A2340"/>
-  <rect x="220" y="40" width="46" height="10" rx="2" fill="#1A2340"/>
-  <text x="262" y="64" font-family="Arial Black,Arial,sans-serif" font-size="72" font-weight="900" letter-spacing="-1" fill="#4A9FD4">NA</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 112">
+  <!-- Brush mark: angular "<|" style — approximates the calligraphy H mark -->
+  <g stroke="#1a1a1a" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Left diagonal pointing left (upper arm of <) -->
+    <path d="M72,8 L18,54" stroke-width="11"/>
+    <!-- Left diagonal pointing left (lower arm of <) -->
+    <path d="M18,54 L72,100" stroke-width="11"/>
+    <!-- Crossing diagonal stroke (the ink drag mark) -->
+    <path d="M30,18 L78,72" stroke-width="5" opacity="0.35"/>
+    <!-- Vertical stroke (the | part) -->
+    <path d="M82,8 L82,104" stroke-width="11"/>
+    <!-- Short horizontal connector hinting at the H crossbar -->
+    <path d="M18,54 L82,54" stroke-width="6" opacity="0.55"/>
+  </g>
+  <!-- HARENA text -->
+  <text x="108" y="72" font-family="Arial Black,Arial,sans-serif" font-size="56" font-weight="900" fill="#1a1a1a" letter-spacing="2">HARENA</text>
 </svg>
