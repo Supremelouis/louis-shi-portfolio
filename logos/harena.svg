@@ -1,4 +1,5 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -34 480 180">
+﻿<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0,22.6667) scale(0.666667)">
   <!-- Harena calligraphy mark: < | structure (stylized H) -->
   <g stroke="#111" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <!-- Upper diagonal of < (top-right to left-center) -->
@@ -14,4 +15,5 @@
   </g>
   <!-- HARENA text -->
   <text x="116" y="74" font-family="Arial Black,Arial,sans-serif" font-size="52" font-weight="900" fill="#111" letter-spacing="1">HARENA</text>
+</g>
 </svg>

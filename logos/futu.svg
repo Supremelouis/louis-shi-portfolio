@@ -1,4 +1,5 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -18.75 340 127.5">
+﻿<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0,17.6471) scale(0.941176)">
   <!-- Blue rounded square icon with F mark -->
   <rect x="0" y="8" width="74" height="74" rx="14" fill="#1B6EF3"/>
   <!-- F letterform inside square -->
@@ -17,4 +18,5 @@
   <rect x="295" y="43" width="5" height="10" rx="2" fill="#FF6B00"/>
   <!-- moomoo text -->
   <text x="278" y="70" font-family="Arial,sans-serif" font-size="14" font-weight="600" fill="#FF6B00" text-anchor="middle">moomoo</text>
+</g>
 </svg>

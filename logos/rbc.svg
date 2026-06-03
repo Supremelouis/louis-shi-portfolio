@@ -1,4 +1,5 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -22.75 420 157.5">
+﻿<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0,17.3333) scale(0.761905)">
   <!-- Real RBC shield (logo.wine paths), scaled to fit 88×112 -->
   <g transform="translate(4,0) scale(1.42)">
     <svg viewBox="-5.93085 -12.994 51.4007 77.964" width="62" height="79">
@@ -10,4 +11,5 @@
   <!-- Brand text right -->
   <text x="100" y="50" font-family="Arial Black,Arial,sans-serif" font-size="34" font-weight="900" fill="#005DAA">RBC</text>
   <text x="100" y="84" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#005DAA">Royal Bank</text>
+</g>
 </svg>

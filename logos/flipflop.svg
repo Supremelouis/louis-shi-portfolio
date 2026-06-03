@@ -1,4 +1,5 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -19 400 150">
+﻿<svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0,15.2) scale(0.8)">
   <!-- Pixel flip-flop pair — left sandal -->
   <g fill="#1a1a1a">
     <!-- black outline left -->
@@ -103,4 +104,5 @@
   </g>
   <!-- Brand name -->
   <text x="104" y="68" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#1a1a1a">Flipflop</text>
+</g>
 </svg>
