@@ -181,7 +181,11 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .pd-period{font-size:11px;color:var(--txt3);font-weight:500;margin-left:auto}
 .pd-role-sub{font-size:12px;font-weight:600;color:var(--ac);margin-bottom:6px}
 .pd-roles{display:flex;flex-direction:column}
-.pd-role{padding:18px 0;border-top:1px solid var(--line)}
+.pd-role{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+.pd-logo{width:72px;height:50px;border-radius:12px;background:#fff;border:1px solid var(--gb);box-shadow:var(--sh);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px}
+.pd-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.pd-logo i{font-size:21px;color:var(--txt3)}
+.pd-role-main{flex:1;min-width:0}
 .pd-role-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:13px}
 .pd-org{font-size:13px;font-weight:600;color:var(--txt)}
 .pd-date{font-size:10px;color:var(--txt3);white-space:nowrap;flex-shrink:0;font-weight:500}
@@ -375,10 +379,6 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   </div>
   <div class="phase-grid rv" id="phase-grid"></div>
   <div class="panel phase-detail-panel rv" id="phase-detail"></div>
-  <div class="tl-sub-lbl rv" id="tl-sub-lbl">Full timeline</div>
-  <div class="panel tl-panel rv">
-    <div class="tl-outer" id="tl-outer"></div>
-  </div>
 </section>
 
 <!-- Work / Portfolio -->
@@ -439,43 +439,6 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 </div>
 
 <script>
-// ── Timeline (9 nodes, logos, dates+location on spine) ──
-const TL_EVENTS=[
-  {label:'Lakehead University',role:'BSc Math & Economics\nMSc Economics',logo:'https://logo.clearbit.com/lakeheadu.ca',icon:'ti-school',color:'#1a5c2a',pos:5,side:'above',date:'Sep 2017 – May 2021',loc:'Thunder Bay, ON'},
-  {label:"Governor's Challenge",role:'Team Lead · Bank of Canada',logo:'https://logo.clearbit.com/bankofcanada.ca',icon:'ti-trophy',color:'#d32f2f',pos:16,side:'below',date:'Sep 2019 – Feb 2020',loc:'Ottawa, ON'},
-  {label:'Elite Alliance',role:'Case Analyst & Operations Lead',logo:null,icon:'ti-briefcase',color:'#78909c',pos:27,side:'above',date:'Aug 2021 – Feb 2022',loc:'North York, ON'},
-  {label:'HSBC Bank of Canada',role:'Personal Banker → Premium Banker',logo:'https://logo.clearbit.com/hsbc.com',icon:'ti-building-bank',color:'#db0011',pos:39,side:'below',date:'Feb 2022 – Apr 2024',loc:'Toronto, ON'},
-  {label:'RBC',role:'Banking Advisor',logo:'https://logo.clearbit.com/rbc.com',icon:'ti-building-bank',color:'#005daa',pos:50,side:'above',date:'Apr 2024 – Jul 2024',loc:'Toronto, ON'},
-  {label:'Futu Securities',role:'Financial Advisor',logo:'https://logo.clearbit.com/futubull.com',icon:'ti-chart-candle',color:'#f4533b',pos:61,side:'below',date:'Sep 2024 – Dec 2024',loc:'Shenzhen, CN'},
-  {label:'ChainCatcher',role:'Research Analyst & Editor',logo:'https://logo.clearbit.com/chaincatcher.com',icon:'ti-pencil',color:'#059669',pos:72,side:'above',date:'Apr 2025 – Aug 2025',loc:'Shenzhen, CN'},
-  {label:'Flipflop Labs / PathPort',role:'Overseas Operations Lead',logo:null,icon:'ti-world',color:'#0891b2',pos:83,side:'below',date:'Aug 2025 – Jan 2026',loc:'Shenzhen, CN'},
-  {label:'Harena',role:'Co-founder & Product Manager',logo:null,icon:'ti-brain',color:'#4f46e5',pos:94,side:'above',date:'Oct 2025 – Present',loc:'Toronto, ON'},
-];
-function buildTL(){
-  const o=document.getElementById('tl-outer');o.innerHTML='';
-  const bar=document.createElement('div');bar.className='tl2-spine';o.appendChild(bar);
-  TL_EVENTS.forEach(e=>{
-    const nd=document.createElement('div');nd.className='tl2-nd';nd.style.left=`calc(10px + ${e.pos}% * (100% - 20px) / 100%)`;
-    nd.style.left=`calc(10px + (100% - 20px) * ${e.pos/100})`;
-    const circ=document.createElement('div');circ.className='tl2-circ';circ.style.borderColor=e.color;
-    if(e.logo){const img=document.createElement('img');img.src=e.logo;img.alt=e.label;img.onerror=()=>img.replaceWith(Object.assign(document.createElement('i'),{className:`ti ${e.icon}`,style:`color:${e.color}`}));circ.appendChild(img);}
-    else circ.innerHTML=`<i class="ti ${e.icon}" style="color:${e.color}"></i>`;
-    nd.appendChild(circ);
-    const wrap=document.createElement('div');wrap.className=e.side==='above'?'tl2-up':'tl2-dn';
-    const line=document.createElement('div');line.className='tl2-line';line.style.background=e.color;
-    const card=document.createElement('div');card.className='tl2-card';
-    const logoHtml=e.logo?`<img src="${e.logo}" alt="" onerror="this.style.display='none';this.nextSibling.style.display='block'"><i class="ti ${e.icon}" style="color:${e.color};display:none"></i>`:`<i class="ti ${e.icon}" style="color:${e.color}"></i>`;
-    const roleHtml=e.role.split('\n').join('<br/>');
-    card.innerHTML=`<div class="tl2-oval" style="background:${e.color}18">${logoHtml}</div><div class="tl2-info"><div class="tl2-name">${e.label}</div><div class="tl2-role">${roleHtml}</div></div>`;
-    if(e.side==='above'){wrap.appendChild(card);wrap.appendChild(line);}else{wrap.appendChild(line);wrap.appendChild(card);}
-    nd.appendChild(wrap);
-    const meta=document.createElement('div');meta.className=e.side==='above'?'tl2-meta-a':'tl2-meta-b';
-    meta.innerHTML=`<div class="tl2-date">${e.date}</div><div class="tl2-loc"><i class="ti ti-map-pin"></i>${e.loc}</div>`;
-    nd.appendChild(meta);
-    o.appendChild(nd);
-  });
-}
-
 // ── Skill Orb Map (light) ──
 const ORB={
   cx:400,cy:270,VW:800,VH:540,
@@ -586,14 +549,21 @@ function buildPhases(phases,labels){
 }
 function buildPhaseDetail(){
   const p=PHASES[activePhase];if(!p)return;
-  const roles=p.roles.map(r=>`
+  const roles=p.roles.map(r=>{
+    const logo=r.logo
+      ? `<img src="${r.logo}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><i class="ti ${r.icon||'ti-briefcase'}" style="display:none"></i>`
+      : `<i class="ti ${r.icon||'ti-briefcase'}"></i>`;
+    return `
     <div class="pd-role">
-      <div class="pd-role-head"><span class="pd-org">${r.org}</span><span class="pd-date">${r.date}</span></div>
-      <div class="pd-cols">
-        <div class="pd-col pd-resp"><div class="pd-col-label"><i class="ti ti-list-check"></i>${PHLBL.resp}</div><ul class="pd-list">${r.resp.map(x=>`<li>${x}</li>`).join('')}</ul></div>
-        <div class="pd-col pd-ach"><div class="pd-col-label"><i class="ti ti-trophy"></i>${PHLBL.ach}</div><ul class="pd-list">${r.ach.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div class="pd-logo">${logo}</div>
+      <div class="pd-role-main">
+        <div class="pd-role-head"><span class="pd-org">${r.org}</span><span class="pd-date">${r.date}</span></div>
+        <div class="pd-cols">
+          <div class="pd-col pd-resp"><div class="pd-col-label"><i class="ti ti-list-check"></i>${PHLBL.resp}</div><ul class="pd-list">${r.resp.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+          <div class="pd-col pd-ach"><div class="pd-col-label"><i class="ti ti-trophy"></i>${PHLBL.ach}</div><ul class="pd-list">${r.ach.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+        </div>
       </div>
-    </div>`).join('');
+    </div>`;}).join('');
   document.getElementById('phase-detail').innerHTML=`<div class="pd-inner"><div class="pd-head"><span class="pd-num" style="color:${p.color}">${p.num}</span><span class="pd-title">${p.title}</span><span class="pd-period">${p.period}</span></div><div class="pd-role-sub">${p.role}</div><div class="pd-roles">${roles}</div></div>`;
 }
 
@@ -636,13 +606,13 @@ en:{
      intro:'BSc Math & Economics + MSc Economics at Lakehead. National finalist at the Bank of Canada Governor’s Challenge, with the Dean’s Medal and research awards.',
      keywords:['Economics','Quant Modeling','Competition','Research'],images:['','',''],
      roles:[
-       {org:'BSc Mathematics & Economics · Lakehead',date:'Sep 2017 – Sep 2020',
+       {org:'BSc Mathematics & Economics · Lakehead',date:'Sep 2017 – Sep 2020',logo:'logos/lakehead.svg',icon:'ti-school',
         resp:['Studied core mathematics & economics curriculum','Teaching Assistant for 3 years across undergraduate courses'],
         ach:['GPA 3.5/4.0','Entry Scholarship $17.5K','100% in Calculus']},
-       {org:'MSc Economics · Lakehead',date:'Sep 2020 – May 2021',
+       {org:'MSc Economics · Lakehead',date:'Sep 2020 – May 2021',logo:'logos/lakehead.svg',icon:'ti-school',
         resp:['Graduate research in econometrics & quantitative modelling','Authored thesis-level economic analysis'],
         ach:['GPA 3.9/4.0','Dean Braun’s Medal','Research Award $10K']},
-       {org:'Governor’s Challenge · Bank of Canada',date:'Sep 2019 – Feb 2020',
+       {org:'Governor’s Challenge · Bank of Canada',date:'Sep 2019 – Feb 2020',logo:'logos/bankofcanada.svg',icon:'ti-trophy',
         resp:['Team Lead — coordinated 5 students + 4 faculty','Built and presented a national monetary-policy brief'],
         ach:['Reached the national finals','Presented to Governor Stephen Poloz','Received a formal commendation']},
      ]},
@@ -716,13 +686,13 @@ zh:{
      intro:'莱克黑德大学数学经济本科 + 经济学硕士。加拿大央行 Governor’s Challenge 货币政策竞赛全国决赛，院长奖章与研究奖。',
      keywords:['经济学','量化建模','竞赛','研究'],images:['','',''],
      roles:[
-       {org:'数学经济学学士 · 莱克黑德大学',date:'2017年9月 – 2020年9月',
+       {org:'数学经济学学士 · 莱克黑德大学',date:'2017年9月 – 2020年9月',logo:'logos/lakehead.svg',icon:'ti-school',
         resp:['修读数学与经济学核心课程','连续3年担任本科课程助教'],
         ach:['GPA 3.5/4.0','入学奖学金 $17.5K','微积分满分']},
-       {org:'经济学硕士 · 莱克黑德大学',date:'2020年9月 – 2021年5月',
+       {org:'经济学硕士 · 莱克黑德大学',date:'2020年9月 – 2021年5月',logo:'logos/lakehead.svg',icon:'ti-school',
         resp:['从事计量经济学与量化建模研究','撰写硕士级经济分析论文'],
         ach:['GPA 3.9/4.0','院长奖章','研究奖 $10K']},
-       {org:'Governor’s Challenge · 加拿大央行',date:'2019年9月 – 2020年2月',
+       {org:'Governor’s Challenge · 加拿大央行',date:'2019年9月 – 2020年2月',logo:'logos/bankofcanada.svg',icon:'ti-trophy',
         resp:['团队队长 —— 协调5名学生+4位教授','撰写并汇报全国级货币政策报告'],
         ach:['进入全国决赛','向行长 Stephen Poloz 汇报','获得正式表彰']},
      ]},
@@ -770,8 +740,7 @@ function setLang(lang){
   setText('h-cta1',d.hCta1);document.getElementById('h-cta2').innerHTML=`<i class="ti ti-download"></i>${d.hCta2}`;
   setText('por-ph',d.porPh);setText('pcap-t',d.pcapT);setText('pcap-s',d.pcapS);
   setText('fc1',d.fc1);setText('fc2',d.fc2);setText('fc3',d.fc3);
-  setText('se-exp-ey',d.seExpEy);setText('se-exp-t',d.seExpT);setText('se-exp-s',d.seExpS);
-  setText('tl-sub-lbl',d.tlSubLbl);
+  setText('se-exp-t',d.seExpT);setText('se-exp-s',d.seExpS);
   setText('se-work-ey',d.seWorkEy);setText('se-work-t',d.seWorkT);setText('se-work-s',d.seWorkS);setText('strip-lbl',d.stripLbl);
   setText('eg-ey',d.egEy);setText('eg-desc',d.egDesc);setText('eg-cta',d.egCta);setText('eg-ph',d.egPh);
   setText('se-sk-ey',d.seSkEy);setText('se-sk-t',d.seSkT);setText('se-sk-s',d.seSkS);
@@ -790,7 +759,7 @@ const st=document.createElement('style');
 st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
 document.head.appendChild(st);
 
-buildTL();setLang('en');initRv();
+setLang('en');initRv();
 </script>
 </body>
 </html>
