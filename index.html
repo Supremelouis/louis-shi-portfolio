@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -183,7 +183,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .pd-roles{display:flex;flex-direction:column}
 .pd-role{position:relative;padding:18px 0;border-top:1px solid var(--line);overflow:hidden}
 /* company logo as a large faint watermark on the right */
-.pd-role-bg{position:absolute;right:-4px;top:50%;transform:translateY(-50%);height:86%;max-height:130px;width:42%;opacity:.1;pointer-events:none;z-index:0;display:flex;align-items:center;justify-content:flex-end;-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-image:linear-gradient(90deg,transparent,#000 45%)}
+.pd-role-bg{position:absolute;right:0;top:50%;transform:translateY(-50%);height:68%;max-height:90px;width:32%;opacity:.18;pointer-events:none;z-index:0;display:flex;align-items:center;justify-content:flex-end;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 50%);mask-image:linear-gradient(90deg,transparent 0%,#000 50%)}
 .pd-role-bg img{height:100%;max-width:100%;object-fit:contain;object-position:right center}
 .pd-role-main{position:relative;z-index:1}
 .pd-role-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:13px}
@@ -601,7 +601,7 @@ en:{
   ],
   phases:[
     {num:'I',title:'Learning',period:'2017 – 2021',color:'#4f46e5',role:'Economics Student & Researcher',
-     intro:'BSc Math & Economics + MSc Economics at Lakehead. National finalist at the Bank of Canada Governor’s Challenge, with the Dean’s Medal and research awards.',
+     intro:"BSc Math & Economics + MSc Economics at Lakehead. National finalist at the Bank of Canada Governor's Challenge, with the Dean's Medal and research awards.",
      keywords:['Economics','Quant Modeling','Competition','Research'],images:['','',''],
      roles:[
        {org:'BSc Mathematics & Economics · Lakehead',date:'Sep 2017 – Sep 2020',logo:'logos/lakehead.svg',icon:'ti-school',
@@ -609,25 +609,22 @@ en:{
         ach:['GPA 3.5/4.0','Entry Scholarship $17.5K','100% in Calculus']},
        {org:'MSc Economics · Lakehead',date:'Sep 2020 – May 2021',logo:'logos/lakehead.svg',icon:'ti-school',
         resp:['Graduate research in econometrics & quantitative modelling','Authored thesis-level economic analysis'],
-        ach:['GPA 3.9/4.0','Dean Braun’s Medal','Research Award $10K']},
-       {org:'Governor’s Challenge · Bank of Canada',date:'Sep 2019 – Feb 2020',logo:'logos/bankofcanada.svg',icon:'ti-trophy',
+        ach:['GPA 3.9/4.0',"Dean Braun's Medal",'Research Award $10K']},
+       {org:"Governor's Challenge · Bank of Canada",date:'Sep 2019 – Feb 2020',logo:'logos/bankofcanada.svg',icon:'ti-trophy',
         resp:['Team Lead — coordinated 5 students + 4 faculty','Built and presented a national monetary-policy brief'],
         ach:['Reached the national finals','Presented to Governor Stephen Poloz','Received a formal commendation']},
      ]},
     {num:'II',title:'Finance',period:'2021 – 2024',color:'#7c3aed',role:'Banking & Wealth Advisor',
-     intro:'From operations analyst to HSBC Premium Banker managing $20M+ AUM — then through the RBC acquisition and Futu’s Singapore market.',
+     intro:'HSBC Premium Banker managing $20M+ AUM across 500+ clients — then through the RBC acquisition and Futu Singapore market.',
      keywords:['Wealth Management','Client Relations','Investment','Compliance'],images:['','',''],
      roles:[
-       {org:'Elite Alliance · Case Analyst & Ops Lead',date:'Aug 2021 – Feb 2022',
-        resp:['Led the copywriting department — training, task allocation, QC','Ran client needs assessments & designed case solutions','Drove online + offline client acquisition campaigns'],
-        ach:['Built and managed the copywriting team','Established a repeatable case-solution workflow']},
-       {org:'HSBC Bank of Canada · Personal → Premium Banker',date:'Feb 2022 – Apr 2024',
+       {org:'HSBC Bank of Canada · Personal → Premium Banker',date:'Feb 2022 – Apr 2024',logo:'logos/hsbc.svg',icon:'ti-building-bank',
         resp:['Managed 500+ clients across investment, lending & savings','Sole front-desk operator for the branch for months','Led the branch digital-adoption initiative'],
         ach:['$20M+ AUM under management','Promoted to Premium Banker in 13 months','$1M+ new business in the first quarter','Passed 3 major regulatory audits independently','+20% mobile-banking enrollment']},
-       {org:'RBC · Banking Advisor (HSBC acquisition)',date:'Apr 2024 – Jul 2024',
+       {org:'RBC · Banking Advisor (HSBC acquisition)',date:'Apr 2024 – Jul 2024',logo:'logos/rbc.svg',icon:'ti-building-bank',
         resp:['Continued managing the client portfolio through the HSBC → RBC transition'],
         ach:['Navigated a full bank acquisition with the portfolio intact']},
-       {org:'Futu Securities Intl · Financial Advisor',date:'Sep 2024 – Dec 2024',
+       {org:'Futu Securities Intl · Financial Advisor',date:'Sep 2024 – Dec 2024',logo:'logos/futu.svg',icon:'ti-chart-candle',
         resp:['Daily high-volume outreach to Singapore retail investors','Mastered a complex multi-asset trading platform'],
         ach:['Fully operational within 1 week','20%+ conversion in month one — top of the cohort']},
      ]},
@@ -635,13 +632,13 @@ en:{
      intro:'Web3 research at ChainCatcher, scaled PathPort to 1,000+ ambassadors, now co-founding Harena — an AI fintech product built solo, end to end.',
      keywords:['Product Management','Web3','Growth Ops','Full-stack Delivery'],images:['','',''],
      roles:[
-       {org:'ChainCatcher / Trendverse Lab · Research Analyst',date:'Apr 2025 – Aug 2025',
+       {org:'ChainCatcher / Trendverse Lab · Research Analyst',date:'Apr 2025 – Aug 2025',logo:'logos/chaincatcher.svg',icon:'ti-pencil',
         resp:['Reported on DeFi, macro & regulatory developments','Analyzed the U.S. CLARITY Act & Singapore MAS with legal pros','Co-built the Trendverse Lab research brand'],
         ach:['#1 monthly readership on Foresight News (all platforms)','10+ long-form reports across major crypto media']},
-       {org:'Flipflop Labs / PathPort · Overseas Ops Lead',date:'Aug 2025 – Jan 2026',
+       {org:'Flipflop Labs / PathPort · Overseas Ops Lead',date:'Aug 2025 – Jan 2026',logo:'logos/flipflop.svg',icon:'ti-world',
         resp:['Designed the Footprint Ambassador Program (Africa & SE Asia)','Authored a 60+ page bilingual whitepaper','Built the PathPort website solo, end to end','Hosted AMAs and a Hong Kong keynote'],
         ach:['1,000+ ambassadors in 2 months','Weekly active traffic grew 10×','10+ AMAs across 5–6 countries']},
-       {org:'Harena · Co-founder & Product Manager',date:'Oct 2025 – Present',
+       {org:'Harena · Co-founder & Product Manager',date:'Oct 2025 – Present',logo:'logos/harena.svg',icon:'ti-brain',
         resp:['Drove product strategy through 5 major pivots — PRDs, flows, specs','Delivered the full front-end (Figma, Claude Code, Lovable, OpenAI)','Built the backend — local deploy, cloud, MCP, API integration','Managed investor relations — decks, demos, business cases'],
         ach:['Shipped a working product solo, end to end','Maintains an active investor pipeline']},
      ]},
@@ -681,7 +678,7 @@ zh:{
   ],
   phases:[
     {num:'I',title:'学习阶段',period:'2017 – 2021',color:'#4f46e5',role:'经济学学生 / 研究者',
-     intro:'莱克黑德大学数学经济本科 + 经济学硕士。加拿大央行 Governor’s Challenge 货币政策竞赛全国决赛，院长奖章与研究奖。',
+     intro:"莱克黑德大学数学经济本科 + 经济学硕士。加拿大央行 Governor's Challenge 货币政策竞赛全国决赛，院长奖章与研究奖。",
      keywords:['经济学','量化建模','竞赛','研究'],images:['','',''],
      roles:[
        {org:'数学经济学学士 · 莱克黑德大学',date:'2017年9月 – 2020年9月',logo:'logos/lakehead.svg',icon:'ti-school',
@@ -690,24 +687,21 @@ zh:{
        {org:'经济学硕士 · 莱克黑德大学',date:'2020年9月 – 2021年5月',logo:'logos/lakehead.svg',icon:'ti-school',
         resp:['从事计量经济学与量化建模研究','撰写硕士级经济分析论文'],
         ach:['GPA 3.9/4.0','院长奖章','研究奖 $10K']},
-       {org:'Governor’s Challenge · 加拿大央行',date:'2019年9月 – 2020年2月',logo:'logos/bankofcanada.svg',icon:'ti-trophy',
+       {org:"Governor's Challenge · 加拿大央行",date:'2019年9月 – 2020年2月',logo:'logos/bankofcanada.svg',icon:'ti-trophy',
         resp:['团队队长 —— 协调5名学生+4位教授','撰写并汇报全国级货币政策报告'],
         ach:['进入全国决赛','向行长 Stephen Poloz 汇报','获得正式表彰']},
      ]},
     {num:'II',title:'金融阶段',period:'2021 – 2024',color:'#7c3aed',role:'银行 / 财富顾问',
-     intro:'从运营分析师到汇丰高端客户经理，管理 $2000 万+ 资产；亲历 RBC 收购，并征战富途新加坡市场。',
+     intro:'汇丰高端客户经理，管理 $2000 万+ 资产、500+ 客户；亲历 RBC 收购并购，再征战富途新加坡市场。',
      keywords:['财富管理','客户关系','投资顾问','合规'],images:['','',''],
      roles:[
-       {org:'Elite Alliance · 案例分析师 & 运营负责人',date:'2021年8月 – 2022年2月',
-        resp:['负责文案部门 —— 培训、分工、质量管控','开展客户需求评估并设计案例方案','策划线上线下客户获取营销活动'],
-        ach:['组建并管理文案团队','建立可复用的案例解决流程']},
-       {org:'汇丰银行加拿大 · 个人 → 高端客户经理',date:'2022年2月 – 2024年4月',
+       {org:'汇丰银行加拿大 · 个人 → 高端客户经理',date:'2022年2月 – 2024年4月',logo:'logos/hsbc.svg',icon:'ti-building-bank',
         resp:['管理500+客户，覆盖投资、贷款与储蓄','独撑分行前台数月','主导分行数字化转型'],
         ach:['管理资产超 $2000万','13个月晋升高端客户经理','首季开单超 $100万','独立通过3次大型监管审计','移动银行注册率提升20%']},
-       {org:'RBC · 银行顾问（汇丰被收购）',date:'2024年4月 – 7月',
+       {org:'RBC · 银行顾问（汇丰被收购）',date:'2024年4月 – 7月',logo:'logos/rbc.svg',icon:'ti-building-bank',
         resp:['在汇丰 → RBC 过渡期持续管理客户组合'],
         ach:['亲历完整银行并购，客户组合完整移交']},
-       {org:'富途证券国际 · 理财顾问',date:'2024年9月 – 12月',
+       {org:'富途证券国际 · 理财顾问',date:'2024年9月 – 12月',logo:'logos/futu.svg',icon:'ti-chart-candle',
         resp:['高强度日常跟进新加坡零售投资者','快速掌握复杂多资产交易平台'],
         ach:['一周内独立上岗','首月转化率超20% —— 团队第一']},
      ]},
@@ -715,13 +709,13 @@ zh:{
      intro:'链捕手 Web3 研究，PathPort 2个月扩展至 1000+ 大使，现联合创立 Harena —— 独立端到端构建的 AI 金融产品。',
      keywords:['产品管理','Web3','增长运营','全栈交付'],images:['','',''],
      roles:[
-       {org:'链捕手 / Trendverse Lab · 研究员',date:'2025年4月 – 8月',
+       {org:'链捕手 / Trendverse Lab · 研究员',date:'2025年4月 – 8月',logo:'logos/chaincatcher.svg',icon:'ti-pencil',
         resp:['报道 DeFi、宏观与监管动态','与律师协作研究 CLARITY 法案和 MAS 框架','联合创建 Trendverse Lab 研究品牌'],
         ach:['登顶 Foresight News 当月全平台阅读量第一','在主流加密媒体发布10+篇深度报告']},
-       {org:'Flipflop Labs / PathPort · 海外运营负责人',date:'2025年8月 – 2026年1月',
+       {org:'Flipflop Labs / PathPort · 海外运营负责人',date:'2025年8月 – 2026年1月',logo:'logos/flipflop.svg',icon:'ti-world',
         resp:['设计脚印大使计划（非洲与东南亚）','独立撰写60+页中英文白皮书','独立端到端搭建 PathPort 网站','主持线上 AMA 与香港峰会路演'],
         ach:['2个月扩展至 1000+ 大使','周活流量增长10倍','10+场AMA，覆盖5-6个国家']},
-       {org:'Harena · 联合创始人 & 产品经理',date:'2025年10月 – 至今',
+       {org:'Harena · 联合创始人 & 产品经理',date:'2025年10月 – 至今',logo:'logos/harena.svg',icon:'ti-brain',
         resp:['主导产品战略，经历5次重大调整 —— PRD、流程、规格','交付完整前端（Figma、Claude Code、Lovable、OpenAI）','搭建后端 —— 本地部署、云端、MCP、API 接入','管理投资人对接 —— 路演PPT、演示、商业计划'],
         ach:['独立端到端交付可用产品','保持活跃的投资人对接']},
      ]},
@@ -758,6 +752,6 @@ st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,10
 document.head.appendChild(st);
 
 setLang('en');initRv();
-</script>
+ </script> 
 </body>
 </html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120">
+  <!-- Icon: vertical bars forming a hexagon-like shape -->
+  <g fill="#1B5BFF">
+    <rect x="12" y="28" width="8" height="64" rx="3"/>
+    <rect x="26" y="18" width="8" height="84" rx="3"/>
+    <rect x="40" y="10" width="8" height="100" rx="3"/>
+    <rect x="54" y="18" width="8" height="84" rx="3"/>
+    <rect x="68" y="28" width="8" height="64" rx="3"/>
+    <!-- Text -->
+    <text x="96" y="52" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" letter-spacing="1">CHAIN</text>
+    <text x="96" y="86" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" letter-spacing="1">CATCHER</text>
+  </g>
+</svg>

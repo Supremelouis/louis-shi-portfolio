@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80">
+  <!-- HARENA logo: blue text with dark equal sign embedded in E -->
+  <text x="0" y="64" font-family="Arial Black,Arial,sans-serif" font-size="72" font-weight="900" letter-spacing="-1" fill="#4A9FD4">HAR</text>
+  <!-- Dark equals sign replacing "E" middle -->
+  <rect x="220" y="22" width="46" height="10" rx="2" fill="#1A2340"/>
+  <rect x="220" y="40" width="46" height="10" rx="2" fill="#1A2340"/>
+  <text x="262" y="64" font-family="Arial Black,Arial,sans-serif" font-size="72" font-weight="900" letter-spacing="-1" fill="#4A9FD4">NA</text>
+</svg>

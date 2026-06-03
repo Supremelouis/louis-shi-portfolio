@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80">
+  <!-- Futu orange "F" mark -->
+  <rect x="0" y="4" width="48" height="12" rx="2" fill="#FF6B00"/>
+  <rect x="0" y="4" width="12" height="72" rx="2" fill="#FF6B00"/>
+  <rect x="0" y="38" width="36" height="12" rx="2" fill="#FF6B00"/>
+  <!-- Futu text -->
+  <text x="62" y="58" font-family="Arial Black,Arial,sans-serif" font-size="52" font-weight="900" fill="#1A1A1A" letter-spacing="-1">futu</text>
+</svg>
