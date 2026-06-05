@@ -348,8 +348,9 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .ph-ve-nav{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .ph-mini-pill{padding:5px 13px;background:rgba(0,0,0,.04);border:1px solid var(--cb);border-radius:20px;font-size:11px;font-weight:600;color:var(--txt2);cursor:pointer;transition:all .2s;font-family:inherit;display:flex;align-items:center;gap:4px}
 .ph-mini-pill:hover{background:rgba(79,70,229,.1);border-color:rgba(79,70,229,.28);color:var(--ac)}
-.ph-close-btn{width:30px;height:30px;border-radius:50%;border:1px solid var(--cb);background:rgba(0,0,0,.03);color:var(--txt3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s;font-family:inherit}
-.ph-close-btn:hover{background:rgba(0,0,0,.09);color:var(--txt)}
+.ph-nav-lbl{font-size:10px;color:var(--txt3);font-weight:500;white-space:nowrap;letter-spacing:.01em;align-self:center;margin-right:2px}
+.ph-close-btn{padding:5px 13px;background:rgba(0,0,0,.04);border:1px solid var(--cb);border-radius:20px;font-size:11px;font-weight:600;color:var(--txt2);cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
+.ph-close-btn:hover{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25);color:#dc2626}
 /* Detail content */
 .ph-ve-detail{animation:ph-detail-in 0.3s .12s cubic-bezier(.2,.8,.2,1) both}
 @keyframes ph-detail-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -726,9 +727,9 @@ function openPhase(idx){
   // Build nav row for the opened card
   const nav=document.getElementById('ph-nav-'+idx);
   if(nav){
-    nav.innerHTML=PHASES.map((p,i)=>i===idx?'':
+    nav.innerHTML=`<span class="ph-nav-lbl">Also in this journey&nbsp;→</span>`+PHASES.map((p,i)=>i===idx?'':
       `<button class="ph-mini-pill" onclick="event.stopPropagation();openPhase(${i})"><span style="color:${p.color}">${p.num}</span>&nbsp;${p.title}</button>`
-    ).join('')+`<button class="ph-close-btn" onclick="event.stopPropagation();closePhase()">✕</button>`;
+    ).join('')+`<button class="ph-close-btn" onclick="event.stopPropagation();closePhase()">收起</button>`;
   }
 }
 
