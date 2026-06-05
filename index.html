@@ -284,6 +284,38 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .contact-link i{font-size:16px}
 .ft-note{font-size:11px;color:var(--txt3);margin-top:44px;letter-spacing:.03em}
 
+/* ── Narrative case studies ── */
+.narr-cases{display:flex;flex-direction:column}
+.narr-case{padding:38px 0;border-bottom:1px solid var(--line)}
+.narr-case:last-child{border-bottom:none;padding-bottom:0}
+.narr-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.narr-cat{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
+.narr-yr{font-size:11px;color:var(--txt3)}
+.narr-title{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-.025em;color:var(--txt);line-height:1.12;margin-bottom:5px}
+.narr-role{font-size:13px;color:var(--ac);font-style:italic;font-weight:500;margin-bottom:20px}
+.narr-outcome{display:inline-block;font-size:12.5px;font-weight:600;color:var(--txt);background:rgba(79,70,229,.06);border-left:3px solid var(--ac);padding:8px 16px;border-radius:0 8px 8px 0;margin-bottom:20px}
+.narr-text{font-size:13px;color:var(--txt2);line-height:1.75;margin-bottom:18px;max-width:720px}
+.narr-pts{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px;max-width:720px}
+.narr-pts li{font-size:12px;color:var(--txt2);line-height:1.58;padding-left:16px;position:relative}
+.narr-pts li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--ac);opacity:.35}
+.narr-links{display:flex;gap:22px;flex-wrap:wrap}
+.narr-link{font-size:12px;font-weight:600;color:var(--ac);text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:gap .15s}
+.narr-link:hover{gap:8px}
+/* ── Writing section ── */
+.writ-list{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--cb);border-radius:20px;box-shadow:var(--sh);padding:0 30px}
+.writ-item{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start;padding:26px 0;border-bottom:1px solid var(--line)}
+.writ-item:last-child{border-bottom:none}
+.writ-left{display:flex;flex-direction:column;gap:7px;padding-top:2px}
+.writ-type{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:9px;width:fit-content}
+.writ-meta{font-size:10.5px;color:var(--txt3);line-height:1.4}
+.writ-title{font-size:15px;font-weight:700;color:var(--txt);line-height:1.3;margin-bottom:7px}
+.writ-desc{font-size:12px;color:var(--txt2);line-height:1.68;margin-bottom:10px}
+.writ-link{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:var(--ac);text-decoration:none;transition:gap .15s}
+.writ-link:hover{gap:8px}
+@media(max-width:900px){
+  .writ-item{grid-template-columns:1fr;gap:10px}
+  .writ-left{flex-direction:row;align-items:center;gap:10px}
+}
 /* ── Work & Portfolio panel ── */
 .wp-panel{display:grid;grid-template-columns:1fr 1px 1fr;min-height:540px;background:var(--card);border:1px solid var(--cb);border-radius:20px;box-shadow:var(--sh);overflow:hidden}
 .wp-col{display:flex;flex-direction:column;padding:22px 24px;position:relative;overflow:hidden;min-height:0}
@@ -402,6 +434,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   <div class="nav-links">
     <a class="nav-link" href="#experience" id="nav-exp">Experience</a>
     <a class="nav-link" href="#work" id="nav-work">Work</a>
+    <a class="nav-link" href="#writing" id="nav-wr">Writing</a>
     <a class="nav-link" href="#skills" id="nav-skills">Skills</a>
     <a class="nav-link" href="#contact" id="nav-contact">Contact</a>
   </div>
@@ -462,37 +495,19 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 <!-- Work / Portfolio -->
 <section class="section" id="work">
   <div class="sec-head rv">
-    <h2 class="sec-title" id="se-work-t">Work &amp; Portfolio</h2>
-    <p class="sec-sub" id="se-work-s">Articles, products, and platforms I've shipped</p>
+    <h2 class="sec-title" id="se-work-t">Work</h2>
+    <p class="sec-sub" id="se-work-s">Three projects I built, operated, or shipped — end to end</p>
   </div>
-  <div class="wp-panel rv">
-    <!-- Left: Case Studies -->
-    <div class="wp-col">
-      <div class="wp-col-hd">Case Studies</div>
-      <div class="wp-content" id="cs-content">
-        <!-- List view -->
-        <div class="cs-list" id="cs-list"></div>
-        <!-- Detail view -->
-        <div class="cs-detail" id="cs-detail"></div>
-      </div>
-    </div>
-    <!-- Divider -->
-    <div class="wp-divider"></div>
-    <!-- Right: Selected Writing -->
-    <div class="wp-col">
-      <div class="wp-col-hd">Selected Writing</div>
-      <div class="wp-content" id="sw-content">
-        <!-- Scroll view -->
-        <div class="sw-scroller" id="sw-scroller">
-          <div class="sw-viewport" id="sw-viewport">
-            <div class="sw-inner" id="sw-inner"></div>
-          </div>
-        </div>
-        <!-- Article detail overlay -->
-        <div class="sw-overlay" id="sw-overlay"></div>
-      </div>
-    </div>
+  <div class="narr-cases rv" id="narr-cases"></div>
+</section>
+
+<!-- Writing -->
+<section class="section" id="writing">
+  <div class="sec-head rv">
+    <h2 class="sec-title" id="se-wr-t">Writing</h2>
+    <p class="sec-sub" id="se-wr-s">Research, analysis, and published work — demonstrating how I collect, process, and communicate complex information</p>
   </div>
+  <div class="writ-list rv" id="writ-list"></div>
 </section>
 
 <!-- Skills Orb -->
@@ -813,7 +828,7 @@ function setText(id,html){const el=document.getElementById(id);if(el)el.innerHTM
 function setLang(lang){
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',(lang==='en'&&b.textContent==='EN')||(lang==='zh'&&b.textContent==='中')));
   const d=D[lang];
-  setText('nav-sub',d.navSub);setText('nav-exp',d.navExp);setText('nav-work',d.navWork);setText('nav-skills',d.navSkills);setText('nav-contact',d.navContact);
+  setText('nav-sub',d.navSub);setText('nav-exp',d.navExp);setText('nav-work',d.navWork);if(d.navWr)setText('nav-wr',d.navWr);setText('nav-skills',d.navSkills);setText('nav-contact',d.navContact);
   setText('h-eyebrow',d.hEyebrow);setText('h-title',d.hTitle);setText('h-sub',d.hSub);
   setText('h-cta1',d.hCta1);document.getElementById('h-cta2').innerHTML=`<i class="ti ti-download"></i>${d.hCta2}`;
   setText('por-ph',d.porPh);setText('pcap-t',d.pcapT);setText('pcap-s',d.pcapS);
@@ -824,6 +839,94 @@ function setLang(lang){
   setText('se-sk-ey',d.seSkEy);setText('se-sk-t',d.seSkT);setText('se-sk-s',d.seSkS);
   setText('ct-ey',d.ctEy);setText('ct-t',d.ctT);setText('ct-sub',d.ctSub);setText('ct-wr',d.ctWr);setText('ct-ft',d.ctFt);
   buildPhases(d.phases,{kw:d.kwLabel,details:d.detailsLabel,resp:d.respLabel,ach:d.achLabel});buildOrb(d);
+}
+
+// ── Narrative case data ──
+const NARR=[
+  {cat:'OPERATIONS',yr:'2025',title:'PathPort Ambassador Program',role:'Growth & Operations Lead',
+   outcome:'From zero to 1,000+ ambassadors in 60 days',
+   text:'Placeholder: PathPort needed to build a community in Africa and Southeast Asia from scratch — no brand presence, no tooling, no playbook. I designed and executed the entire program architecture independently.',
+   pts:['Placeholder: key challenge — no existing community, no templates, unknown market dynamics across two continents.',
+        'Placeholder: decision — designed a multi-tier competition structure with clear incentive mechanics and a streamlined onboarding flow.',
+        'Placeholder: execution — led weekly AMAs across 5–6 countries, authored the full program rulebook, managed ambassador communications.',
+        'Placeholder: outcome — 1,000+ ambassadors in 60 days; weekly active traffic grew 10× on the PathPort platform.',
+        'Placeholder: what this shows — ability to design systems that scale human networks without direct oversight.'],
+   links:[{label:'View live',href:'#'},{label:'Read whitepaper',href:'#'}]},
+  {cat:'PRODUCT',yr:'2025–',title:'Harena — AI Fintech Platform',role:'Co-founder & Product Manager',
+   outcome:'5 major pivots. Full-stack delivery. Active investor pipeline.',
+   text:'Placeholder: Harena is an AI-powered financial intelligence platform built from zero. The product has evolved through 5 distinct strategic directions as I learned what the market actually needs, while shipping at every stage.',
+   pts:['Placeholder: key challenge — building conviction through ambiguity; each pivot required discarding prior work and rebuilding product logic.',
+        'Placeholder: decision — adopted rapid iteration using Claude Code, Lovable, and Figma; prioritised learning speed over polish.',
+        'Placeholder: execution — owned the full product lifecycle: strategy, design, front-end delivery, backend setup, and investor relations.',
+        'Placeholder: outcome — working product shipped solo, end to end; investor pipeline active with ongoing conversations.',
+        'Placeholder: what this shows — product judgment under uncertainty, resilience across pivots, full-stack ownership.'],
+   links:[{label:'View live',href:'#'},{label:'View designs',href:'#'}]},
+  {cat:'DEVELOPMENT',yr:'2025–',title:'Engram — Personal Knowledge OS',role:'Solo Developer',
+   outcome:'Deployed and in daily use. Built entirely alone.',
+   text:'Placeholder: Engram is a private knowledge workspace I designed and built for myself after finding that existing tools couldn\'t handle the pace of AI-assisted work. It turns daily AI conversations into structured, reviewable long-term memory.',
+   pts:['Placeholder: key challenge — designing an architecture that integrates natively with Claude Code via MCP while remaining lightweight enough to self-host.',
+        'Placeholder: decision — chose Cloudflare Workers + D1 for edge-native performance; built a custom MCP server for AI client integration.',
+        'Placeholder: execution — designed the system, built front-end in React/TypeScript, deployed on Cloudflare infrastructure. No team.',
+        'Placeholder: outcome — live in production; used daily for knowledge capture and AI-assisted review and synthesis.',
+        'Placeholder: what this shows — ability to ship real software solo, make infrastructure decisions, and build tools that solve genuine problems.'],
+   links:[{label:'View live',href:'https://engram-b14.pages.dev'}]}
+];
+
+// ── Writing section data ──
+const WRITING=[
+  {type:'RESEARCH',cls:'t-research',title:'#1 on Foresight News — Web3 Regulatory Analysis',
+   platform:'Foresight News · ChainCatcher',yr:'2025',read:'12 min',href:'https://paragraph.com/sepremelouis.eth',
+   desc:'Placeholder: a deep analysis of the U.S. CLARITY Act and Singapore MAS regulatory frameworks, written in collaboration with legal professionals. Ranked #1 in monthly readership across all platforms on Foresight News. Demonstrates ability to synthesize dense regulatory content into readable, actionable insight for a crypto-native audience.'},
+  {type:'INTERVIEW',cls:'t-interview',title:'ChainCatcher Interview — [placeholder title]',
+   platform:'ChainCatcher',yr:'2025',read:'8 min',href:'#',
+   desc:'Placeholder: conducted as part of ChainCatcher\'s ongoing coverage of emerging Web3 builders and operators. The interview covers [topic placeholder] and demonstrates depth of market knowledge and the ability to communicate complex ideas clearly under a live format.'},
+  {type:'RESEARCH',cls:'t-research',title:'Enterprise-Level Industry Report',
+   platform:'Flipflop Labs',yr:'2025',read:'20 min',href:'#',
+   desc:'Placeholder: a comprehensive industry report covering [topic placeholder], produced for Flipflop Labs\' strategic planning. This research was used to inform the GTM strategy and product direction for PathPort. Demonstrates structured analytical thinking and the ability to synthesize market data into actionable intelligence.'},
+  {type:'WHITEPAPER',cls:'t-whitepaper',title:'PathPort Whitepaper — Tokenomics, Architecture & GTM',
+   platform:'PathPort',yr:'2025',read:'35 min',href:'#',
+   desc:'Placeholder: a 60+ page bilingual (EN/ZH) whitepaper covering PathPort\'s tokenomics model, technical architecture, and go-to-market strategy. Written solo and used as the foundational document for ambassador recruitment and investor conversations. Demonstrates ability to produce institutional-quality documentation from scratch.'},
+  {type:'RULEBOOK',cls:'t-rulebook',title:'Ambassador Competition — Full Program Design',
+   platform:'Flipflop Labs',yr:'2025',read:'15 min',href:'#',
+   desc:'Placeholder: the complete rulebook and program design for the Footprint Ambassador Competition — covering tier structures, scoring criteria, onboarding flows, and reward mechanics. This document was the operational backbone of the ambassador program that reached 1,000+ participants in 60 days.'},
+  {type:'ANALYSIS',cls:'t-analysis',title:'Macro Market Analysis — [placeholder title]',
+   platform:'Trendverse Lab',yr:'2025',read:'10 min',href:'#',
+   desc:'Placeholder: a macro-level market analysis covering [topic placeholder], published under the Trendverse Lab brand. This piece contextualizes on-chain data within broader macroeconomic trends and regulatory signals. Demonstrates quantitative reasoning and the ability to translate data into narrative insight.'},
+  {type:'TRADE REVIEW',cls:'t-trade',title:'Trade Debrief — [placeholder title]',
+   platform:'Independent',yr:'2025',read:'6 min',href:'#',
+   desc:'Placeholder: an independent trade review documenting entry rationale, risk management decisions, and outcome analysis for [position/market placeholder]. Written as a personal knowledge artifact to systematize learning from live market activity. Demonstrates disciplined analytical process and financial market literacy.'}
+];
+
+function buildNarrCases(){
+  const el=document.getElementById('narr-cases');
+  if(!el)return;
+  el.innerHTML=NARR.map(c=>`
+    <div class="narr-case">
+      <div class="narr-top"><span class="narr-cat">${c.cat}</span><span class="narr-yr">${c.yr}</span></div>
+      <h3 class="narr-title">${c.title}</h3>
+      <div class="narr-role">${c.role}</div>
+      <div class="narr-outcome">${c.outcome}</div>
+      <p class="narr-text">${c.text}</p>
+      <ul class="narr-pts">${c.pts.map(p=>`<li>${p}</li>`).join('')}</ul>
+      <div class="narr-links">${c.links.map(l=>`<a class="narr-link" href="${l.href}" target="_blank">${l.label} →</a>`).join('')}</div>
+    </div>`).join('');
+}
+
+function buildWriting(){
+  const el=document.getElementById('writ-list');
+  if(!el)return;
+  el.innerHTML=WRITING.map(a=>`
+    <div class="writ-item">
+      <div class="writ-left">
+        <span class="writ-type ${a.cls}">${a.type}</span>
+        <span class="writ-meta">${a.platform}<br/>${a.yr} · ${a.read}</span>
+      </div>
+      <div>
+        <div class="writ-title">${a.title}</div>
+        <div class="writ-desc">${a.desc}</div>
+        <a class="writ-link" href="${a.href}" target="_blank">Read →</a>
+      </div>
+    </div>`).join('');
 }
 
 // ── Work & Portfolio section ──
@@ -989,7 +1092,7 @@ const st=document.createElement('style');
 st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
 document.head.appendChild(st);
 
-setLang('en');initWorkSection();initRv();
+buildNarrCases();buildWriting();setLang('en');initWorkSection();initRv();
  </script> 
 </body>
 </html>
