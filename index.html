@@ -1213,79 +1213,196 @@ const st=document.createElement('style');
 st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
 document.head.appendChild(st);
 
-// ── Ripple rings background ──
+// ── Rain on glass background ──
 function initTree(){
   const canvas=document.getElementById('tree-bg');
   if(!canvas)return;
   const ctx=canvas.getContext('2d');
-  // Transparent canvas — body gradient shows through naturally
-  canvas.style.opacity='0.78';
+  canvas.style.opacity='1';
 
-  // Soft palette to match page
-  const COLS=[
-    [95,140,178],   // slate blue
-    [108,155,128],  // sage green
-    [140,122,168],  // lavender
-    [115,160,152],  // teal
-    [155,128,148],  // dusty rose
-    [88,132,165],   // steel blue
-  ];
+  let W,H,drops=[],runs=[];
+  // Pre-render static background once (sky + treeline)
+  let bgCanvas=null;
 
-  let W,H,rings=[],lastDrop=0;
-  const INTERVAL=2400; // ms between new drops
+  function buildBg(){
+    bgCanvas=document.createElement('canvas');
+    bgCanvas.width=W; bgCanvas.height=H;
+    const bc=bgCanvas.getContext('2d');
+
+    // Overcast sky gradient
+    const sky=bc.createLinearGradient(0,0,0,H);
+    sky.addColorStop(0,'#6e8ea4');
+    sky.addColorStop(0.35,'#8daab8');
+    sky.addColorStop(0.6,'#a8c0cc');
+    sky.addColorStop(1,'#7e9dae');
+    bc.fillStyle=sky; bc.fillRect(0,0,W,H);
+
+    // Soft treeline silhouette (blurred using multiple passes)
+    for(let pass=0;pass<5;pass++){
+      const spread=pass*10;
+      bc.save();
+      bc.fillStyle=`rgba(35,50,60,${0.14-pass*0.02})`;
+      bc.beginPath();
+      bc.moveTo(-spread,H);
+      for(let x=0;x<=W+spread;x+=30){
+        // Irregular canopy shape
+        const base=H*0.60;
+        const hv=Math.sin(x*0.022+1.2)*H*0.07+Math.cos(x*0.013)*H*0.05+Math.sin(x*0.008+0.5)*H*0.04;
+        bc.lineTo(x-spread,base-hv);
+      }
+      bc.lineTo(W+spread,H); bc.closePath(); bc.fill();
+      bc.restore();
+    }
+
+    // Horizon atmospheric haze
+    const haze=bc.createLinearGradient(0,H*0.52,0,H*0.72);
+    haze.addColorStop(0,'rgba(170,195,210,0)');
+    haze.addColorStop(1,'rgba(170,195,210,0.28)');
+    bc.fillStyle=haze; bc.fillRect(0,0,W,H);
+  }
+
+  // Create a static glass droplet
+  function mkDrop(aged){
+    const maxR=2.5+Math.random()*13;
+    return{
+      x:Math.random()*W, y:Math.random()*H,
+      r:aged?Math.random()*maxR*0.9:0.4,
+      maxR, gr:0.006+Math.random()*0.014
+    };
+  }
+
+  // Create a running rivulet
+  function mkRun(x,y){
+    return{
+      x,y,r:5+Math.random()*9,
+      vy:1.0+Math.random()*2.2,
+      trail:[],
+      wph:0, wsp:(Math.random()-0.5)*0.05
+    };
+  }
 
   function resize(){
     W=canvas.width=window.innerWidth;
     H=canvas.height=window.innerHeight;
+    buildBg();
+    drops=[]; runs=[];
+    for(let i=0;i<130;i++) drops.push(mkDrop(true));
   }
   window.addEventListener('resize',resize,{passive:true});
   resize();
 
-  // Spawn one raindrop: 2-3 concentric rings, slightly staggered
-  function spawnDrop(aged){
-    const x=W*0.08+Math.random()*W*0.84;
-    const y=H*0.08+Math.random()*H*0.84;
-    const[cr,cg,cb]=COLS[Math.floor(Math.random()*COLS.length)];
-    const maxR=140+Math.random()*230;
-    const baseOp=0.50+Math.random()*0.26;
-    const spd=0.62+Math.random()*0.72;
-    const n=2+(Math.random()<0.38?1:0); // 2 or 3 rings
-    for(let i=0;i<n;i++){
-      // aged=true seeds rings mid-life so screen isn't empty at start
-      const startRad=aged?Math.random()*maxR*0.75:-i*30;
-      rings.push({x,y,rad:startRad,maxR,op:baseOp*(1-i*0.28),spd,lw:1.15-i*0.25,cr,cg,cb});
-    }
+  // Draw one glass droplet (lens effect)
+  function drawDrop(d){
+    if(d.r<0.4)return;
+    const{x,y,r}=d;
+
+    // Lens interior — brightened, slightly tinted
+    const lg=ctx.createRadialGradient(x-r*.28,y-r*.32,r*.05,x,y,r*1.05);
+    lg.addColorStop(0,'rgba(220,235,245,0.82)');
+    lg.addColorStop(0.55,'rgba(175,205,222,0.52)');
+    lg.addColorStop(1,'rgba(120,158,182,0.38)');
+    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.fillStyle=lg; ctx.fill();
+
+    // Top-left specular highlight
+    ctx.beginPath();
+    ctx.arc(x-r*.33,y-r*.40,r*.27,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.78)'; ctx.fill();
+
+    // Smaller secondary highlight
+    ctx.beginPath();
+    ctx.arc(x+r*.18,y-r*.22,r*.10,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.42)'; ctx.fill();
+
+    // Bottom shadow crescent
+    ctx.beginPath();
+    ctx.arc(x+r*.08,y+r*.28,r*.38,0,Math.PI*2);
+    ctx.fillStyle='rgba(70,110,140,0.14)'; ctx.fill();
+
+    // Rim
+    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.strokeStyle='rgba(140,175,200,0.32)';
+    ctx.lineWidth=0.6; ctx.stroke();
   }
 
-  // Pre-seed so screen has rings immediately
-  for(let i=0;i<6;i++) spawnDrop(true);
+  // Draw a running rivulet with trail
+  function drawRun(s){
+    if(s.trail.length<2)return;
+    // Trail streak
+    ctx.beginPath();
+    ctx.moveTo(s.trail[0].x,s.trail[0].y);
+    s.trail.forEach(pt=>ctx.lineTo(pt.x,pt.y));
+    ctx.strokeStyle='rgba(175,208,228,0.28)';
+    ctx.lineWidth=s.r*.52; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.stroke();
+
+    // Head droplet (elongated teardrop)
+    const last=s.trail[s.trail.length-1];
+    const hg=ctx.createRadialGradient(last.x-s.r*.22,last.y-s.r*.28,s.r*.06,last.x,last.y,s.r);
+    hg.addColorStop(0,'rgba(240,252,255,0.78)');
+    hg.addColorStop(0.55,'rgba(180,215,235,0.50)');
+    hg.addColorStop(1,'rgba(125,168,198,0.25)');
+    ctx.beginPath();
+    ctx.ellipse(last.x,last.y,s.r*.62,s.r,0,0,Math.PI*2);
+    ctx.fillStyle=hg; ctx.fill();
+  }
+
+  let lastDropT=0,lastRunT=0,rainOffset=0;
 
   function tick(ts){
-    ctx.clearRect(0,0,W,H);
+    // Background
+    ctx.drawImage(bgCanvas,0,0);
 
-    // Spawn new drop with slight random jitter on interval
-    if(ts-lastDrop > INTERVAL+(Math.random()-0.5)*1000){
-      spawnDrop(false);
-      lastDrop=ts;
+    // Falling rain lines in distance (fast, thin)
+    rainOffset=(rainOffset+0.9)%60;
+    ctx.save();
+    ctx.strokeStyle='rgba(175,200,220,0.22)';
+    ctx.lineWidth=0.65;
+    for(let i=0;i<55;i++){
+      const rx=((i*37+rainOffset*2.2)%W);
+      const ry=((i*29+rainOffset*3.1)%H);
+      ctx.beginPath();
+      ctx.moveTo(rx-3,ry-10);
+      ctx.lineTo(rx+1.5,ry+3);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Spawn static drops
+    if(ts-lastDropT>320){
+      for(let i=0;i<3;i++) drops.push(mkDrop(false));
+      if(drops.length>280) drops.splice(0,drops.length-280);
+      lastDropT=ts;
     }
 
-    for(let i=rings.length-1;i>=0;i--){
-      const rg=rings[i];
-      rg.rad+=rg.spd;
-      if(rg.rad<0) continue; // not yet started (stagger delay)
+    // Spawn rivulets
+    if(ts-lastRunT>1600+Math.random()*2200){
+      runs.push(mkRun(W*.06+Math.random()*W*.88,Math.random()*H*.28));
+      if(runs.length>18) runs.splice(0,1);
+      lastRunT=ts;
+    }
 
-      const prog=rg.rad/rg.maxR;
-      if(prog>=1){rings.splice(i,1);continue;}
+    // Grow drops; if over max → spawn rivulet and reset
+    drops.forEach(d=>{
+      d.r+=d.gr;
+      if(d.r>d.maxR){
+        if(d.maxR>8) runs.push(mkRun(d.x,d.y));
+        d.r=0.4; d.x=Math.random()*W; d.y=Math.random()*H;
+        d.maxR=2.5+Math.random()*13;
+      }
+      drawDrop(d);
+    });
 
-      // Fade out as ring expands — eased so it lingers a bit then fades
-      const alpha=rg.op*Math.pow(1-prog,1.4);
-      if(alpha<0.007){rings.splice(i,1);continue;}
-
-      ctx.beginPath();
-      ctx.arc(rg.x,rg.y,rg.rad,0,Math.PI*2);
-      ctx.strokeStyle=`rgba(${rg.cr},${rg.cg},${rg.cb},${alpha})`;
-      ctx.lineWidth=rg.lw*(0.65+0.35*(1-prog)); // taper as it expands
-      ctx.stroke();
+    // Move and draw rivulets
+    for(let i=runs.length-1;i>=0;i--){
+      const s=runs[i];
+      s.wph+=s.wsp;
+      s.x+=Math.sin(s.wph)*.7;
+      s.y+=s.vy;
+      s.trail.push({x:s.x,y:s.y});
+      if(s.trail.length>20) s.trail.shift();
+      if(s.y>H+20) runs.splice(i,1);
+      else drawRun(s);
     }
 
     requestAnimationFrame(tick);
