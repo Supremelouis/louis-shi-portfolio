@@ -983,6 +983,7 @@ const SW_SPEED=40;
 
 function buildCsList(){
   const el=document.getElementById('cs-list');
+  if(!el)return;
   el.innerHTML=CASES.map((c,i)=>`
     <div class="cs-item" data-idx="${i}" onclick="openCase(${i})">
       <div class="cs-item-body">
