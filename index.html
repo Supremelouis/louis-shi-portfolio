@@ -952,7 +952,7 @@ function setLang(lang){
   setText('se-sk-t',d.seSkT);setText('se-sk-s',d.seSkS);
   setText('ct-t',d.ctT);setText('ct-sub',d.ctSub);setText('ct-wr',d.ctWr);setText('ct-ft',d.ctFt);
   buildPhases(d.phases,{kw:d.kwLabel,details:d.detailsLabel,resp:d.respLabel,ach:d.achLabel});
-  if(d.narr)buildNarrCases(d.narr);
+  buildNarrCases(d.narr); // falls back to NARR global when d.narr is null
   buildOrb(d);
   // Re-open active phase with new language labels
   if(activePhase>=0){const tmp=activePhase;closePhase();openPhase(tmp);}
