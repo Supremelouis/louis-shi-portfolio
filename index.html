@@ -1213,80 +1213,80 @@ const st=document.createElement('style');
 st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
 document.head.appendChild(st);
 
-// ── Flow field background ──
+// ── Ripple rings background ──
 function initTree(){
   const canvas=document.getElementById('tree-bg');
   if(!canvas)return;
   const ctx=canvas.getContext('2d');
-  // Canvas at 80% opacity — body gradient still bleeds through
-  canvas.style.opacity='0.82';
+  // Transparent canvas — body gradient shows through naturally
+  canvas.style.opacity='0.78';
 
-  // Soft palette: slate-blue, sage-green, lavender, teal, dusty-rose
+  // Soft palette to match page
   const COLS=[
-    [100,148,182],[118,162,138],[150,132,175],[125,172,165],[165,138,158]
+    [95,140,178],   // slate blue
+    [108,155,128],  // sage green
+    [140,122,168],  // lavender
+    [115,160,152],  // teal
+    [155,128,148],  // dusty rose
+    [88,132,165],   // steel blue
   ];
 
-  let W,H,pts=[],t=0;
-  const N=320;          // particle count
-  const SPD=1.5;        // base speed
-  const SC=0.0028;      // field spatial scale
-  const TS=0.00036;     // time scale (field evolution speed)
-
-  function mkp(){
-    return{
-      x:Math.random()*W, y:Math.random()*H,
-      px:0, py:0,
-      age:Math.random()*130,
-      maxAge:90+Math.random()*200,
-      ci:Math.floor(Math.random()*COLS.length),
-      spd:SPD*(0.45+Math.random()*0.85)
-    };
-  }
+  let W,H,rings=[],lastDrop=0;
+  const INTERVAL=2400; // ms between new drops
 
   function resize(){
     W=canvas.width=window.innerWidth;
     H=canvas.height=window.innerHeight;
-    // Fill opaque so trail-fade works correctly
-    ctx.fillStyle='#f2f4f7';
-    ctx.fillRect(0,0,W,H);
-    pts=Array.from({length:N},mkp);
-    pts.forEach(p=>{p.px=p.x;p.py=p.y});
   }
   window.addEventListener('resize',resize,{passive:true});
   resize();
 
-  // Field angle: overlay of 3 sin/cos frequencies → organic, non-repeating feel
-  function ang(x,y,time){
-    return(
-      Math.sin(x*SC       + time*0.55)*Math.PI*2.2+
-      Math.cos(y*SC*1.25  + time*0.38)*Math.PI*1.4+
-      Math.sin((x+y)*SC*0.7+time*0.46)*Math.PI*0.9
-    );
+  // Spawn one raindrop: 2-3 concentric rings, slightly staggered
+  function spawnDrop(aged){
+    const x=W*0.08+Math.random()*W*0.84;
+    const y=H*0.08+Math.random()*H*0.84;
+    const[cr,cg,cb]=COLS[Math.floor(Math.random()*COLS.length)];
+    const maxR=140+Math.random()*230;
+    const baseOp=0.50+Math.random()*0.26;
+    const spd=0.62+Math.random()*0.72;
+    const n=2+(Math.random()<0.38?1:0); // 2 or 3 rings
+    for(let i=0;i<n;i++){
+      // aged=true seeds rings mid-life so screen isn't empty at start
+      const startRad=aged?Math.random()*maxR*0.75:-i*30;
+      rings.push({x,y,rad:startRad,maxR,op:baseOp*(1-i*0.28),spd,lw:1.15-i*0.25,cr,cg,cb});
+    }
   }
 
+  // Pre-seed so screen has rings immediately
+  for(let i=0;i<6;i++) spawnDrop(true);
+
   function tick(ts){
-    t=ts*TS;
-    // Partial fade instead of clearRect → creates trailing lines
-    ctx.fillStyle='rgba(242,244,247,0.055)';
-    ctx.fillRect(0,0,W,H);
+    ctx.clearRect(0,0,W,H);
 
-    pts.forEach(p=>{
-      p.age++;
-      if(p.age>p.maxAge||p.x<-8||p.x>W+8||p.y<-8||p.y>H+8){
-        const n=mkp();n.age=0;Object.assign(p,n);p.px=p.x;p.py=p.y;return;
-      }
-      p.px=p.x; p.py=p.y;
-      const a=ang(p.x,p.y,t);
-      p.x+=Math.cos(a)*p.spd;
-      p.y+=Math.sin(a)*p.spd;
+    // Spawn new drop with slight random jitter on interval
+    if(ts-lastDrop > INTERVAL+(Math.random()-0.5)*1000){
+      spawnDrop(false);
+      lastDrop=ts;
+    }
 
-      const lr=p.age/p.maxAge;
-      const op=Math.sin(lr*Math.PI)*0.9; // much more visible
-      const[r,g,b]=COLS[p.ci];
-      ctx.strokeStyle=`rgba(${r},${g},${b},${op})`;
-      ctx.lineWidth=1.3+lr*0.7; // thicker lines
-      ctx.beginPath();ctx.moveTo(p.px,p.py);ctx.lineTo(p.x,p.y);ctx.stroke();
-    });
+    for(let i=rings.length-1;i>=0;i--){
+      const rg=rings[i];
+      rg.rad+=rg.spd;
+      if(rg.rad<0) continue; // not yet started (stagger delay)
+
+      const prog=rg.rad/rg.maxR;
+      if(prog>=1){rings.splice(i,1);continue;}
+
+      // Fade out as ring expands — eased so it lingers a bit then fades
+      const alpha=rg.op*Math.pow(1-prog,1.4);
+      if(alpha<0.007){rings.splice(i,1);continue;}
+
+      ctx.beginPath();
+      ctx.arc(rg.x,rg.y,rg.rad,0,Math.PI*2);
+      ctx.strokeStyle=`rgba(${rg.cr},${rg.cg},${rg.cb},${alpha})`;
+      ctx.lineWidth=rg.lw*(0.65+0.35*(1-prog)); // taper as it expands
+      ctx.stroke();
+    }
 
     requestAnimationFrame(tick);
   }
