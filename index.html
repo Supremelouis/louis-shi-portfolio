@@ -284,6 +284,84 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .contact-link i{font-size:16px}
 .ft-note{font-size:11px;color:var(--txt3);margin-top:44px;letter-spacing:.03em}
 
+/* ── Work & Portfolio panel ── */
+.wp-panel{display:grid;grid-template-columns:1fr 1px 1fr;min-height:540px;background:var(--card);border:1px solid var(--cb);border-radius:20px;box-shadow:var(--sh);overflow:hidden}
+.wp-col{display:flex;flex-direction:column;padding:22px 24px;position:relative;overflow:hidden;min-height:0}
+.wp-divider{background:var(--line);width:1px;flex-shrink:0}
+.wp-col-hd{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);padding-bottom:13px;border-bottom:1px solid var(--line);flex-shrink:0}
+.wp-content{position:relative;flex:1;overflow:hidden;min-height:0}
+/* Case list / detail */
+.cs-list,.cs-detail{position:absolute;inset:0;overflow-y:auto;padding:12px 0 8px;transition:opacity .28s ease,transform .28s ease}
+.cs-list{display:flex;flex-direction:column;gap:4px}
+.cs-detail{opacity:0;transform:translateY(14px);pointer-events:none}
+.wp-content.cs-open .cs-list{opacity:0;transform:translateY(-14px);pointer-events:none}
+.wp-content.cs-open .cs-detail{opacity:1;transform:translateY(0);pointer-events:auto}
+/* Case item */
+.cs-item{flex:1;display:flex;align-items:flex-start;gap:10px;padding:14px 12px;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:background .18s,border-color .18s;min-height:0}
+.cs-item:hover{background:rgba(0,0,0,.03);border-color:var(--cb)}
+.cs-item.cs-active{background:rgba(79,70,229,.05);border-color:rgba(79,70,229,.22)}
+.cs-item-body{flex:1;min-width:0}
+.cs-cat{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.cs-title{font-size:13px;font-weight:700;color:var(--txt);margin-bottom:2px;line-height:1.3}
+.cs-role{font-size:11px;color:var(--txt2);font-style:italic;margin-bottom:5px}
+.cs-teaser{font-size:11px;color:var(--txt3);line-height:1.45}
+.cs-arr{font-size:15px;color:var(--txt3);align-self:center;flex-shrink:0;transition:color .18s,transform .18s}
+.cs-item:hover .cs-arr{color:var(--ac);transform:translateX(3px)}
+/* Case detail */
+.cs-back{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--ac);cursor:pointer;margin-bottom:14px;transition:gap .15s;border:none;background:none;font-family:inherit;padding:0}
+.cs-back:hover{gap:8px}
+.cs-d-cat{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:5px}
+.cs-d-title{font-size:17px;font-weight:700;color:var(--txt);margin-bottom:4px;line-height:1.2}
+.cs-d-role{font-size:12px;color:var(--ac);font-style:italic;font-weight:500;margin-bottom:14px}
+.cs-d-img{width:100%;aspect-ratio:16/9;background:rgba(0,0,0,.04);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--txt3);font-size:11px;margin-bottom:14px;border:1px solid var(--cb);flex-direction:column;gap:6px}
+.cs-d-img i{font-size:22px}
+.cs-d-bul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.cs-d-bul li{font-size:11.5px;color:var(--txt2);line-height:1.55;padding-left:14px;position:relative}
+.cs-d-bul li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--ac);opacity:.45}
+.cs-d-links{display:flex;flex-direction:column;gap:8px}
+.cs-d-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--ac);text-decoration:none;transition:gap .15s}
+.cs-d-link:hover{gap:9px}
+/* Article scroll */
+.sw-scroller,.sw-overlay{position:absolute;inset:0;transition:opacity .25s ease,transform .25s ease}
+.sw-scroller{overflow:hidden}
+.sw-overlay{opacity:0;transform:translateX(16px);pointer-events:none;overflow-y:auto;padding:12px 0 8px;background:var(--card)}
+.wp-content.sw-open .sw-overlay{opacity:1;transform:translateX(0);pointer-events:auto}
+.wp-content.sw-open .sw-scroller{opacity:0;pointer-events:none}
+.sw-viewport{position:absolute;inset:0;overflow:hidden}
+.sw-inner{will-change:transform;padding:12px 0 8px}
+/* Article item */
+.sw-item{padding:11px 4px;border-bottom:1px solid var(--line);cursor:pointer;border-radius:6px;transition:background .15s;margin:0 -4px}
+.sw-item:hover{background:rgba(0,0,0,.03)}
+.sw-type{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:8px;margin-bottom:5px}
+.sw-title{font-size:12.5px;font-weight:600;color:var(--txt);line-height:1.35;margin-bottom:3px}
+.sw-platform{font-size:10.5px;color:var(--txt3)}
+.t-research{background:rgba(79,70,229,.1);color:#4f46e5}
+.t-interview{background:rgba(124,58,237,.1);color:#7c3aed}
+.t-whitepaper{background:rgba(5,150,105,.1);color:#059669}
+.t-rulebook{background:rgba(245,158,11,.1);color:#d97706}
+.t-analysis{background:rgba(14,165,233,.1);color:#0284c7}
+.t-trade{background:rgba(100,116,139,.1);color:#64748b}
+/* Article overlay */
+.sw-back{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--ac);cursor:pointer;margin-bottom:14px;transition:gap .15s;border:none;background:none;font-family:inherit;padding:0}
+.sw-back:hover{gap:8px}
+.sw-d-title{font-size:16px;font-weight:700;color:var(--txt);line-height:1.25;margin-bottom:4px}
+.sw-d-meta{font-size:11px;color:var(--txt3);margin-bottom:14px}
+.sw-d-desc{font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:16px}
+.sw-d-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--ac);text-decoration:none;margin-bottom:18px;transition:gap .15s}
+.sw-d-link:hover{gap:9px}
+.sw-d-rel-hd{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
+.sw-d-rel-link{display:block;font-size:12px;color:var(--txt2);margin-bottom:6px;cursor:pointer;transition:color .15s;text-decoration:none}
+.sw-d-rel-link:hover{color:var(--ac)}
+/* Mobile */
+@media(max-width:900px){
+  .wp-panel{grid-template-columns:1fr;grid-template-rows:auto 1px auto;min-height:auto}
+  .wp-divider{width:100%;height:1px}
+  .wp-col{min-height:420px}
+  .sw-viewport{position:static;overflow:visible;height:auto}
+  .sw-inner{transform:none !important}
+  .sw-scroller{position:static;overflow:visible}
+  .sw-overlay{position:absolute}
+}
 /* ── Scroll reveal ── */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .rv.on{opacity:1;transform:none}
@@ -387,24 +465,32 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     <h2 class="sec-title" id="se-work-t">Work &amp; Portfolio</h2>
     <p class="sec-sub" id="se-work-s">Articles, products, and platforms I've shipped</p>
   </div>
-  <div class="rv">
-    <div class="work-strip-lbl" id="strip-lbl">Articles &amp; Portfolio — scroll →</div>
-    <div class="scroll-wrap"><div class="scroll-inner" id="scroll-inner"></div></div>
-  </div>
-  <div class="panel engram rv">
-    <div class="engram-info">
-      <div class="eg-ey" id="eg-ey">Featured Build</div>
-      <div class="eg-name">Engram</div>
-      <div class="eg-desc" id="eg-desc">Private knowledge workspace for builders — AI conversations into structured long-term memory. Built solo end to end.</div>
-      <div class="chips">
-        <span class="chip">React · TS</span><span class="chip">Cloudflare Workers</span>
-        <span class="chip">D1 SQLite</span><span class="chip">Claude API</span><span class="chip">MCP</span>
+  <div class="wp-panel rv">
+    <!-- Left: Case Studies -->
+    <div class="wp-col">
+      <div class="wp-col-hd">Case Studies</div>
+      <div class="wp-content" id="cs-content">
+        <!-- List view -->
+        <div class="cs-list" id="cs-list"></div>
+        <!-- Detail view -->
+        <div class="cs-detail" id="cs-detail"></div>
       </div>
-      <a class="btn btn-primary" href="https://engram-b14.pages.dev" target="_blank" style="width:fit-content"><i class="ti ti-external-link"></i><span id="eg-cta">View Live</span></a>
     </div>
-    <div class="engram-img">
-      <!-- <img src="engram.png" alt="Engram"/> -->
-      <div class="imgw-ph"><i class="ti ti-layout-dashboard"></i><span id="eg-ph">Screenshot coming soon</span></div>
+    <!-- Divider -->
+    <div class="wp-divider"></div>
+    <!-- Right: Selected Writing -->
+    <div class="wp-col">
+      <div class="wp-col-hd">Selected Writing</div>
+      <div class="wp-content" id="sw-content">
+        <!-- Scroll view -->
+        <div class="sw-scroller" id="sw-scroller">
+          <div class="sw-viewport" id="sw-viewport">
+            <div class="sw-inner" id="sw-inner"></div>
+          </div>
+        </div>
+        <!-- Article detail overlay -->
+        <div class="sw-overlay" id="sw-overlay"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -740,6 +826,158 @@ function setLang(lang){
   buildStrip(d.strip);buildPhases(d.phases,{kw:d.kwLabel,details:d.detailsLabel,resp:d.respLabel,ach:d.achLabel});buildOrb(d);
 }
 
+// ── Work & Portfolio section ──
+const CASES=[
+  {id:'pathport',cat:'OPERATIONS',title:'PathPort Ambassador Program',role:'Growth & Operations Lead',teaser:'From zero to 1,000+ ambassadors in 60 days',
+   bullets:['Placeholder: background context — launched to expand PathPort reach across Africa and Southeast Asia with no existing community.',
+            'Placeholder: key challenge — designing a scalable ambassador program from scratch with no prior tooling or playbook.',
+            'Placeholder: decision made — built a multi-tier competition structure with clear incentive tiers and a streamlined onboarding flow.',
+            'Placeholder: outcome — 1,000+ ambassadors in 60 days; weekly active traffic grew 10× across the platform.',
+            'Placeholder: capability demonstrated — end-to-end program design, growth operations, cross-cultural community management.'],
+   link1:{label:'View live →',href:'#'},link2:{label:'Read whitepaper →',href:'#'}},
+  {id:'harena',cat:'PRODUCT',title:'Harena — AI Fintech Platform',role:'Co-founder & Product Manager',teaser:'5 pivots, full-stack AI product delivery',
+   bullets:['Placeholder: background context — Harena is an AI-powered financial intelligence platform built from zero.',
+            'Placeholder: key challenge — navigating 5 major product pivots while maintaining investor confidence and delivery momentum.',
+            'Placeholder: decision made — adopted a lean build-measure-learn loop; Claude Code, Lovable, and Figma for rapid iteration.',
+            'Placeholder: outcome — working product shipped solo, end to end; active and growing investor pipeline.',
+            'Placeholder: capability demonstrated — full product lifecycle ownership, solo full-stack delivery, investor relations.'],
+   link1:{label:'View live →',href:'#'},link2:{label:'View designs →',href:'#'}},
+  {id:'engram',cat:'DEVELOPMENT',title:'Engram — Personal Knowledge OS',role:'Solo Developer',teaser:'Building solo from idea to deployed product',
+   bullets:['Placeholder: background context — Engram is a private knowledge workspace designed for builders who work daily with AI tools.',
+            'Placeholder: key challenge — designing an MCP-native architecture that integrates with Claude Code and external AI clients.',
+            'Placeholder: decision made — chose Cloudflare Workers + D1 for edge-native performance with zero infrastructure overhead.',
+            'Placeholder: outcome — live in production; used daily for knowledge capture, structured review, and AI-assisted synthesis.',
+            'Placeholder: capability demonstrated — system design, solo full-stack development, product thinking applied to developer tooling.'],
+   link1:{label:'View live →',href:'https://engram-b14.pages.dev'},link2:null}
+];
+
+const ARTICLES=[
+  {type:'RESEARCH',cls:'t-research',title:'#1 on Foresight News — Web3 Regulatory Analysis',platform:'Foresight News · ChainCatcher · 2025',read:'12 min read',href:'https://paragraph.com/sepremelouis.eth',
+   desc:'Placeholder: this piece analyzes the U.S. CLARITY Act and Singapore MAS regulatory frameworks, written with legal professionals. It ranked #1 in monthly readership across all platforms on Foresight News. Demonstrates ability to synthesize complex regulatory content for a crypto-native audience and produce work that dominates a competitive media landscape.',
+   related:['Enterprise-Level Industry Report','Macro Market Analysis — [placeholder title]']},
+  {type:'INTERVIEW',cls:'t-interview',title:'ChainCatcher Interview — [placeholder title]',platform:'ChainCatcher · 2025',read:'8 min read',href:'#',
+   desc:'Placeholder: this interview covers [topic placeholder] as part of ChainCatcher\'s ongoing series on emerging Web3 trends. The piece demonstrates depth of market knowledge and the ability to articulate complex ideas accessibly. Placeholder context on why this was conducted and what it reveals.',
+   related:['#1 on Foresight News — Web3 Regulatory Analysis','Macro Market Analysis — [placeholder title]']},
+  {type:'RESEARCH',cls:'t-research',title:'Enterprise-Level Industry Report',platform:'Flipflop Labs · 2025',read:'20 min read',href:'#',
+   desc:'Placeholder: a comprehensive industry report covering [topic placeholder], produced for Flipflop Labs. This research was used to inform the GTM strategy and product direction for PathPort. Demonstrates structured analytical thinking and the ability to synthesize market data into actionable insights.',
+   related:['PathPort Whitepaper — Tokenomics, Architecture & GTM','Ambassador Competition — Full Program Design']},
+  {type:'WHITEPAPER',cls:'t-whitepaper',title:'PathPort Whitepaper — Tokenomics, Architecture & GTM',platform:'PathPort · 2025',read:'35 min read',href:'#',
+   desc:'Placeholder: a 60+ page bilingual (EN/ZH) whitepaper covering PathPort\'s tokenomics model, technical architecture, and go-to-market strategy. Written solo and used as the foundational document for ambassador recruitment and investor conversations. Demonstrates the ability to produce institutional-quality documentation from scratch.',
+   related:['Enterprise-Level Industry Report','Ambassador Competition — Full Program Design']},
+  {type:'RULEBOOK',cls:'t-rulebook',title:'Ambassador Competition — Full Program Design',platform:'Flipflop Labs · 2025',read:'15 min read',href:'#',
+   desc:'Placeholder: the complete rulebook and program design for the Footprint Ambassador Competition, covering tier structures, scoring criteria, onboarding flows, and reward mechanics. This document was the operational backbone of the ambassador program that reached 1,000+ participants in 60 days.',
+   related:['PathPort Whitepaper — Tokenomics, Architecture & GTM','Enterprise-Level Industry Report']},
+  {type:'ANALYSIS',cls:'t-analysis',title:'Macro Market Analysis — [placeholder title]',platform:'Trendverse Lab · 2025',read:'10 min read',href:'#',
+   desc:'Placeholder: a macro-level market analysis covering [topic placeholder], published under the Trendverse Lab brand. This piece contextualizes on-chain data within broader macroeconomic trends and regulatory signals. Demonstrates quantitative reasoning and the ability to translate data into narrative insight.',
+   related:['#1 on Foresight News — Web3 Regulatory Analysis','Trade Debrief — [placeholder title]']},
+  {type:'TRADE REVIEW',cls:'t-trade',title:'Trade Debrief — [placeholder title]',platform:'Independent · 2025',read:'6 min read',href:'#',
+   desc:'Placeholder: an independent trade review covering [position/market placeholder], documenting entry rationale, risk management decisions, and outcome analysis. Written as a personal knowledge artifact to systematize learning from live market activity. Demonstrates disciplined analytical process and financial market literacy.',
+   related:['Macro Market Analysis — [placeholder title]','#1 on Foresight News — Web3 Regulatory Analysis']}
+];
+
+let swScrollY=0,swPaused=false,swRaf=null,swLastTime=null;
+const SW_SPEED=40;
+
+function buildCsList(){
+  const el=document.getElementById('cs-list');
+  el.innerHTML=CASES.map((c,i)=>`
+    <div class="cs-item" data-idx="${i}" onclick="openCase(${i})">
+      <div class="cs-item-body">
+        <div class="cs-cat">${c.cat}</div>
+        <div class="cs-title">${c.title}</div>
+        <div class="cs-role">${c.role}</div>
+        <div class="cs-teaser">${c.teaser}</div>
+      </div>
+      <span class="cs-arr">→</span>
+    </div>`).join('');
+}
+
+function openCase(idx){
+  const c=CASES[idx];
+  document.querySelectorAll('.cs-item').forEach((el,i)=>el.classList.toggle('cs-active',i===idx));
+  const link2=c.link2?`<a class="cs-d-link" href="${c.link2.href}" target="_blank">${c.link2.label}</a>`:'';
+  document.getElementById('cs-detail').innerHTML=`
+    <button class="cs-back" onclick="closeCase()">← Back</button>
+    <div class="cs-d-cat">${c.cat}</div>
+    <div class="cs-d-title">${c.title}</div>
+    <div class="cs-d-role">${c.role}</div>
+    <div class="cs-d-img"><i class="ti ti-photo"></i><span>Screenshot coming soon</span></div>
+    <ul class="cs-d-bul">${c.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+    <div class="cs-d-links">
+      <a class="cs-d-link" href="${c.link1.href}" target="_blank">${c.link1.label}</a>
+      ${link2}
+    </div>`;
+  document.getElementById('cs-content').classList.add('cs-open');
+}
+
+function closeCase(){
+  document.getElementById('cs-content').classList.remove('cs-open');
+  document.querySelectorAll('.cs-item').forEach(el=>el.classList.remove('cs-active'));
+}
+
+function buildSwList(){
+  const inner=document.getElementById('sw-inner');
+  if(!inner) return;
+  const html=ARTICLES.map((a,i)=>`
+    <div class="sw-item" data-idx="${i}" onclick="openArticle(${i})">
+      <div class="sw-type ${a.cls}">${a.type}</div>
+      <div class="sw-title">${a.title}</div>
+      <div class="sw-platform">${a.platform}</div>
+    </div>`).join('');
+  inner.innerHTML=html+html; // doubled for seamless loop
+}
+
+function openArticle(idx){
+  const a=ARTICLES[idx];
+  swPaused=true;
+  const relHtml=a.related.map(r=>`<span class="sw-d-rel-link" onclick="closeArticle()">${r}</span>`).join('');
+  document.getElementById('sw-overlay').innerHTML=`
+    <button class="sw-back" onclick="closeArticle()">← Back</button>
+    <div class="sw-type ${a.cls}" style="margin-bottom:8px">${a.type}</div>
+    <div class="sw-d-title">${a.title}</div>
+    <div class="sw-d-meta">${a.platform} · ${a.read}</div>
+    <div class="sw-d-desc">${a.desc}</div>
+    <a class="sw-d-link" href="${a.href}" target="_blank">Read full article →</a>
+    <div class="sw-d-rel-hd">Related work</div>
+    ${relHtml}`;
+  document.getElementById('sw-content').classList.add('sw-open');
+}
+
+function closeArticle(){
+  document.getElementById('sw-content').classList.remove('sw-open');
+  swPaused=false;
+}
+
+function initSwScroll(){
+  const vp=document.getElementById('sw-viewport');
+  const inner=document.getElementById('sw-inner');
+  if(!vp||!inner) return;
+  // Pause on hover
+  vp.addEventListener('mouseenter',()=>{swPaused=true});
+  vp.addEventListener('mouseleave',()=>{if(!document.getElementById('sw-content').classList.contains('sw-open'))swPaused=false});
+  // Disable on mobile
+  if(window.innerWidth<=900) return;
+  function tick(ts){
+    if(!swLastTime) swLastTime=ts;
+    const dt=Math.min(ts-swLastTime,50);
+    swLastTime=ts;
+    if(!swPaused&&inner.scrollHeight>0){
+      swScrollY+=(SW_SPEED*dt)/1000;
+      const half=inner.scrollHeight/2;
+      if(swScrollY>=half) swScrollY-=half;
+      inner.style.transform=`translateY(-${swScrollY}px)`;
+    }
+    swRaf=requestAnimationFrame(tick);
+  }
+  swRaf=requestAnimationFrame(tick);
+}
+
+function initWorkSection(){
+  buildCsList();
+  buildSwList();
+  initSwScroll();
+}
+
 // Scroll reveal
 function initRv(){
   const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}}),{threshold:.08});
@@ -751,7 +989,7 @@ const st=document.createElement('style');
 st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
 document.head.appendChild(st);
 
-setLang('en');initRv();
+setLang('en');initWorkSection();initRv();
  </script> 
 </body>
 </html>
