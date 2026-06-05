@@ -663,7 +663,7 @@ function buildStrip(items){
     inner.appendChild(a);
   });
 }
-let PHASES=[],PHLBL={},activePhase=-1;
+let PHASES=[],PHLBL={},activePhase=-1,currentLang='en';
 
 function _phDetailHTML(p,labels){
   if(!p||!p.roles)return'';
@@ -727,9 +727,10 @@ function openPhase(idx){
   // Build nav row for the opened card
   const nav=document.getElementById('ph-nav-'+idx);
   if(nav){
-    nav.innerHTML=`<span class="ph-nav-lbl">Also in this journey&nbsp;→</span>`+PHASES.map((p,i)=>i===idx?'':
+    const ld=D[currentLang]||D.en;
+    nav.innerHTML=`<span class="ph-nav-lbl">${ld.phNavLbl}</span>`+PHASES.map((p,i)=>i===idx?'':
       `<button class="ph-mini-pill" onclick="event.stopPropagation();openPhase(${i})"><span style="color:${p.color}">${p.num}</span>&nbsp;${p.title}</button>`
-    ).join('')+`<button class="ph-close-btn" onclick="event.stopPropagation();closePhase()">收起</button>`;
+    ).join('')+`<button class="ph-close-btn" onclick="event.stopPropagation();closePhase()">${ld.phClose}</button>`;
   }
 }
 
@@ -744,7 +745,10 @@ function buildPhaseDetail(){/* no-op — detail now embedded in cards */}
 // ── Data ──
 const D={
 en:{
-  navSub:'Product · Fintech · Web3',navExp:'Experience',navWork:'Work',navSkills:'Skills',navContact:'Contact',
+  navSub:'Product · Fintech · Web3',navExp:'Experience',navWork:'Work',navWr:'Writing',navSkills:'Skills',navContact:'Contact',
+  phNavLbl:'Also in this journey →',phClose:'Collapse',
+  seWorkT:'Work',seWorkS:'Three projects I built, operated, or shipped — end to end',
+  seWrT:'Writing',seWrS:'Research, analysis, and published work — demonstrating how I collect, process, and communicate complex information',
   hEyebrow:'Product · Fintech · Web3',
   hTitle:'Building where finance meets <span class="grad">emerging tech</span>',
   hSub:'Product manager and independent builder — from $20M banking portfolios to Web3 platforms and AI products. I ship end to end.',
@@ -819,9 +823,13 @@ en:{
         ach:['Shipped a working product solo, end to end','Managed investor pipeline — decks, demos, business cases','Maintains an active and growing investor pipeline']},
      ]},
   ],
+  narr:null,// falls back to NARR global (English)
 },
 zh:{
-  navSub:'产品 · 金融科技 · Web3',navExp:'经历',navWork:'作品',navSkills:'能力',navContact:'联系',
+  navSub:'产品 · 金融科技 · Web3',navExp:'经历',navWork:'案例',navWr:'写作',navSkills:'能力',navContact:'联系',
+  phNavLbl:'查看其他阶段 →',phClose:'收起',
+  seWorkT:'项目案例',seWorkS:'三个独立参与构建、运营或交付的项目',
+  seWrT:'写作',seWrS:'研究、分析与已发表作品 —— 展示我收集、处理和传达复杂信息的能力',
   hEyebrow:'产品 · 金融科技 · WEB3',
   hTitle:'在金融与<span class="grad">新兴科技</span>的交汇处构建',
   hSub:'产品经理 / 独立构建者 —— 从 $2000 万银行资产组合，到 Web3 平台与 AI 产品，端到端交付。',
@@ -844,6 +852,35 @@ zh:{
     fin:{cat:'Finance',desc:'投资 · 风控 · 资产'},
   },
   ctEy:'保持联系',ctT:'联系我',ctSub:'寻找多伦多产品经理与商业分析师职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
+  narr:[
+    {cat:'运营',yr:'2025',title:'PathPort 大使计划',role:'增长与运营负责人',
+     outcome:'从零到60天内 1,000+ 大使',
+     text:'占位：PathPort 需要在非洲和东南亚从零建立社区——没有品牌基础，没有工具，没有任何参考模板。我独立设计并执行了整个计划架构。',
+     pts:['占位：核心挑战——没有现有社区，没有模板，两个大洲的市场动态完全未知。',
+          '占位：决策——设计了多层竞争结构，具有清晰的激励机制和简化的入职流程。',
+          '占位：执行——主导5–6个国家的每周AMA，编写完整计划规则手册，管理大使沟通。',
+          '占位：结果——60天内扩展至1,000+大使；PathPort平台周活流量增长10倍。',
+          '占位：展示能力——设计可规模化人际网络系统的能力，无需直接监督。'],
+     links:[{label:'查看上线版本',href:'#'},{label:'阅读白皮书',href:'#'}]},
+    {cat:'产品',yr:'2025–',title:'Harena — AI 金融平台',role:'联合创始人 & 产品经理',
+     outcome:'5次重大转型。全栈交付。活跃投资人管线。',
+     text:'占位：Harena 是我从零构建的AI驱动金融智能平台。随着对市场真实需求的不断探索，产品历经5个不同战略方向，同时在每个阶段持续交付。',
+     pts:['占位：核心挑战——在模糊中建立信心；每次转型都需要放弃之前工作并重建产品逻辑。',
+          '占位：决策——采用快速迭代循环，使用 Claude Code、Lovable 和 Figma；优先学习速度而非功能打磨。',
+          '占位：执行——拥有完整产品生命周期：战略、设计、前端交付、后端搭建和投资人关系。',
+          '占位：结果——独立完成产品从零到上线的全栈交付；投资人管线持续活跃。',
+          '占位：展示能力——不确定性下的产品判断力、多次转型中的韧性、全栈所有权。'],
+     links:[{label:'查看上线版本',href:'#'},{label:'查看设计稿',href:'#'}]},
+    {cat:'开发',yr:'2025–',title:'Engram — 个人知识系统',role:'独立开发者',
+     outcome:'已上线，每日使用。完全独立构建。',
+     text:'占位：Engram 是我为自己设计和构建的私人知识工作台——现有工具无法跟上 AI 辅助工作的节奏，它将日常 AI 对话转化为结构化、可回顾的长期记忆。',
+     pts:['占位：核心挑战——设计能通过 MCP 与 Claude Code 原生集成、同时足够轻量可自托管的架构。',
+          '占位：决策——选择 Cloudflare Workers + D1 实现边缘原生性能；为 AI 客户端集成构建自定义 MCP 服务器。',
+          '占位：执行——设计系统，用 React/TypeScript 构建前端，在 Cloudflare 基础设施上部署。无团队。',
+          '占位：结果——已在生产环境运行；每日用于知识捕捉和 AI 辅助回顾与综合。',
+          '占位：展示能力——独立交付真实软件、做出基础设施决策、构建解决真实问题工具的能力。'],
+     links:[{label:'查看上线版本',href:'https://engram-b14.pages.dev'}]}
+  ],
   strip:[
     {title:'Foresight News月榜第一 — Web3监管分析',meta:'美国CLARITY法案与新加坡MAS · 全平台月度阅读量第一 · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-article',badgeCls:'ba',badgeLbl:'文章',linkLbl:'阅读',img:''},
     {title:'DeFi宏观展望与市场结构分析',meta:'链捕手 · Trendverse Lab · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-file-text',badgeCls:'ba',badgeLbl:'文章',linkLbl:'阅读',img:''},
@@ -901,6 +938,7 @@ zh:{
 
 function setText(id,html){const el=document.getElementById(id);if(el)el.innerHTML=html}
 function setLang(lang){
+  currentLang=lang;
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',(lang==='en'&&b.textContent==='EN')||(lang==='zh'&&b.textContent==='中')));
   const d=D[lang];
   setText('nav-sub',d.navSub);setText('nav-exp',d.navExp);setText('nav-work',d.navWork);if(d.navWr)setText('nav-wr',d.navWr);setText('nav-skills',d.navSkills);setText('nav-contact',d.navContact);
@@ -909,11 +947,15 @@ function setLang(lang){
   setText('por-ph',d.porPh);setText('pcap-t',d.pcapT);setText('pcap-s',d.pcapS);
   setText('fc1',d.fc1);setText('fc2',d.fc2);setText('fc3',d.fc3);
   setText('se-exp-t',d.seExpT);setText('se-exp-s',d.seExpS);
-  setText('se-work-ey',d.seWorkEy);setText('se-work-t',d.seWorkT);setText('se-work-s',d.seWorkS);setText('strip-lbl',d.stripLbl);
-  setText('eg-ey',d.egEy);setText('eg-desc',d.egDesc);setText('eg-cta',d.egCta);setText('eg-ph',d.egPh);
-  setText('se-sk-ey',d.seSkEy);setText('se-sk-t',d.seSkT);setText('se-sk-s',d.seSkS);
-  setText('ct-ey',d.ctEy);setText('ct-t',d.ctT);setText('ct-sub',d.ctSub);setText('ct-wr',d.ctWr);setText('ct-ft',d.ctFt);
-  buildPhases(d.phases,{kw:d.kwLabel,details:d.detailsLabel,resp:d.respLabel,ach:d.achLabel});buildOrb(d);
+  if(d.seWorkT)setText('se-work-t',d.seWorkT);if(d.seWorkS)setText('se-work-s',d.seWorkS);
+  if(d.seWrT)setText('se-wr-t',d.seWrT);if(d.seWrS)setText('se-wr-s',d.seWrS);
+  setText('se-sk-t',d.seSkT);setText('se-sk-s',d.seSkS);
+  setText('ct-t',d.ctT);setText('ct-sub',d.ctSub);setText('ct-wr',d.ctWr);setText('ct-ft',d.ctFt);
+  buildPhases(d.phases,{kw:d.kwLabel,details:d.detailsLabel,resp:d.respLabel,ach:d.achLabel});
+  if(d.narr)buildNarrCases(d.narr);
+  buildOrb(d);
+  // Re-open active phase with new language labels
+  if(activePhase>=0){const tmp=activePhase;closePhase();openPhase(tmp);}
 }
 
 // ── Narrative case data ──
@@ -972,10 +1014,11 @@ const WRITING=[
    desc:'Placeholder: an independent trade review documenting entry rationale, risk management decisions, and outcome analysis for [position/market placeholder]. Written as a personal knowledge artifact to systematize learning from live market activity. Demonstrates disciplined analytical process and financial market literacy.'}
 ];
 
-function buildNarrCases(){
+function buildNarrCases(data){
   const el=document.getElementById('narr-cases');
   if(!el)return;
-  el.innerHTML=NARR.map(c=>`
+  const src=data||NARR;
+  el.innerHTML=src.map(c=>`
     <div class="narr-case">
       <div class="narr-top"><span class="narr-cat">${c.cat}</span><span class="narr-yr">${c.yr}</span></div>
       <h3 class="narr-title">${c.title}</h3>
@@ -1168,7 +1211,7 @@ const st=document.createElement('style');
 st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
 document.head.appendChild(st);
 
-buildNarrCases();buildWriting();setLang('en');initWorkSection();initRv();
+buildWriting();setLang('en');initWorkSection();initRv();
  </script> 
 </body>
 </html>
