@@ -598,7 +598,7 @@ function buildOrb(d){
 
 // ── Builders ──
 function buildStrip(items){
-  const inner=document.getElementById('scroll-inner');inner.innerHTML='';
+  const inner=document.getElementById('scroll-inner');if(!inner)return;inner.innerHTML='';
   items.forEach(it=>{
     const a=document.createElement('a');a.className='sc-card';a.href=it.href;a.target='_blank';
     a.innerHTML=`<div class="imgw r169">${it.img?`<img src="${it.img}" alt="">`:`<div class="imgw-ph"><i class="ti ${it.icon||'ti-photo'}"></i></div>`}</div><div class="sc-body"><span class="badge ${it.badgeCls}">${it.badgeLbl}</span><div class="sc-title">${it.title}</div><div class="sc-meta">${it.meta}</div><span class="see">${it.linkLbl} <i class="ti ti-arrow-right"></i></span></div>`;
@@ -823,7 +823,7 @@ function setLang(lang){
   setText('eg-ey',d.egEy);setText('eg-desc',d.egDesc);setText('eg-cta',d.egCta);setText('eg-ph',d.egPh);
   setText('se-sk-ey',d.seSkEy);setText('se-sk-t',d.seSkT);setText('se-sk-s',d.seSkS);
   setText('ct-ey',d.ctEy);setText('ct-t',d.ctT);setText('ct-sub',d.ctSub);setText('ct-wr',d.ctWr);setText('ct-ft',d.ctFt);
-  buildStrip(d.strip);buildPhases(d.phases,{kw:d.kwLabel,details:d.detailsLabel,resp:d.respLabel,ach:d.achLabel});buildOrb(d);
+  buildPhases(d.phases,{kw:d.kwLabel,details:d.detailsLabel,resp:d.respLabel,ach:d.achLabel});buildOrb(d);
 }
 
 // ── Work & Portfolio section ──
