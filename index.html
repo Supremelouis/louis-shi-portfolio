@@ -8,7 +8,10 @@
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-#tree-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+/* Parallax background */
+#plx-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.plx-l{position:absolute;inset:-25%;will-change:transform}
+.plx-orb{position:absolute;border-radius:50%}
 :root{
   --txt:#1d1d1f;--txt2:#6e6e73;--txt3:#a1a1a6;
   --ac:#0071e3;--ac2:#5e5ce6;
@@ -466,7 +469,33 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 <body>
 
 <!-- Nav -->
-<canvas id="tree-bg"></canvas>
+<div id="plx-bg" aria-hidden="true">
+  <!-- Layer 1: farthest — huge, ultra-blurred orbs, barely moves -->
+  <div class="plx-l" id="plx-l1">
+    <div class="plx-orb" style="width:1100px;height:1100px;top:-12vh;right:-4vw;background:radial-gradient(circle,rgba(139,92,246,.22) 0%,transparent 68%);filter:blur(90px)"></div>
+    <div class="plx-orb" style="width:900px;height:900px;bottom:-8vh;left:-6vw;background:radial-gradient(circle,rgba(52,211,153,.18) 0%,transparent 68%);filter:blur(80px)"></div>
+  </div>
+  <!-- Layer 2 -->
+  <div class="plx-l" id="plx-l2">
+    <div class="plx-orb" style="width:720px;height:720px;top:8vh;left:18vw;background:radial-gradient(circle,rgba(236,72,153,.17) 0%,transparent 68%);filter:blur(68px)"></div>
+    <div class="plx-orb" style="width:680px;height:680px;bottom:4vh;right:8vw;background:radial-gradient(circle,rgba(59,130,246,.20) 0%,transparent 68%);filter:blur(62px)"></div>
+  </div>
+  <!-- Layer 3 -->
+  <div class="plx-l" id="plx-l3">
+    <div class="plx-orb" style="width:500px;height:500px;top:28vh;right:22vw;background:radial-gradient(circle,rgba(251,191,36,.18) 0%,transparent 68%);filter:blur(48px)"></div>
+    <div class="plx-orb" style="width:460px;height:460px;top:52vh;left:6vw;background:radial-gradient(circle,rgba(139,92,246,.22) 0%,transparent 68%);filter:blur(44px)"></div>
+  </div>
+  <!-- Layer 4 -->
+  <div class="plx-l" id="plx-l4">
+    <div class="plx-orb" style="width:300px;height:300px;top:14vh;left:40vw;background:radial-gradient(circle,rgba(20,184,166,.24) 0%,transparent 65%);filter:blur(30px)"></div>
+    <div class="plx-orb" style="width:260px;height:260px;top:68vh;right:18vw;background:radial-gradient(circle,rgba(236,72,153,.22) 0%,transparent 65%);filter:blur(26px)"></div>
+  </div>
+  <!-- Layer 5: nearest — sharpest, moves most with mouse -->
+  <div class="plx-l" id="plx-l5">
+    <div class="plx-orb" style="width:160px;height:160px;top:7vh;left:10vw;background:radial-gradient(circle,rgba(59,130,246,.30) 0%,transparent 65%);filter:blur(14px)"></div>
+    <div class="plx-orb" style="width:130px;height:130px;top:78vh;left:68vw;background:radial-gradient(circle,rgba(251,191,36,.28) 0%,transparent 65%);filter:blur(10px)"></div>
+  </div>
+</div>
 <nav>
   <div class="nav-id">
     <div class="nav-av">
@@ -1213,202 +1242,44 @@ const st=document.createElement('style');
 st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
 document.head.appendChild(st);
 
-// ── Rain on glass background ──
+// ── 3D Mouse Parallax background ──
 function initTree(){
-  const canvas=document.getElementById('tree-bg');
-  if(!canvas)return;
-  const ctx=canvas.getContext('2d');
-  canvas.style.opacity='1';
+  const ids=['plx-l1','plx-l2','plx-l3','plx-l4','plx-l5'];
+  const layers=ids.map(id=>document.getElementById(id));
+  if(!layers[0])return;
 
-  let W,H,drops=[],runs=[];
-  // Pre-render static background once (sky + treeline)
-  let bgCanvas=null;
+  // Per-layer displacement factors (px at full mouse offset)
+  const FACTORS=[22,46,74,105,148];
+  const EASE=0.055; // lerp smoothing (lower = smoother/slower)
+  let mx=0,my=0;
+  const cx=new Array(5).fill(0);
+  const cy=new Array(5).fill(0);
 
-  function buildBg(){
-    bgCanvas=document.createElement('canvas');
-    bgCanvas.width=W; bgCanvas.height=H;
-    const bc=bgCanvas.getContext('2d');
+  // Normalise mouse to [-1,+1]
+  document.addEventListener('mousemove',e=>{
+    mx=(e.clientX/window.innerWidth -0.5)*2;
+    my=(e.clientY/window.innerHeight-0.5)*2;
+  },{passive:true});
 
-    // Overcast sky gradient
-    const sky=bc.createLinearGradient(0,0,0,H);
-    sky.addColorStop(0,'#6e8ea4');
-    sky.addColorStop(0.35,'#8daab8');
-    sky.addColorStop(0.6,'#a8c0cc');
-    sky.addColorStop(1,'#7e9dae');
-    bc.fillStyle=sky; bc.fillRect(0,0,W,H);
+  // Smooth gyroscope-style tilt on mobile
+  window.addEventListener('deviceorientation',e=>{
+    if(e.gamma==null)return;
+    mx=Math.max(-1,Math.min(1,e.gamma/20));
+    my=Math.max(-1,Math.min(1,(e.beta-30)/30));
+  },{passive:true});
 
-    // Soft treeline silhouette (blurred using multiple passes)
-    for(let pass=0;pass<5;pass++){
-      const spread=pass*10;
-      bc.save();
-      bc.fillStyle=`rgba(35,50,60,${0.14-pass*0.02})`;
-      bc.beginPath();
-      bc.moveTo(-spread,H);
-      for(let x=0;x<=W+spread;x+=30){
-        // Irregular canopy shape
-        const base=H*0.60;
-        const hv=Math.sin(x*0.022+1.2)*H*0.07+Math.cos(x*0.013)*H*0.05+Math.sin(x*0.008+0.5)*H*0.04;
-        bc.lineTo(x-spread,base-hv);
-      }
-      bc.lineTo(W+spread,H); bc.closePath(); bc.fill();
-      bc.restore();
-    }
+  function lerp(a,b,t){return a+(b-a)*t;}
 
-    // Horizon atmospheric haze
-    const haze=bc.createLinearGradient(0,H*0.52,0,H*0.72);
-    haze.addColorStop(0,'rgba(170,195,210,0)');
-    haze.addColorStop(1,'rgba(170,195,210,0.28)');
-    bc.fillStyle=haze; bc.fillRect(0,0,W,H);
-  }
-
-  // Create a static glass droplet
-  function mkDrop(aged){
-    const maxR=2.5+Math.random()*13;
-    return{
-      x:Math.random()*W, y:Math.random()*H,
-      r:aged?Math.random()*maxR*0.9:0.4,
-      maxR, gr:0.006+Math.random()*0.014
-    };
-  }
-
-  // Create a running rivulet
-  function mkRun(x,y){
-    return{
-      x,y,r:5+Math.random()*9,
-      vy:1.0+Math.random()*2.2,
-      trail:[],
-      wph:0, wsp:(Math.random()-0.5)*0.05
-    };
-  }
-
-  function resize(){
-    W=canvas.width=window.innerWidth;
-    H=canvas.height=window.innerHeight;
-    buildBg();
-    drops=[]; runs=[];
-    for(let i=0;i<130;i++) drops.push(mkDrop(true));
-  }
-  window.addEventListener('resize',resize,{passive:true});
-  resize();
-
-  // Draw one glass droplet (lens effect)
-  function drawDrop(d){
-    if(d.r<0.4)return;
-    const{x,y,r}=d;
-
-    // Lens interior — brightened, slightly tinted
-    const lg=ctx.createRadialGradient(x-r*.28,y-r*.32,r*.05,x,y,r*1.05);
-    lg.addColorStop(0,'rgba(220,235,245,0.82)');
-    lg.addColorStop(0.55,'rgba(175,205,222,0.52)');
-    lg.addColorStop(1,'rgba(120,158,182,0.38)');
-    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
-    ctx.fillStyle=lg; ctx.fill();
-
-    // Top-left specular highlight
-    ctx.beginPath();
-    ctx.arc(x-r*.33,y-r*.40,r*.27,0,Math.PI*2);
-    ctx.fillStyle='rgba(255,255,255,0.78)'; ctx.fill();
-
-    // Smaller secondary highlight
-    ctx.beginPath();
-    ctx.arc(x+r*.18,y-r*.22,r*.10,0,Math.PI*2);
-    ctx.fillStyle='rgba(255,255,255,0.42)'; ctx.fill();
-
-    // Bottom shadow crescent
-    ctx.beginPath();
-    ctx.arc(x+r*.08,y+r*.28,r*.38,0,Math.PI*2);
-    ctx.fillStyle='rgba(70,110,140,0.14)'; ctx.fill();
-
-    // Rim
-    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
-    ctx.strokeStyle='rgba(140,175,200,0.32)';
-    ctx.lineWidth=0.6; ctx.stroke();
-  }
-
-  // Draw a running rivulet with trail
-  function drawRun(s){
-    if(s.trail.length<2)return;
-    // Trail streak
-    ctx.beginPath();
-    ctx.moveTo(s.trail[0].x,s.trail[0].y);
-    s.trail.forEach(pt=>ctx.lineTo(pt.x,pt.y));
-    ctx.strokeStyle='rgba(175,208,228,0.28)';
-    ctx.lineWidth=s.r*.52; ctx.lineCap='round'; ctx.lineJoin='round';
-    ctx.stroke();
-
-    // Head droplet (elongated teardrop)
-    const last=s.trail[s.trail.length-1];
-    const hg=ctx.createRadialGradient(last.x-s.r*.22,last.y-s.r*.28,s.r*.06,last.x,last.y,s.r);
-    hg.addColorStop(0,'rgba(240,252,255,0.78)');
-    hg.addColorStop(0.55,'rgba(180,215,235,0.50)');
-    hg.addColorStop(1,'rgba(125,168,198,0.25)');
-    ctx.beginPath();
-    ctx.ellipse(last.x,last.y,s.r*.62,s.r,0,0,Math.PI*2);
-    ctx.fillStyle=hg; ctx.fill();
-  }
-
-  let lastDropT=0,lastRunT=0,rainOffset=0;
-
-  function tick(ts){
-    // Background
-    ctx.drawImage(bgCanvas,0,0);
-
-    // Falling rain lines in distance (fast, thin)
-    rainOffset=(rainOffset+0.9)%60;
-    ctx.save();
-    ctx.strokeStyle='rgba(175,200,220,0.22)';
-    ctx.lineWidth=0.65;
-    for(let i=0;i<55;i++){
-      const rx=((i*37+rainOffset*2.2)%W);
-      const ry=((i*29+rainOffset*3.1)%H);
-      ctx.beginPath();
-      ctx.moveTo(rx-3,ry-10);
-      ctx.lineTo(rx+1.5,ry+3);
-      ctx.stroke();
-    }
-    ctx.restore();
-
-    // Spawn static drops
-    if(ts-lastDropT>320){
-      for(let i=0;i<3;i++) drops.push(mkDrop(false));
-      if(drops.length>280) drops.splice(0,drops.length-280);
-      lastDropT=ts;
-    }
-
-    // Spawn rivulets
-    if(ts-lastRunT>1600+Math.random()*2200){
-      runs.push(mkRun(W*.06+Math.random()*W*.88,Math.random()*H*.28));
-      if(runs.length>18) runs.splice(0,1);
-      lastRunT=ts;
-    }
-
-    // Grow drops; if over max → spawn rivulet and reset
-    drops.forEach(d=>{
-      d.r+=d.gr;
-      if(d.r>d.maxR){
-        if(d.maxR>8) runs.push(mkRun(d.x,d.y));
-        d.r=0.4; d.x=Math.random()*W; d.y=Math.random()*H;
-        d.maxR=2.5+Math.random()*13;
-      }
-      drawDrop(d);
+  function tick(){
+    layers.forEach((l,i)=>{
+      if(!l)return;
+      cx[i]=lerp(cx[i],mx*FACTORS[i],EASE);
+      cy[i]=lerp(cy[i],my*FACTORS[i],EASE);
+      l.style.transform=`translate(${cx[i]}px,${cy[i]}px)`;
     });
-
-    // Move and draw rivulets
-    for(let i=runs.length-1;i>=0;i--){
-      const s=runs[i];
-      s.wph+=s.wsp;
-      s.x+=Math.sin(s.wph)*.7;
-      s.y+=s.vy;
-      s.trail.push({x:s.x,y:s.y});
-      if(s.trail.length>20) s.trail.shift();
-      if(s.y>H+20) runs.splice(i,1);
-      else drawRun(s);
-    }
-
     requestAnimationFrame(tick);
   }
-
-  requestAnimationFrame(tick);
+  tick();
 }
 
 buildWriting();setLang('en');initWorkSection();initRv();initTree(); // initTree = flow field
