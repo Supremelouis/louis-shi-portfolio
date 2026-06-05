@@ -1213,180 +1213,85 @@ const st=document.createElement('style');
 st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
 document.head.appendChild(st);
 
-// ── Tree background animation ──
+// ── Flow field background ──
 function initTree(){
   const canvas=document.getElementById('tree-bg');
   if(!canvas)return;
   const ctx=canvas.getContext('2d');
+  // Canvas at low opacity — body gradient shows through
+  canvas.style.opacity='0.48';
 
-  const LEAF_COLS=[
-    'rgba(46,96,50,0.88)','rgba(62,120,58,0.85)','rgba(38,84,44,0.9)',
-    'rgba(74,140,68,0.82)','rgba(54,112,56,0.87)','rgba(85,150,72,0.80)',
-    'rgba(102,160,55,0.78)','rgba(118,172,48,0.76)','rgba(130,168,42,0.74)',
-    'rgba(148,180,38,0.72)'
+  // Soft palette: slate-blue, sage-green, lavender, teal, dusty-rose
+  const COLS=[
+    [100,148,182],[118,162,138],[150,132,175],[125,172,165],[165,138,158]
   ];
 
-  let W,H,leaves=[],scrollV=0,lastSY=0,clkTime=0,barkLines=[];
+  let W,H,pts=[],t=0;
+  const N=320;          // particle count
+  const SPD=1.5;        // base speed
+  const SC=0.0028;      // field spatial scale
+  const TS=0.00036;     // time scale (field evolution speed)
 
-  // Geometry helpers
-  const trunkX=()=>W*0.80;
-  const canopyY=()=>-H*0.04;
-  const canopyRX=()=>Math.min(W*0.34,H*0.42);
-  const canopyRY=()=>Math.min(W*0.27,H*0.38);
-  const canopyBottom=()=>canopyY()+canopyRY()*0.85;
+  function mkp(){
+    return{
+      x:Math.random()*W, y:Math.random()*H,
+      px:0, py:0,
+      age:Math.random()*130,
+      maxAge:90+Math.random()*200,
+      ci:Math.floor(Math.random()*COLS.length),
+      spd:SPD*(0.45+Math.random()*0.85)
+    };
+  }
 
   function resize(){
     W=canvas.width=window.innerWidth;
     H=canvas.height=window.innerHeight;
-    // Pre-compute bark lines (random but stable per resize)
-    barkLines=[];
-    const cb=canopyBottom();
-    for(let i=0;i<22;i++){
-      barkLines.push({
-        yFrac:(cb+(H-cb)*(i/21.5))/H,
-        curve:(Math.random()-0.5)*22,
-        w:Math.random()*0.5+0.25
-      });
-    }
+    pts=Array.from({length:N},mkp);
+    pts.forEach(p=>{p.px=p.x;p.py=p.y});
   }
-  window.addEventListener('resize',resize);
+  window.addEventListener('resize',resize,{passive:true});
   resize();
 
-  window.addEventListener('scroll',()=>{
-    const sy=window.scrollY;
-    scrollV=Math.min(Math.abs(sy-lastSY),100);
-    lastSY=sy;
-  },{passive:true});
-
-  // ── Draw trunk ──
-  function drawTrunk(){
-    const tx=trunkX(),cb=canopyBottom();
-    const topHW=18,botHW=30;
-    const grad=ctx.createLinearGradient(tx-botHW,0,tx+botHW,0);
-    grad.addColorStop(0,'#4a2208');
-    grad.addColorStop(0.22,'#7a3a10');
-    grad.addColorStop(0.5,'#9c5220');
-    grad.addColorStop(0.78,'#7a3d10');
-    grad.addColorStop(1,'#3e1a06');
-
-    ctx.beginPath();
-    ctx.moveTo(tx-topHW,cb);
-    ctx.bezierCurveTo(tx-topHW-6,H*0.28,tx-botHW-4,H*0.62,tx-botHW,H+4);
-    ctx.lineTo(tx+botHW,H+4);
-    ctx.bezierCurveTo(tx+botHW+4,H*0.62,tx+topHW+6,H*0.28,tx+topHW,cb);
-    ctx.closePath();
-    ctx.fillStyle=grad;
-    ctx.fill();
-
-    // Bark texture
-    ctx.save();ctx.globalAlpha=0.13;
-    barkLines.forEach(bl=>{
-      const y=bl.yFrac*H;
-      const hw=topHW+(botHW-topHW)*bl.yFrac;
-      ctx.beginPath();
-      ctx.moveTo(tx-hw+4,y);
-      ctx.quadraticCurveTo(tx+bl.curve*0.6,y+11,tx+hw-4,y);
-      ctx.strokeStyle='#2a1005';ctx.lineWidth=bl.w;ctx.stroke();
-    });
-    ctx.restore();
+  // Field angle: overlay of 3 sin/cos frequencies → organic, non-repeating feel
+  function ang(x,y,time){
+    return(
+      Math.sin(x*SC       + time*0.55)*Math.PI*2.2+
+      Math.cos(y*SC*1.25  + time*0.38)*Math.PI*1.4+
+      Math.sin((x+y)*SC*0.7+time*0.46)*Math.PI*0.9
+    );
   }
 
-  // ── Draw canopy ──
-  function drawCanopy(sway){
-    const tx=trunkX(),cy=canopyY();
-    const rx=canopyRX(),ry=canopyRY();
-    const cx=tx-rx*0.22; // center leans left from trunk
-
-    const clusters=[
-      {dx:0,        dy:ry*0.04, rx:rx*0.90,ry:ry*0.82, c:'rgba(38,88,42,0.78)',sw:1.0},
-      {dx:-rx*0.44, dy:ry*0.24, rx:rx*0.62,ry:ry*0.58, c:'rgba(50,108,50,0.73)',sw:0.75},
-      {dx: rx*0.36, dy:ry*0.20, rx:rx*0.58,ry:ry*0.54, c:'rgba(32,80,38,0.75)',sw:0.85},
-      {dx:-rx*0.16, dy:-ry*0.14,rx:rx*0.74,ry:ry*0.54, c:'rgba(58,118,56,0.70)',sw:0.65},
-      {dx: rx*0.14, dy:ry*0.42, rx:rx*0.54,ry:ry*0.48, c:'rgba(42,98,46,0.68)',sw:0.90},
-      {dx:-rx*0.40, dy:ry*0.44, rx:rx*0.46,ry:ry*0.44, c:'rgba(52,112,52,0.65)',sw:0.70},
-      {dx: rx*0.32, dy:ry*0.40, rx:rx*0.44,ry:ry*0.42, c:'rgba(36,92,40,0.67)',sw:0.80},
-      {dx: rx*0.05, dy:-ry*0.28,rx:rx*0.60,ry:ry*0.44, c:'rgba(64,128,60,0.66)',sw:0.60},
-    ];
-
-    clusters.forEach((cl,i)=>{
-      const clSw=sway*cl.sw+Math.sin(clkTime*0.6+i*0.9)*2.5;
-      ctx.beginPath();
-      ctx.ellipse(cx+cl.dx+clSw,cy+cl.dy,cl.rx,cl.ry,0,0,Math.PI*2);
-      ctx.fillStyle=cl.c;ctx.fill();
-    });
-  }
-
-  // ── Spawn leaf ──
-  function spawnLeaf(){
-    const tx=trunkX(),cy=canopyY();
-    const rx=canopyRX(),ry=canopyRY();
-    const cx=tx-rx*0.22;
-    const rate=0.22+scrollV*0.06;
-    if(Math.random()>rate)return;
-    const a=Math.random()*Math.PI*2;
-    const r=Math.random()*0.80;
-    leaves.push({
-      x:cx+Math.cos(a)*rx*r*0.95,
-      y:cy+Math.sin(a)*ry*r+ry*0.38,
-      vx:(Math.random()-0.5)*1.8,
-      vy:0.35+Math.random()*1.0,
-      rot:Math.random()*Math.PI*2,
-      rotV:(Math.random()-0.5)*0.075,
-      sw:Math.random()*Math.PI*2,
-      swS:0.016+Math.random()*0.024,
-      sz:3+Math.random()*8,
-      col:LEAF_COLS[Math.floor(Math.random()*LEAF_COLS.length)],
-      life:1
-    });
-  }
-
-  // ── Draw one leaf ──
-  function drawLeaf(l){
-    ctx.save();
-    ctx.translate(l.x,l.y);ctx.rotate(l.rot);
-    ctx.globalAlpha=l.life*0.82;
-    ctx.fillStyle=l.col;
-    const s=l.sz;
-    ctx.beginPath();
-    ctx.moveTo(0,-s);
-    ctx.bezierCurveTo(s*0.76,-s*0.33,s*0.76,s*0.26,0,s*0.46);
-    ctx.bezierCurveTo(-s*0.76,s*0.26,-s*0.76,-s*0.33,0,-s);
-    ctx.fill();
-    ctx.beginPath();ctx.moveTo(0,-s);ctx.lineTo(0,s*0.46);
-    ctx.strokeStyle='rgba(0,0,0,0.11)';ctx.lineWidth=0.5;ctx.stroke();
-    ctx.restore();
-  }
-
-  // ── Animation loop ──
   function tick(ts){
-    clkTime=ts*0.001;
-    scrollV*=0.86;
-
-    const sway=Math.sin(clkTime*0.42)*9+Math.sin(clkTime*0.27)*4;
-
+    t=ts*TS;
     ctx.clearRect(0,0,W,H);
-    drawTrunk();
-    drawCanopy(sway);
 
-    // Update leaves
-    for(let i=leaves.length-1;i>=0;i--){
-      const l=leaves[i];
-      l.sw+=l.swS; l.x+=l.vx+Math.sin(l.sw)*1.3;
-      l.y+=l.vy; l.rot+=l.rotV;
-      if(l.y>H-70) l.life=Math.max(0,(H-l.y)/70);
-      if(l.y>H+4||l.life<0.01) leaves.splice(i,1);
-    }
-    if(leaves.length>220) leaves.splice(0,leaves.length-220);
+    pts.forEach(p=>{
+      p.age++;
+      // reset when life ends or particle leaves viewport
+      if(p.age>p.maxAge||p.x<-8||p.x>W+8||p.y<-8||p.y>H+8){
+        const n=mkp();n.age=0;Object.assign(p,n);p.px=p.x;p.py=p.y;return;
+      }
+      p.px=p.x; p.py=p.y;
+      const a=ang(p.x,p.y,t);
+      p.x+=Math.cos(a)*p.spd;
+      p.y+=Math.sin(a)*p.spd;
 
-    spawnLeaf();
-    leaves.forEach(drawLeaf);
+      // Opacity: ease-in at birth, ease-out at death
+      const lr=p.age/p.maxAge;
+      const op=Math.sin(lr*Math.PI)*0.68;
+      const[r,g,b]=COLS[p.ci];
+      ctx.strokeStyle=`rgba(${r},${g},${b},${op})`;
+      ctx.lineWidth=0.85+lr*0.55;
+      ctx.beginPath();ctx.moveTo(p.px,p.py);ctx.lineTo(p.x,p.y);ctx.stroke();
+    });
+
     requestAnimationFrame(tick);
   }
 
   requestAnimationFrame(tick);
 }
 
-buildWriting();setLang('en');initWorkSection();initRv();initTree();
+buildWriting();setLang('en');initWorkSection();initRv();initTree(); // initTree = flow field
  </script> 
 </body>
 </html>
