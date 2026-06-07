@@ -262,21 +262,16 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .engram-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .engram-img .imgw-ph{flex-direction:column;gap:8px;font-size:12px}
 
-/* ── Skill Orb Map ── */
-.orb-panel{padding:20px;margin-top:6px}
-.orb-stage{position:relative;width:100%;height:540px;max-width:860px;margin:0 auto}
+/* ── Neural Network Skill Map ── */
+.nn-wrap{padding:0;margin-top:10px}
+.nn-stage{position:relative;width:100%;height:480px;overflow:visible;max-width:920px;margin:0 auto}
 #orb-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.orb-label{position:absolute;pointer-events:auto;cursor:default;transition:transform .25s}
-.ol-center{transform:translate(-50%,-50%)}
-.ol-r{transform:translateY(-50%)}
-.ol-r:hover{transform:translateY(-50%) scale(1.05)}
-.ol-l{transform:translate(-100%,-50%)}
-.ol-l:hover{transform:translate(-100%,-50%) scale(1.05)}
-.ol-cat{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--txt3);margin-bottom:3px}
-.ol-desc{font-size:12.5px;font-weight:500;color:var(--txt);line-height:1.45;white-space:nowrap}
-.ol-l .ol-cat,.ol-l .ol-desc{text-align:right}
-.ol-c-name{font-size:15px;font-weight:700;color:var(--txt)}
-.ol-c-sub{font-size:11px;color:var(--txt2);margin-top:2px}
+.nn-label{position:absolute;pointer-events:none;text-align:center}
+.nn-lbl-root{font-size:13px;font-weight:800;letter-spacing:-.01em;line-height:1.2;white-space:nowrap}
+.nn-lbl-skill{font-size:11px;font-weight:700;letter-spacing:.02em;line-height:1.2;white-space:nowrap}
+.nn-lbl-sub{font-size:9.5px;color:var(--txt3);margin-top:2px;line-height:1.4;max-width:150px;word-break:break-word}
+@keyframes nnRingPulse{0%,100%{stroke-opacity:.72;stroke-width:2.2}50%{stroke-opacity:.1;stroke-width:1.2}}
+.nn-ring-pulse{animation:nnRingPulse 1.9s ease-in-out infinite}
 
 /* ── Contact ── */
 .contact{padding:70px 0 50px;text-align:center}
@@ -288,38 +283,63 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .contact-link i{font-size:16px}
 .ft-note{font-size:11px;color:var(--txt3);margin-top:44px;letter-spacing:.03em}
 
-/* ── Narrative case studies ── */
-.narr-cases{display:flex;flex-direction:column}
-.narr-case{padding:38px 0;border-bottom:1px solid var(--line)}
-.narr-case:last-child{border-bottom:none;padding-bottom:0}
-.narr-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
-.narr-cat{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3)}
-.narr-yr{font-size:11px;color:var(--txt3)}
-.narr-title{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-.025em;color:var(--txt);line-height:1.12;margin-bottom:5px}
-.narr-role{font-size:13px;color:var(--ac);font-style:italic;font-weight:500;margin-bottom:20px}
-.narr-outcome{display:inline-block;font-size:12.5px;font-weight:600;color:var(--txt);background:rgba(79,70,229,.06);border-left:3px solid var(--ac);padding:8px 16px;border-radius:0 8px 8px 0;margin-bottom:20px}
-.narr-text{font-size:13px;color:var(--txt2);line-height:1.75;margin-bottom:18px;max-width:720px}
-.narr-pts{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px;max-width:720px}
-.narr-pts li{font-size:12px;color:var(--txt2);line-height:1.58;padding-left:16px;position:relative}
-.narr-pts li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--ac);opacity:.35}
-.narr-links{display:flex;gap:22px;flex-wrap:wrap}
-.narr-link{font-size:12px;font-weight:600;color:var(--ac);text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:gap .15s}
-.narr-link:hover{gap:8px}
+/* ── Portfolio Peek Carousel ── */
+.cs-carousel-wrap{position:relative;overflow:hidden;border-radius:26px;height:520px;box-shadow:0 8px 40px rgba(0,0,0,.14);user-select:none;-webkit-user-select:none}
+.cs-carousel-track{position:relative;width:100%;height:100%}
+.cs-cslide{position:absolute;top:0;height:100%;border-radius:22px;overflow:hidden;cursor:pointer;transition:transform .52s cubic-bezier(.2,.8,.2,1),filter .45s,box-shadow .45s}
+.cs-cslide.cs-active{cursor:pointer;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.cs-cslide:not(.cs-active){filter:brightness(.58) saturate(.75)}
+.cs-cslide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 7s ease}
+.cs-cslide.cs-active .cs-cslide-bg{transform:scale(1.05)}
+.cs-cslide-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.38) 52%,rgba(0,0,0,.06) 100%)}
+.cs-cslide:not(.cs-active) .cs-cslide-ov{background:rgba(0,0,0,.38)}
+.cs-cslide-txt{position:absolute;bottom:0;left:0;right:0;padding:28px 32px;color:#fff}
+.cs-cslide-cat{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-bottom:6px}
+.cs-cslide-title{font-size:clamp(17px,2.2vw,25px);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:4px}
+.cs-cslide-role{font-size:12px;color:rgba(255,255,255,.72);font-style:italic;margin-bottom:10px}
+.cs-cslide-outcome{font-size:13px;font-weight:500;color:rgba(255,255,255,.92);border-left:3px solid rgba(255,255,255,.48);padding-left:12px;margin-bottom:18px;line-height:1.45;display:none}
+.cs-cslide.cs-active .cs-cslide-outcome{display:block}
+.cs-cslide-links{display:none;gap:10px;flex-wrap:wrap}
+.cs-cslide.cs-active .cs-cslide-links{display:flex}
+.cs-cslide-link{font-size:12px;font-weight:600;color:#fff;text-decoration:none;padding:6px 15px;border-radius:20px;background:rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.26);transition:background .2s,transform .2s}
+.cs-cslide-link:hover{background:rgba(255,255,255,.3);transform:translateY(-2px)}
+.cs-arr-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:20;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.26);color:#fff;font-size:26px;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;line-height:1;padding:0}
+.cs-arr-btn:hover:not([disabled]){background:rgba(255,255,255,.28);transform:translateY(-50%) scale(1.1)}
+.cs-arr-btn[disabled]{opacity:.28;cursor:default;pointer-events:none}
+.cs-arr-left{left:16px}
+.cs-arr-right{right:16px}
+.cs-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:20}
+.cs-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.38);cursor:pointer;transition:background .25s,transform .25s;border:none;padding:0}
+.cs-dot.cs-dot-on{background:#fff;transform:scale(1.55)}
+@media(max-width:900px){.cs-carousel-wrap{height:400px}.cs-cslide-txt{padding:20px 22px}.cs-cslide-title{font-size:17px}}
+/* ── Case Detail Panel ── */
+.cs-cslide-detail{position:absolute;inset:0;background:var(--glass2);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);border:1px solid var(--gb);padding:22px 26px 36px;color:var(--txt);opacity:0;pointer-events:none;overflow-y:auto;overflow-x:hidden;transition:opacity .35s;scrollbar-width:none;cursor:pointer}
+.cs-cslide-detail::-webkit-scrollbar{display:none}
+.cs-cslide.cs-detail-open .cs-cslide-detail{opacity:1;pointer-events:auto;transition:opacity .35s .22s}
+.cs-cslide.cs-detail-open .cs-cslide-ov{opacity:0;transition:opacity .22s}
+.cs-cslide.cs-detail-open .cs-cslide-txt{opacity:0;pointer-events:none;transition:opacity .15s}
+.csd-back{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--txt2);background:rgba(0,0,0,.05);border:1px solid var(--line);border-radius:20px;padding:5px 14px;cursor:pointer;margin-bottom:20px;font-family:inherit;transition:color .2s,background .2s}
+.csd-back:hover{color:var(--txt);background:rgba(0,0,0,.09)}
+.csd-sec{margin-bottom:24px;cursor:default}
+.csd-sec-lbl{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.csd-body{font-size:12.5px;color:var(--txt2);line-height:1.72;margin:0}
+.csd-flow{display:flex;flex-direction:column;gap:0}
+.csd-step{display:flex;align-items:flex-start;gap:11px;padding:9px 0}
+.csd-sn{font-size:11px;font-weight:700;font-style:italic;color:var(--txt3);min-width:22px;flex-shrink:0;line-height:1.6}
+.csd-st{font-size:12px;color:var(--txt2);line-height:1.6}
+.csd-arr{padding-left:33px;color:var(--txt3);font-size:11px;line-height:1}
+.csd-links{display:flex;flex-direction:column;gap:8px}
+.csd-lnk{display:inline-flex;align-items:center;font-size:12.5px;font-weight:600;color:var(--txt);text-decoration:none;padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:var(--glass);transition:background .2s,border-color .2s,box-shadow .2s;width:fit-content;cursor:pointer}
+.csd-lnk:hover{background:rgba(255,255,255,.9);border-color:var(--gb);box-shadow:var(--sh)}
 /* ── Writing section ── */
 .writ-list{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--cb);border-radius:20px;box-shadow:var(--sh);padding:0 30px}
-.writ-item{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:start;padding:26px 0;border-bottom:1px solid var(--line)}
+.writ-item{padding:22px 0;border-bottom:1px solid var(--line)}
 .writ-item:last-child{border-bottom:none}
-.writ-left{display:flex;flex-direction:column;gap:7px;padding-top:2px}
-.writ-type{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:9px;width:fit-content}
-.writ-meta{font-size:10.5px;color:var(--txt3);line-height:1.4}
-.writ-title{font-size:15px;font-weight:700;color:var(--txt);line-height:1.3;margin-bottom:7px}
-.writ-desc{font-size:12px;color:var(--txt2);line-height:1.68;margin-bottom:10px}
-.writ-link{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:var(--ac);text-decoration:none;transition:gap .15s}
-.writ-link:hover{gap:8px}
-@media(max-width:900px){
-  .writ-item{grid-template-columns:1fr;gap:10px}
-  .writ-left{flex-direction:row;align-items:center;gap:10px}
-}
+.writ-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:7px}
+.writ-title{font-size:15px;font-weight:700;color:var(--txt);line-height:1.35;flex:1}
+.writ-desc{font-size:12.5px;color:var(--txt2);line-height:1.7}
+.writ-link{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:var(--ac);text-decoration:none;white-space:nowrap;flex-shrink:0;padding-top:3px;transition:gap .15s}
+.writ-link:hover{gap:7px}
 /* ── Phase card interaction ── */
 /* Default view / Expanded view switcher */
 .ph-vd{display:flex;flex-direction:column;cursor:pointer}
@@ -462,7 +482,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   .phase-grid{grid-template-columns:1fr}
   .pd-cols{grid-template-columns:1fr;gap:16px}
   .engram{grid-template-columns:1fr}
-  .orb-stage{height:600px}
+  .nn-stage{height:380px}
 }
 </style>
 </head>
@@ -590,9 +610,9 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     <h2 class="sec-title" id="se-sk-t">Skill Map</h2>
     <p class="sec-sub" id="se-sk-s">Six capabilities orbiting one product core</p>
   </div>
-  <div class="panel orb-panel rv">
-    <div class="orb-stage" id="orb-stage">
-      <svg id="orb-svg" viewBox="0 0 800 540" preserveAspectRatio="xMidYMid meet"></svg>
+  <div class="nn-wrap rv">
+    <div class="nn-stage" id="orb-stage">
+      <svg id="orb-svg"></svg>
     </div>
   </div>
 </section>
@@ -614,75 +634,209 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 </div>
 
 <script>
-// ── Skill Orb Map (light) ──
-const ORB={
-  cx:400,cy:270,VW:800,VH:540,
-  nodes:[
-    {id:'ai',x:300,y:118,c:'#ff4d6d',side:'r'},
-    {id:'logic',x:560,y:140,c:'#00b4d8',side:'r'},
-    {id:'web3',x:600,y:285,c:'#f4a000',side:'r'},
-    {id:'data',x:545,y:440,c:'#8b5cf6',side:'r'},
-    {id:'comm',x:255,y:445,c:'#3b82f6',side:'l'},
-    {id:'fin',x:215,y:280,c:'#10b981',side:'l'},
-  ]
+// ── Neural Network Skill Map ──
+const NN_NODES=[
+  {id:'hs',type:'root',col:'#5b8def'},
+  {id:'ss',type:'root',col:'#8b5cf6'},
+  {id:'ai',parent:'hs',col:'#ff4d6d'},
+  {id:'data',parent:'hs',col:'#a855f7'},
+  {id:'web3',parent:'hs',col:'#f4a000'},
+  {id:'logic',parent:'ss',col:'#00b4d8'},
+  {id:'fin',parent:'ss',col:'#10b981'},
+  {id:'comm',parent:'ss',col:'#3b82f6'},
+];
+const NN_FRAC={hs:[.28,.14],ss:[.72,.14],ai:[.12,.50],data:[.25,.80],web3:[.41,.50],logic:[.59,.50],fin:[.75,.80],comm:[.88,.50]};
+const NN_EDGES=[['hs','ai'],['hs','data'],['hs','web3'],['ss','logic'],['ss','fin'],['ss','comm'],['web3','logic']];
+const NN_SUBS={
+  ai:[{label:'Claude Code',jump:'engram'},{label:'MCP / API',jump:'engram'},{label:'LLM Prompting',jump:'harena'},{label:'Figma',jump:null},{label:'Make / Weave',jump:null}],
+  data:[{label:'SQL',jump:null},{label:'Econometrics',jump:'phase0'},{label:'Data Modeling',jump:null},{label:'Market Analysis',jump:'writing'}],
+  web3:[{label:'Tokenomics',jump:'pathport'},{label:'DeFi Research',jump:'writing'},{label:'Growth Ops',jump:'pathport'},{label:'Whitepaper',jump:'writing'}],
+  logic:[{label:'Feature Arch.',jump:'engram'},{label:'User Flows',jump:'harena'},{label:'Roadmapping',jump:'harena'},{label:'Framework',jump:'engram'}],
+  fin:[{label:'Investment',jump:'phase1'},{label:'Risk Mgmt.',jump:'phase1'},{label:'AUM',jump:'phase1'},{label:'Fin. Modeling',jump:'phase0'}],
+  comm:[{label:'Problem Solving',jump:'phase1'},{label:'Bilingual',jump:null},{label:'Investor Rel.',jump:'harena'},{label:'Research Writing',jump:'writing'}],
 };
-function buildOrb(d){
-  const svg=document.getElementById('orb-svg');const ns='http://www.w3.org/2000/svg';
+let NN_RAF=null,NN_PULSES=[],NN_EXPANDED=false,NN_EXPANDED_ID=null,lastD_=null,NN_POS={},NN_W=0,NN_H=0;
+
+function buildNN(d){
+  lastD_=d;NN_EXPANDED=false;NN_EXPANDED_ID=null;
+  if(NN_RAF){cancelAnimationFrame(NN_RAF);NN_RAF=null;}
+  NN_PULSES=[];
+  const stage=document.getElementById('orb-stage'),svg=document.getElementById('orb-svg'),ns='http://www.w3.org/2000/svg';
+  stage.querySelectorAll('.nn-label,.orb-label').forEach(e=>e.remove());
   svg.innerHTML='';
-  const stage=document.getElementById('orb-stage');
-  stage.querySelectorAll('.orb-label').forEach(el=>el.remove());
-  // defs: glow filter + orb gradient
+  const W=stage.offsetWidth||860,H=parseInt(getComputedStyle(stage).height)||480;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  // positions
+  const pos={};
+  NN_NODES.forEach(n=>{const f=NN_FRAC[n.id];pos[n.id]=[f[0]*W,f[1]*H];});
+  NN_POS=pos;NN_W=W;NN_H=H;
+  // svg defs
   const defs=document.createElementNS(ns,'defs');
-  defs.innerHTML=`
-    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    <radialGradient id="orbCore" cx="42%" cy="38%" r="65%">
-      <stop offset="0%" stop-color="#ffffff"/><stop offset="30%" stop-color="#7dd3fc"/>
-      <stop offset="65%" stop-color="#5b8def"/><stop offset="100%" stop-color="#6366f1"/>
-    </radialGradient>
-    <radialGradient id="orbGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#7dd3fc" stop-opacity=".5"/><stop offset="100%" stop-color="#7dd3fc" stop-opacity="0"/>
-    </radialGradient>`;
+  defs.innerHTML=`<filter id="nnGlow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="nnHalo" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="14"/></filter>`;
   svg.appendChild(defs);
-  const cx=ORB.cx,cy=ORB.cy;
-  // curved glowing connectors
-  ORB.nodes.forEach((n,i)=>{
-    const mx=(cx+n.x)/2,my=(cy+n.y)/2;
-    const dx=n.x-cx,dy=n.y-cy;const len=Math.hypot(dx,dy);
-    const off=42*(i%2?1:-1);
-    const ctrlx=mx+(-dy/len)*off,ctrly=my+(dx/len)*off;
+  // edges + pulse dots
+  NN_EDGES.forEach(([fid,tid],ei)=>{
+    const [x1,y1]=pos[fid],[x2,y2]=pos[tid],col=NN_NODES.find(n=>n.id===fid).col;
+    const mx=(x1+x2)/2,my=(y1+y2)/2,dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy)||1;
+    const ca=ei===6?-72:58,ctrlx=mx+(-dy/len)*ca,ctrly=my+(dx/len)*ca;
     const path=document.createElementNS(ns,'path');
-    const dStr=`M${cx},${cy} Q${ctrlx},${ctrly} ${n.x},${n.y}`;
-    path.setAttribute('d',dStr);path.setAttribute('fill','none');path.setAttribute('stroke',n.c);
-    path.setAttribute('stroke-width','1.6');path.setAttribute('stroke-opacity','.55');path.setAttribute('filter','url(#glow)');path.setAttribute('stroke-linecap','round');
-    const L=path.getTotalLength?260:260;
-    path.style.strokeDasharray=300;path.style.strokeDashoffset=300;
-    path.style.animation=`draw 1.4s ${.2+i*.12}s cubic-bezier(.2,.8,.2,1) forwards`;
+    path.setAttribute('d',`M${x1},${y1} Q${ctrlx},${ctrly} ${x2},${y2}`);
+    path.setAttribute('fill','none');path.setAttribute('stroke',col);path.setAttribute('stroke-width','1.8');
+    path.setAttribute('stroke-opacity','.22');path.setAttribute('stroke-linecap','round');
     svg.appendChild(path);
+    const nP=ei<3||ei===5?2:1;
+    for(let p=0;p<nP;p++){
+      const dot=document.createElementNS(ns,'circle');
+      dot.setAttribute('r','4');dot.setAttribute('fill',col);dot.setAttribute('filter','url(#nnGlow)');dot.setAttribute('opacity','0');
+      svg.appendChild(dot);
+      NN_PULSES.push({path,dot,t:p/nP+Math.random()*.3,speed:.0011+Math.random()*.0008,active:Math.random()>.35,wait:0});
+    }
   });
-  // outer orb glow
-  const glow=document.createElementNS(ns,'circle');glow.setAttribute('cx',cx);glow.setAttribute('cy',cy);glow.setAttribute('r',120);glow.setAttribute('fill','url(#orbGlow)');svg.appendChild(glow);
-  // core orb
-  const core=document.createElementNS(ns,'circle');core.setAttribute('cx',cx);core.setAttribute('cy',cy);core.setAttribute('r',66);core.setAttribute('fill','url(#orbCore)');
-  core.style.transformOrigin=`${cx}px ${cy}px`;core.style.animation='breathe 5s ease-in-out infinite';svg.appendChild(core);
-  // node dots
-  ORB.nodes.forEach((n,i)=>{
-    const halo=document.createElementNS(ns,'circle');halo.setAttribute('cx',n.x);halo.setAttribute('cy',n.y);halo.setAttribute('r',14);halo.setAttribute('fill',n.c);halo.setAttribute('opacity','.18');halo.setAttribute('filter','url(#glow)');svg.appendChild(halo);
-    const dot=document.createElementNS(ns,'circle');dot.setAttribute('cx',n.x);dot.setAttribute('cy',n.y);dot.setAttribute('r',8);dot.setAttribute('fill',n.c);dot.setAttribute('filter','url(#glow)');
-    dot.style.transformOrigin=`${n.x}px ${n.y}px`;dot.style.animation=`pulse 3s ${i*.4}s ease-in-out infinite`;svg.appendChild(dot);
-  });
-  // center label
-  const cl=document.createElement('div');cl.className='orb-label ol-center';cl.style.left=(cx/ORB.VW*100)+'%';cl.style.top=(cy/ORB.VH*100)+'%';
-  cl.innerHTML=`<div class="ol-c-name" style="text-align:center;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.25)">${d.orbCore}</div><div class="ol-c-sub" style="text-align:center;color:rgba(255,255,255,.85)">${d.orbCoreSub}</div>`;
-  stage.appendChild(cl);
-  // node labels (HTML overlay), anchored to inner edge so they never clip
-  ORB.nodes.forEach(n=>{
-    const info=d.orb[n.id];
-    const lbl=document.createElement('div');lbl.className='orb-label '+(n.side==='l'?'ol-l':'ol-r');
-    const lx=n.side==='l'?n.x-24:n.x+24;
-    lbl.style.left=(lx/ORB.VW*100)+'%';lbl.style.top=(n.y/ORB.VH*100)+'%';
-    lbl.innerHTML=`<div class="ol-cat">${info.cat}</div><div class="ol-desc">${info.desc}</div>`;
+  // nodes (drawn on top of edges)
+  NN_NODES.forEach(n=>{
+    const [x,y]=pos[n.id],isRoot=n.type==='root',r=isRoot?28:20;
+    const halo=document.createElementNS(ns,'circle');halo.setAttribute('cx',x);halo.setAttribute('cy',y);halo.setAttribute('r',r+18);halo.setAttribute('fill',n.col);halo.setAttribute('filter','url(#nnHalo)');halo.setAttribute('opacity',isRoot?'.32':'.20');svg.appendChild(halo);
+    const dot=document.createElementNS(ns,'circle');dot.setAttribute('cx',x);dot.setAttribute('cy',y);dot.setAttribute('r',r);dot.setAttribute('fill',n.col);dot.setAttribute('filter','url(#nnGlow)');dot.setAttribute('opacity',isRoot?'.88':'.80');if(!isRoot){dot.style.cursor='pointer';dot.onclick=()=>nnClickNode(n.id);}svg.appendChild(dot);
+    const shine=document.createElementNS(ns,'circle');shine.setAttribute('cx',x-r*.28);shine.setAttribute('cy',y-r*.28);shine.setAttribute('r',r*.34);shine.setAttribute('fill','#fff');shine.setAttribute('opacity','.28');svg.appendChild(shine);
+    // label
+    const lbl=document.createElement('div');lbl.className='nn-label';
+    lbl.style.left=(x/W*100)+'%';lbl.style.top=(y/H*100)+'%';lbl.style.transform=`translate(-50%,${r+7}px)`;
+    const info=d?.orb?.[n.id];
+    const name=isRoot?(n.id==='hs'?(currentLang==='zh'?'硬技能':'Hard Skills'):(currentLang==='zh'?'软技能':'Soft Skills')):(info?.cat||n.id);
+    const sub=isRoot?'':(info?.desc||'');
+    lbl.innerHTML=`<div class="nn-lbl-name nn-lbl-${isRoot?'root':'skill'}" style="color:${n.col}">${name}</div>${sub?`<div class="nn-lbl-sub">${sub}</div>`:''}`;
     stage.appendChild(lbl);
   });
+  // animation loop
+  function tick(){
+    NN_PULSES.forEach(p=>{
+      if(!p.active){p.dot.setAttribute('opacity','0');if(--p.wait<=0&&Math.random()<.014)p.active=true;return;}
+      p.t+=p.speed;
+      if(p.t>=1){p.t=0;p.active=false;p.wait=15+Math.floor(Math.random()*90);return;}
+      try{const L=p.path.getTotalLength(),pt=p.path.getPointAtLength(p.t*L);
+        p.dot.setAttribute('cx',pt.x);p.dot.setAttribute('cy',pt.y);
+        const fade=p.t<.12?p.t/.12:p.t>.88?(1-p.t)/.12:1;
+        p.dot.setAttribute('opacity',String((fade*.92).toFixed(3)));
+      }catch(e){}
+    });
+    NN_RAF=requestAnimationFrame(tick);
+  }
+  tick();
+  svg.onclick=(e)=>{if(NN_EXPANDED&&e.target===svg)nnCollapse();};
+}
+function buildOrb(d){buildNN(d);}
+
+function nnClickNode(id){
+  if(!NN_SUBS[id])return;
+  if(NN_EXPANDED){
+    if(NN_EXPANDED_ID===id){nnCollapse();return;}
+    nnCollapse();setTimeout(()=>nnExpand(id),340);return;
+  }
+  nnExpand(id);
+}
+
+function nnJump(target){
+  if(!target)return;
+  nnCollapse();
+  setTimeout(()=>{
+    if(target==='writing'){document.querySelector('.writ-list')?.scrollIntoView({behavior:'smooth',block:'start'});}
+    else if(target==='pathport'){document.querySelector('#narr-cases')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{if(csIdx!==0)csGo(0);},700);}
+    else if(target==='harena'){document.querySelector('#narr-cases')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{if(csIdx!==1)csGo(1);},700);}
+    else if(target==='engram'){document.querySelector('#narr-cases')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{if(csIdx!==2)csGo(2);},700);}
+    else if(target==='phase0'){document.querySelector('.exp-grid')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>{if(activePhase!==0)openPhase(0);},700);}
+    else if(target==='phase1'){document.querySelector('.exp-grid')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>{if(activePhase!==1)openPhase(1);},700);}
+  },400);
+}
+
+function nnExpand(id){
+  if(!NN_POS[id]||!NN_SUBS[id])return;
+  NN_EXPANDED=true;NN_EXPANDED_ID=id;
+  const svg=document.getElementById('orb-svg'),stage=document.getElementById('orb-stage'),ns='http://www.w3.org/2000/svg';
+  const node=NN_NODES.find(n=>n.id===id);
+  const [cx,cy]=NN_POS[id];
+  const subs=NN_SUBS[id],nS=subs.length;
+  const ringR=85,aOff=-Math.PI/2;
+  // Selection ring on the clicked node
+  const selR=document.createElementNS(ns,'circle');
+  selR.setAttribute('cx',cx);selR.setAttribute('cy',cy);selR.setAttribute('r','28');
+  selR.setAttribute('fill','none');selR.setAttribute('stroke',node.col);selR.setAttribute('stroke-width','2');
+  selR.setAttribute('class','nn-exp-el nn-ring-pulse');selR.setAttribute('pointer-events','none');
+  selR.style.cssText='opacity:0;transition:opacity .4s';
+  svg.appendChild(selR);
+  subs.forEach((sub,i)=>{
+    const a=aOff+(i/nS)*Math.PI*2,sx=cx+Math.cos(a)*ringR,sy=cy+Math.sin(a)*ringR;
+    // Connection line
+    const path=document.createElementNS(ns,'path');
+    path.setAttribute('d',`M${cx},${cy} L${sx},${sy}`);path.setAttribute('fill','none');
+    path.setAttribute('stroke',node.col);path.setAttribute('stroke-width','1.4');path.setAttribute('stroke-linecap','round');
+    path.setAttribute('class','nn-exp-el');path.style.cssText='opacity:0;transition:opacity .35s';
+    svg.appendChild(path);
+    // Pulse dot
+    const pdot=document.createElementNS(ns,'circle');
+    pdot.setAttribute('r','3');pdot.setAttribute('fill',node.col);pdot.setAttribute('filter','url(#nnGlow)');
+    pdot.setAttribute('class','nn-exp-el');pdot.style.opacity='0';
+    svg.appendChild(pdot);
+    NN_PULSES.push({path,dot:pdot,t:i/nS,speed:.002+Math.random()*.001,active:true,wait:0,isExp:true});
+    // Halo
+    const sh=document.createElementNS(ns,'circle');
+    sh.setAttribute('cx',sx);sh.setAttribute('cy',sy);sh.setAttribute('r','20');
+    sh.setAttribute('fill',node.col);sh.setAttribute('filter','url(#nnHalo)');
+    sh.setAttribute('class','nn-exp-el');sh.style.cssText='opacity:0;transition:opacity .35s .1s';
+    svg.appendChild(sh);
+    // Node dot
+    const sd=document.createElementNS(ns,'circle');
+    sd.setAttribute('cx',sx);sd.setAttribute('cy',sy);sd.setAttribute('r','13');
+    sd.setAttribute('fill',node.col);sd.setAttribute('filter','url(#nnGlow)');
+    sd.setAttribute('class','nn-exp-el');
+    sd.style.cssText=`opacity:0;transition:opacity .35s .1s${sub.jump?';cursor:pointer':''}`;
+    if(sub.jump)sd.addEventListener('click',()=>nnJump(sub.jump));
+    svg.appendChild(sd);
+    // Pulsing ring for jumpable sub-skill
+    if(sub.jump){
+      const ring=document.createElementNS(ns,'circle');
+      ring.setAttribute('cx',sx);ring.setAttribute('cy',sy);ring.setAttribute('r','18');
+      ring.setAttribute('fill','none');ring.setAttribute('stroke',node.col);ring.setAttribute('stroke-width','1.8');
+      ring.setAttribute('class','nn-exp-el nn-ring-pulse');ring.setAttribute('pointer-events','none');
+      ring.style.cssText='opacity:0;transition:opacity .4s .2s';
+      svg.appendChild(ring);
+    }
+    // Shine
+    const ss=document.createElementNS(ns,'circle');
+    ss.setAttribute('cx',sx-3.5);ss.setAttribute('cy',sy-3.5);ss.setAttribute('r','4.5');
+    ss.setAttribute('fill','#fff');ss.setAttribute('class','nn-exp-el');
+    ss.style.cssText='opacity:0;transition:opacity .35s .15s';
+    svg.appendChild(ss);
+    // Label
+    const lbl=document.createElement('div');lbl.className='nn-label nn-sub-lbl';
+    lbl.style.cssText=`left:${sx/NN_W*100}%;top:${sy/NN_H*100}%;transform:translate(-50%,17px);opacity:0;transition:opacity .4s .15s;pointer-events:${sub.jump?'auto':'none'}`;
+    lbl.innerHTML=`<div class="nn-lbl-skill" style="color:${node.col};font-size:10px">${sub.label}</div>`;
+    if(sub.jump){lbl.style.cursor='pointer';lbl.addEventListener('click',()=>nnJump(sub.jump));}
+    stage.appendChild(lbl);
+  });
+  // Fade in all new elements
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    svg.querySelectorAll('.nn-exp-el').forEach(el=>{
+      const cls=el.getAttribute('class')||'',r=parseFloat(el.getAttribute('r')||'0'),fill=el.getAttribute('fill')||'';
+      if(cls.includes('nn-ring-pulse'))el.style.opacity='1';
+      else if(el.tagName==='path')el.style.opacity='.45';
+      else if(fill===node.col&&r===20)el.style.opacity='.18';
+      else if(r===13)el.style.opacity='.85';
+      else if(fill==='#fff')el.style.opacity='.26';
+    });
+    stage.querySelectorAll('.nn-sub-lbl').forEach(e=>e.style.opacity='1');
+  }));
+}
+
+function nnCollapse(){
+  if(!NN_EXPANDED)return;
+  NN_EXPANDED=false;NN_EXPANDED_ID=null;
+  NN_PULSES=NN_PULSES.filter(p=>!p.isExp);
+  const svg=document.getElementById('orb-svg'),stage=document.getElementById('orb-stage');
+  const expEls=[...svg.querySelectorAll('.nn-exp-el')];
+  const expLbls=[...stage.querySelectorAll('.nn-sub-lbl')];
+  expEls.forEach(el=>{el.style.transition='opacity .28s';el.style.opacity='0';});
+  expLbls.forEach(el=>{el.style.transition='opacity .28s';el.style.opacity='0';});
+  setTimeout(()=>{expEls.forEach(el=>el.remove());expLbls.forEach(el=>el.remove());},300);
 }
 
 // ── Builders ──
@@ -791,7 +945,7 @@ en:{
   seWorkEy:'Selected',seWorkT:'Work & Portfolio',seWorkS:"Articles, products, and platforms I've shipped",
   stripLbl:'Articles & Portfolio — scroll →',
   egEy:'Featured Build',egDesc:'Private knowledge workspace for builders — AI conversations into structured long-term memory. Built solo end to end.',egCta:'View Live',egPh:'Screenshot coming soon',
-  seSkEy:'Capability',seSkT:'Skill Map',seSkS:'Six capabilities orbiting one product core',
+  seSkEy:'Capability',seSkT:'Skill Map',seSkS:'A neural map of hard and soft capabilities',
   orbCore:'Product',orbCoreSub:'Manager',
   orb:{
     ai:{cat:'AI & Tech',desc:'Claude Code · LLM · MCP / API'},
@@ -813,7 +967,7 @@ en:{
   phases:[
     {num:'I',title:'Learning',period:'2017 – 2021',color:'#4f46e5',role:'Economics Student & Researcher',
      intro:"BSc Math & Economics + MSc Economics at Lakehead. National finalist at the Bank of Canada Governor's Challenge, with the Dean's Medal and research awards.",
-     keywords:['Economics','Quant Modeling','Competition','Research'],images:['','',''],
+     keywords:['Economics','Quant Modeling','Competition','Research'],images:['imgs/exp1-1.jpg','imgs/exp1-2.jpg','imgs/exp1-3.jpg'],
      roles:[
        {org:'BSc Mathematics & Economics · Lakehead',date:'Sep 2017 – Sep 2020',logo:'logos/lakehead.svg',icon:'ti-school',
         resp:['Studied core mathematics & economics curriculum','Served as Teaching Assistant for 3 years across undergraduate courses','Focused on econometrics, financial modeling, and mathematical analysis'],
@@ -827,7 +981,7 @@ en:{
      ]},
     {num:'II',title:'Finance',period:'2021 – 2024',color:'#7c3aed',role:'Banking & Wealth Advisor',
      intro:'HSBC Premium Banker managing $20M+ AUM across 500+ clients — then through the RBC acquisition and Futu Singapore market.',
-     keywords:['Wealth Management','Client Relations','Investment','Compliance'],images:['','',''],
+     keywords:['Wealth Management','Client Relations','Investment','Compliance'],images:['imgs/exp2-1.jpg','imgs/exp2-2.jpg','imgs/exp2-3.jpg'],
      roles:[
        {org:'HSBC Bank of Canada · Personal → Premium Banker',date:'Feb 2022 – Apr 2024',logo:'logos/hsbc.svg',icon:'ti-building-bank',
         resp:['Managed 500+ clients across investment, lending & savings','Sole front-desk operator for the branch for months','Led the branch digital-adoption initiative'],
@@ -841,7 +995,7 @@ en:{
      ]},
     {num:'III',title:'Web3 & Product',period:'2025 – Present',color:'#059669',role:'Researcher → Ops Lead → Product Manager',
      intro:'Web3 research at ChainCatcher, scaled PathPort to 1,000+ ambassadors, now co-founding Harena — an AI fintech product built solo, end to end.',
-     keywords:['Product Management','Web3','Growth Ops','Full-stack Delivery'],images:['','',''],
+     keywords:['Product Management','Web3','Growth Ops','Full-stack Delivery'],images:['imgs/exp3-1.jpg','imgs/exp3-2.jpg','imgs/exp3-3.jpg'],
      roles:[
        {org:'ChainCatcher / Trendverse Lab · Research Analyst',date:'Apr 2025 – Aug 2025',logo:'logos/chaincatcher.svg',icon:'ti-pencil',
         resp:['Reported on DeFi, macro & regulatory developments','Analyzed the U.S. CLARITY Act & Singapore MAS with legal pros','Co-built the Trendverse Lab research brand'],
@@ -872,7 +1026,7 @@ zh:{
   seWorkEy:'精选',seWorkT:'作品展示',seWorkS:'我交付的文章、产品与平台',
   stripLbl:'文章与作品 — 左右滑动 →',
   egEy:'重点项目',egDesc:'面向构建者的私人知识工作台 —— 将 AI 对话转化为结构化长期记忆。独立端到端构建。',egCta:'查看线上版本',egPh:'截图即将上传',
-  seSkEy:'能力',seSkT:'能力图谱',seSkS:'六大能力围绕产品核心运转',
+  seSkEy:'能力',seSkT:'能力图谱',seSkS:'硬技能与软技能的神经网络图谱',
   orbCore:'产品',orbCoreSub:'Product Manager',
   orb:{
     ai:{cat:'AI & Tech',desc:'Claude Code · LLM · MCP / API'},
@@ -923,7 +1077,7 @@ zh:{
   phases:[
     {num:'I',title:'学习阶段',period:'2017 – 2021',color:'#4f46e5',role:'经济学学生 / 研究者',
      intro:"莱克黑德大学数学经济本科 + 经济学硕士。加拿大央行 Governor's Challenge 货币政策竞赛全国决赛，院长奖章与研究奖。",
-     keywords:['经济学','量化建模','竞赛','研究'],images:['','',''],
+     keywords:['经济学','量化建模','竞赛','研究'],images:['imgs/exp1-1.jpg','imgs/exp1-2.jpg','imgs/exp1-3.jpg'],
      roles:[
        {org:'数学经济学学士 · 莱克黑德大学',date:'2017年9月 – 2020年9月',logo:'logos/lakehead.svg',icon:'ti-school',
         resp:['修读数学与经济学核心课程','连续3年担任本科课程助教','专注于计量经济学、金融建模与数学分析'],
@@ -937,7 +1091,7 @@ zh:{
      ]},
     {num:'II',title:'金融阶段',period:'2021 – 2024',color:'#7c3aed',role:'银行 / 财富顾问',
      intro:'汇丰高端客户经理，管理 $2000 万+ 资产、500+ 客户；亲历 RBC 收购并购，再征战富途新加坡市场。',
-     keywords:['财富管理','客户关系','投资顾问','合规'],images:['','',''],
+     keywords:['财富管理','客户关系','投资顾问','合规'],images:['imgs/exp2-1.jpg','imgs/exp2-2.jpg','imgs/exp2-3.jpg'],
      roles:[
        {org:'汇丰银行加拿大 · 个人 → 高端客户经理',date:'2022年2月 – 2024年4月',logo:'logos/hsbc.svg',icon:'ti-building-bank',
         resp:['管理500+客户，覆盖投资、贷款与储蓄','独撑分行前台数月','主导分行数字化转型'],
@@ -951,7 +1105,7 @@ zh:{
      ]},
     {num:'III',title:'Web3 与产品',period:'2025 – 至今',color:'#059669',role:'研究员 → 运营负责人 → 产品经理',
      intro:'链捕手 Web3 研究，PathPort 2个月扩展至 1000+ 大使，现联合创立 Harena —— 独立端到端构建的 AI 金融产品。',
-     keywords:['产品管理','Web3','增长运营','全栈交付'],images:['','',''],
+     keywords:['产品管理','Web3','增长运营','全栈交付'],images:['imgs/exp3-1.jpg','imgs/exp3-2.jpg','imgs/exp3-3.jpg'],
      roles:[
        {org:'链捕手 / Trendverse Lab · 研究员',date:'2025年4月 – 8月',logo:'logos/chaincatcher.svg',icon:'ti-pencil',
         resp:['报道 DeFi、宏观与监管动态','与律师协作研究 CLARITY 法案和 MAS 框架','联合创建 Trendverse Lab 研究品牌'],
@@ -1045,36 +1199,100 @@ const WRITING=[
    desc:'Placeholder: an independent trade review documenting entry rationale, risk management decisions, and outcome analysis for [position/market placeholder]. Written as a personal knowledge artifact to systematize learning from live market activity. Demonstrates disciplined analytical process and financial market literacy.'}
 ];
 
-function buildNarrCases(data){
+// ── Portfolio Peek Carousel ──
+let csIdx=1,csData_=[],csDetailOpen=false,csDetailIdx=-1;
+const CS_IMGS=['imgs/case-pathport.jpg','imgs/case-harena.jpg','imgs/case-engram.jpg'];
+
+function buildCarousel(data){
+  csData_=data||NARR;
+  csDetailOpen=false;csDetailIdx=-1;
   const el=document.getElementById('narr-cases');
   if(!el)return;
-  const src=data||NARR;
-  el.innerHTML=src.map(c=>`
-    <div class="narr-case">
-      <div class="narr-top"><span class="narr-cat">${c.cat}</span><span class="narr-yr">${c.yr}</span></div>
-      <h3 class="narr-title">${c.title}</h3>
-      <div class="narr-role">${c.role}</div>
-      <div class="narr-outcome">${c.outcome}</div>
-      <p class="narr-text">${c.text}</p>
-      <ul class="narr-pts">${c.pts.map(p=>`<li>${p}</li>`).join('')}</ul>
-      <div class="narr-links">${c.links.map(l=>`<a class="narr-link" href="${l.href}" target="_blank">${l.label} →</a>`).join('')}</div>
-    </div>`).join('');
+  const lb=typeof currentLang!=='undefined'&&currentLang==='zh'
+    ?{ov:'概览',pr:'流程步骤',ln:'相关链接',back:'← 返回'}
+    :{ov:'Overview',pr:'How It Happened',ln:'Links',back:'← Back'};
+  el.innerHTML=`<div class="cs-carousel-wrap" id="cs-wrap"><div class="cs-carousel-track" id="cs-track">${
+    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.role}</div><div class="cs-cslide-outcome">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-back" onclick="csCloseDetail()">${lb.back}</button><div class="csd-sec"><div class="csd-sec-lbl">${lb.ov}</div><p class="csd-body">${c.text}</p></div><div class="csd-sec"><div class="csd-sec-lbl">${lb.pr}</div><div class="csd-flow">${c.pts.map((p,j)=>`<div class="csd-step"><span class="csd-sn">${String(j+1).padStart(2,'0')}</span><span class="csd-st">${p}</span></div>${j<c.pts.length-1?'<div class="csd-arr">↓</div>':''}`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl">${lb.ln}</div><div class="csd-links">${c.links.map(l=>`<a class="csd-lnk" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div></div></div>`).join('')
+  }</div><button class="cs-arr-btn cs-arr-left" id="cs-al" onclick="csNav(-1)">&#8249;</button><button class="cs-arr-btn cs-arr-right" id="cs-ar" onclick="csNav(1)">&#8250;</button><div class="cs-dots">${csData_.map((_,i)=>`<button class="cs-dot${i===csIdx?' cs-dot-on':''}" onclick="csGo(${i})"></button>`).join('')}</div></div>`;
+  requestAnimationFrame(csLayout);
 }
+
+function csLayout(){
+  const wrap=document.getElementById('cs-wrap');
+  const track=document.getElementById('cs-track');
+  if(!wrap||!track)return;
+  const W=wrap.offsetWidth,GAP=14,SW=Math.round(W*0.72),n=csData_.length;
+  const cx=(W-SW)/2,px=cx-SW-GAP,nx=cx+SW+GAP;
+  const pos=new Map([[csIdx,cx],[(csIdx-1+n)%n,px],[(csIdx+1)%n,nx]]);
+  const slides=track.querySelectorAll('.cs-cslide');
+  slides.forEach((s,i)=>{s.style.transition='none';s.style.width=SW+'px';s.style.transform=`translateX(${pos.get(i)??cx}px)`;s.classList.toggle('cs-active',i===csIdx);});
+  requestAnimationFrame(()=>slides.forEach(s=>s.style.transition=''));
+  document.querySelectorAll('.cs-dot').forEach((d,i)=>d.classList.toggle('cs-dot-on',i===csIdx));
+}
+
+function csNavTo(newIdx,dir){
+  const oldIdx=csIdx;csIdx=newIdx;
+  const wrap=document.getElementById('cs-wrap');
+  const track=document.getElementById('cs-track');
+  if(!wrap||!track)return;
+  const W=wrap.offsetWidth,GAP=14,SW=Math.round(W*0.72),n=csData_.length;
+  const cx=(W-SW)/2,px=cx-SW-GAP,nx=cx+SW+GAP;
+  const teleportIdx=dir>0?(oldIdx-1+n)%n:(oldIdx+1)%n;
+  const teleportFrom=dir>0?nx+SW+60:px-SW-60;
+  const pos=new Map([[csIdx,cx],[(csIdx-1+n)%n,px],[(csIdx+1)%n,nx]]);
+  const slides=track.querySelectorAll('.cs-cslide');
+  slides[teleportIdx].style.transition='none';
+  slides[teleportIdx].style.transform=`translateX(${teleportFrom}px)`;
+  slides[teleportIdx].offsetHeight;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    slides.forEach((s,i)=>{s.style.transition='';s.style.width=SW+'px';s.style.transform=`translateX(${pos.get(i)??cx}px)`;s.classList.toggle('cs-active',i===csIdx);});
+    document.querySelectorAll('.cs-dot').forEach((d,i)=>d.classList.toggle('cs-dot-on',i===csIdx));
+  }));
+}
+
+function csNav(dir){csNavTo((csIdx+dir+csData_.length)%csData_.length,dir);}
+function csGo(idx){if(idx===csIdx)return;const n=csData_.length;csNavTo(idx,idx===(csIdx-1+n)%n?-1:1);}
+function csOpenDetail(idx){
+  csDetailOpen=true;csDetailIdx=idx;
+  const slides=document.getElementById('cs-track')?.querySelectorAll('.cs-cslide');
+  if(!slides)return;
+  const slide=slides[idx];
+  const bg=slide.querySelector('.cs-cslide-bg');
+  bg.style.transition='transform .55s cubic-bezier(.4,0,.2,1)';
+  bg.style.transform='translateY(-115%)';
+  slide.classList.add('cs-detail-open');
+  [document.getElementById('cs-al'),document.getElementById('cs-ar'),document.querySelector('.cs-dots')].forEach(el=>{if(el){el.style.opacity='0';el.style.pointerEvents='none';}});
+}
+function csCloseDetail(e){
+  if(e) e.stopPropagation();
+  if(!csDetailOpen)return;
+  const slides=document.getElementById('cs-track')?.querySelectorAll('.cs-cslide');
+  if(!slides)return;
+  const slide=slides[csDetailIdx];
+  const bg=slide.querySelector('.cs-cslide-bg');
+  bg.style.transition='transform .5s cubic-bezier(.4,0,.2,1)';
+  bg.style.transform='scale(1.05)';
+  slide.classList.remove('cs-detail-open');
+  slide.querySelector('.cs-cslide-detail').scrollTop=0;
+  [document.getElementById('cs-al'),document.getElementById('cs-ar'),document.querySelector('.cs-dots')].forEach(el=>{if(el){el.style.opacity='';el.style.pointerEvents='';}});
+  csDetailOpen=false;csDetailIdx=-1;
+  setTimeout(()=>{bg.style.transition='';},520);
+}
+function csClickSlide(idx){if(csDetailOpen)return;if(idx!==csIdx)csGo(idx);else csOpenDetail(idx);}
+
+// Alias for backward-compat with setLang call
+function buildNarrCases(data){buildCarousel(data);}
 
 function buildWriting(){
   const el=document.getElementById('writ-list');
   if(!el)return;
   el.innerHTML=WRITING.map(a=>`
     <div class="writ-item">
-      <div class="writ-left">
-        <span class="writ-type ${a.cls}">${a.type}</span>
-        <span class="writ-meta">${a.platform}<br/>${a.yr} · ${a.read}</span>
-      </div>
-      <div>
+      <div class="writ-hd">
         <div class="writ-title">${a.title}</div>
-        <div class="writ-desc">${a.desc}</div>
-        <a class="writ-link" href="${a.href}" target="_blank">Read →</a>
+        <a class="writ-link" href="${a.href}" target="_blank">Read full article →</a>
       </div>
+      <div class="writ-desc">${a.desc}</div>
     </div>`).join('');
 }
 
@@ -1239,7 +1457,7 @@ function initRv(){
 
 // keyframes injected
 const st=document.createElement('style');
-st.textContent='@keyframes draw{to{stroke-dashoffset:0}}@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.8}}';
+st.textContent='@keyframes nnBreath{0%,100%{opacity:.20}50%{opacity:.32}}';
 document.head.appendChild(st);
 
 // ── 3D Mouse Parallax background ──
@@ -1282,7 +1500,7 @@ function initTree(){
   tick();
 }
 
-buildWriting();setLang('en');initWorkSection();initRv();initTree(); // initTree = flow field
+buildWriting();setLang('en');initWorkSection();initRv();initTree();window.addEventListener('resize',csLayout,{passive:true}); // initTree = flow field
  </script> 
 </body>
 </html>
