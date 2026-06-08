@@ -143,88 +143,55 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .tl2-loc{display:inline-flex;align-items:center;gap:3px;font-size:8px;color:var(--txt2);background:rgba(255,255,255,.7);border:1px solid var(--gb);padding:1px 7px;border-radius:9px}
 .tl2-loc i{font-size:8px}
 
-/* ── Phase cards (career chapters) — tab style ── */
-.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;margin-bottom:18px}
-.phase-card{cursor:pointer;display:flex;flex-direction:column}
-/* stacked images sit directly on the page background */
-.phase-stack{position:relative;height:150px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-.pimg{position:absolute;width:116px;height:146px;border-radius:13px;overflow:hidden;border:3px solid #fff;box-shadow:0 10px 26px rgba(0,0,0,.18);background:#e9ecf2;transition:transform .42s cubic-bezier(.2,.8,.2,1)}
-.pimg img{width:100%;height:100%;object-fit:cover}
-.pimg-ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--txt3)}
-.pimg-ph i{font-size:22px}
-.pimg.l{transform:translateX(-46px) rotate(-9deg) translateY(7px)}
-.pimg.c{z-index:3}
-.pimg.r{transform:translateX(46px) rotate(9deg) translateY(7px)}
-.phase-card:hover .pimg.l{transform:translateX(-70px) rotate(-13deg) translateY(0)}
-.phase-card:hover .pimg.r{transform:translateX(70px) rotate(13deg) translateY(0)}
-.phase-card:hover .pimg.c{transform:translateY(-9px)}
-/* only the text block carries the frosted-glass background */
-.phase-textblock{background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--gb);border-radius:20px;box-shadow:var(--sh);padding:20px;transition:box-shadow .3s,border-color .3s,transform .3s}
-.phase-card:hover .phase-textblock{transform:translateY(-2px);box-shadow:var(--sh-h)}
-.phase-card.active .phase-textblock{border-color:rgba(0,113,227,.45);box-shadow:0 6px 24px rgba(0,113,227,.16)}
-.phase-title-row{display:flex;align-items:baseline;gap:9px;margin-bottom:7px;flex-wrap:wrap}
-.phase-num{font-size:21px;font-weight:700;font-style:italic;letter-spacing:-.02em}
-.phase-title{font-size:16px;font-weight:700;color:var(--txt)}
-.phase-period{font-size:11px;color:var(--txt3);font-weight:500;margin-left:auto}
-.phase-role{font-size:12px;font-weight:600;color:var(--ac);margin-bottom:8px}
-.phase-intro{font-size:12px;color:var(--txt2);line-height:1.6;margin-bottom:14px}
-.phase-kw{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:16px}
-.phase-kw-lbl{font-size:10px;color:var(--txt3);font-weight:600;margin-right:2px}
-.phase-kw-tag{font-size:10px;padding:3px 9px;background:rgba(255,255,255,.6);border:1px solid var(--gb);border-radius:9px;color:var(--txt2)}
-.phase-pick{display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;font-weight:500;color:var(--txt3);padding-top:12px;border-top:1px solid var(--line);transition:color .2s}
-.phase-pick i{font-size:13px;transition:transform .25s}
-.phase-card.active .phase-pick{color:var(--ac);font-weight:600}
-.phase-card.active .phase-pick i{transform:translateY(2px)}
-/* full-width shared detail panel below the three cards */
-.phase-detail-panel{padding:26px 30px;margin-bottom:30px}
-.pd-inner{animation:pdFade .4s ease}
-@keyframes pdFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.pd-head{display:flex;align-items:baseline;gap:11px;margin-bottom:3px;flex-wrap:wrap}
-.pd-num{font-size:22px;font-weight:700;font-style:italic}
-.pd-title{font-size:20px;font-weight:700;color:var(--txt)}
-.pd-period{font-size:11px;color:var(--txt3);font-weight:500;margin-left:auto}
-.pd-role-sub{font-size:12px;font-weight:600;color:var(--ac);margin-bottom:6px}
-.pd-roles{display:flex;flex-direction:column}
-.pd-role{position:relative;padding:18px 0;border-top:1px solid var(--line);overflow:hidden}
-/* company logo as a large faint watermark on the right */
-.pd-role-bg{position:absolute;right:0;top:50%;transform:translateY(-50%);height:68%;max-height:90px;width:32%;opacity:.18;pointer-events:none;z-index:0;display:flex;align-items:center;justify-content:flex-end;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 50%);mask-image:linear-gradient(90deg,transparent 0%,#000 50%)}
-.pd-role-bg img{height:100%;max-width:100%;object-fit:contain;object-position:right center}
-.pd-role-main{position:relative;z-index:1}
-.pd-role-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:13px}
-.pd-org{font-size:13px;font-weight:600;color:var(--txt)}
-.pd-date{font-size:10px;color:var(--txt3);white-space:nowrap;flex-shrink:0;font-weight:500}
-.pd-cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.pd-col-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:9px;display:flex;align-items:center;gap:5px}
-.pd-col-label i{font-size:12px}
-.pd-resp .pd-col-label{color:var(--txt2)}
-.pd-ach .pd-col-label{color:#059669}
-.pd-list{list-style:none;display:flex;flex-direction:column;gap:8px}
-.pd-list li{font-size:11.5px;color:var(--txt2);line-height:1.55;padding-left:17px;position:relative}
-.pd-resp li::before{content:'';position:absolute;left:1px;top:7px;width:5px;height:5px;border-radius:50%;background:var(--txt3)}
-.pd-ach li::before{content:'\2713';position:absolute;left:0;top:0;color:#059669;font-size:11px;font-weight:700}
-.tl-sub-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);text-align:center;margin-bottom:14px}
+/* ── Career Journey — horizontal timeline (Part 5) ── */
+.career-tl{padding:8px 0 0}
+.cj-track{position:relative;display:flex;justify-content:space-between;align-items:flex-start;padding:0 6px;margin-bottom:8px}
+.cj-line{position:absolute;left:28px;right:28px;top:21px;height:2px;background:linear-gradient(90deg,#1A1A2E 0%,#4A6CF7 20%,#10b981 40%,#f59e0b 60%,#8b5cf6 80%,#caa53a 100%);opacity:.28;border-radius:2px}
+.cj-node{position:relative;display:flex;flex-direction:column;align-items:center;flex:1;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cj-dot{position:relative;z-index:2;width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--cj-c);box-shadow:0 2px 10px rgba(0,0,0,.12);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.cj-node:hover .cj-dot{transform:scale(1.32);box-shadow:0 4px 18px rgba(0,0,0,.2)}
+.cj-node.cj-on .cj-dot{transform:scale(1.32);background:var(--cj-c);box-shadow:0 4px 20px var(--cj-c)}
+.cj-label{margin-top:14px;text-align:center}
+.cj-kw{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--txt);transition:color .2s}
+.cj-node:hover .cj-kw,.cj-node.cj-on .cj-kw{color:var(--cj-c)}
+.cj-period{font-size:10px;color:var(--txt3);margin-top:3px;font-weight:500}
+.cj-card-wrap{overflow:hidden;max-height:0;opacity:0;transition:max-height .45s cubic-bezier(.2,.8,.2,1),opacity .35s,margin-top .4s;margin-top:0}
+.cj-card-wrap.cj-open{max-height:600px;opacity:1;margin-top:26px}
+.cj-card{background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--gb);border-radius:22px;box-shadow:var(--sh);padding:26px 30px;border-top:3px solid var(--cj-c,var(--ac))}
+.cj-card-role{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:4px}
+.cj-card-period{font-size:11px;color:var(--txt3);font-weight:500;margin-bottom:14px;letter-spacing:.04em}
+.cj-card-body{font-size:13px;color:var(--txt2);line-height:1.75;font-weight:300;margin-bottom:16px}
+.cj-card-trans{font-size:12px;color:var(--txt2);font-style:italic;font-weight:300;line-height:1.6;padding-top:14px;border-top:1px solid var(--line);position:relative;padding-left:20px}
+.cj-card-trans::before{content:'→';position:absolute;left:0;top:14px;color:var(--cj-c,var(--ac));font-style:normal;font-weight:700}
+@media(max-width:760px){
+  .cj-track{flex-direction:column;align-items:flex-start;gap:22px;padding-left:9px}
+  .cj-line{display:none}
+  .career-tl::before{content:'';position:absolute}
+  .cj-node{flex-direction:row;align-items:center;gap:14px;width:100%}
+  .cj-node::after{content:'';position:absolute;left:8px;top:28px;bottom:-22px;width:2px;background:var(--line)}
+  .cj-node:last-child::after{display:none}
+  .cj-label{margin-top:0;text-align:left}
+  .cj-card-wrap.cj-open{margin-top:14px;margin-left:32px}
+}
 
-/* ── Experience cards ── */
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.exp-col-lbl{font-size:12px;font-weight:600;color:var(--txt);margin-bottom:12px;display:flex;align-items:center;gap:7px;padding-left:4px}
-.exp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.ec-wrap{position:relative;margin-bottom:8px}
-.ec-wrap:last-child{margin-bottom:0}
-.ec-wrap:hover{z-index:60}
-.ec-static{background:var(--glass);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
-  border:1px solid var(--gb);border-radius:16px;padding:14px 16px;transition:all .25s cubic-bezier(.2,.8,.2,1);cursor:default;box-shadow:var(--sh)}
-.ec-wrap:hover .ec-static{border-bottom-left-radius:0;border-bottom-right-radius:0;border-color:rgba(0,113,227,.4);box-shadow:0 4px 14px rgba(0,113,227,.1)}
-.ec-org{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:2px}
-.ec-role{font-size:11px;color:var(--ac);margin-bottom:4px;font-weight:500}
-.ec-sum{font-size:11px;color:var(--txt2);line-height:1.45}
-.ec-date{font-size:10px;color:var(--txt3);text-align:right;white-space:nowrap;flex-shrink:0;font-weight:500}
-.ec-overlay{position:absolute;top:100%;left:0;right:0;z-index:60;background:var(--glass2);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid rgba(0,113,227,.4);border-top:none;border-radius:0 0 16px 16px;padding:12px 16px 15px;
-  box-shadow:0 16px 40px rgba(0,0,0,.14);opacity:0;pointer-events:none;transform:translateY(-4px);transition:opacity .22s,transform .22s}
-.ec-wrap:hover .ec-overlay{opacity:1;pointer-events:auto;transform:translateY(0)}
-.ec-bul{list-style:none;display:flex;flex-direction:column;gap:6px}
-.ec-bul li{font-size:11px;color:var(--txt2);padding-left:14px;position:relative;line-height:1.5}
-.ec-bul li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--ac)}
+/* ── How I Think — four-lens grid (Part 3) ── */
+.think-grid{display:flex;align-items:stretch;gap:0;justify-content:center}
+.think-col{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid var(--gb);border-radius:22px;box-shadow:var(--sh);padding:26px 22px;border-top:3px solid var(--tk-ac,var(--ac));transition:transform .3s,box-shadow .3s}
+.think-col:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
+.think-num{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--tk-ac,var(--ac));margin-bottom:14px}
+.think-arg{font-size:15px;font-weight:700;color:var(--txt);line-height:1.45;margin-bottom:14px;letter-spacing:-.01em}
+.think-body{font-size:12.5px;color:var(--txt2);line-height:1.75;font-weight:300;margin-bottom:16px}
+.think-ev-lbl{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:9px}
+.think-ev{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.think-ev li{font-size:11px;color:var(--txt2);line-height:1.55;padding-left:15px;position:relative;font-weight:300}
+.think-ev li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--tk-ac,var(--ac))}
+.think-outcome{font-size:12px;color:var(--txt);font-style:italic;font-weight:300;line-height:1.6;padding-top:14px;border-top:1px solid var(--line);margin-top:auto}
+.think-arrow{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:34px;color:var(--txt3);opacity:.5}
+@media(max-width:980px){
+  .think-grid{flex-direction:column;align-items:stretch;gap:18px}
+  .think-arrow{display:none}
+}
 
 /* ── Work / Portfolio ── */
 .work-strip-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin:0 0 12px 4px}
@@ -323,6 +290,15 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .csd-sec{margin-bottom:24px;cursor:default}
 .csd-sec-lbl{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--line)}
 .csd-body{font-size:12.5px;color:var(--txt2);line-height:1.72;margin:0}
+.csd-paras{display:flex;flex-direction:column;gap:13px}
+.csd-paras .csd-body{font-weight:300}
+.csd-res{display:flex;flex-direction:column;gap:0;list-style:none;margin:0;padding:0}
+.csd-res li{font-size:12px;color:var(--txt2);line-height:1.6;padding:8px 0 8px 19px;position:relative;border-bottom:1px solid var(--line)}
+.csd-res li:last-child{border-bottom:none}
+.csd-res li::before{content:'';position:absolute;left:1px;top:15px;width:6px;height:6px;border-radius:50%;background:var(--ac)}
+.csd-lnk{flex-direction:column;align-items:flex-start;gap:2px;line-height:1.5}
+.csd-lnk-lbl{font-size:12.5px;font-weight:600;color:var(--txt)}
+.csd-lnk-note{font-size:11px;font-weight:300;color:var(--txt2)}
 .csd-flow{display:flex;flex-direction:column;gap:0}
 .csd-step{display:flex;align-items:flex-start;gap:11px;padding:9px 0}
 .csd-sn{font-size:11px;font-weight:700;font-style:italic;color:var(--txt3);min-width:22px;flex-shrink:0;line-height:1.6}
@@ -335,133 +311,13 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .writ-list{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--cb);border-radius:20px;box-shadow:var(--sh);padding:0 30px}
 .writ-item{padding:22px 0;border-bottom:1px solid var(--line)}
 .writ-item:last-child{border-bottom:none}
-.writ-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:7px}
+.writ-plat{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin-bottom:8px}
+.writ-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:6px}
 .writ-title{font-size:15px;font-weight:700;color:var(--txt);line-height:1.35;flex:1}
-.writ-desc{font-size:12.5px;color:var(--txt2);line-height:1.7}
+.writ-one{font-size:12.5px;color:var(--txt2);font-style:italic;line-height:1.6;margin-bottom:8px;font-weight:300}
+.writ-desc{font-size:12.5px;color:var(--txt2);line-height:1.7;font-weight:300}
 .writ-link{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:var(--ac);text-decoration:none;white-space:nowrap;flex-shrink:0;padding-top:3px;transition:gap .15s}
 .writ-link:hover{gap:7px}
-/* ── Phase card interaction ── */
-/* Default view / Expanded view switcher */
-.ph-vd{display:flex;flex-direction:column;cursor:pointer}
-.ph-ve{display:none}
-/* Open card */
-.phase-card.ph-open{grid-column:1/-1;cursor:default}
-.phase-card.ph-open .ph-vd{display:none}
-.phase-card.ph-open .ph-ve{display:flex;flex-direction:column}
-/* Other cards hidden (represented as mini pills) */
-.phase-card.ph-other{display:none}
-/* Expanded header row */
-.ph-ve-hdr{display:flex;align-items:center;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:20px}
-/* Tiny image cluster */
-.ph-timgs{position:relative;width:72px;height:54px;flex-shrink:0}
-.ph-timg{position:absolute;width:38px;height:50px;border-radius:7px;overflow:hidden;border:2px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.14);background:#e9ecf2}
-.ph-timg.ph-timg-l{left:0;top:2px;transform:rotate(-5deg);animation:ph-tl 0.32s cubic-bezier(.2,.8,.2,1) both}
-.ph-timg.ph-timg-c{left:17px;top:0;z-index:3;animation:ph-tc 0.32s .05s cubic-bezier(.2,.8,.2,1) both}
-.ph-timg.ph-timg-r{left:34px;top:2px;transform:rotate(5deg);animation:ph-tr 0.32s .1s cubic-bezier(.2,.8,.2,1) both}
-.ph-timg img{width:100%;height:100%;object-fit:cover}
-.ph-timg .pimg-ph{display:flex;align-items:center;justify-content:center;height:100%;color:var(--txt3);font-size:14px}
-@keyframes ph-tl{from{opacity:0;transform:rotate(-5deg) scale(2.8) translate(-30px,42px)}to{opacity:1;transform:rotate(-5deg) scale(1) translate(0,0)}}
-@keyframes ph-tc{from{opacity:0;transform:scale(2.8) translate(0,52px)}to{opacity:1;transform:scale(1)}}
-@keyframes ph-tr{from{opacity:0;transform:rotate(5deg) scale(2.8) translate(30px,42px)}to{opacity:1;transform:rotate(5deg) scale(1) translate(0,0)}}
-/* Header meta */
-.ph-ve-meta{flex:1;min-width:0}
-.ph-ve-title{font-size:16px;font-weight:700;color:var(--txt);margin-bottom:3px;display:flex;align-items:baseline;gap:8px}
-.ph-ve-title .phase-num{font-size:18px;font-style:italic}
-.ph-ve-role{font-size:12px;color:var(--ac);font-style:italic;font-weight:500}
-/* Nav row: mini pills + close */
-.ph-ve-nav{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.ph-mini-pill{padding:5px 13px;background:rgba(0,0,0,.04);border:1px solid var(--cb);border-radius:20px;font-size:11px;font-weight:600;color:var(--txt2);cursor:pointer;transition:all .2s;font-family:inherit;display:flex;align-items:center;gap:4px}
-.ph-mini-pill:hover{background:rgba(79,70,229,.1);border-color:rgba(79,70,229,.28);color:var(--ac)}
-.ph-nav-lbl{font-size:10px;color:var(--txt3);font-weight:500;white-space:nowrap;letter-spacing:.01em;align-self:center;margin-right:2px}
-.ph-close-btn{padding:5px 13px;background:rgba(0,0,0,.04);border:1px solid var(--cb);border-radius:20px;font-size:11px;font-weight:600;color:var(--txt2);cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
-.ph-close-btn:hover{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25);color:#dc2626}
-/* Detail content */
-.ph-ve-detail{animation:ph-detail-in 0.3s .12s cubic-bezier(.2,.8,.2,1) both}
-@keyframes ph-detail-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-/* Mobile */
-@media(max-width:900px){
-  .phase-card.ph-open{grid-column:auto}
-  .ph-ve-hdr{flex-wrap:wrap}
-  .ph-ve-nav{flex-wrap:wrap}
-}
-/* ── Work & Portfolio panel ── */
-.wp-panel{display:grid;grid-template-columns:1fr 1px 1fr;min-height:540px;background:var(--card);border:1px solid var(--cb);border-radius:20px;box-shadow:var(--sh);overflow:hidden}
-.wp-col{display:flex;flex-direction:column;padding:22px 24px;position:relative;overflow:hidden;min-height:0}
-.wp-divider{background:var(--line);width:1px;flex-shrink:0}
-.wp-col-hd{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);padding-bottom:13px;border-bottom:1px solid var(--line);flex-shrink:0}
-.wp-content{position:relative;flex:1;overflow:hidden;min-height:0}
-/* Case list / detail */
-.cs-list,.cs-detail{position:absolute;inset:0;overflow-y:auto;padding:12px 0 8px;transition:opacity .28s ease,transform .28s ease}
-.cs-list{display:flex;flex-direction:column;gap:4px}
-.cs-detail{opacity:0;transform:translateY(14px);pointer-events:none}
-.wp-content.cs-open .cs-list{opacity:0;transform:translateY(-14px);pointer-events:none}
-.wp-content.cs-open .cs-detail{opacity:1;transform:translateY(0);pointer-events:auto}
-/* Case item */
-.cs-item{flex:1;display:flex;align-items:flex-start;gap:10px;padding:14px 12px;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:background .18s,border-color .18s;min-height:0}
-.cs-item:hover{background:rgba(0,0,0,.03);border-color:var(--cb)}
-.cs-item.cs-active{background:rgba(79,70,229,.05);border-color:rgba(79,70,229,.22)}
-.cs-item-body{flex:1;min-width:0}
-.cs-cat{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
-.cs-title{font-size:13px;font-weight:700;color:var(--txt);margin-bottom:2px;line-height:1.3}
-.cs-role{font-size:11px;color:var(--txt2);font-style:italic;margin-bottom:5px}
-.cs-teaser{font-size:11px;color:var(--txt3);line-height:1.45}
-.cs-arr{font-size:15px;color:var(--txt3);align-self:center;flex-shrink:0;transition:color .18s,transform .18s}
-.cs-item:hover .cs-arr{color:var(--ac);transform:translateX(3px)}
-/* Case detail */
-.cs-back{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--ac);cursor:pointer;margin-bottom:14px;transition:gap .15s;border:none;background:none;font-family:inherit;padding:0}
-.cs-back:hover{gap:8px}
-.cs-d-cat{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:5px}
-.cs-d-title{font-size:17px;font-weight:700;color:var(--txt);margin-bottom:4px;line-height:1.2}
-.cs-d-role{font-size:12px;color:var(--ac);font-style:italic;font-weight:500;margin-bottom:14px}
-.cs-d-img{width:100%;aspect-ratio:16/9;background:rgba(0,0,0,.04);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--txt3);font-size:11px;margin-bottom:14px;border:1px solid var(--cb);flex-direction:column;gap:6px}
-.cs-d-img i{font-size:22px}
-.cs-d-bul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
-.cs-d-bul li{font-size:11.5px;color:var(--txt2);line-height:1.55;padding-left:14px;position:relative}
-.cs-d-bul li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--ac);opacity:.45}
-.cs-d-links{display:flex;flex-direction:column;gap:8px}
-.cs-d-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--ac);text-decoration:none;transition:gap .15s}
-.cs-d-link:hover{gap:9px}
-/* Article scroll */
-.sw-scroller,.sw-overlay{position:absolute;inset:0;transition:opacity .25s ease,transform .25s ease}
-.sw-scroller{overflow:hidden}
-.sw-overlay{opacity:0;transform:translateX(16px);pointer-events:none;overflow-y:auto;padding:12px 0 8px;background:var(--card)}
-.wp-content.sw-open .sw-overlay{opacity:1;transform:translateX(0);pointer-events:auto}
-.wp-content.sw-open .sw-scroller{opacity:0;pointer-events:none}
-.sw-viewport{position:absolute;inset:0;overflow:hidden}
-.sw-inner{will-change:transform;padding:12px 0 8px}
-/* Article item */
-.sw-item{padding:11px 4px;border-bottom:1px solid var(--line);cursor:pointer;border-radius:6px;transition:background .15s;margin:0 -4px}
-.sw-item:hover{background:rgba(0,0,0,.03)}
-.sw-type{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:8px;margin-bottom:5px}
-.sw-title{font-size:12.5px;font-weight:600;color:var(--txt);line-height:1.35;margin-bottom:3px}
-.sw-platform{font-size:10.5px;color:var(--txt3)}
-.t-research{background:rgba(79,70,229,.1);color:#4f46e5}
-.t-interview{background:rgba(124,58,237,.1);color:#7c3aed}
-.t-whitepaper{background:rgba(5,150,105,.1);color:#059669}
-.t-rulebook{background:rgba(245,158,11,.1);color:#d97706}
-.t-analysis{background:rgba(14,165,233,.1);color:#0284c7}
-.t-trade{background:rgba(100,116,139,.1);color:#64748b}
-/* Article overlay */
-.sw-back{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--ac);cursor:pointer;margin-bottom:14px;transition:gap .15s;border:none;background:none;font-family:inherit;padding:0}
-.sw-back:hover{gap:8px}
-.sw-d-title{font-size:16px;font-weight:700;color:var(--txt);line-height:1.25;margin-bottom:4px}
-.sw-d-meta{font-size:11px;color:var(--txt3);margin-bottom:14px}
-.sw-d-desc{font-size:12px;color:var(--txt2);line-height:1.7;margin-bottom:16px}
-.sw-d-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--ac);text-decoration:none;margin-bottom:18px;transition:gap .15s}
-.sw-d-link:hover{gap:9px}
-.sw-d-rel-hd{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px}
-.sw-d-rel-link{display:block;font-size:12px;color:var(--txt2);margin-bottom:6px;cursor:pointer;transition:color .15s;text-decoration:none}
-.sw-d-rel-link:hover{color:var(--ac)}
-/* Mobile */
-@media(max-width:900px){
-  .wp-panel{grid-template-columns:1fr;grid-template-rows:auto 1px auto;min-height:auto}
-  .wp-divider{width:100%;height:1px}
-  .wp-col{min-height:420px}
-  .sw-viewport{position:static;overflow:visible;height:auto}
-  .sw-inner{transform:none !important}
-  .sw-scroller{position:static;overflow:visible}
-  .sw-overlay{position:absolute}
-}
 /* ── Scroll reveal ── */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .rv.on{opacity:1;transform:none}
@@ -478,9 +334,6 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   .portrait{left:50%;right:auto;transform:translate(-50%,-50%);width:300px;height:420px}
   .fc1{left:0;top:0}.fc2{left:-6px}.fc3{left:0;bottom:60px}
   .fcard{width:190px}
-  .exp-grid{grid-template-columns:1fr}
-  .phase-grid{grid-template-columns:1fr}
-  .pd-cols{grid-template-columns:1fr;gap:16px}
   .engram{grid-template-columns:1fr}
   .nn-stage{height:380px}
 }
@@ -527,9 +380,10 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     </div>
   </div>
   <div class="nav-links">
-    <a class="nav-link" href="#experience" id="nav-exp">Experience</a>
     <a class="nav-link" href="#work" id="nav-work">Work</a>
+    <a class="nav-link" href="#think" id="nav-think">How I Think</a>
     <a class="nav-link" href="#writing" id="nav-wr">Writing</a>
+    <a class="nav-link" href="#career" id="nav-exp">Career</a>
     <a class="nav-link" href="#skills" id="nav-skills">Skills</a>
     <a class="nav-link" href="#contact" id="nav-contact">Contact</a>
   </div>
@@ -577,22 +431,24 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   <div class="scroll-hint"><span>scroll</span><i class="ti ti-chevron-down"></i></div>
 </section>
 
-<!-- Experience -->
-<section class="section" id="experience">
-  <div class="sec-head rv">
-    <h2 class="sec-title" id="se-exp-t">Experience</h2>
-    <p class="sec-sub" id="se-exp-s">A continuous path of building — 2017 to today</p>
-  </div>
-  <div class="phase-grid rv" id="phase-grid"></div>
-</section>
-
 <!-- Work / Portfolio -->
 <section class="section" id="work">
   <div class="sec-head rv">
-    <h2 class="sec-title" id="se-work-t">Work</h2>
+    <p class="sec-eyebrow" id="se-work-ey">Part 2 · Work &amp; Portfolio</p>
+    <h2 class="sec-title" id="se-work-t">Work &amp; Portfolio</h2>
     <p class="sec-sub" id="se-work-s">Three projects I built, operated, or shipped — end to end</p>
   </div>
   <div class="narr-cases rv" id="narr-cases"></div>
+</section>
+
+<!-- How I Think -->
+<section class="section" id="think">
+  <div class="sec-head rv">
+    <p class="sec-eyebrow" id="se-think-ey">Part 3 · How I Think</p>
+    <h2 class="sec-title" id="se-think-t">How I Think</h2>
+    <p class="sec-sub" id="se-think-s">Four lenses, one underlying habit — diagnose before you act</p>
+  </div>
+  <div class="think-grid rv" id="think-grid"></div>
 </section>
 
 <!-- Writing -->
@@ -602,6 +458,16 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     <p class="sec-sub" id="se-wr-s">Research, analysis, and published work — demonstrating how I collect, process, and communicate complex information</p>
   </div>
   <div class="writ-list rv" id="writ-list"></div>
+</section>
+
+<!-- Career Journey -->
+<section class="section" id="career">
+  <div class="sec-head rv">
+    <p class="sec-eyebrow" id="se-exp-ey">Part 5 · Career Journey</p>
+    <h2 class="sec-title" id="se-exp-t">Career Journey</h2>
+    <p class="sec-sub" id="se-exp-s">Not a straight line — but every turn was deliberate.</p>
+  </div>
+  <div class="career-tl rv" id="career-tl"></div>
 </section>
 
 <!-- Skills Orb -->
@@ -743,8 +609,8 @@ function nnJump(target){
     else if(target==='pathport'){document.querySelector('#narr-cases')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{if(csIdx!==0)csGo(0);},700);}
     else if(target==='harena'){document.querySelector('#narr-cases')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{if(csIdx!==1)csGo(1);},700);}
     else if(target==='engram'){document.querySelector('#narr-cases')?.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{if(csIdx!==2)csGo(2);},700);}
-    else if(target==='phase0'){document.querySelector('.exp-grid')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>{if(activePhase!==0)openPhase(0);},700);}
-    else if(target==='phase1'){document.querySelector('.exp-grid')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>{if(activePhase!==1)openPhase(1);},700);}
+    else if(target==='phase0'){document.querySelector('#career-tl')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>openCareerNode(0),700);}
+    else if(target==='phase1'){document.querySelector('#career-tl')?.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>openCareerNode(1),700);}
   },400);
 }
 
@@ -848,104 +714,25 @@ function buildStrip(items){
     inner.appendChild(a);
   });
 }
-let PHASES=[],PHLBL={},activePhase=-1,currentLang='en';
-
-function _phDetailHTML(p,labels){
-  if(!p||!p.roles)return'';
-  return p.roles.map(r=>{
-    const bg=r.logo?`<div class="pd-role-bg"><img src="${r.logo}" alt="" onerror="this.parentElement.style.display='none'"></div>`:'';
-    return `<div class="pd-role">${bg}<div class="pd-role-main"><div class="pd-role-head"><span class="pd-org">${r.org}</span><span class="pd-date">${r.date}</span></div><div class="pd-cols"><div class="pd-col pd-resp"><div class="pd-col-label"><i class="ti ti-list-check"></i>${labels.resp}</div><ul class="pd-list">${(r.resp||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="pd-col pd-ach"><div class="pd-col-label"><i class="ti ti-trophy"></i>${labels.ach}</div><ul class="pd-list">${(r.ach||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div></div></div></div>`;
-  }).join('');
-}
-
-function buildPhases(phases,labels){
-  PHASES=phases;PHLBL=labels;
-  const g=document.getElementById('phase-grid');if(!g)return;
-  g.innerHTML='';
-  phases.forEach((p,idx)=>{
-    const card=document.createElement('div');card.className='phase-card';
-    // Default view images (large, fanned)
-    const bigImgs=p.images.map((src,i)=>{
-      const cls=['l','c','r'][i]||'c';
-      return `<div class="pimg ${cls}">${src?`<img src="${src}" alt="">`:`<div class="pimg-ph"><i class="ti ti-photo"></i></div>`}</div>`;
-    }).join('');
-    // Tiny images for expanded header
-    const tinyImgs=p.images.map((_,i)=>{
-      const cls=['l','c','r'][i]||'c';
-      return `<div class="ph-timg ph-timg-${cls}"><div class="pimg-ph"><i class="ti ti-photo"></i></div></div>`;
-    }).join('');
-    const kw=p.keywords.map(k=>`<span class="phase-kw-tag">${k}</span>`).join('');
-    const detailHTML=_phDetailHTML(p,labels);
-    card.innerHTML=`
-      <div class="ph-vd" onclick="openPhase(${idx})">
-        <div class="phase-stack">${bigImgs}</div>
-        <div class="phase-textblock">
-          <div class="phase-title-row"><span class="phase-num" style="color:${p.color}">${p.num}</span><span class="phase-title">${p.title}</span><span class="phase-period">${p.period}</span></div>
-          <div class="phase-role">${p.role}</div>
-          <div class="phase-intro">${p.intro}</div>
-          <div class="phase-kw"><span class="phase-kw-lbl">${labels.kw}</span>${kw}</div>
-          <div class="phase-pick"><span>${labels.details}</span><i class="ti ti-chevron-down"></i></div>
-        </div>
-      </div>
-      <div class="ph-ve">
-        <div class="ph-ve-hdr">
-          <div class="ph-timgs">${tinyImgs}</div>
-          <div class="ph-ve-meta">
-            <div class="ph-ve-title"><span class="phase-num" style="color:${p.color}">${p.num}</span>&nbsp;${p.title}</div>
-            <div class="ph-ve-role">${p.role}</div>
-          </div>
-          <div class="ph-ve-nav" id="ph-nav-${idx}"></div>
-        </div>
-        <div class="ph-ve-detail"><div class="pd-roles">${detailHTML}</div></div>
-      </div>`;
-    g.appendChild(card);
-  });
-}
-
-function openPhase(idx){
-  activePhase=idx;
-  const cards=document.querySelectorAll('.phase-card');
-  cards.forEach((c,i)=>{
-    c.classList.toggle('ph-open',i===idx);
-    c.classList.toggle('ph-other',i!==idx);
-  });
-  // Build nav row for the opened card
-  const nav=document.getElementById('ph-nav-'+idx);
-  if(nav){
-    const ld=D[currentLang]||D.en;
-    nav.innerHTML=`<span class="ph-nav-lbl">${ld.phNavLbl}</span>`+PHASES.map((p,i)=>i===idx?'':
-      `<button class="ph-mini-pill" onclick="event.stopPropagation();openPhase(${i})"><span style="color:${p.color}">${p.num}</span>&nbsp;${p.title}</button>`
-    ).join('')+`<button class="ph-close-btn" onclick="event.stopPropagation();closePhase()">${ld.phClose}</button>`;
-  }
-}
-
-function closePhase(){
-  activePhase=-1;
-  document.querySelectorAll('.phase-card').forEach(c=>c.classList.remove('ph-open','ph-other'));
-  document.querySelectorAll('[id^="ph-nav-"]').forEach(el=>el.innerHTML='');
-}
-
-function buildPhaseDetail(){/* no-op — detail now embedded in cards */}
+let currentLang='en';
 
 // ── Data ──
 const D={
 en:{
-  navSub:'Product · Fintech · Web3',navExp:'Experience',navWork:'Work',navWr:'Writing',navSkills:'Skills',navContact:'Contact',
-  phNavLbl:'Also in this journey →',phClose:'Collapse',
-  seWorkT:'Work',seWorkS:'Three projects I built, operated, or shipped — end to end',
-  seWrT:'Writing',seWrS:'Research, analysis, and published work — demonstrating how I collect, process, and communicate complex information',
+  navSub:'Product · Fintech · Web3',navExp:'Career',navWork:'Work',navThink:'How I Think',navWr:'Writing',navSkills:'Skills',navContact:'Contact',
+  seWrT:'Writing',seWrS:'Research, analysis, and published work — demonstrating how I collect, process, and communicate complex information.',
   hEyebrow:'Product · Fintech · Web3',
   hTitle:'Building where finance meets <span class="grad">emerging tech</span>',
   hSub:'Product manager and independent builder — from $20M banking portfolios to Web3 platforms and AI products. I ship end to end.',
   hCta1:'View Work',hCta2:'Resume',porPh:'Portrait photo<br/>— drop portrait.jpg here',
   pcapT:'Weiqi Shi',pcapS:'Product · Fintech · Web3 · Toronto',
   fc1:"MSc Economics · Dean's Medal",fc2:'$20M+ AUM managed at HSBC',fc3:'1,000+ Web3 ambassadors built',
-  seExpEy:'Journey',seExpT:'Experience',seExpS:'Three chapters of continuous building — 2017 to today',
-  kwLabel:'Keywords',detailsLabel:'Click for details',respLabel:'What I did',achLabel:'Achievements',tlSubLbl:'Full timeline',
-  seWorkEy:'Selected',seWorkT:'Work & Portfolio',seWorkS:"Articles, products, and platforms I've shipped",
+  seExpEy:'Part 5 · Career Journey',seExpT:'Career Journey',seExpS:'Not a straight line — but every turn was deliberate.',
+  seWorkEy:'Part 2 · Work & Portfolio',seWorkT:'Work & Portfolio',seWorkS:"Three projects. Three different problems. The same instinct: figure out what needs to exist, and build it.",
   stripLbl:'Articles & Portfolio — scroll →',
   egEy:'Featured Build',egDesc:'Private knowledge workspace for builders — AI conversations into structured long-term memory. Built solo end to end.',egCta:'View Live',egPh:'Screenshot coming soon',
   seSkEy:'Capability',seSkT:'Skill Map',seSkS:'A neural map of hard and soft capabilities',
+  seThinkEy:'Part 3 · How I Think',seThinkT:'How I Think',seThinkS:"Four lenses I've developed — and what I've built with each one.",
   orbCore:'Product',orbCoreSub:'Manager',
   orb:{
     ai:{cat:'AI & Tech',desc:'Claude Code · LLM · MCP / API'},
@@ -964,69 +751,23 @@ en:{
     {title:'Harena — AI Financial Intelligence',meta:'Co-founder & PM · Solo full-stack · investor pipeline · 2025–26',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'Startup',linkLbl:'View',img:''},
     {title:'Engram Knowledge Tool',meta:'Cloudflare Workers + D1 + Claude API + MCP · Live',href:'https://engram-b14.pages.dev',icon:'ti-layout-dashboard',badgeCls:'bs',badgeLbl:'Portfolio',linkLbl:'View',img:''},
   ],
-  phases:[
-    {num:'I',title:'Learning',period:'2017 – 2021',color:'#4f46e5',role:'Economics Student & Researcher',
-     intro:"BSc Math & Economics + MSc Economics at Lakehead. National finalist at the Bank of Canada Governor's Challenge, with the Dean's Medal and research awards.",
-     keywords:['Economics','Quant Modeling','Competition','Research'],images:['imgs/exp1-1.jpg','imgs/exp1-2.jpg','imgs/exp1-3.jpg'],
-     roles:[
-       {org:'BSc Mathematics & Economics · Lakehead',date:'Sep 2017 – Sep 2020',logo:'logos/lakehead.svg',icon:'ti-school',
-        resp:['Studied core mathematics & economics curriculum','Served as Teaching Assistant for 3 years across undergraduate courses','Focused on econometrics, financial modeling, and mathematical analysis'],
-        ach:['GPA 3.5/4.0','Entry Scholarship $17.5K','100% in Calculus']},
-       {org:'MSc Economics · Lakehead',date:'Sep 2020 – May 2021',logo:'logos/lakehead.svg',icon:'ti-school',
-        resp:['Graduate research in econometrics & quantitative modelling','Authored thesis-level economic analysis','Presented research findings in academic settings'],
-        ach:['GPA 3.9/4.0',"Dean Braun's Medal",'Research Award $10K']},
-       {org:"Governor's Challenge · Bank of Canada",date:'Sep 2019 – Feb 2020',logo:'logos/bankofcanada.svg',icon:'ti-trophy',
-        resp:['Team Lead — coordinated 5 students + 4 faculty members','Built and presented a national monetary-policy brief','Managed research, writing, and presentation prep across the full team'],
-        ach:['Reached the national finals','Presented to Governor Stephen Poloz','Received a formal commendation']},
-     ]},
-    {num:'II',title:'Finance',period:'2021 – 2024',color:'#7c3aed',role:'Banking & Wealth Advisor',
-     intro:'HSBC Premium Banker managing $20M+ AUM across 500+ clients — then through the RBC acquisition and Futu Singapore market.',
-     keywords:['Wealth Management','Client Relations','Investment','Compliance'],images:['imgs/exp2-1.jpg','imgs/exp2-2.jpg','imgs/exp2-3.jpg'],
-     roles:[
-       {org:'HSBC Bank of Canada · Personal → Premium Banker',date:'Feb 2022 – Apr 2024',logo:'logos/hsbc.svg',icon:'ti-building-bank',
-        resp:['Managed 500+ clients across investment, lending & savings','Sole front-desk operator for the branch for months','Led the branch digital-adoption initiative'],
-        ach:['$20M+ AUM under management','Promoted to Premium Banker in 13 months','Passed 3 major regulatory audits independently']},
-       {org:'RBC · Banking Advisor (HSBC acquisition)',date:'Apr 2024 – Jul 2024',logo:'logos/rbc.svg',icon:'ti-building-bank',
-        resp:['Continued managing the full client portfolio through the HSBC → RBC transition','Ensured continuity of service during system integration','Collaborated with RBC team to complete smooth portfolio onboarding'],
-        ach:['Navigated a complete bank acquisition with portfolio intact','Maintained client relationships throughout the transition','Successfully onboarded to RBC systems and processes']},
-       {org:'Futu Securities Intl · Financial Advisor',date:'Sep 2024 – Dec 2024',logo:'logos/futu.webp',icon:'ti-chart-candle',
-        resp:['Daily high-volume outreach to Singapore retail investors','Mastered a complex multi-asset trading platform','Studied Singapore regulatory environment and local market dynamics'],
-        ach:['Fully operational within 1 week','20%+ conversion in month one — top of the cohort','Ranked among the best performers in the new hire class']},
-     ]},
-    {num:'III',title:'Web3 & Product',period:'2025 – Present',color:'#059669',role:'Researcher → Ops Lead → Product Manager',
-     intro:'Web3 research at ChainCatcher, scaled PathPort to 1,000+ ambassadors, now co-founding Harena — an AI fintech product built solo, end to end.',
-     keywords:['Product Management','Web3','Growth Ops','Full-stack Delivery'],images:['imgs/exp3-1.jpg','imgs/exp3-2.jpg','imgs/exp3-3.jpg'],
-     roles:[
-       {org:'ChainCatcher / Trendverse Lab · Research Analyst',date:'Apr 2025 – Aug 2025',logo:'logos/chaincatcher.svg',icon:'ti-pencil',
-        resp:['Reported on DeFi, macro & regulatory developments','Analyzed the U.S. CLARITY Act & Singapore MAS with legal pros','Co-built the Trendverse Lab research brand'],
-        ach:['#1 monthly readership on Foresight News (all platforms)','10+ long-form reports across major crypto media','Established Trendverse Lab presence across all major crypto platforms']},
-       {org:'Flipflop Labs / PathPort · Overseas Ops Lead',date:'Aug 2025 – Jan 2026',logo:'logos/flipflop.svg',icon:'ti-world',
-        resp:['Designed the Footprint Ambassador Program for Africa & SE Asia','Authored a 60+ page bilingual whitepaper (tokenomics, architecture, GTM)','Built the PathPort website solo — architecture, UI, content, deployment'],
-        ach:['1,000+ ambassadors scaled in 2 months','Weekly active traffic grew 10×','Hong Kong keynote + 10+ AMAs across 5–6 countries']},
-       {org:'Harena · Co-founder & Product Manager',date:'Oct 2025 – Present',logo:'logos/harena.svg',icon:'ti-brain',
-        resp:['Drove product strategy through 5 major pivots — PRDs, flows, specs','Delivered the full front-end (Figma, Claude Code, Lovable, OpenAI)','Built the backend — local deploy, cloud, MCP, API integration'],
-        ach:['Shipped a working product solo, end to end','Managed investor pipeline — decks, demos, business cases','Maintains an active and growing investor pipeline']},
-     ]},
-  ],
   narr:null,// falls back to NARR global (English)
 },
 zh:{
-  navSub:'产品 · 金融科技 · Web3',navExp:'经历',navWork:'案例',navWr:'写作',navSkills:'能力',navContact:'联系',
-  phNavLbl:'查看其他阶段 →',phClose:'收起',
-  seWorkT:'项目案例',seWorkS:'三个独立参与构建、运营或交付的项目',
-  seWrT:'写作',seWrS:'研究、分析与已发表作品 —— 展示我收集、处理和传达复杂信息的能力',
+  navSub:'产品 · 金融科技 · Web3',navExp:'经历',navWork:'作品集',navThink:'思维方式',navWr:'文章',navSkills:'能力',navContact:'联系',
+  seWrT:'文章',seWrS:'研究报告、采访与分析文章 —— 展示我如何收集、处理和传达复杂信息。',
   hEyebrow:'产品 · 金融科技 · WEB3',
   hTitle:'在金融与<span class="grad">新兴科技</span>的交汇处构建',
   hSub:'产品经理 / 独立构建者 —— 从 $2000 万银行资产组合，到 Web3 平台与 AI 产品，端到端交付。',
   hCta1:'查看作品',hCta2:'下载简历',porPh:'肖像照片<br/>— 放入 portrait.jpg',
   pcapT:'Weiqi Shi',pcapS:'产品 · 金融科技 · Web3 · 多伦多',
   fc1:'经济学硕士 · 院长奖章',fc2:'汇丰 $2000万+ 资产管理',fc3:'1000+ Web3 大使搭建',
-  seExpEy:'历程',seExpT:'个人经历',seExpS:'三个阶段，持续构建的成长脉络 —— 2017 至今',
-  kwLabel:'关键词',detailsLabel:'点击查看详情',respLabel:'工作内容',achLabel:'成就',tlSubLbl:'完整时间线',
-  seWorkEy:'精选',seWorkT:'作品展示',seWorkS:'我交付的文章、产品与平台',
+  seExpEy:'Part 5 · Career Journey',seExpT:'Career Journey',seExpS:'不是一条直线 —— 但每一个转弯都是主动选择的。',
+  seWorkEy:'Part 2 · 作品集',seWorkT:'作品集',seWorkS:'三个项目，三个不同的问题。同一个本能：搞清楚什么东西应该存在，然后把它做出来。',
   stripLbl:'文章与作品 — 左右滑动 →',
   egEy:'重点项目',egDesc:'面向构建者的私人知识工作台 —— 将 AI 对话转化为结构化长期记忆。独立端到端构建。',egCta:'查看线上版本',egPh:'截图即将上传',
   seSkEy:'能力',seSkT:'能力图谱',seSkS:'硬技能与软技能的神经网络图谱',
+  seThinkEy:'Part 3 · How I Think',seThinkT:'How I Think',seThinkS:'四个视角，以及我用它们分别做了什么。',
   orbCore:'产品',orbCoreSub:'Product Manager',
   orb:{
     ai:{cat:'AI & Tech',desc:'Claude Code · LLM · MCP / API'},
@@ -1038,33 +779,71 @@ zh:{
   },
   ctEy:'保持联系',ctT:'联系我',ctSub:'寻找多伦多产品经理与商业分析师职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
   narr:[
-    {cat:'运营',yr:'2025',title:'PathPort 大使计划',role:'增长与运营负责人',
-     outcome:'从零到60天内 1,000+ 大使',
-     text:'占位：PathPort 需要在非洲和东南亚从零建立社区——没有品牌基础，没有工具，没有任何参考模板。我独立设计并执行了整个计划架构。',
-     pts:['占位：核心挑战——没有现有社区，没有模板，两个大洲的市场动态完全未知。',
-          '占位：决策——设计了多层竞争结构，具有清晰的激励机制和简化的入职流程。',
-          '占位：执行——主导5–6个国家的每周AMA，编写完整计划规则手册，管理大使沟通。',
-          '占位：结果——60天内扩展至1,000+大使；PathPort平台周活流量增长10倍。',
-          '占位：展示能力——设计可规模化人际网络系统的能力，无需直接监督。'],
+    {cat:'运营 · 增长 · WEB3',yr:'2025',title:'PathPort 大使计划',role:'PathPort Footprint Ambassador Program',
+     outcome:'两周内从零到 1,000+ 参与者。',
+     ctx:'一个新型发币平台需要从零搭建海外社群——没有现成框架，没有历史数据，没有专属团队。',
+     did:[
+      '任务听起来简单，实际上很难：在几周内，跨时区、跨语言，从零建立一个能真实驱动平台参与的全球大使体系。',
+      '我从头开始设计整个脚印大使计划——激励结构、分层任务体系、新用户引导流程、每周规则制定，以及数据追踪机制。然后独立完成了计划页面的搭建、规则书的撰写，并完成上线。',
+      '核心的设计决策是：让参与感觉像一个规则清晰、进度可见的游戏，而不是一个模糊的「加入我们的社群」号召。每个层级有明确的行动要求，每个行动有可见的激励，整套系统的设计目标是在没有我手动管理每个参与者的情况下，自己能跑起来。',
+      '与此同时，我独立主持了Twitter Space AMA，管理了非洲和东南亚多个地区的社群频道，并实时与开发团队协调，根据真实用户行为数据动态调整页面设计。在大使计划之外，我还独立策划并落地了两项额外赛事——发币大赛和Mint铸造大赛——分别撰写了完整的规则体系，为主平台持续引流。'
+     ],
+     results:[
+      '上线第一周Twitter单周浏览量突破10万',
+      '互动与转发总量超2万次（点赞、转发、评论）',
+      '第二周平台注册参与人数突破1,000人',
+      '独立落地两项额外赛事，均完成完整规则书并执行到位'
+     ],
+     evidence:[
+      {label:'大使计划网站',note:'完整的设计结构和任务体系，可直接查看',href:'#'},
+      {label:'赛事规则书',note:'我独立撰写的完整运营文档',href:'#'},
+      {label:'双语白皮书',note:'项目核心对外文件，独立完成',href:'#'}
+     ],
      links:[{label:'查看上线版本',href:'#'},{label:'阅读白皮书',href:'#'}]},
-    {cat:'产品',yr:'2025–',title:'Harena — AI 金融平台',role:'联合创始人 & 产品经理',
-     outcome:'5次重大转型。全栈交付。活跃投资人管线。',
-     text:'占位：Harena 是我从零构建的AI驱动金融智能平台。随着对市场真实需求的不断探索，产品历经5个不同战略方向，同时在每个阶段持续交付。',
-     pts:['占位：核心挑战——在模糊中建立信心；每次转型都需要放弃之前工作并重建产品逻辑。',
-          '占位：决策——采用快速迭代循环，使用 Claude Code、Lovable 和 Figma；优先学习速度而非功能打磨。',
-          '占位：执行——拥有完整产品生命周期：战略、设计、前端交付、后端搭建和投资人关系。',
-          '占位：结果——独立完成产品从零到上线的全栈交付；投资人管线持续活跃。',
-          '占位：展示能力——不确定性下的产品判断力、多次转型中的韧性、全栈所有权。'],
-     links:[{label:'查看上线版本',href:'#'},{label:'查看设计稿',href:'#'}]},
-    {cat:'开发',yr:'2025–',title:'Engram — 个人知识系统',role:'独立开发者',
-     outcome:'已上线，每日使用。完全独立构建。',
-     text:'占位：Engram 是我为自己设计和构建的私人知识工作台——现有工具无法跟上 AI 辅助工作的节奏，它将日常 AI 对话转化为结构化、可回顾的长期记忆。',
-     pts:['占位：核心挑战——设计能通过 MCP 与 Claude Code 原生集成、同时足够轻量可自托管的架构。',
-          '占位：决策——选择 Cloudflare Workers + D1 实现边缘原生性能；为 AI 客户端集成构建自定义 MCP 服务器。',
-          '占位：执行——设计系统，用 React/TypeScript 构建前端，在 Cloudflare 基础设施上部署。无团队。',
-          '占位：结果——已在生产环境运行；每日用于知识捕捉和 AI 辅助回顾与综合。',
-          '占位：展示能力——独立交付真实软件、做出基础设施决策、构建解决真实问题工具的能力。'],
-     links:[{label:'查看上线版本',href:'https://engram-b14.pages.dev'}]}
+    {cat:'产品 · AI · WEB3',yr:'2025–',title:'Harena',role:'Harena AI × Web3 Product',
+     outcome:'5次转型，一个方向：拥有一个产品到底是什么样子。',
+     ctx:'一个早期AI × Web3项目，没有专职设计师，没有固定路线图，联合创始团队在摸索中寻找方向。',
+     did:[
+      '我以联合创始人的身份加入，同时担任唯一的产品经理。我首先接受的现实是：产品当时并不存在任何清晰的形态——只有一个假设，和一个我们认为有机会的市场。我的工作是把模糊变成可以执行的东西。',
+      '工作流程大致是这样的：竞品研究 → 用户访谈 → PRD需求文档 → 设计 → 开发对接 → 用户反馈 → 重复。这整条链路都由我来跑。我独立撰写了每一份PRD，在Figma和Claude里完成了每一个页面的设计，输出了全部线框图和用户流程图，并全程监督开发交付，确保最终产品与设计意图一致。',
+      '最重要的工作，不是那些设计稿，也不是那些文档——而是五次我必须说出「我们方向错了」的时候。每一次调整都来自一个具体的信号：一次推翻了我们核心假设的用户访谈，一个关闭了某个窗口的竞品动作，或者一个让某条路走不通的技术约束。我设计并发布了用户调研问卷，系统性收集早期反馈，并用这些数据向其他创始人陈述每次调整的理由。',
+      '除了产品本身，我还独立撰写了投资人路演PPT，代表项目参与多轮投资人和合作方会议——把产品逻辑翻译成对没有每天活在产品里的人来说也能听懂的语言。'
+     ],
+     results:[
+      '项目当前处于MVP阶段，核心功能已完成验证，早期用户测试持续推进',
+      '5次重大产品方向调整，每次均有数据和用户反馈支撑',
+      '独立完成完整设计体系：UI界面、用户流程、原型图、组件库',
+      '多轮投资人会议完成，所有对外材料均独立撰写'
+     ],
+     evidence:[
+      {label:'Figma设计稿',note:'完整的UI体系和原型，可提供',href:'#'},
+      {label:'PRD文档样本',note:'关键产品决策的结构化需求文档',href:'#'},
+      {label:'路演PPT',note:'独立撰写的投资人项目说明文件',href:'#'}
+     ],
+     links:[{label:'查看设计稿',href:'#'},{label:'查看路演PPT',href:'#'}]},
+    {cat:'AI · 开发 · 产品',yr:'2025–',title:'Engram',role:'Engram Independent AI Product',
+     outcome:'独立构建并交付了一整个AI产品。没有工程团队，没有开发背景。',
+     ctx:'一个自我验证的实验：一个没有工程背景的产品经理，用AI辅助开发工具，能走多远？',
+     did:[
+      'Engram起源于一个问题：如果必须完全靠自己来构建一个产品，没有工程师，没有技术背景，我能走到哪一步？',
+      '结果比预想的更远。',
+      '我以Claude Code和OpenAI API作为核心开发工具，配合GitHub做版本控制，Cloudflare负责部署，VS Code作为开发环境。我不是简单地用这些工具生成代码——我必须理解代码在做什么，在它出错时找到原因，并在各个模块如何组合在一起这件事上做出架构层面的判断。',
+      '技术难度最高的部分，是自定义Skills模块的设计与实现，以及MCP（模型上下文协议）的集成。MCP是一个允许AI模型以结构化方式与外部工具和数据源交互的协议——从零实现它，既需要理解技术规范，也需要想清楚每个集成在产品逻辑上存在的理由。',
+      '整个构建过程中，我在GitHub上保留了完整的开发日志——不是为了写给别人看，而是作为一种对自己的约束。每一个重要决策、每一条走不通的路、每一个意外的行为，都被记录下来。这个习惯直接来自我的产品经理背景：你没有度量过的东西，就没办法迭代。',
+      '产品已上线。代码是真实的。日志是公开的。'
+     ],
+     results:[
+      '完整AI产品独立构建并部署上线',
+      '自定义Skills模块和MCP协议集成从零设计并实现',
+      '完整开发日志贯穿整个构建过程',
+      '产品可直接使用，GitHub日志可公开查阅'
+     ],
+     evidence:[
+      {label:'独立网站',note:'产品本体，运行在生产环境中',href:'https://engram-b14.pages.dev'},
+      {label:'GitHub开发日志',note:'完整的构建历史、决策过程与迭代记录',href:'https://github.com/Supremelouis/Engram'},
+      {label:'MCP集成文档',note:'自定义协议工作的技术说明',href:'#'}
+     ],
+     links:[{label:'查看上线版本',href:'https://engram-b14.pages.dev'},{label:'GitHub 日志',href:'https://github.com/Supremelouis/Engram'}]}
   ],
   strip:[
     {title:'Foresight News月榜第一 — Web3监管分析',meta:'美国CLARITY法案与新加坡MAS · 全平台月度阅读量第一 · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-article',badgeCls:'ba',badgeLbl:'文章',linkLbl:'阅读',img:''},
@@ -1074,50 +853,6 @@ zh:{
     {title:'Harena — AI金融智能平台',meta:'联合创始人 & PM · 独立全栈 · 投资人对接 · 2025–26',href:'#',icon:'ti-brain',badgeCls:'bs',badgeLbl:'创业',linkLbl:'查看',img:''},
     {title:'Engram知识工具',meta:'Cloudflare Workers + D1 + Claude API + MCP · 线上运行',href:'https://engram-b14.pages.dev',icon:'ti-layout-dashboard',badgeCls:'bs',badgeLbl:'作品',linkLbl:'查看',img:''},
   ],
-  phases:[
-    {num:'I',title:'学习阶段',period:'2017 – 2021',color:'#4f46e5',role:'经济学学生 / 研究者',
-     intro:"莱克黑德大学数学经济本科 + 经济学硕士。加拿大央行 Governor's Challenge 货币政策竞赛全国决赛，院长奖章与研究奖。",
-     keywords:['经济学','量化建模','竞赛','研究'],images:['imgs/exp1-1.jpg','imgs/exp1-2.jpg','imgs/exp1-3.jpg'],
-     roles:[
-       {org:'数学经济学学士 · 莱克黑德大学',date:'2017年9月 – 2020年9月',logo:'logos/lakehead.svg',icon:'ti-school',
-        resp:['修读数学与经济学核心课程','连续3年担任本科课程助教','专注于计量经济学、金融建模与数学分析'],
-        ach:['GPA 3.5/4.0','入学奖学金 $17.5K','微积分满分']},
-       {org:'经济学硕士 · 莱克黑德大学',date:'2020年9月 – 2021年5月',logo:'logos/lakehead.svg',icon:'ti-school',
-        resp:['从事计量经济学与量化建模研究','撰写硕士级经济分析论文','参与学术研讨与研究成果汇报'],
-        ach:['GPA 3.9/4.0','院长奖章','研究奖 $10K']},
-       {org:"Governor's Challenge · 加拿大央行",date:'2019年9月 – 2020年2月',logo:'logos/bankofcanada.svg',icon:'ti-trophy',
-        resp:['团队队长 —— 协调5名学生+4位教授','撰写并汇报全国级货币政策报告','协调团队完成研究、政策撰写与演讲准备全流程'],
-        ach:['进入全国决赛','向行长 Stephen Poloz 汇报','获得正式表彰']},
-     ]},
-    {num:'II',title:'金融阶段',period:'2021 – 2024',color:'#7c3aed',role:'银行 / 财富顾问',
-     intro:'汇丰高端客户经理，管理 $2000 万+ 资产、500+ 客户；亲历 RBC 收购并购，再征战富途新加坡市场。',
-     keywords:['财富管理','客户关系','投资顾问','合规'],images:['imgs/exp2-1.jpg','imgs/exp2-2.jpg','imgs/exp2-3.jpg'],
-     roles:[
-       {org:'汇丰银行加拿大 · 个人 → 高端客户经理',date:'2022年2月 – 2024年4月',logo:'logos/hsbc.svg',icon:'ti-building-bank',
-        resp:['管理500+客户，覆盖投资、贷款与储蓄','独撑分行前台数月','主导分行数字化转型'],
-        ach:['管理资产超 $2000万','13个月晋升高端客户经理','独立通过3次大型监管审计']},
-       {org:'RBC · 银行顾问（汇丰被收购）',date:'2024年4月 – 7月',logo:'logos/rbc.svg',icon:'ti-building-bank',
-        resp:['在汇丰 → RBC 过渡期持续管理全部客户组合','确保系统整合期间客户服务连续性','配合RBC团队完成客户组合顺畅移交'],
-        ach:['亲历完整银行并购，客户组合完整移交','过渡期间保持客户零流失','顺利完成RBC系统与流程的入职对接']},
-       {org:'富途证券国际 · 理财顾问',date:'2024年9月 – 12月',logo:'logos/futu.webp',icon:'ti-chart-candle',
-        resp:['高强度日常跟进新加坡零售投资者','快速掌握复杂多资产交易平台','深入了解新加坡监管环境与本地市场特点'],
-        ach:['一周内独立上岗','首月转化率超20% —— 团队第一','在新进员工中名列最佳表现者行列']},
-     ]},
-    {num:'III',title:'Web3 与产品',period:'2025 – 至今',color:'#059669',role:'研究员 → 运营负责人 → 产品经理',
-     intro:'链捕手 Web3 研究，PathPort 2个月扩展至 1000+ 大使，现联合创立 Harena —— 独立端到端构建的 AI 金融产品。',
-     keywords:['产品管理','Web3','增长运营','全栈交付'],images:['imgs/exp3-1.jpg','imgs/exp3-2.jpg','imgs/exp3-3.jpg'],
-     roles:[
-       {org:'链捕手 / Trendverse Lab · 研究员',date:'2025年4月 – 8月',logo:'logos/chaincatcher.svg',icon:'ti-pencil',
-        resp:['报道 DeFi、宏观与监管动态','与律师协作研究 CLARITY 法案和 MAS 框架','联合创建 Trendverse Lab 研究品牌'],
-        ach:['登顶 Foresight News 当月全平台阅读量第一','在主流加密媒体发布10+篇深度报告','在链捕手、Foresight News等平台建立独立研究品牌']},
-       {org:'Flipflop Labs / PathPort · 海外运营负责人',date:'2025年8月 – 2026年1月',logo:'logos/flipflop.svg',icon:'ti-world',
-        resp:['设计脚印大使计划（非洲与东南亚）','独立撰写60+页中英文白皮书（代币经济学、架构、GTM）','独立端到端搭建 PathPort 网站（架构、UI、内容、部署）'],
-        ach:['2个月扩展至 1000+ 大使','周活流量增长10倍','香港线下峰会路演 + 10+场AMA，覆盖5-6个国家']},
-       {org:'Harena · 联合创始人 & 产品经理',date:'2025年10月 – 至今',logo:'logos/harena.svg',icon:'ti-brain',
-        resp:['主导产品战略，经历5次重大调整 —— PRD、流程、规格','交付完整前端（Figma、Claude Code、Lovable、OpenAI）','搭建后端 —— 本地部署、云端、MCP、API 接入'],
-        ach:['独立端到端交付可用产品','全面管理投资人对接 —— 路演PPT、演示、商业计划','保持活跃且持续增长的投资人对接管线']},
-     ]},
-  ],
 }
 };
 
@@ -1126,78 +861,347 @@ function setLang(lang){
   currentLang=lang;
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',(lang==='en'&&b.textContent==='EN')||(lang==='zh'&&b.textContent==='中')));
   const d=D[lang];
-  setText('nav-sub',d.navSub);setText('nav-exp',d.navExp);setText('nav-work',d.navWork);if(d.navWr)setText('nav-wr',d.navWr);setText('nav-skills',d.navSkills);setText('nav-contact',d.navContact);
+  setText('nav-sub',d.navSub);setText('nav-exp',d.navExp);setText('nav-work',d.navWork);if(d.navThink)setText('nav-think',d.navThink);if(d.navWr)setText('nav-wr',d.navWr);setText('nav-skills',d.navSkills);setText('nav-contact',d.navContact);
   setText('h-eyebrow',d.hEyebrow);setText('h-title',d.hTitle);setText('h-sub',d.hSub);
   setText('h-cta1',d.hCta1);document.getElementById('h-cta2').innerHTML=`<i class="ti ti-download"></i>${d.hCta2}`;
   setText('por-ph',d.porPh);setText('pcap-t',d.pcapT);setText('pcap-s',d.pcapS);
   setText('fc1',d.fc1);setText('fc2',d.fc2);setText('fc3',d.fc3);
-  setText('se-exp-t',d.seExpT);setText('se-exp-s',d.seExpS);
-  if(d.seWorkT)setText('se-work-t',d.seWorkT);if(d.seWorkS)setText('se-work-s',d.seWorkS);
+  setText('se-exp-t',d.seExpT);setText('se-exp-s',d.seExpS);if(d.seExpEy)setText('se-exp-ey',d.seExpEy);
+  if(d.seWorkT)setText('se-work-t',d.seWorkT);if(d.seWorkS)setText('se-work-s',d.seWorkS);if(d.seWorkEy)setText('se-work-ey',d.seWorkEy);
   if(d.seWrT)setText('se-wr-t',d.seWrT);if(d.seWrS)setText('se-wr-s',d.seWrS);
+  if(d.seThinkT)setText('se-think-t',d.seThinkT);if(d.seThinkS)setText('se-think-s',d.seThinkS);if(d.seThinkEy)setText('se-think-ey',d.seThinkEy);
   setText('se-sk-t',d.seSkT);setText('se-sk-s',d.seSkS);
   setText('ct-t',d.ctT);setText('ct-sub',d.ctSub);setText('ct-wr',d.ctWr);setText('ct-ft',d.ctFt);
-  buildPhases(d.phases,{kw:d.kwLabel,details:d.detailsLabel,resp:d.respLabel,ach:d.achLabel});
+  buildCareer(d.career||CAREER[lang]);
   buildNarrCases(d.narr); // falls back to NARR global when d.narr is null
+  buildThink(lang);
+  buildWriting(lang);
   buildOrb(d);
-  // Re-open active phase with new language labels
-  if(activePhase>=0){const tmp=activePhase;closePhase();openPhase(tmp);}
 }
 
-// ── Narrative case data ──
+// ── Narrative case data (Part 2 — Work & Portfolio, EN) ──
 const NARR=[
-  {cat:'OPERATIONS',yr:'2025',title:'PathPort Ambassador Program',role:'Growth & Operations Lead',
-   outcome:'From zero to 1,000+ ambassadors in 60 days',
-   text:'Placeholder: PathPort needed to build a community in Africa and Southeast Asia from scratch — no brand presence, no tooling, no playbook. I designed and executed the entire program architecture independently.',
-   pts:['Placeholder: key challenge — no existing community, no templates, unknown market dynamics across two continents.',
-        'Placeholder: decision — designed a multi-tier competition structure with clear incentive mechanics and a streamlined onboarding flow.',
-        'Placeholder: execution — led weekly AMAs across 5–6 countries, authored the full program rulebook, managed ambassador communications.',
-        'Placeholder: outcome — 1,000+ ambassadors in 60 days; weekly active traffic grew 10× on the PathPort platform.',
-        'Placeholder: what this shows — ability to design systems that scale human networks without direct oversight.'],
+  {cat:'OPERATIONS · GROWTH · WEB3',yr:'2025',title:'PathPort Ambassador Program',role:'PathPort Ambassador Program',
+   outcome:'From zero to 1,000+ participants in two weeks.',
+   ctx:'A meme coin platform needed an overseas community — built from nothing, with no existing playbook.',
+   did:[
+    "The brief was simple and impossible: build a global ambassador program that drives real platform participation, across multiple time zones and languages, in weeks not months.",
+    "I started from scratch. There was no existing community, no template, no team dedicated to this. I designed the entire Footprint Ambassador Program independently — the incentive structure, the tiered task system, the onboarding flow, the weekly rules, and the tracking mechanism. Then I built the program page, wrote the rulebook, and launched it.",
+    "The core design decision was to make participation feel like a game with clear rules and visible progress — not a vague join-our-community ask. Every tier had defined actions, every action had a visible reward, and the whole system was built so it could run without me manually managing every participant.",
+    "I also ran Twitter Space AMAs independently, managed community channels across Africa and Southeast Asia, and coordinated with the development team in real time to adjust the page based on live user behavior data."
+   ],
+   results:[
+    '100,000+ Twitter impressions in week one',
+    '20,000+ combined engagements (likes, reposts, comments)',
+    '1,000+ registered participants by week two',
+    'Two additional standalone competitions launched and executed independently (Token Launch Contest & Mint Contest)'
+   ],
+   evidence:[
+    {label:'Program page',note:'see the full design and task structure live',href:'#'},
+    {label:'Competition rulebooks',note:'the complete operational documentation I wrote solo',href:'#'},
+    {label:'Bilingual whitepaper',note:"the project's core external document, written independently",href:'#'}
+   ],
    links:[{label:'View live',href:'#'},{label:'Read whitepaper',href:'#'}]},
-  {cat:'PRODUCT',yr:'2025–',title:'Harena — AI Fintech Platform',role:'Co-founder & Product Manager',
-   outcome:'5 major pivots. Full-stack delivery. Active investor pipeline.',
-   text:'Placeholder: Harena is an AI-powered financial intelligence platform built from zero. The product has evolved through 5 distinct strategic directions as I learned what the market actually needs, while shipping at every stage.',
-   pts:['Placeholder: key challenge — building conviction through ambiguity; each pivot required discarding prior work and rebuilding product logic.',
-        'Placeholder: decision — adopted rapid iteration using Claude Code, Lovable, and Figma; prioritised learning speed over polish.',
-        'Placeholder: execution — owned the full product lifecycle: strategy, design, front-end delivery, backend setup, and investor relations.',
-        'Placeholder: outcome — working product shipped solo, end to end; investor pipeline active with ongoing conversations.',
-        'Placeholder: what this shows — product judgment under uncertainty, resilience across pivots, full-stack ownership.'],
-   links:[{label:'View live',href:'#'},{label:'View designs',href:'#'}]},
-  {cat:'DEVELOPMENT',yr:'2025–',title:'Engram — Personal Knowledge OS',role:'Solo Developer',
-   outcome:'Deployed and in daily use. Built entirely alone.',
-   text:'Placeholder: Engram is a private knowledge workspace I designed and built for myself after finding that existing tools couldn\'t handle the pace of AI-assisted work. It turns daily AI conversations into structured, reviewable long-term memory.',
-   pts:['Placeholder: key challenge — designing an architecture that integrates natively with Claude Code via MCP while remaining lightweight enough to self-host.',
-        'Placeholder: decision — chose Cloudflare Workers + D1 for edge-native performance; built a custom MCP server for AI client integration.',
-        'Placeholder: execution — designed the system, built front-end in React/TypeScript, deployed on Cloudflare infrastructure. No team.',
-        'Placeholder: outcome — live in production; used daily for knowledge capture and AI-assisted review and synthesis.',
-        'Placeholder: what this shows — ability to ship real software solo, make infrastructure decisions, and build tools that solve genuine problems.'],
-   links:[{label:'View live',href:'https://engram-b14.pages.dev'}]}
+  {cat:'PRODUCT · AI · WEB3',yr:'2025–',title:'Harena',role:'Harena AI × Web3 Product',
+   outcome:'5 pivots, one direction: what it actually looks like to own a product.',
+   ctx:"An early-stage AI × Web3 project with no dedicated designer, no fixed roadmap, and a co-founding team trying to figure out what to build.",
+   did:[
+    "I came in as co-founder and the only PM. The first thing I had to accept was that the product didn't exist yet in any clear form — only a hypothesis and a market we believed in. My job was to turn ambiguity into something buildable.",
+    "The process looked like this: competitive research → user interviews → PRD → design → dev handoff → user feedback → repeat. I ran all of it. I wrote every PRD from scratch, designed every screen in Figma and Claude, produced all wireframes and user flows, and directly supervised development to make sure what got built matched what was intended.",
+    "The most important work wasn't the design or the documentation — it was the five times I had to say 「we're going in the wrong direction.」 Each pivot came from a specific signal: a user interview that contradicted our assumption, a competitive move that closed a window, a technical constraint that made an approach unviable. I designed a user research survey, collected early feedback systematically, and used it to make the case for each change to the rest of the founding team.",
+    "I also wrote the investor pitch deck and represented the project in multiple investor and partner meetings — translating product logic into language that made sense to people who weren't living inside the product every day."
+   ],
+   results:[
+    'Project at MVP stage with core features validated',
+    '5 major product pivots, each data- and feedback-driven',
+    'Full design system built independently: UI, flows, prototypes, component library',
+    'Multiple investor meetings completed with independently authored documentation'
+   ],
+   evidence:[
+    {label:'Figma design files',note:'the full UI system and prototype, available on request',href:'#'},
+    {label:'PRD samples',note:'structured requirements documentation from key product decisions',href:'#'},
+    {label:'Pitch deck',note:'investor-facing project documentation written solo',href:'#'}
+   ],
+   links:[{label:'View designs',href:'#'},{label:'View pitch deck',href:'#'}]},
+  {cat:'AI · DEVELOPMENT · PRODUCT',yr:'2025–',title:'Engram',role:'Engram Independent AI Product',
+   outcome:'Built and shipped a full AI product. No engineering team. No prior dev background.',
+   ctx:'A personal experiment to find out how far a non-engineer PM could go using AI-assisted development tools — and to build something actually useful in the process.',
+   did:[
+    "Engram started as a question: if I had to build a product entirely by myself, with no engineering background, how far could I get?",
+    "The answer turned out to be: further than expected.",
+    "I used Claude Code and the OpenAI API as the core development tools, with GitHub for version control, Cloudflare for deployment, and VS Code as the environment. I didn't just use these tools to generate code — I had to understand what the code was doing, debug it when it broke, and make architectural decisions about how the pieces fit together.",
+    "The most technically demanding parts were designing and implementing the custom Skills modules and the MCP (Model Context Protocol) integrations. MCP is a protocol that allows AI models to interact with external tools and data sources in a structured way — building it from scratch required understanding both the technical spec and the product logic of why each integration existed.",
+    "Throughout the build, I kept a development log on GitHub — not as documentation for others, but as a discipline for myself. Every significant decision, every dead end, every unexpected behavior got recorded. This habit came directly from my PM background: you can't iterate on something you haven't measured.",
+    "The product is live. The code is real. The log is public."
+   ],
+   results:[
+    'Full AI product built and deployed independently',
+    'Custom Skills modules and MCP protocol integrations designed and implemented from scratch',
+    'Complete development log maintained throughout build process',
+    'Live product available for use; GitHub log available for review'
+   ],
+   evidence:[
+    {label:'Live website',note:'the product itself, running in production',href:'https://engram-b14.pages.dev'},
+    {label:'GitHub development log',note:'the full build history, decisions, and iterations',href:'https://github.com/Supremelouis/Engram'},
+    {label:'MCP integration documentation',note:'technical spec for the custom protocol work',href:'#'}
+   ],
+   links:[{label:'View live',href:'https://engram-b14.pages.dev'},{label:'GitHub log',href:'https://github.com/Supremelouis/Engram'}]}
 ];
 
-// ── Writing section data ──
-const WRITING=[
-  {type:'RESEARCH',cls:'t-research',title:'#1 on Foresight News — Web3 Regulatory Analysis',
-   platform:'Foresight News · ChainCatcher',yr:'2025',read:'12 min',href:'https://paragraph.com/sepremelouis.eth',
-   desc:'Placeholder: a deep analysis of the U.S. CLARITY Act and Singapore MAS regulatory frameworks, written in collaboration with legal professionals. Ranked #1 in monthly readership across all platforms on Foresight News. Demonstrates ability to synthesize dense regulatory content into readable, actionable insight for a crypto-native audience.'},
-  {type:'INTERVIEW',cls:'t-interview',title:'ChainCatcher Interview — [placeholder title]',
-   platform:'ChainCatcher',yr:'2025',read:'8 min',href:'#',
-   desc:'Placeholder: conducted as part of ChainCatcher\'s ongoing coverage of emerging Web3 builders and operators. The interview covers [topic placeholder] and demonstrates depth of market knowledge and the ability to communicate complex ideas clearly under a live format.'},
-  {type:'RESEARCH',cls:'t-research',title:'Enterprise-Level Industry Report',
-   platform:'Flipflop Labs',yr:'2025',read:'20 min',href:'#',
-   desc:'Placeholder: a comprehensive industry report covering [topic placeholder], produced for Flipflop Labs\' strategic planning. This research was used to inform the GTM strategy and product direction for PathPort. Demonstrates structured analytical thinking and the ability to synthesize market data into actionable intelligence.'},
-  {type:'WHITEPAPER',cls:'t-whitepaper',title:'PathPort Whitepaper — Tokenomics, Architecture & GTM',
-   platform:'PathPort',yr:'2025',read:'35 min',href:'#',
-   desc:'Placeholder: a 60+ page bilingual (EN/ZH) whitepaper covering PathPort\'s tokenomics model, technical architecture, and go-to-market strategy. Written solo and used as the foundational document for ambassador recruitment and investor conversations. Demonstrates ability to produce institutional-quality documentation from scratch.'},
-  {type:'RULEBOOK',cls:'t-rulebook',title:'Ambassador Competition — Full Program Design',
-   platform:'Flipflop Labs',yr:'2025',read:'15 min',href:'#',
-   desc:'Placeholder: the complete rulebook and program design for the Footprint Ambassador Competition — covering tier structures, scoring criteria, onboarding flows, and reward mechanics. This document was the operational backbone of the ambassador program that reached 1,000+ participants in 60 days.'},
-  {type:'ANALYSIS',cls:'t-analysis',title:'Macro Market Analysis — [placeholder title]',
-   platform:'Trendverse Lab',yr:'2025',read:'10 min',href:'#',
-   desc:'Placeholder: a macro-level market analysis covering [topic placeholder], published under the Trendverse Lab brand. This piece contextualizes on-chain data within broader macroeconomic trends and regulatory signals. Demonstrates quantitative reasoning and the ability to translate data into narrative insight.'},
-  {type:'TRADE REVIEW',cls:'t-trade',title:'Trade Debrief — [placeholder title]',
-   platform:'Independent',yr:'2025',read:'6 min',href:'#',
-   desc:'Placeholder: an independent trade review documenting entry rationale, risk management decisions, and outcome analysis for [position/market placeholder]. Written as a personal knowledge artifact to systematize learning from live market activity. Demonstrates disciplined analytical process and financial market literacy.'}
-];
+// ── How I Think data (Part 3 — four lenses, EN + ZH) ──
+const THINK={
+ en:[
+  {num:'01',key:'CUSTOMERS',title:'01 · CUSTOMERS',accent:'#4A6CF7',
+   arg:'Understanding people before understanding products.',
+   body:"Two years in banking taught me one discipline above all others: ask before you pitch. Managing 500+ clients and CAD 20M+ in assets meant understanding financial goals, anxieties, and constraints before recommending anything. That instinct — listen first, diagnose second, recommend third — carried directly into how I run user interviews and product research.",
+   evidence:[
+    'Managed 500+ clients and CAD 20M+ AUM at HSBC — built relationships before pitching solutions',
+    'Handled HSBC → RBC merger transition: de-escalated client anxiety, translated system changes into plain language',
+    'Designed and deployed user research surveys at Harena; used interview insights to drive 5 product pivots',
+    'At Futu Moomoo: 100 client touchpoints per day, 20–25% conversion — driven by need-matching, not volume'
+   ],
+   outcome:'The discipline of listening first is how I avoid building the wrong thing.'},
+  {num:'02',key:'MARKETS',title:'02 · MARKETS',accent:'#10b981',
+   arg:'Markets are information problems. The signal is always there — the skill is knowing where to look.',
+   body:"My economics training gave me a framework: any market phenomenon has a structural cause. In grad school, I built VAR models in R to forecast interest rates, applied the Phillips Curve for monetary policy analysis, and backtested predictions before presenting to the Bank of Canada Governor. Later, tracking Web3 regulatory shifts across the U.S. and Singapore used the exact same process — find the data, identify the signal, form a judgment.",
+   evidence:[
+    'MSc Economics, GPA 3.9 — built VAR models in R, applied Phillips Curve for monetary policy forecasting',
+    "Governor's Challenge: presented rate recommendations to Bank of Canada Governor Poloz — model backtested and validated before presentation",
+    'Produced dozens of Web3 research reports across DeFi, RWA, Layer 2, Meme coins; 2 ranked #1 in weekly platform readership on Foresight News',
+    'Tracked U.S. CLARITY Act and Singapore MAS regulatory developments through direct interviews with legal professionals'
+   ],
+   outcome:"Whether it's interest rates or token markets, the analytical process is the same — and I've stress-tested it in both."},
+  {num:'03',key:'PRODUCTS',title:'03 · PRODUCTS',accent:'#f59e0b',
+   arg:'A product is a hypothesis. You ship it to find out if you’re right.',
+   body:"I came into the PM role without training — Harena had no dedicated designer, no full-time engineer, just me and an ambiguous direction. That forced me to understand what a product actually is from day one: not a feature list, but a bet on user behavior. Every PRD I wrote, every design I shipped, every pivot I pushed for was a test of a specific assumption.",
+   evidence:[
+    'Co-founder & PM at Harena: wrote all PRDs, designed all UI/UX in Figma and Claude, directly supervised development — 5 major pivots based on user data',
+    'Built Engram independently: Claude Code + OpenAI API + GitHub + Cloudflare — full-stack AI product from zero, live and documented',
+    'Tools used: Figma, Claude, Canva, Mirror, VS Code, MCP protocol design — no engineering background, shipped anyway',
+    'Harena currently at MVP stage with early user testing underway'
+   ],
+   outcome:"I've learned that the fastest way to understand a product is to be the person responsible for it breaking."},
+  {num:'04',key:'EXECUTION',title:'04 · EXECUTION',accent:'#8b5cf6',
+   arg:'Strategy means nothing without a system that moves.',
+   body:"The Footprint Ambassador Program was the best execution training I've had — no existing framework, no team, just a goal and a deadline. The discipline I learned: execution is a design problem. You build the system so it runs without you, or it doesn't run at all.",
+   evidence:[
+    'Footprint Ambassador Program: designed from scratch — page, rulebook, task system, tracking — 100K+ Twitter impressions and 20K+ engagements in week one, 1,000+ participants by week two',
+    'Wrote complete competition rulebooks for two standalone events (Token Launch Contest & Mint Contest) independently',
+    'At Harena: cold-start product operations — survey design, early user outreach, feedback loops, roadmap adjustment',
+    'Produced 60+ page bilingual whitepaper solo as the project’s external documentation backbone'
+   ],
+   outcome:"Execution is a design problem. The system either runs without you, or it doesn't run at all."}
+ ],
+ zh:[
+  {num:'01',key:'CUSTOMERS',title:'01 · CUSTOMERS — 理解人',accent:'#4A6CF7',
+   arg:'在搞清楚产品之前，先搞清楚眼前这个人。',
+   body:'在汇丰做了两年高端顾问，管理500+客户和逾2,000万加元的资产，让我形成了一个习惯：先问问题，再给方案。这套习惯后来直接影响了我做用户调研和产品访谈的方式——听到的第一个需求，往往不是真正的需求。',
+   evidence:[
+    '汇丰500+客户关系、2,000万加元资产组合管理——建立信任先于推荐方案',
+    '经历HSBC→RBC合并过渡：安抚客户情绪，将系统变更翻译成普通人听得懂的语言',
+    '在Harena独立设计并发布用户调研问卷，访谈洞察直接驱动了5次产品方向调整',
+    '富途每日触达100名客户，转化率20–25%——靠的是需求匹配，不是话术量'
+   ],
+   outcome:'先听懂人，才能避免做错东西。'},
+  {num:'02',key:'MARKETS',title:'02 · MARKETS — 理解市场',accent:'#10b981',
+   arg:'市场本质上是信息问题。信号一直都在，关键是知道去哪里找。',
+   body:'经济学训练给了我一个框架：任何市场现象背后都有结构性原因。研究生阶段用VAR模型做利率预测，后来做Web3研报追踪美新两国监管立法——用的是同一套逻辑：找数据，识别信号，形成判断。',
+   evidence:[
+    '经济学硕士，GPA 3.9，用R语言建立VAR模型，应用菲利普斯曲线做货币政策预测',
+    'Governor’s Challenge：在加拿大央行前行长Poloz面前完成利率建议陈述——模型经过回测验证',
+    '在ChainCatcher独立产出数十篇研报，覆盖DeFi、RWA、Layer 2、Meme币，2篇登上Foresight News当周阅读榜首',
+    '通过直接采访法律专业人士追踪美国CLARITY法案和新加坡MAS监管动态'
+   ],
+   outcome:'无论是利率市场还是代币市场，分析过程是一样的——而我在两个场景都经过了压力测试。'},
+  {num:'03',key:'PRODUCTS',title:'03 · PRODUCTS — 理解产品',accent:'#f59e0b',
+   arg:'产品是一个假设。你把它做出来，是为了验证自己是否判断正确。',
+   body:'我进入产品角色没有经过培训，而是被迫学会的——Harena没有专职设计师，没有全职开发，只有我和一个方向模糊的目标。这反而让我从第一天就理解了产品的本质：它不是功能列表，而是一个关于用户行为的赌注。',
+   evidence:[
+    'Harena联合创始人兼PM：独立完成所有PRD、Figma/Claude UI设计，直接对接开发——5次方向调整均基于用户数据',
+    '独立完成Engram全链路开发：Claude Code + OpenAI API + GitHub + Cloudflare，从零到上线，有完整开发日志',
+    '工具链：Figma、Claude、Canva、Mirror、VS Code、MCP协议设计——没有工程背景，照样交付',
+    'Harena当前处于MVP阶段，早期用户测试持续推进中'
+   ],
+   outcome:'我发现，理解一个产品最快的方式，就是成为那个对它出错负责的人。'},
+  {num:'04',key:'EXECUTION',title:'04 · EXECUTION — 理解执行',accent:'#8b5cf6',
+   arg:'策略什么都不是，除非有一套能动起来的系统。',
+   body:'脚印大使计划是我做过最好的执行训练——没有现成框架，只有一个目标和一个截止日期。学到的最重要的事：执行是设计问题，不是蛮力问题。这套系统要么能在没有你的情况下运转，要么根本不算建好。',
+   evidence:[
+    '脚印大使计划：从零设计——页面、规则书、任务体系、数据追踪——第一周Twitter浏览量破10万、互动超2万，第二周参与人数破1,000',
+    '独立撰写发币大赛和Mint铸造大赛两套完整规则书',
+    'Harena冷启动运营：问卷设计、早期用户触达、反馈收集、路线图动态调整',
+    '独立完成60+页双语白皮书，作为项目核心对外文件'
+   ],
+   outcome:'执行是一个设计问题。这套系统要么能在没有你的情况下运转，要么根本不算建好。'}
+ ]
+};
+
+function buildThink(lang){
+  const el=document.getElementById('think-grid');
+  if(!el)return;
+  const data=THINK[lang]||THINK.en;
+  el.innerHTML=data.map((m,i)=>`
+    <div class="think-col" style="--tk-ac:${m.accent}">
+      <div class="think-num">${m.title}</div>
+      <p class="think-arg">${m.arg}</p>
+      <p class="think-body">${m.body}</p>
+      <div class="think-ev-lbl">Evidence</div>
+      <ul class="think-ev">${m.evidence.map(e=>`<li>${e}</li>`).join('')}</ul>
+      <p class="think-outcome">${m.outcome}</p>
+    </div>${i<data.length-1?'<div class="think-arrow" aria-hidden="true"><svg width="34" height="14" viewBox="0 0 34 14"><path d="M0 7H31M31 7L25 1M31 7L25 13" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>':''}`
+  ).join('');
+}
+
+// ── Career Journey data (Part 5 — six timeline nodes, EN + ZH) ──
+const CAREER={
+ en:[
+  {period:'2017–2021',keyword:'ECONOMICS · Foundations',color:'#1A1A2E',
+   role:'Student, Lakehead University',
+   body:"Started with a question: how do systems actually work? Chose to study math and economics not for a specific career path, but because I wanted tools to think with. Graduated with a Master's in Economics (GPA 3.9, Dean's Medal) in accelerated time — and spent the final year building quantitative models I'd still use years later.",
+   trans:"The models were interesting. But I wanted to see how decisions actually get made — inside an institution."},
+  {period:'2022–2024',keyword:'BANKING · People',color:'#4A6CF7',
+   role:'Personal Banker → Premium Banker, HSBC Canada / Banking Advisor, RBC',
+   body:"Joined HSBC as a Personal Banker and moved to Premium Banker within 13 months. Managed 500+ clients, CAD 20M+ in assets, and eventually went through the HSBC → RBC acquisition — one of the more operationally complex things I've been part of. Learned that financial decisions are emotional before they're rational, and that trust is built in small moments, not big pitches.",
+   trans:"I understood clients well. But I kept wondering what it would look like to build the product they were using — rather than just selling it."},
+  {period:'2024–2025',keyword:'RESEARCH · Markets',color:'#10b981',
+   role:'Overseas Client Manager, Futu Moomoo → Research Analyst, ChainCatcher & Trendverse Lab',
+   body:"Left traditional banking to explore what was happening at the edges. Spent time at Futu Moomoo covering the Singapore market — high-volume, fast feedback, different regulatory context. Then moved into Web3 research and journalism, writing dozens of reports on DeFi, regulatory policy, and emerging market structure. Ranked #1 on Foresight News. Learned to synthesize fast, form views under uncertainty, and communicate clearly under deadline pressure.",
+   trans:"I could analyze markets. I could explain them. The next question was: could I build inside one?"},
+  {period:'2025 (Apr–Jan)',keyword:'OPERATIONS · Execution',color:'#f59e0b',
+   role:'Oversea Operation Manager, FlipFlop / PathPort, Shenzhen',
+   body:"Joined a Web3 token launch platform and ran the overseas operation from scratch — ambassador program, community cold-start, bilingual whitepaper, two competition formats. Built systems that had to work without me in the room. Drove 100K+ impressions and 1,000+ participants in under two weeks. Learned that execution is a design problem, not a hustle problem.",
+   trans:"I'd built the growth layer. Now I wanted to own the product layer."},
+  {period:'2025–Present',keyword:'PRODUCT · Building',color:'#8b5cf6',
+   role:'Co-Founder & Product Manager, Harena, Toronto',
+   body:"Co-founded Harena, an AI × Web3 project. Took on the full PM role — PRD writing, UI/UX design in Figma and Claude, competitive research, investor meetings. Led 5 product pivots. In parallel, built Engram independently using Claude Code and OpenAI API — a full-stack AI product, shipped end to end without an engineering team.",
+   trans:"Building taught me that the most valuable skill isn't any single tool — it's knowing which problem to solve first."},
+  {period:'Now',keyword:"AI-NATIVE · What's next",color:'#caa53a',
+   role:'Builder at the intersection of finance, product, and AI',
+   body:"The through-line across everything I've done — banking, research, operations, product — is the same question: how do you take something complex and make it work for real people, in the real world? AI is the most interesting version of that question right now. And I intend to keep building at that intersection.",
+   trans:''}
+ ],
+ zh:[
+  {period:'2017–2021',keyword:'经济学 · 底层工具',color:'#1A1A2E',
+   role:'湖首大学经济学硕士',
+   body:'从一个问题开始：系统是怎么运转的？选择数学和经济学，不是因为清楚职业方向，而是想要一套思考工具。用加速方式完成了经济学硕士（GPA 3.9，院长奖章），最后一年建的量化模型，几年后还在用。',
+   trans:'模型很有意思。但我想看看决策在真实机构里是怎么发生的。'},
+  {period:'2022–2024',keyword:'银行 · 理解人',color:'#4A6CF7',
+   role:'个人银行顾问 → 高端银行顾问（汇丰）/ 银行顾问（RBC）',
+   body:'以个人银行顾问身份加入汇丰，13个月内晋升为高端顾问。管理500+客户、逾2,000万加元资产，后来经历了汇丰被RBC收购——这是我参与过的最复杂的运营事件之一。学到最重要的一件事：金融决策在理性之前先是情绪的，信任是在小细节里建立的，不是靠大型pitch。',
+   trans:'我很了解客户。但我一直在想，如果是我来做他们用的那个产品，会是什么样。'},
+  {period:'2024–2025',keyword:'研究 · 理解市场',color:'#10b981',
+   role:'海外客户经理（富途证券）→ 研究分析师（ChainCatcher & Trendverse Lab）',
+   body:'离开传统银行，去探索边缘地带正在发生的事。在富途做新加坡市场的海外客户经理——高频触达，快速反馈，不同的监管语境。之后转向Web3研究和内容创作，写了数十篇覆盖DeFi、监管政策和市场结构的深度报告，2篇登上Foresight News当周阅读榜首。学会了在不确定性下快速建立判断，并在截止日期压力下清晰表达。',
+   trans:'我能分析市场，也能解释市场。下一个问题是：我能不能在市场里做出一个东西？'},
+  {period:'2025（4月–1月）',keyword:'运营 · 执行',color:'#f59e0b',
+   role:'海外运营经理，FlipFlop / PathPort，深圳',
+   body:'加入一家Web3发币平台，从零开始主导海外运营——大使计划、社群冷启动、双语白皮书、两套赛事体系。搭建的系统要在没有我盯着的情况下自己跑起来。两周内实现了10万+浏览量和1,000+参与人数。学到的最重要的事：执行是设计问题，不是蛮力问题。',
+   trans:'增长层做好了。我想接着做产品层。'},
+  {period:'2025–至今',keyword:'产品 · 构建',color:'#8b5cf6',
+   role:'联合创始人 & 产品经理，Harena，多伦多',
+   body:'联合创立Harena，一个AI × Web3项目。承担完整的PM职责——需求文档、Figma/Claude UI设计、竞品研究、投资人会议，主导了5次产品方向调整。同期独立完成了Engram的全链路开发，用Claude Code和OpenAI API，没有工程团队，独立交付上线。',
+   trans:'做产品让我意识到，最有价值的能力不是某个具体工具，而是知道先解决哪个问题。'},
+  {period:'现在',keyword:'AI原生 · 接下来',color:'#caa53a',
+   role:'在金融、产品与AI交叉点上持续构建',
+   body:'贯穿整条路的是同一个问题：怎么把复杂的东西，做成真实世界里真实的人能用的产品？AI是这个问题目前最有意思的版本。我打算继续在这个交叉点上建东西。',
+   trans:''}
+ ]
+};
+
+let careerOpenIdx=-1;
+function buildCareer(nodes){
+  const track=document.getElementById('career-tl');
+  if(!track)return;
+  careerOpenIdx=-1;
+  track.innerHTML=`<div class="cj-track">${nodes.map((n,i)=>
+    `<div class="cj-node" style="--cj-c:${n.color}" onclick="toggleCareerNode(${i})">
+       <div class="cj-dot"></div>
+       <div class="cj-label"><div class="cj-kw">${n.keyword}</div><div class="cj-period">${n.period}</div></div>
+     </div>`).join('')}<div class="cj-line"></div></div>
+   <div class="cj-card-wrap" id="cj-card-wrap"><div class="cj-card" id="cj-card"></div></div>`;
+}
+function toggleCareerNode(idx){
+  const d=D[currentLang],nodes=d.career||CAREER[currentLang],n=nodes[idx];
+  const wrap=document.getElementById('cj-card-wrap'),card=document.getElementById('cj-card');
+  const allNodes=document.querySelectorAll('.cj-node');
+  if(careerOpenIdx===idx){
+    careerOpenIdx=-1;wrap.classList.remove('cj-open');allNodes.forEach(el=>el.classList.remove('cj-on'));
+    return;
+  }
+  careerOpenIdx=idx;
+  allNodes.forEach((el,i)=>el.classList.toggle('cj-on',i===idx));
+  card.style.setProperty('--cj-c',n.color);
+  card.style.borderTopColor=n.color;
+  card.innerHTML=`<div class="cj-card-role">${n.role}</div><div class="cj-card-period">${n.keyword} · ${n.period}</div><p class="cj-card-body">${n.body}</p>${n.trans?`<p class="cj-card-trans">${n.trans}</p>`:''}`;
+  wrap.classList.add('cj-open');
+}
+function openCareerNode(idx){
+  if(careerOpenIdx!==idx)toggleCareerNode(idx);
+}
+
+// ── Writing section data (Part 4 — 7 articles, EN + ZH) ──
+const WRITING={
+ en:[
+  {platform:"Foresight News · #1 weekly readership platform-wide",href:'#',
+   title:"From High Yield to Potential Collapse: Deconstructing the Logic Behind USDe's Incentive Structure",
+   one:"Not another 'high yield = high risk' take — this one mapped the exact failure path, months before it happened.",
+   desc:"Ethena's Liquid Leverage campaign with Aave advertised ~50% APY across three stacked yield sources. This piece deconstructs the underlying mathematics of USDe's delta-neutral model, identifies the structural loopholes baked into the incentive design, and traces the precise conditions under which the mechanism breaks. A counterintuitive data signal reinforced the thesis: during ETH's June 2025 rally, USDe and sUSDe TVL and APY fell together, showing that sophisticated participants were already pricing in exit risk. Months after publication, USDe experienced a significant breakdown that followed the collapse path outlined in the piece."},
+  {platform:'ChainCatcher 链捕手 · Exclusive interview feature',href:'#',
+   title:"From Promised Land to 'Exile Zone': 5 Web3 Professionals on Singapore's Regulatory Shift",
+   one:"When everyone was saying Singapore was shutting out Web3, this piece went to the people actually there — and the lawyer who actually read the law.",
+   desc:"When Singapore's FSMA took effect on June 30, 2025, the industry was flooded with panic about “the harshest crypto regulation ever.” This report worked on two levels: first, a direct interview with a specialized digital economy attorney to surface three key provisions the market had largely missed. Second, five on-the-ground interviews with Web3 practitioners based in Singapore, reconstructing what the policy actually feels like on the ground. The conclusion: this is Singapore recalibrating as a global financial center, not expelling Web3 — but the threshold has genuinely risen."},
+  {platform:'Enterprise-level research · Officially adopted by Flipflop — became my entry credential',href:'#',
+   title:'Beyond Bots, Toward Real Users: How the POM Mechanism Could Redefine the Next Launchpad Cycle',
+   one:"I wasn't part of this project before writing this report. After writing it, I was brought in as the core overseas operations lead.",
+   desc:"This report starts with a structural question: why did the Meme coin Launchpad market collapse in 2025? A 1.67% graduation rate, Rug Pulls accounting for 44% of risk events, and a nearly 58% market cap drawdown. The report maps the Fair Launch landscape and its core vulnerabilities, then breaks down Flipflop's POM (Proof of Mint) mechanism in detail. Includes a multi-dimensional competitive comparison against Pump.fun, Moonshot, and other leading platforms. The fact that the project team read this report and brought me in as their core overseas operations lead is the most direct external validation of the analysis quality."},
+  {platform:'Meme-coin project whitepaper · Independently authored — used throughout the token launch',href:'#',
+   title:'KOL Time Value Tokenization Model Based on Proof of Mint',
+   one:"Not a project description written for readers — a mechanism design written for the token itself. Turning a person's time into a priceable, tradeable, appreciating on-chain asset.",
+   desc:"The whitepaper addresses a structural problem: a KOL's time and attention are naturally scarce resources, but existing token launch models have no way to quantify that scarcity or reflect it in price. The document introduces TVI (Time Value Index), an original quantitative formula aggregating follower count, impressions, likes, reposts, and comments into a single influence anchor, then links it to POM issuance milestones and market price movement in a three-way dynamic. Also designs four token consumption scenarios and a staged buyback flywheel. Written independently — narrative framework, mathematical formulas, and mechanism design all original."},
+  {platform:'Independently planned & written · Event operations execution document',href:'#',
+   title:'Flipflop Launch Competition — Full Rulebook',
+   one:"Whether an event actually runs depends on whether the rulebook has thought through every 'what if.'",
+   desc:"This rulebook covers the complete operational logic of a token launch competition running September to December, with a prize pool exceeding USD 300,000. Three sections: track design (five sub-tracks with explicit rules for merging conditions and cross-track participation), reward mechanism (three-tier system, rewards only increase never decrease), and review process (on-chain snapshot locking, 7-day DD questionnaire window, holistic jury scoring). Pre-defined handling rules for edge cases including volume manipulation, IP infringement, unclaimed rewards, and early termination. Designed and written from scratch."},
+  {platform:"Lakehead University MSc Economics thesis · Supervisor: Dr. Robert Petrunia",href:'#',
+   title:'Covid-19 Pandemic Impact on Canadian Business Activity',
+   one:"When a systemic shock hits an economy, it doesn't hit everyone the same way. This paper mapped exactly who got hit, how hard, and why.",
+   desc:"The paper builds a complete business activity dataset from Statistics Canada covering 2001 to 2020. Analysis works across three levels: historical benchmarking (comparing COVID's GDP shock of -11% against 2008 crisis -2% and 2014 oil shock -0.55%), structural decomposition by firm size, sector, and province identifying asymmetric damage patterns, and policy evaluation tracking the lag relationship between fiscal stimulus and business behavior. The same analytical framework — find the structural cause, identify asymmetric impacts, evaluate policy effectiveness — was later applied directly to Web3 regulatory analysis and token economic model stress-testing."},
+  {platform:'Independent trade review · Personal research, verified in live trading',href:'#',
+   title:'AUCTION Short Squeeze Breakdown: Reading the Psychology and Strategy Behind the Chart',
+   one:'The candlestick is the outcome. Behind it is a premeditated psychological battle between the operator and retail traders — this breakdown reconstructs the entire sequence.',
+   desc:"AUCTION's price moved nearly 10x from its bottom in March 2025, then collapsed. This review reconstructs the three-stage short squeeze: on-chain wallet tracking (26% of supply withdrawn from Binance in batches), two deliberate short-trap sequences exploiting retail resistance-level psychology, and the top unwind with hedge short and phased spot distribution. A follow-up review introduces the OI (Open Interest) indicator to re-verify each key price move. Position was entered based on operator behavior pattern recognition, resulting in a profitable trade. I have several years of independent BTC and major token trading experience."}
+ ],
+ zh:[
+  {platform:'Foresight News · 当周全平台浏览量第一',href:'#',
+   title:'从高收益到潜在崩盘：一文解构 USDe 激励背后的逻辑链',
+   one:'不是在说高收益有风险，而是在说这个风险长什么样、什么时候会触发——并在几个月后被验证。',
+   desc:'Ethena联合Aave推出的Liquid Leverage活动提供接近50%的年化收益。文章深入拆解了delta-neutral算法稳定币背后的数学逻辑与内生漏洞，并指出了一个反直觉的预警信号：2025年6月ETH冲高期间，USDe与sUSDe的TVL和APY同步下行，市场已在提前计价退出风险。文章发布数月后，USDe模型随即出现实质性暴雷，与文中预判的崩解路径高度吻合。'},
+  {platform:'ChainCatcher 链捕手 · 独家采访报道',href:'#',
+   title:'从理想国到「驱逐地」：5位Web3从业者眼中的新加坡变局',
+   one:'当所有人都在说「新加坡要清退Web3」的时候，这篇文章去问了真正在场的人——以及真正读过法案的律师。',
+   desc:'新加坡FSMA法案正式生效，行业内充斥着恐慌情绪。这篇报道拆分成两个层次：第一层，直接联系专业律师，梳理三个被市场普遍忽视的法案核心要点；第二层，采访5位长期在坡的Web3从业者，用真实声音还原政策落地的实际温度。结论：这是新加坡作为国际金融中心的一次自我校准，不是驱赶，但确实是门槛的全面抬高。'},
+  {platform:'企业级研报 · Flipflop官方采用·入职凭证',href:'#',
+   title:'告别机器人，迎接真实用户：POM机制引爆下一轮Launch革命',
+   one:'写这篇研报之前，我不在这个项目里。写完之后，我成了它的核心海外负责人。',
+   desc:'这篇研报的起点是一个具体的行业问题：为什么Meme币Launchpad市场在2025年出现系统性崩盘——毕业率仅1.67%、Rug Pull占整体风险事件44%、市值缩水近58%？研报从Fair Launch赛道的现状与结构性缺陷出发，深入拆解Flipflop的POM机制，并与Pump.fun、Moonshot等主流竞品进行多维横向对比。项目方读完报告后邀请我加入，是对分析质量最直接的外部验证。'},
+  {platform:'Meme币项目白皮书 · 独立撰写·配合代币发行全程使用',href:'#',
+   title:'基于 Proof of Mint 的 KOL 时间价值代币化模型',
+   one:'不是写给读者看的项目说明书，是写给机制本身的——把一个名人的「时间」变成可以定价、可以流通、可以增值的链上资产。',
+   desc:'这份白皮书解决的核心问题是：KOL的时间和注意力是稀缺资源，但现有的发币模式无法将这种稀缺性真正量化并反映到代币价格上。文件提出了TVI（时间价值指数）这一原创量化公式，并设计了四类代币消费场景和阶段化回购正向飞轮机制。叙事框架、数学公式和机制设计全部独立原创。'},
+  {platform:'独立策划·独立撰写 · 活动运营执行文件',href:'#',
+   title:'Flipflop 发射大赛完整规则书',
+   one:'一场活动能不能跑起来，取决于规则书有没有把所有「如果」都想清楚。',
+   desc:'这份规则书覆盖了一场从9月持续到12月、奖池超过30万美元的代币发射大赛的完整运营逻辑。分为三大部分：赛道设计（五条细分赛道，明确赛道合并条件和跨赛道规则）、奖励机制（三层递进结构，奖励数量只增不减）、评审流程（链上数据截止时间锁定、7天DD问卷窗口、陪审团综合评分）。提前设定了刷量作弊、IP侵权、奖励认领超期等边缘情况的处理规则。从零独立策划完成。'},
+  {platform:'湖首大学经济学硕士毕业论文 · 指导教授：Dr. Robert Petrunia',href:'#',
+   title:'Covid-19 疫情对加拿大商业活动的冲击分析',
+   one:'一个大的外部冲击，会对每一个小的商业决策产生什么影响——这篇论文用数据回答了这个问题。',
+   desc:'论文以Statistics Canada的时间序列数据为基础，建立2001年至2020年的完整商业活动数据集。分析分三个层次：历史对比（COVID季度环比-11% vs. 2008年-2%）、结构性分析（按企业规模、行业、省份拆解冲击差异）、政策评估（追踪财政刺激与央行政策的有效性差异）。这套分析框架——找到结构性原因，识别非对称冲击，评估政策有效性——后来直接用在了Web3监管政策分析和代币经济模型压力测试上。'},
+  {platform:'独立交易复盘 · 个人研究·实盘验证',href:'#',
+   title:'AUCTION 逼空复盘：看清K线背后的心理博弈与操盘逻辑',
+   one:'K线是结果，背后是一场庄家与散户之间有预谋的心理博弈——这篇复盘是把整个过程从头拆解一遍。',
+   desc:'AUCTION在2025年3月不到一个月内实现近10倍涨幅后快速归零。复盘从链上数据入手，重构了三阶段逼空过程：四个钱包地址分批提取约200万枚代币（占总供应量26%）、两轮利用散户前高阻力位心理的诱空行动、顶部套保空单与分批出货操作。后续复盘引入OI（未平仓合约）指标重新验证每个关键价格节点。全程结合实盘操作，通过判断庄家行为节点入场，实现正向盈利。本人有几年独立交易BTC和主流代币的经验。'}
+ ]
+};
 
 // ── Portfolio Peek Carousel ──
 let csIdx=1,csData_=[],csDetailOpen=false,csDetailIdx=-1;
@@ -1209,10 +1213,10 @@ function buildCarousel(data){
   const el=document.getElementById('narr-cases');
   if(!el)return;
   const lb=typeof currentLang!=='undefined'&&currentLang==='zh'
-    ?{ov:'概览',pr:'流程步骤',ln:'相关链接',back:'← 返回'}
-    :{ov:'Overview',pr:'How It Happened',ln:'Links',back:'← Back'};
+    ?{ctx:'项目背景',did:'我做了什么',res:'结果',ev:'Evidence',back:'← 返回'}
+    :{ctx:'Context',did:'What I Did',res:'Results',ev:'Evidence',back:'← Back'};
   el.innerHTML=`<div class="cs-carousel-wrap" id="cs-wrap"><div class="cs-carousel-track" id="cs-track">${
-    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.role}</div><div class="cs-cslide-outcome">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-back" onclick="csCloseDetail()">${lb.back}</button><div class="csd-sec"><div class="csd-sec-lbl">${lb.ov}</div><p class="csd-body">${c.text}</p></div><div class="csd-sec"><div class="csd-sec-lbl">${lb.pr}</div><div class="csd-flow">${c.pts.map((p,j)=>`<div class="csd-step"><span class="csd-sn">${String(j+1).padStart(2,'0')}</span><span class="csd-st">${p}</span></div>${j<c.pts.length-1?'<div class="csd-arr">↓</div>':''}`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl">${lb.ln}</div><div class="csd-links">${c.links.map(l=>`<a class="csd-lnk" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div></div></div>`).join('')
+    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-back" onclick="csCloseDetail()">${lb.back}</button><div class="csd-sec"><div class="csd-sec-lbl">① ${lb.ctx}</div><p class="csd-body">${c.ctx}</p></div><div class="csd-sec"><div class="csd-sec-lbl">② ${lb.did}</div><div class="csd-paras">${c.did.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl">③ ${lb.res}</div><ul class="csd-res">${c.results.map(r=>`<li>${r}</li>`).join('')}</ul></div><div class="csd-sec"><div class="csd-sec-lbl">④ ${lb.ev}</div><div class="csd-links">${c.evidence.map(e=>`<a class="csd-lnk" href="${e.href}" target="_blank" onclick="event.stopPropagation()"><span class="csd-lnk-lbl">${e.label} →</span><span class="csd-lnk-note">${e.note}</span></a>`).join('')}</div></div></div></div>`).join('')
   }</div><button class="cs-arr-btn cs-arr-left" id="cs-al" onclick="csNav(-1)">&#8249;</button><button class="cs-arr-btn cs-arr-right" id="cs-ar" onclick="csNav(1)">&#8250;</button><div class="cs-dots">${csData_.map((_,i)=>`<button class="cs-dot${i===csIdx?' cs-dot-on':''}" onclick="csGo(${i})"></button>`).join('')}</div></div>`;
   requestAnimationFrame(csLayout);
 }
@@ -1283,170 +1287,21 @@ function csClickSlide(idx){if(csDetailOpen)return;if(idx!==csIdx)csGo(idx);else 
 // Alias for backward-compat with setLang call
 function buildNarrCases(data){buildCarousel(data);}
 
-function buildWriting(){
+function buildWriting(lang){
   const el=document.getElementById('writ-list');
   if(!el)return;
-  el.innerHTML=WRITING.map(a=>`
+  const data=(lang&&WRITING[lang])||WRITING.en;
+  const readLbl=lang==='zh'?'阅读全文 →':'Read full article →';
+  el.innerHTML=data.map(a=>`
     <div class="writ-item">
+      <div class="writ-plat">${a.platform}</div>
       <div class="writ-hd">
         <div class="writ-title">${a.title}</div>
-        <a class="writ-link" href="${a.href}" target="_blank">Read full article →</a>
+        <a class="writ-link" href="${a.href}" target="_blank">${readLbl}</a>
       </div>
+      <p class="writ-one">${a.one}</p>
       <div class="writ-desc">${a.desc}</div>
     </div>`).join('');
-}
-
-// ── Work & Portfolio section ──
-const CASES=[
-  {id:'pathport',cat:'OPERATIONS',title:'PathPort Ambassador Program',role:'Growth & Operations Lead',teaser:'From zero to 1,000+ ambassadors in 60 days',
-   bullets:['Placeholder: background context — launched to expand PathPort reach across Africa and Southeast Asia with no existing community.',
-            'Placeholder: key challenge — designing a scalable ambassador program from scratch with no prior tooling or playbook.',
-            'Placeholder: decision made — built a multi-tier competition structure with clear incentive tiers and a streamlined onboarding flow.',
-            'Placeholder: outcome — 1,000+ ambassadors in 60 days; weekly active traffic grew 10× across the platform.',
-            'Placeholder: capability demonstrated — end-to-end program design, growth operations, cross-cultural community management.'],
-   link1:{label:'View live →',href:'#'},link2:{label:'Read whitepaper →',href:'#'}},
-  {id:'harena',cat:'PRODUCT',title:'Harena — AI Fintech Platform',role:'Co-founder & Product Manager',teaser:'5 pivots, full-stack AI product delivery',
-   bullets:['Placeholder: background context — Harena is an AI-powered financial intelligence platform built from zero.',
-            'Placeholder: key challenge — navigating 5 major product pivots while maintaining investor confidence and delivery momentum.',
-            'Placeholder: decision made — adopted a lean build-measure-learn loop; Claude Code, Lovable, and Figma for rapid iteration.',
-            'Placeholder: outcome — working product shipped solo, end to end; active and growing investor pipeline.',
-            'Placeholder: capability demonstrated — full product lifecycle ownership, solo full-stack delivery, investor relations.'],
-   link1:{label:'View live →',href:'#'},link2:{label:'View designs →',href:'#'}},
-  {id:'engram',cat:'DEVELOPMENT',title:'Engram — Personal Knowledge OS',role:'Solo Developer',teaser:'Building solo from idea to deployed product',
-   bullets:['Placeholder: background context — Engram is a private knowledge workspace designed for builders who work daily with AI tools.',
-            'Placeholder: key challenge — designing an MCP-native architecture that integrates with Claude Code and external AI clients.',
-            'Placeholder: decision made — chose Cloudflare Workers + D1 for edge-native performance with zero infrastructure overhead.',
-            'Placeholder: outcome — live in production; used daily for knowledge capture, structured review, and AI-assisted synthesis.',
-            'Placeholder: capability demonstrated — system design, solo full-stack development, product thinking applied to developer tooling.'],
-   link1:{label:'View live →',href:'https://engram-b14.pages.dev'},link2:null}
-];
-
-const ARTICLES=[
-  {type:'RESEARCH',cls:'t-research',title:'#1 on Foresight News — Web3 Regulatory Analysis',platform:'Foresight News · ChainCatcher · 2025',read:'12 min read',href:'https://paragraph.com/sepremelouis.eth',
-   desc:'Placeholder: this piece analyzes the U.S. CLARITY Act and Singapore MAS regulatory frameworks, written with legal professionals. It ranked #1 in monthly readership across all platforms on Foresight News. Demonstrates ability to synthesize complex regulatory content for a crypto-native audience and produce work that dominates a competitive media landscape.',
-   related:['Enterprise-Level Industry Report','Macro Market Analysis — [placeholder title]']},
-  {type:'INTERVIEW',cls:'t-interview',title:'ChainCatcher Interview — [placeholder title]',platform:'ChainCatcher · 2025',read:'8 min read',href:'#',
-   desc:'Placeholder: this interview covers [topic placeholder] as part of ChainCatcher\'s ongoing series on emerging Web3 trends. The piece demonstrates depth of market knowledge and the ability to articulate complex ideas accessibly. Placeholder context on why this was conducted and what it reveals.',
-   related:['#1 on Foresight News — Web3 Regulatory Analysis','Macro Market Analysis — [placeholder title]']},
-  {type:'RESEARCH',cls:'t-research',title:'Enterprise-Level Industry Report',platform:'Flipflop Labs · 2025',read:'20 min read',href:'#',
-   desc:'Placeholder: a comprehensive industry report covering [topic placeholder], produced for Flipflop Labs. This research was used to inform the GTM strategy and product direction for PathPort. Demonstrates structured analytical thinking and the ability to synthesize market data into actionable insights.',
-   related:['PathPort Whitepaper — Tokenomics, Architecture & GTM','Ambassador Competition — Full Program Design']},
-  {type:'WHITEPAPER',cls:'t-whitepaper',title:'PathPort Whitepaper — Tokenomics, Architecture & GTM',platform:'PathPort · 2025',read:'35 min read',href:'#',
-   desc:'Placeholder: a 60+ page bilingual (EN/ZH) whitepaper covering PathPort\'s tokenomics model, technical architecture, and go-to-market strategy. Written solo and used as the foundational document for ambassador recruitment and investor conversations. Demonstrates the ability to produce institutional-quality documentation from scratch.',
-   related:['Enterprise-Level Industry Report','Ambassador Competition — Full Program Design']},
-  {type:'RULEBOOK',cls:'t-rulebook',title:'Ambassador Competition — Full Program Design',platform:'Flipflop Labs · 2025',read:'15 min read',href:'#',
-   desc:'Placeholder: the complete rulebook and program design for the Footprint Ambassador Competition, covering tier structures, scoring criteria, onboarding flows, and reward mechanics. This document was the operational backbone of the ambassador program that reached 1,000+ participants in 60 days.',
-   related:['PathPort Whitepaper — Tokenomics, Architecture & GTM','Enterprise-Level Industry Report']},
-  {type:'ANALYSIS',cls:'t-analysis',title:'Macro Market Analysis — [placeholder title]',platform:'Trendverse Lab · 2025',read:'10 min read',href:'#',
-   desc:'Placeholder: a macro-level market analysis covering [topic placeholder], published under the Trendverse Lab brand. This piece contextualizes on-chain data within broader macroeconomic trends and regulatory signals. Demonstrates quantitative reasoning and the ability to translate data into narrative insight.',
-   related:['#1 on Foresight News — Web3 Regulatory Analysis','Trade Debrief — [placeholder title]']},
-  {type:'TRADE REVIEW',cls:'t-trade',title:'Trade Debrief — [placeholder title]',platform:'Independent · 2025',read:'6 min read',href:'#',
-   desc:'Placeholder: an independent trade review covering [position/market placeholder], documenting entry rationale, risk management decisions, and outcome analysis. Written as a personal knowledge artifact to systematize learning from live market activity. Demonstrates disciplined analytical process and financial market literacy.',
-   related:['Macro Market Analysis — [placeholder title]','#1 on Foresight News — Web3 Regulatory Analysis']}
-];
-
-let swScrollY=0,swPaused=false,swRaf=null,swLastTime=null;
-const SW_SPEED=40;
-
-function buildCsList(){
-  const el=document.getElementById('cs-list');
-  if(!el)return;
-  el.innerHTML=CASES.map((c,i)=>`
-    <div class="cs-item" data-idx="${i}" onclick="openCase(${i})">
-      <div class="cs-item-body">
-        <div class="cs-cat">${c.cat}</div>
-        <div class="cs-title">${c.title}</div>
-        <div class="cs-role">${c.role}</div>
-        <div class="cs-teaser">${c.teaser}</div>
-      </div>
-      <span class="cs-arr">→</span>
-    </div>`).join('');
-}
-
-function openCase(idx){
-  const c=CASES[idx];
-  document.querySelectorAll('.cs-item').forEach((el,i)=>el.classList.toggle('cs-active',i===idx));
-  const link2=c.link2?`<a class="cs-d-link" href="${c.link2.href}" target="_blank">${c.link2.label}</a>`:'';
-  document.getElementById('cs-detail').innerHTML=`
-    <button class="cs-back" onclick="closeCase()">← Back</button>
-    <div class="cs-d-cat">${c.cat}</div>
-    <div class="cs-d-title">${c.title}</div>
-    <div class="cs-d-role">${c.role}</div>
-    <div class="cs-d-img"><i class="ti ti-photo"></i><span>Screenshot coming soon</span></div>
-    <ul class="cs-d-bul">${c.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
-    <div class="cs-d-links">
-      <a class="cs-d-link" href="${c.link1.href}" target="_blank">${c.link1.label}</a>
-      ${link2}
-    </div>`;
-  document.getElementById('cs-content').classList.add('cs-open');
-}
-
-function closeCase(){
-  document.getElementById('cs-content').classList.remove('cs-open');
-  document.querySelectorAll('.cs-item').forEach(el=>el.classList.remove('cs-active'));
-}
-
-function buildSwList(){
-  const inner=document.getElementById('sw-inner');
-  if(!inner) return;
-  const html=ARTICLES.map((a,i)=>`
-    <div class="sw-item" data-idx="${i}" onclick="openArticle(${i})">
-      <div class="sw-type ${a.cls}">${a.type}</div>
-      <div class="sw-title">${a.title}</div>
-      <div class="sw-platform">${a.platform}</div>
-    </div>`).join('');
-  inner.innerHTML=html+html; // doubled for seamless loop
-}
-
-function openArticle(idx){
-  const a=ARTICLES[idx];
-  swPaused=true;
-  const relHtml=a.related.map(r=>`<span class="sw-d-rel-link" onclick="closeArticle()">${r}</span>`).join('');
-  document.getElementById('sw-overlay').innerHTML=`
-    <button class="sw-back" onclick="closeArticle()">← Back</button>
-    <div class="sw-type ${a.cls}" style="margin-bottom:8px">${a.type}</div>
-    <div class="sw-d-title">${a.title}</div>
-    <div class="sw-d-meta">${a.platform} · ${a.read}</div>
-    <div class="sw-d-desc">${a.desc}</div>
-    <a class="sw-d-link" href="${a.href}" target="_blank">Read full article →</a>
-    <div class="sw-d-rel-hd">Related work</div>
-    ${relHtml}`;
-  document.getElementById('sw-content').classList.add('sw-open');
-}
-
-function closeArticle(){
-  document.getElementById('sw-content').classList.remove('sw-open');
-  swPaused=false;
-}
-
-function initSwScroll(){
-  const vp=document.getElementById('sw-viewport');
-  const inner=document.getElementById('sw-inner');
-  if(!vp||!inner) return;
-  // Pause on hover
-  vp.addEventListener('mouseenter',()=>{swPaused=true});
-  vp.addEventListener('mouseleave',()=>{if(!document.getElementById('sw-content').classList.contains('sw-open'))swPaused=false});
-  // Disable on mobile
-  if(window.innerWidth<=900) return;
-  function tick(ts){
-    if(!swLastTime) swLastTime=ts;
-    const dt=Math.min(ts-swLastTime,50);
-    swLastTime=ts;
-    if(!swPaused&&inner.scrollHeight>0){
-      swScrollY+=(SW_SPEED*dt)/1000;
-      const half=inner.scrollHeight/2;
-      if(swScrollY>=half) swScrollY-=half;
-      inner.style.transform=`translateY(-${swScrollY}px)`;
-    }
-    swRaf=requestAnimationFrame(tick);
-  }
-  swRaf=requestAnimationFrame(tick);
-}
-
-function initWorkSection(){
-  buildCsList();
-  buildSwList();
-  initSwScroll();
 }
 
 // Scroll reveal
@@ -1500,7 +1355,7 @@ function initTree(){
   tick();
 }
 
-buildWriting();setLang('en');initWorkSection();initRv();initTree();window.addEventListener('resize',csLayout,{passive:true}); // initTree = flow field
+setLang('en');initRv();initTree();window.addEventListener('resize',csLayout,{passive:true}); // initTree = flow field
  </script> 
 </body>
 </html>
