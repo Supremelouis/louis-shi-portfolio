@@ -175,23 +175,36 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   .cj-card-wrap.cj-open{margin-top:14px;margin-left:32px}
 }
 
-/* ── How I Think — four-lens grid (Part 3) ── */
-.think-grid{display:flex;align-items:stretch;gap:0;justify-content:center}
-.think-col{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);
-  border:1px solid var(--gb);border-radius:22px;box-shadow:var(--sh);padding:26px 22px;border-top:3px solid var(--tk-ac,var(--ac));transition:transform .3s,box-shadow .3s}
-.think-col:hover{transform:translateY(-4px);box-shadow:var(--sh-h)}
-.think-num{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--tk-ac,var(--ac));margin-bottom:14px}
-.think-arg{font-size:15px;font-weight:700;color:var(--txt);line-height:1.45;margin-bottom:14px;letter-spacing:-.01em}
-.think-body{font-size:12.5px;color:var(--txt2);line-height:1.75;font-weight:300;margin-bottom:16px}
-.think-ev-lbl{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:9px}
-.think-ev{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
-.think-ev li{font-size:11px;color:var(--txt2);line-height:1.55;padding-left:15px;position:relative;font-weight:300}
-.think-ev li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--tk-ac,var(--ac))}
-.think-outcome{font-size:12px;color:var(--txt);font-style:italic;font-weight:300;line-height:1.6;padding-top:14px;border-top:1px solid var(--line);margin-top:auto}
-.think-arrow{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:34px;color:var(--txt3);opacity:.5}
-@media(max-width:980px){
-  .think-grid{flex-direction:column;align-items:stretch;gap:18px}
-  .think-arrow{display:none}
+/* ── How I Think — Tab Switch Panel ── */
+.think-outer{display:grid;grid-template-columns:156px 1fr;max-width:1000px;margin:0 auto;gap:0 52px;align-items:start}
+.think-snav{display:flex;flex-direction:column;padding-top:6px}
+.think-snav-item{display:flex;align-items:flex-start;gap:13px;padding:13px 0 13px 14px;border-left:2px solid transparent;cursor:pointer;transition:border-color .2s;text-decoration:none;user-select:none}
+.think-snav-item.tson{border-left-color:var(--tsi-c)}
+.think-snav-dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex-shrink:0;transition:background .2s;margin-top:5px}
+.think-snav-item.tson .think-snav-dot{background:var(--tsi-c)}
+.think-snav-num{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--txt3);margin-bottom:3px}
+.think-snav-key{font-size:12px;font-weight:700;color:var(--txt2);transition:color .2s;letter-spacing:.03em}
+.think-snav-item.tson .think-snav-key{color:var(--txt)}
+.think-panels{position:relative}
+.think-panel{display:none}
+.think-panel.tson{display:block;animation:thinkIn .32s ease both}
+@keyframes thinkIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.think-pey{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--tp-c);margin-bottom:18px;text-transform:uppercase}
+.think-parg{font-size:28px;font-weight:700;line-height:1.25;letter-spacing:-.02em;margin-bottom:20px}
+.think-pbody{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:28px}
+.think-pev-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:11px}
+.think-pev{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.think-pev-item{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:var(--glass);border:1px solid var(--gb);border-radius:10px}
+.think-pev-dot{width:6px;height:6px;border-radius:50%;background:var(--tp-c);flex-shrink:0;margin-top:5px}
+.think-pev-txt{font-size:13px;color:var(--txt2);line-height:1.55}
+.think-pout{font-size:13px;font-style:italic;color:var(--txt3);border-left:2px solid var(--tp-c);padding-left:14px;line-height:1.7}
+.think-skip{display:flex;justify-content:center;padding:40px 0 8px}
+.think-skip a{font-size:12px;color:var(--txt2);text-decoration:none;display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:20px;padding:8px 20px;transition:all .25s;font-family:system-ui,sans-serif}
+.think-skip a:hover{background:var(--glass);border-color:var(--ac);color:var(--ac)}
+@media(max-width:900px){
+  .think-outer{grid-template-columns:1fr}
+  .think-snav{display:none}
+  .think-panel{display:block!important;animation:none!important;margin-bottom:48px}
 }
 
 /* ── Work / Portfolio ── */
@@ -467,7 +480,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     <h2 class="sec-title" id="se-think-t">How I Think</h2>
     <p class="sec-sub" id="se-think-s">Four lenses, one underlying habit — diagnose before you act</p>
   </div>
-  <div class="think-grid rv" id="think-grid"></div>
+  <div class="think-grid" id="think-grid"></div>
 </section>
 
 <!-- Writing -->
@@ -880,16 +893,48 @@ function buildThink(lang){
   const el=document.getElementById('think-grid');
   if(!el)return;
   const data=THINK[lang]||THINK.en;
-  el.innerHTML=data.map((m,i)=>`
-    <div class="think-col" style="--tk-ac:${m.accent}">
-      <div class="think-num">${m.title}</div>
-      <p class="think-arg">${m.arg}</p>
-      <p class="think-body">${m.body}</p>
-      <div class="think-ev-lbl">Evidence</div>
-      <ul class="think-ev">${m.evidence.map(e=>`<li>${e}</li>`).join('')}</ul>
-      <p class="think-outcome">${m.outcome}</p>
-    </div>${i<data.length-1?'<div class="think-arrow" aria-hidden="true"><svg width="34" height="14" viewBox="0 0 34 14"><path d="M0 7H31M31 7L25 1M31 7L25 13" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>':''}`
-  ).join('');
+  const evLbl=lang==='zh'?'证据':'Evidence';
+  const skipTxt=lang==='zh'?'跳过，直接去文章 ↓':'Skip to Writing ↓';
+  const navHtml=data.map((m,i)=>`
+    <div class="think-snav-item${i===0?' tson':''}" style="--tsi-c:${m.accent}" data-tidx="${i}">
+      <div class="think-snav-dot"></div>
+      <div><div class="think-snav-num">${m.num}</div><div class="think-snav-key">${m.key}</div></div>
+    </div>`).join('');
+  const panelsHtml=data.map((m,i)=>`
+    <div class="think-panel${i===0?' tson':''}" style="--tp-c:${m.accent}" data-tidx="${i}">
+      <div class="think-pey">${m.title}</div>
+      <div class="think-parg">${m.arg}</div>
+      <p class="think-pbody">${m.body}</p>
+      <div class="think-pev-lbl">${evLbl}</div>
+      <div class="think-pev">${m.evidence.map(e=>`
+        <div class="think-pev-item"><div class="think-pev-dot"></div><div class="think-pev-txt">${e}</div></div>`).join('')}
+      </div>
+      <p class="think-pout">${m.outcome}</p>
+    </div>`).join('');
+  el.innerHTML=`
+    <div class="think-outer">
+      <div class="think-snav" id="think-snav">${navHtml}</div>
+      <div class="think-panels" id="think-panels">${panelsHtml}</div>
+    </div>
+    <div class="think-skip"><a href="#writing">${skipTxt}</a></div>`;
+  initThinkScroll();
+}
+function initThinkScroll(){
+  const snav=document.getElementById('think-snav');
+  const panelsEl=document.getElementById('think-panels');
+  if(!snav||!panelsEl)return;
+  const panels=Array.from(panelsEl.querySelectorAll('.think-panel'));
+  const navItems=Array.from(snav.querySelectorAll('.think-snav-item'));
+  if(!panels.length)return;
+  function switchTo(idx){
+    panels.forEach((p,i)=>p.classList.toggle('tson',i===idx));
+    navItems.forEach((n,i)=>n.classList.toggle('tson',i===idx));
+  }
+  navItems.forEach((item,i)=>item.addEventListener('click',()=>switchTo(i)));
+  // Clean up any previous scroll listeners from old design
+  if(window._thkPanelsEl){window._thkPanelsEl.removeEventListener('scroll',window._thkScroll);}
+  if(window._thkScroll){window.removeEventListener('scroll',window._thkScroll);window.removeEventListener('resize',window._thkScroll);}
+  window._thkPanelsEl=null;window._thkScroll=null;
 }
 
 // ── Career Journey data (Part 5 — six timeline nodes, EN + ZH) ──
