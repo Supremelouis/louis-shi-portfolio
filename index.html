@@ -230,6 +230,32 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .engram-img .imgw-ph{flex-direction:column;gap:8px;font-size:12px}
 
 
+/* ── Hero sub two-paragraph style ── */
+.h-sub-p1{font-size:15px;line-height:1.7;color:var(--txt2);margin:0 0 12px}
+.h-sub-p2{font-size:13.5px;line-height:1.75;color:var(--txt3);font-weight:300;margin:0}
+.h-about-link{background:none;border:none;font-family:inherit;font-size:13px;color:var(--ac);cursor:pointer;padding:0;font-weight:500;margin-top:10px;display:inline-block;letter-spacing:.01em;transition:opacity .2s}
+.h-about-link:hover{opacity:.7}
+
+/* ── About Modal ── */
+.about-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s}
+.about-overlay.ab-open{opacity:1;pointer-events:auto}
+.about-card{background:var(--glass2);backdrop-filter:blur(36px) saturate(200%);-webkit-backdrop-filter:blur(36px) saturate(200%);border:1px solid var(--gb);border-radius:28px;max-width:580px;width:100%;max-height:86vh;overflow-y:auto;padding:38px 40px;box-shadow:0 28px 80px rgba(0,0,0,.2);transform:translateY(22px);transition:transform .3s;scrollbar-width:none}
+.about-overlay.ab-open .about-card{transform:translateY(0)}
+.about-card::-webkit-scrollbar{display:none}
+.about-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.about-title{font-size:22px;font-weight:700;font-family:'DM Serif Display',serif;color:var(--txt)}
+.about-close{background:rgba(120,120,130,.12);border:1px solid var(--gb);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--txt2);font-family:inherit;line-height:1;transition:background .2s;flex-shrink:0}
+.about-close:hover{background:rgba(120,120,130,.22)}
+.about-body{margin-bottom:24px}
+.about-p{font-size:14px;font-weight:300;color:var(--txt2);line-height:1.85;margin-bottom:16px}
+.about-p:last-of-type{margin-bottom:0}
+.about-foot{font-size:12.5px;color:var(--txt3);font-style:italic;margin-top:20px;padding-top:16px;border-top:1px solid var(--gb)}
+.about-btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding-top:20px;border-top:1px solid var(--gb)}
+.about-btn{padding:10px 22px;font-size:13px}
+.about-lnk{background:none;border:none;font-family:inherit;font-size:13px;color:var(--ac);cursor:pointer;padding:0;font-weight:500;transition:opacity .2s}
+.about-lnk:hover{opacity:.7}
+.pcap{cursor:pointer}
+
 /* ── Contact ── */
 .contact{padding:70px 0 50px;text-align:center}
 .contact-title{font-size:clamp(30px,4vw,46px);font-weight:700;letter-spacing:-.02em;margin-bottom:12px;font-family:'DM Serif Display',serif}
@@ -384,20 +410,24 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 <!-- Hero -->
 <section class="hero">
   <div class="hero-text">
-    <div class="hero-eyebrow" id="h-eyebrow">Product · Fintech · Web3</div>
-    <h1 class="hero-title" id="h-title">Building where finance meets <span class="grad">emerging tech</span></h1>
-    <p class="hero-sub" id="h-sub">Product manager and independent builder — from $20M banking portfolios to Web3 platforms and AI products. I ship end to end.</p>
+    <div class="hero-eyebrow" id="h-eyebrow">Product · Fintech · Web3 · AI</div>
+    <h1 class="hero-title" id="h-title">The world looks different<br><span class="grad">depending on where you're standing.</span></h1>
+    <div class="hero-sub" id="h-sub">
+      <p class="h-sub-p1">Economist, banker, researcher, operator, product manager, designer, and independent developer — each role a different vantage point.</p>
+      <p class="h-sub-p2">The goal has always been to connect these perspectives, and use the fuller picture to think about problems differently.</p>
+    </div>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#work" id="h-cta1">View Work</a>
       <a class="btn btn-ghost" href="#" id="h-cta2"><i class="ti ti-download"></i>Resume</a>
     </div>
+    <button class="h-about-link" id="h-about" onclick="openAbout()">About Me →</button>
   </div>
   <div class="hero-visual">
     <div class="portrait">
       <img src="hero-photo.png" alt="Weiqi Shi"/>
-      <div class="pcap">
-        <div class="pcap-t" id="pcap-t">Weiqi Shi</div>
-        <div class="pcap-s" id="pcap-s">Product · Fintech · Web3 · Toronto</div>
+      <div class="pcap" onclick="openAbout()">
+        <div class="pcap-t" id="pcap-t">Weiqi Shi (Louis)</div>
+        <div class="pcap-s" id="pcap-s">Product · Fintech · Web3 · AI · Toronto</div>
       </div>
     </div>
     <div class="fcard fc1">
@@ -405,12 +435,12 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
       <div class="fcard-txt" id="fc1">MSc Economics · Dean's Medal</div>
     </div>
     <div class="fcard fc2">
-      <div class="fcard-ico"><i class="ti ti-trending-up"></i></div>
-      <div class="fcard-txt" id="fc2">$20M+ AUM managed at HSBC</div>
+      <div class="fcard-ico"><i class="ti ti-users"></i></div>
+      <div class="fcard-txt" id="fc2">500+ clients · know what people actually need</div>
     </div>
     <div class="fcard fc3">
-      <div class="fcard-ico"><i class="ti ti-world"></i></div>
-      <div class="fcard-txt" id="fc3">1,000+ Web3 ambassadors built</div>
+      <div class="fcard-ico"><i class="ti ti-hammer"></i></div>
+      <div class="fcard-txt" id="fc3">From whitepapers to working products · end to end</div>
     </div>
   </div>
   <div class="scroll-hint"><span>scroll</span><i class="ti ti-chevron-down"></i></div>
@@ -486,14 +516,21 @@ let currentLang='en';
 // ── Data ──
 const D={
 en:{
-  navSub:'Product · Fintech · Web3',navExp:'Career',navWork:'Work',navThink:'How I Think',navWr:'Writing',navContact:'Contact',
+  navSub:'Product · Fintech · Web3 · AI',navExp:'Career',navWork:'Work',navThink:'How I Think',navWr:'Writing',navContact:'Contact',
   seWrT:'Writing',seWrS:'Research, analysis, and published work — demonstrating how I collect, process, and communicate complex information.',
-  hEyebrow:'Product · Fintech · Web3',
-  hTitle:'Building where finance meets <span class="grad">emerging tech</span>',
-  hSub:'Product manager and independent builder — from $20M banking portfolios to Web3 platforms and AI products. I ship end to end.',
-  hCta1:'View Work',hCta2:'Resume',porPh:'Portrait photo<br/>— drop portrait.jpg here',
-  pcapT:'Weiqi Shi',pcapS:'Product · Fintech · Web3 · Toronto',
-  fc1:"MSc Economics · Dean's Medal",fc2:'$20M+ AUM managed at HSBC',fc3:'1,000+ Web3 ambassadors built',
+  hEyebrow:'Product · Fintech · Web3 · AI',
+  hTitle:'The world looks different<br><span class="grad">depending on where you\'re standing.</span>',
+  hSub:'<p class="h-sub-p1">Economist, banker, researcher, operator, product manager, designer, and independent developer — each role a different vantage point.</p><p class="h-sub-p2">The goal has always been to connect these perspectives, and use the fuller picture to think about problems differently.</p>',
+  hCta1:'View Work',hCta2:'Resume',hAbout:'About Me →',porPh:'Portrait photo<br/>— drop portrait.jpg here',
+  pcapT:'Weiqi Shi (Louis)',pcapS:'Product · Fintech · Web3 · AI · Toronto',
+  fc1:"MSc Economics · Dean's Medal",fc2:'500+ clients · know what people actually need',fc3:'From whitepapers to working products · end to end',
+  aboutTitle:'About Me',
+  aboutP1:"I'm Weiqi Shi — economist, banker, independent researcher, and product manager. I grew up watching markets move and trying to understand why. That instinct never went away.",
+  aboutP2:'What I do is connect dots across disciplines: financial logic, research methods, product thinking, and technical execution. The best ideas tend to live at intersections — and I\'ve spent years positioning myself at the right ones.',
+  aboutP3:'Currently I\'m building and shipping independently — from AI-powered knowledge tools to community growth systems at Web3 scale. I work end to end: research, strategy, design, product, and often the code too.',
+  aboutP4:'My goal is to join a product team where depth of thinking matters — where the question isn\'t just "what should we build?" but "why, for whom, and how do we know we got it right?"',
+  aboutFoot:'Based in Toronto · Open to full-time PM and BA roles',
+  aboutBtn1:'View Work',aboutBtn2:'Resume',aboutBtn3:'Get in touch →',
   seExpEy:'Part 5 · Career Journey',seExpT:'Career Journey',seExpS:'Not a straight line — but every turn was deliberate.',
   seWorkEy:'Part 2 · Work & Portfolio',seWorkT:'Work & Portfolio',seWorkS:"Three projects. Three different problems. The same instinct: figure out what needs to exist, and build it.",
   stripLbl:'Articles & Portfolio — scroll →',
@@ -520,14 +557,21 @@ en:{
   narr:null,// falls back to NARR global (English)
 },
 zh:{
-  navSub:'产品 · 金融科技 · Web3',navExp:'经历',navWork:'作品集',navThink:'思维方式',navWr:'文章',navContact:'联系',
+  navSub:'产品 · 金融科技 · Web3 · AI',navExp:'经历',navWork:'作品集',navThink:'思维方式',navWr:'文章',navContact:'联系',
   seWrT:'文章',seWrS:'研究报告、采访与分析文章 —— 展示我如何收集、处理和传达复杂信息。',
-  hEyebrow:'产品 · 金融科技 · WEB3',
-  hTitle:'在金融与<span class="grad">新兴科技</span>的交汇处构建',
-  hSub:'产品经理 / 独立构建者 —— 从 $2000 万银行资产组合，到 Web3 平台与 AI 产品，端到端交付。',
-  hCta1:'查看作品',hCta2:'下载简历',porPh:'肖像照片<br/>— 放入 portrait.jpg',
-  pcapT:'Weiqi Shi',pcapS:'产品 · 金融科技 · Web3 · 多伦多',
-  fc1:'经济学硕士 · 院长奖章',fc2:'汇丰 $2000万+ 资产管理',fc3:'1000+ Web3 大使搭建',
+  hEyebrow:'产品 · 金融科技 · Web3 · AI',
+  hTitle:'站在不同的位置，<br><span class="grad">看到的是完全不同的世界。</span>',
+  hSub:'<p class="h-sub-p1">经济学者、银行从业者、独立研究员、产品经理、设计师、独立开发者 —— 每一个角色，都是一个不同的视角。</p><p class="h-sub-p2">我一直想做的，是把这些视角连接起来，用更完整的图景，去思考那些值得被认真对待的问题。</p>',
+  hCta1:'查看作品集',hCta2:'下载简历',hAbout:'了解更多 →',porPh:'肖像照片<br/>— 放入 portrait.jpg',
+  pcapT:'史伟琪 Louis',pcapS:'产品 · 金融科技 · Web3 · AI · 多伦多',
+  fc1:'经济学硕士 · 院长奖章',fc2:'服务500+客户 · 读懂真实需求',fc3:'从白皮书到上线产品 · 全程独立交付',
+  aboutTitle:'关于我',
+  aboutP1:'我叫史伟琪，经济学者、银行从业者、独立研究员，也是产品经理。从小就在观察市场的波动，然后试图弄明白背后的原因。这个习惯从未改变。',
+  aboutP2:'我做的事情，是把不同领域的逻辑连接起来：金融思维、研究方法、产品设计和技术执行。最好的想法往往存在于交叉地带——而我花了很多年，把自己放在了正确的位置上。',
+  aboutP3:'目前我在独立构建和交付项目，从 AI 知识工具到 Web3 规模的社群增长系统。我全程参与：研究、策略、设计、产品，有时候也写代码。',
+  aboutP4:'我想加入一个重视深度思考的产品团队——一个不只问「我们应该建什么」，而是会问「为什么建、为谁建、怎么判断做对了」的团队。',
+  aboutFoot:'现居多伦多 · 寻找全职产品经理 / 商业分析师职位',
+  aboutBtn1:'查看作品集',aboutBtn2:'下载简历',aboutBtn3:'发邮件联系 →',
   seExpEy:'Part 5 · Career Journey',seExpT:'Career Journey',seExpS:'不是一条直线 —— 但每一个转弯都是主动选择的。',
   seWorkEy:'Part 2 · 作品集',seWorkT:'作品集',seWorkS:'三个项目，三个不同的问题。同一个本能：搞清楚什么东西应该存在，然后把它做出来。',
   stripLbl:'文章与作品 — 左右滑动 →',
@@ -629,8 +673,17 @@ function setLang(lang){
   setText('nav-sub',d.navSub);setText('nav-exp',d.navExp);setText('nav-work',d.navWork);if(d.navThink)setText('nav-think',d.navThink);if(d.navWr)setText('nav-wr',d.navWr);setText('nav-contact',d.navContact);
   setText('h-eyebrow',d.hEyebrow);setText('h-title',d.hTitle);setText('h-sub',d.hSub);
   setText('h-cta1',d.hCta1);document.getElementById('h-cta2').innerHTML=`<i class="ti ti-download"></i>${d.hCta2}`;
+  if(d.hAbout)setText('h-about',d.hAbout);
   setText('por-ph',d.porPh);setText('pcap-t',d.pcapT);setText('pcap-s',d.pcapS);
   setText('fc1',d.fc1);setText('fc2',d.fc2);setText('fc3',d.fc3);
+  // About modal content
+  if(d.aboutTitle){
+    setText('ab-title',d.aboutTitle);setText('ab-p1',d.aboutP1);setText('ab-p2',d.aboutP2);
+    setText('ab-p3',d.aboutP3);setText('ab-p4',d.aboutP4);setText('ab-foot',d.aboutFoot);
+    setText('ab-btn1',d.aboutBtn1);
+    document.getElementById('ab-btn2').innerHTML=`<i class="ti ti-download"></i>${d.aboutBtn2}`;
+    setText('ab-btn3',d.aboutBtn3);
+  }
   setText('se-exp-t',d.seExpT);setText('se-exp-s',d.seExpS);if(d.seExpEy)setText('se-exp-ey',d.seExpEy);
   if(d.seWorkT)setText('se-work-t',d.seWorkT);if(d.seWorkS)setText('se-work-s',d.seWorkS);if(d.seWorkEy)setText('se-work-ey',d.seWorkEy);
   if(d.seWrT)setText('se-wr-t',d.seWrT);if(d.seWrS)setText('se-wr-s',d.seWrS);
@@ -1119,6 +1172,40 @@ function initTree(){
 }
 
 setLang('en');initRv();initTree();window.addEventListener('resize',csLayout,{passive:true}); // initTree = flow field
- </script> 
+
+// ── About modal ──
+function openAbout(){
+  document.getElementById('about-overlay').classList.add('ab-open');
+  document.body.style.overflow='hidden';
+}
+function closeAbout(){
+  document.getElementById('about-overlay').classList.remove('ab-open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAbout();});
+ </script>
+
+<!-- About Modal -->
+<div class="about-overlay" id="about-overlay" onclick="if(event.target===this)closeAbout()">
+  <div class="about-card">
+    <div class="about-hd">
+      <div class="about-title" id="ab-title">About Me</div>
+      <button class="about-close" onclick="closeAbout()">×</button>
+    </div>
+    <div class="about-body">
+      <p class="about-p" id="ab-p1"></p>
+      <p class="about-p" id="ab-p2"></p>
+      <p class="about-p" id="ab-p3"></p>
+      <p class="about-p" id="ab-p4"></p>
+      <p class="about-foot" id="ab-foot"></p>
+    </div>
+    <div class="about-btns">
+      <a class="btn btn-primary about-btn" id="ab-btn1" href="#work" onclick="closeAbout()">View Work</a>
+      <a class="btn btn-ghost about-btn" id="ab-btn2" href="#"><i class="ti ti-download"></i>Download Resume</a>
+      <button class="about-lnk" id="ab-btn3" onclick="window.location.href='mailto:founder@aurgo.ai'">Get in touch →</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
