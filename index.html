@@ -286,15 +286,12 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .csd-res li{font-size:12px;color:var(--txt2);line-height:1.6;padding:8px 0 8px 19px;position:relative;border-bottom:1px solid var(--line)}
 .csd-res li:last-child{border-bottom:none}
 .csd-res li::before{content:'';position:absolute;left:1px;top:15px;width:6px;height:6px;border-radius:50%;background:var(--ac)}
-.csd-lnk{flex-direction:column;align-items:flex-start;gap:2px;line-height:1.5}
-.csd-lnk-lbl{font-size:12.5px;font-weight:600;color:var(--txt)}
-.csd-lnk-note{font-size:11px;font-weight:300;color:var(--txt2)}
 .csd-flow{display:flex;flex-direction:column;gap:0}
 .csd-step{display:flex;align-items:flex-start;gap:11px;padding:9px 0}
 .csd-sn{font-size:11px;font-weight:700;font-style:italic;color:var(--txt3);min-width:22px;flex-shrink:0;line-height:1.6}
 .csd-st{font-size:12px;color:var(--txt2);line-height:1.6}
 .csd-arr{padding-left:33px;color:var(--txt3);font-size:11px;line-height:1}
-.csd-links{display:flex;flex-direction:column;gap:8px}
+.csd-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px}
 .csd-lnk{display:inline-flex;align-items:center;font-size:12.5px;font-weight:600;color:var(--txt);text-decoration:none;padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:var(--glass);transition:background .2s,border-color .2s,box-shadow .2s;width:fit-content;cursor:pointer}
 .csd-lnk:hover{background:rgba(255,255,255,.9);border-color:var(--gb);box-shadow:var(--sh)}
 /* ── Writing section ── */
@@ -982,7 +979,7 @@ function buildCarousel(data){
     ?{ctx:'项目背景',did:'我做了什么',res:'结果',ev:'Evidence',back:'← 返回'}
     :{ctx:'Context',did:'What I Did',res:'Results',ev:'Evidence',back:'← Back'};
   el.innerHTML=`<div class="cs-carousel-wrap" id="cs-wrap"><div class="cs-carousel-track" id="cs-track">${
-    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-back" onclick="csCloseDetail()">${lb.back}</button><div class="csd-sec"><div class="csd-sec-lbl">① ${lb.ctx}</div><p class="csd-body">${c.ctx}</p></div><div class="csd-sec"><div class="csd-sec-lbl">② ${lb.did}</div><div class="csd-paras">${c.did.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl">③ ${lb.res}</div><ul class="csd-res">${c.results.map(r=>`<li>${r}</li>`).join('')}</ul></div><div class="csd-sec"><div class="csd-sec-lbl">④ ${lb.ev}</div><div class="csd-links">${c.evidence.map(e=>`<a class="csd-lnk" href="${e.href}" target="_blank" onclick="event.stopPropagation()"><span class="csd-lnk-lbl">${e.label} →</span><span class="csd-lnk-note">${e.note}</span></a>`).join('')}</div></div></div></div>`).join('')
+    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-back" onclick="csCloseDetail()">${lb.back}</button><div class="csd-sec"><div class="csd-sec-lbl">① ${lb.ctx}</div><p class="csd-body">${c.ctx}</p></div><div class="csd-sec"><div class="csd-sec-lbl">② ${lb.did}</div><div class="csd-paras">${c.did.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl">③ ${lb.res}</div><ul class="csd-res">${c.results.map(r=>`<li>${r}</li>`).join('')}</ul></div><div class="csd-sec"><div class="csd-sec-lbl">④ ${lb.ev}</div><div class="csd-links">${c.evidence.map(e=>`<a class="csd-lnk" href="${e.href}" target="_blank" onclick="event.stopPropagation()">${e.label} →</a>`).join('')}</div></div></div></div>`).join('')
   }</div><button class="cs-arr-btn cs-arr-left" id="cs-al" onclick="csNav(-1)">&#8249;</button><button class="cs-arr-btn cs-arr-right" id="cs-ar" onclick="csNav(1)">&#8250;</button><div class="cs-dots">${csData_.map((_,i)=>`<button class="cs-dot${i===csIdx?' cs-dot-on':''}" onclick="csGo(${i})"></button>`).join('')}</div></div>`;
   requestAnimationFrame(csLayout);
 }
