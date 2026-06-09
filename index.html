@@ -321,6 +321,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .csd-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px}
 .csd-lnk{display:inline-flex;align-items:center;font-size:12.5px;font-weight:600;color:var(--txt);text-decoration:none;padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:var(--glass);transition:background .2s,border-color .2s,box-shadow .2s;width:fit-content;cursor:pointer}
 .csd-lnk:hover{background:rgba(255,255,255,.9);border-color:var(--gb);box-shadow:var(--sh)}
+.csd-lnk-dim{opacity:.38;cursor:default;pointer-events:none;font-style:italic}
 /* ── Writing section ── */
 .writ-list{display:flex;flex-direction:column;background:var(--glass);border:1px solid var(--gb);border-radius:20px;box-shadow:var(--sh);padding:0 30px}
 .writ-item{padding:22px 0;border-bottom:1px solid var(--line)}
@@ -629,11 +630,9 @@ zh:{
       '独立落地两项额外赛事，均完成完整规则书并执行到位'
      ],
      evidence:[
-      {label:'大使计划网站',note:'完整的设计结构和任务体系，可直接查看',href:'#'},
-      {label:'赛事规则书',note:'我独立撰写的完整运营文档',href:'#'},
-      {label:'双语白皮书',note:'项目核心对外文件，独立完成',href:'#'}
+      {label:'大使计划网站',note:'完整的设计结构和任务体系，可直接查看',href:'https://www.ffpp.space/'}
      ],
-     links:[{label:'查看上线版本',href:'#'},{label:'阅读白皮书',href:'#'}]},
+     links:[{label:'查看上线版本',href:'https://www.ffpp.space/'}]},
     {cat:'产品 · AI · WEB3',yr:'2025–',title:'Harena',role:'Harena AI × Web3 Product',
      outcome:'5次转型，一个方向：拥有一个产品到底是什么样子。',
      ctx:'一个早期AI × Web3项目，没有专职设计师，没有固定路线图，联合创始团队在摸索中寻找方向。',
@@ -650,11 +649,12 @@ zh:{
       '多轮投资人会议完成，所有对外材料均独立撰写'
      ],
      evidence:[
-      {label:'Figma设计稿',note:'完整的UI体系和原型，可提供',href:'#'},
-      {label:'PRD文档样本',note:'关键产品决策的结构化需求文档',href:'#'},
-      {label:'路演PPT',note:'独立撰写的投资人项目说明文件',href:'#'}
+      {label:'Figma设计稿 1',note:'UI原型',href:'https://calm-satin-33761912.figma.site'},
+      {label:'Figma设计稿 2',note:'UI原型',href:'https://cloak-fresco-80103488.figma.site'},
+      {label:'Figma设计稿 3',note:'UI原型',href:'https://sepia-sheep-66827641.figma.site'},
+      {label:'泳道图',note:'产品流程与架构设计（Miro）',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}
      ],
-     links:[{label:'查看设计稿',href:'#'},{label:'查看路演PPT',href:'#'}]},
+     links:[{label:'设计稿 1',href:'https://calm-satin-33761912.figma.site'},{label:'设计稿 2',href:'https://cloak-fresco-80103488.figma.site'},{label:'设计稿 3',href:'https://sepia-sheep-66827641.figma.site'},{label:'泳道图',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}]},
     {cat:'AI · 开发 · 产品',yr:'2025–',title:'Engram',role:'Engram Independent AI Product',
      outcome:'独立构建并交付了一整个AI产品。没有工程团队，没有开发背景。',
      ctx:'一个自我验证的实验：一个没有工程背景的产品经理，用AI辅助开发工具，能走多远？',
@@ -674,10 +674,10 @@ zh:{
      ],
      evidence:[
       {label:'独立网站',note:'产品本体，运行在生产环境中',href:'https://engram-b14.pages.dev'},
-      {label:'GitHub开发日志',note:'完整的构建历史、决策过程与迭代记录',href:'https://github.com/Supremelouis/Engram'},
-      {label:'MCP集成文档',note:'自定义协议工作的技术说明',href:'#'}
+      {label:'开发日志（部分）',note:'Notion上的决策过程与构建历史',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'},
+      {label:'源代码 — 暂未开放',note:'',href:null}
      ],
-     links:[{label:'查看上线版本',href:'https://engram-b14.pages.dev'},{label:'GitHub 日志',href:'https://github.com/Supremelouis/Engram'}]}
+     links:[{label:'查看上线版本',href:'https://engram-b14.pages.dev'},{label:'开发日志',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'}]}
   ],
   strip:[
     {title:'Foresight News月榜第一 — Web3监管分析',meta:'美国CLARITY法案与新加坡MAS · 全平台月度阅读量第一 · 2025',href:'https://paragraph.com/sepremelouis.eth',icon:'ti-article',badgeCls:'ba',badgeLbl:'文章',linkLbl:'阅读',img:''},
@@ -738,11 +738,9 @@ const NARR=[
     'Two additional standalone competitions launched and executed independently (Token Launch Contest & Mint Contest)'
    ],
    evidence:[
-    {label:'Program page',note:'see the full design and task structure live',href:'#'},
-    {label:'Competition rulebooks',note:'the complete operational documentation I wrote solo',href:'#'},
-    {label:'Bilingual whitepaper',note:"the project's core external document, written independently",href:'#'}
+    {label:'Program page',note:'see the full design and task structure live',href:'https://www.ffpp.space/'}
    ],
-   links:[{label:'View live',href:'#'},{label:'Read whitepaper',href:'#'}]},
+   links:[{label:'View live',href:'https://www.ffpp.space/'}]},
   {cat:'PRODUCT · AI · WEB3',yr:'2025–',title:'Harena',role:'Harena AI × Web3 Product',
    outcome:'5 pivots, one direction: what it actually looks like to own a product.',
    ctx:"An early-stage AI × Web3 project with no dedicated designer, no fixed roadmap, and a co-founding team trying to figure out what to build.",
@@ -759,11 +757,12 @@ const NARR=[
     'Multiple investor meetings completed with independently authored documentation'
    ],
    evidence:[
-    {label:'Figma design files',note:'the full UI system and prototype, available on request',href:'#'},
-    {label:'PRD samples',note:'structured requirements documentation from key product decisions',href:'#'},
-    {label:'Pitch deck',note:'investor-facing project documentation written solo',href:'#'}
+    {label:'Figma design 1',note:'UI prototype',href:'https://calm-satin-33761912.figma.site'},
+    {label:'Figma design 2',note:'UI prototype',href:'https://cloak-fresco-80103488.figma.site'},
+    {label:'Figma design 3',note:'UI prototype',href:'https://sepia-sheep-66827641.figma.site'},
+    {label:'Swimlane diagram',note:'product flow and architecture on Miro',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}
    ],
-   links:[{label:'View designs',href:'#'},{label:'View pitch deck',href:'#'}]},
+   links:[{label:'Design 1',href:'https://calm-satin-33761912.figma.site'},{label:'Design 2',href:'https://cloak-fresco-80103488.figma.site'},{label:'Design 3',href:'https://sepia-sheep-66827641.figma.site'},{label:'Swimlane',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}]},
   {cat:'AI · DEVELOPMENT · PRODUCT',yr:'2025–',title:'Engram',role:'Engram Independent AI Product',
    outcome:'Built and shipped a full AI product. No engineering team. No prior dev background.',
    ctx:'A personal experiment to find out how far a non-engineer PM could go using AI-assisted development tools — and to build something actually useful in the process.',
@@ -783,10 +782,10 @@ const NARR=[
    ],
    evidence:[
     {label:'Live website',note:'the product itself, running in production',href:'https://engram-b14.pages.dev'},
-    {label:'GitHub development log',note:'the full build history, decisions, and iterations',href:'https://github.com/Supremelouis/Engram'},
-    {label:'MCP integration documentation',note:'technical spec for the custom protocol work',href:'#'}
+    {label:'Dev log (partial)',note:'decisions and build history on Notion',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'},
+    {label:'Source code — not yet open',note:'',href:null}
    ],
-   links:[{label:'View live',href:'https://engram-b14.pages.dev'},{label:'GitHub log',href:'https://github.com/Supremelouis/Engram'}]}
+   links:[{label:'View live',href:'https://engram-b14.pages.dev'},{label:'Dev log',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'}]}
 ];
 
 // ── How I Think data (Part 3 — four lenses, EN + ZH) ──
@@ -1071,7 +1070,7 @@ function buildCarousel(data){
     ?{ctx:'项目背景',did:'我做了什么',res:'结果',ev:'Evidence',back:'← 返回'}
     :{ctx:'Context',did:'What I Did',res:'Results',ev:'Evidence',back:'← Back'};
   el.innerHTML=`<div class="cs-carousel-wrap" id="cs-wrap"><div class="cs-carousel-track" id="cs-track">${
-    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-back" onclick="csCloseDetail()">${lb.back}</button><div class="csd-sec"><div class="csd-sec-lbl">① ${lb.ctx}</div><p class="csd-body">${c.ctx}</p></div><div class="csd-sec"><div class="csd-sec-lbl">② ${lb.did}</div><div class="csd-paras">${c.did.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl">③ ${lb.res}</div><ul class="csd-res">${c.results.map(r=>`<li>${r}</li>`).join('')}</ul></div><div class="csd-sec"><div class="csd-sec-lbl">④ ${lb.ev}</div><div class="csd-links">${c.evidence.map(e=>`<a class="csd-lnk" href="${e.href}" target="_blank" onclick="event.stopPropagation()">${e.label} →</a>`).join('')}</div></div></div></div>`).join('')
+    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-back" onclick="csCloseDetail()">${lb.back}</button><div class="csd-sec"><div class="csd-sec-lbl">① ${lb.ctx}</div><p class="csd-body">${c.ctx}</p></div><div class="csd-sec"><div class="csd-sec-lbl">② ${lb.did}</div><div class="csd-paras">${c.did.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl">③ ${lb.res}</div><ul class="csd-res">${c.results.map(r=>`<li>${r}</li>`).join('')}</ul></div><div class="csd-sec"><div class="csd-sec-lbl">④ ${lb.ev}</div><div class="csd-links">${c.evidence.map(e=>e.href?`<a class="csd-lnk" href="${e.href}" target="_blank" onclick="event.stopPropagation()">${e.label} →</a>`:`<span class="csd-lnk csd-lnk-dim">${e.label}</span>`).join('')}</div></div></div></div>`).join('')
   }</div><button class="cs-arr-btn cs-arr-left" id="cs-al" onclick="csNav(-1)">&#8249;</button><button class="cs-arr-btn cs-arr-right" id="cs-ar" onclick="csNav(1)">&#8250;</button><div class="cs-dots">${csData_.map((_,i)=>`<button class="cs-dot${i===csIdx?' cs-dot-on':''}" onclick="csGo(${i})"></button>`).join('')}</div></div>`;
   requestAnimationFrame(csLayout);
 }
