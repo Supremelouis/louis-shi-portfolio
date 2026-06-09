@@ -58,13 +58,13 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .wrap{max-width:1180px;margin:0 auto;padding:0 18px;position:relative;z-index:2}
 
 /* ── Hero ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1.02fr;gap:48px;align-items:stretch;align-content:center;padding:80px 0}
-.hero-text{display:flex;flex-direction:column}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1.02fr;gap:48px;align-items:stretch;align-content:center;padding:80px 0;position:relative}
+.hero-text{display:flex;flex-direction:column;justify-content:center}
 .hero-eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:16px;opacity:0;animation:rise .8s .15s cubic-bezier(.2,.8,.2,1) both}
-.hero-title{font-size:clamp(24px,2.3vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1.3;margin-bottom:20px;opacity:0;animation:rise .8s .25s cubic-bezier(.2,.8,.2,1) both;font-family:'DM Serif Display',serif}
+.hero-title{font-size:clamp(26px,2.3vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin-bottom:20px;opacity:0;animation:rise .8s .25s cubic-bezier(.2,.8,.2,1) both;font-family:'DM Serif Display',serif}
 .hero-title .grad{background:linear-gradient(120deg,#0071e3,#5e5ce6 60%,#bf5af2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-size:15px;font-weight:300;color:var(--txt2);max-width:460px;line-height:1.65;margin-bottom:24px;opacity:0;animation:rise .8s .35s cubic-bezier(.2,.8,.2,1) both}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:rise .8s .45s cubic-bezier(.2,.8,.2,1) both}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;opacity:0;animation:rise .8s .45s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 .btn{padding:13px 26px;border-radius:24px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:all .25s;border:none}
 .btn-primary{background:var(--txt);color:#fff}
@@ -74,7 +74,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 
 /* Hero visual: portrait + floating glass cards */
 .hero-visual{position:relative;min-height:440px;opacity:0;animation:rise 1s .35s cubic-bezier(.2,.8,.2,1) both}
-.portrait{position:absolute;right:0;top:0;transform:none;width:340px;height:440px;border-radius:28px;overflow:hidden;
+.portrait{position:absolute;right:0;top:50%;transform:translateY(-50%);width:340px;height:440px;border-radius:28px;overflow:hidden;
   background:linear-gradient(160deg,#dfe4ee,#e9e0d6);border:1px solid var(--gb);box-shadow:var(--sh-h)}
 .portrait img{width:100%;height:100%;object-fit:cover}
 .portrait-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--txt3);font-size:12px;text-align:center;padding:20px}
@@ -86,7 +86,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .fcard-ico i{font-size:17px;color:var(--ac)}
 .fcard-txt{font-size:12.5px;color:var(--txt);line-height:1.45;font-weight:400}
 .fc1{top:14px;left:0;animation:float1 6s ease-in-out infinite}
-.fc2{top:172px;left:-22px;animation:float2 7s ease-in-out infinite}
+.fc2{top:172px;left:0;animation:float2 7s ease-in-out infinite}
 .fc3{bottom:22px;left:6px;animation:float3 6.5s ease-in-out infinite}
 @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
@@ -233,8 +233,8 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 
 /* ── Hero sub two-paragraph style ── */
 .h-sub-p1{font-size:14px;line-height:1.72;color:var(--txt2);margin:0 0 10px}
-.h-sub-p2{font-size:13px;line-height:1.75;color:var(--txt3);font-weight:300;margin:0}
-.h-about-link{background:none;border:none;font-family:inherit;font-size:13px;color:var(--ac);cursor:pointer;padding:0;font-weight:500;margin-top:10px;display:inline-block;letter-spacing:.01em;transition:opacity .2s}
+.h-sub-p2{font-size:13px;line-height:1.75;color:var(--txt2);font-weight:300;margin:0}
+.h-about-link{background:none;border:none;font-family:inherit;font-size:13px;color:var(--ac);cursor:pointer;padding:0;font-weight:500;display:inline-flex;align-items:center;letter-spacing:.01em;transition:opacity .2s}
 .h-about-link:hover{opacity:.7}
 
 /* ── About Modal ── */
@@ -322,7 +322,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .csd-lnk{display:inline-flex;align-items:center;font-size:12.5px;font-weight:600;color:var(--txt);text-decoration:none;padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:var(--glass);transition:background .2s,border-color .2s,box-shadow .2s;width:fit-content;cursor:pointer}
 .csd-lnk:hover{background:rgba(255,255,255,.9);border-color:var(--gb);box-shadow:var(--sh)}
 /* ── Writing section ── */
-.writ-list{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--cb);border-radius:20px;box-shadow:var(--sh);padding:0 30px}
+.writ-list{display:flex;flex-direction:column;background:var(--glass);border:1px solid var(--gb);border-radius:20px;box-shadow:var(--sh);padding:0 30px}
 .writ-item{padding:22px 0;border-bottom:1px solid var(--line)}
 .writ-item:last-child{border-bottom:none}
 .writ-plat{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ac);margin-bottom:8px}
@@ -345,7 +345,6 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   .hero-text{display:block}
   .hero-sub{margin-left:auto;margin-right:auto}
   .hero-actions{justify-content:center}
-  .h-about-link{display:block;text-align:center}
   .hero-visual{min-height:400px;height:auto;margin-top:8px}
   .portrait{top:50%;left:50%;right:auto;transform:translate(-50%,-50%);width:260px;height:350px;border-radius:22px}
   .fc1{left:0;top:0}.fc2{left:-6px;top:140px}.fc3{left:0;bottom:40px}
@@ -422,8 +421,8 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     <div class="hero-actions">
       <a class="btn btn-primary" href="#work" id="h-cta1">View Work</a>
       <a class="btn btn-ghost" href="#" id="h-cta2"><i class="ti ti-download"></i>Resume</a>
+      <button class="h-about-link" id="h-about" onclick="openAbout()">About Me →</button>
     </div>
-    <button class="h-about-link" id="h-about" onclick="openAbout()">About Me →</button>
   </div>
   <div class="hero-visual">
     <div class="portrait">
@@ -502,6 +501,28 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   </div>
 </section>
 
+</div>
+
+<!-- About Modal — must be BEFORE <script> so setLang() can populate it on page load -->
+<div class="about-overlay" id="about-overlay" onclick="if(event.target===this)closeAbout()">
+  <div class="about-card">
+    <div class="about-hd">
+      <div class="about-title" id="ab-title">About Me</div>
+      <button class="about-close" onclick="closeAbout()">×</button>
+    </div>
+    <div class="about-body">
+      <p class="about-p" id="ab-p1"></p>
+      <p class="about-p" id="ab-p2"></p>
+      <p class="about-p" id="ab-p3"></p>
+      <p class="about-p" id="ab-p4"></p>
+      <p class="about-foot" id="ab-foot"></p>
+    </div>
+    <div class="about-btns">
+      <a class="btn btn-primary about-btn" id="ab-btn1" href="#work" onclick="closeAbout()">View Work</a>
+      <a class="btn btn-ghost about-btn" id="ab-btn2" href="#"><i class="ti ti-download"></i>Download Resume</a>
+      <button class="about-lnk" id="ab-btn3" onclick="window.location.href='mailto:founder@aurgo.ai'">Get in touch →</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1188,27 +1209,6 @@ function closeAbout(){
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAbout();});
  </script>
 
-<!-- About Modal -->
-<div class="about-overlay" id="about-overlay" onclick="if(event.target===this)closeAbout()">
-  <div class="about-card">
-    <div class="about-hd">
-      <div class="about-title" id="ab-title">About Me</div>
-      <button class="about-close" onclick="closeAbout()">×</button>
-    </div>
-    <div class="about-body">
-      <p class="about-p" id="ab-p1"></p>
-      <p class="about-p" id="ab-p2"></p>
-      <p class="about-p" id="ab-p3"></p>
-      <p class="about-p" id="ab-p4"></p>
-      <p class="about-foot" id="ab-foot"></p>
-    </div>
-    <div class="about-btns">
-      <a class="btn btn-primary about-btn" id="ab-btn1" href="#work" onclick="closeAbout()">View Work</a>
-      <a class="btn btn-ghost about-btn" id="ab-btn2" href="#"><i class="ti ti-download"></i>Download Resume</a>
-      <button class="about-lnk" id="ab-btn3" onclick="window.location.href='mailto:founder@aurgo.ai'">Get in touch →</button>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
