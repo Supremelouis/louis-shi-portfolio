@@ -466,7 +466,6 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 <!-- Work / Portfolio -->
 <section class="section" id="work">
   <div class="sec-head rv">
-    <p class="sec-eyebrow" id="se-work-ey">Part 2 · Work &amp; Portfolio</p>
     <h2 class="sec-title" id="se-work-t">Work &amp; Portfolio</h2>
     <p class="sec-sub" id="se-work-s">Three projects I built, operated, or shipped — end to end</p>
   </div>
@@ -476,7 +475,6 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 <!-- How I Think -->
 <section class="section" id="think">
   <div class="sec-head rv">
-    <p class="sec-eyebrow" id="se-think-ey">Part 3 · How I Think</p>
     <h2 class="sec-title" id="se-think-t">How I Think</h2>
     <p class="sec-sub" id="se-think-s">Four lenses, one underlying habit — diagnose before you act</p>
   </div>
@@ -495,7 +493,6 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 <!-- Career Journey -->
 <section class="section" id="career">
   <div class="sec-head rv">
-    <p class="sec-eyebrow" id="se-exp-ey">Part 5 · Career Journey</p>
     <h2 class="sec-title" id="se-exp-t">Career Journey</h2>
     <p class="sec-sub" id="se-exp-s">Not a straight line — but every turn was deliberate.</p>
   </div>
@@ -894,7 +891,6 @@ function buildThink(lang){
   if(!el)return;
   const data=THINK[lang]||THINK.en;
   const evLbl=lang==='zh'?'证据':'Evidence';
-  const skipTxt=lang==='zh'?'跳过，直接去文章 ↓':'Skip to Writing ↓';
   const navHtml=data.map((m,i)=>`
     <div class="think-snav-item${i===0?' tson':''}" style="--tsi-c:${m.accent}" data-tidx="${i}">
       <div class="think-snav-dot"></div>
@@ -915,8 +911,7 @@ function buildThink(lang){
     <div class="think-outer">
       <div class="think-snav" id="think-snav">${navHtml}</div>
       <div class="think-panels" id="think-panels">${panelsHtml}</div>
-    </div>
-    <div class="think-skip"><a href="#writing">${skipTxt}</a></div>`;
+    </div>`;
   initThinkScroll();
 }
 function initThinkScroll(){
