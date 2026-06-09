@@ -332,6 +332,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .writ-desc{font-size:12.5px;color:var(--txt2);line-height:1.7;font-weight:300}
 .writ-link{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:var(--ac);text-decoration:none;white-space:nowrap;flex-shrink:0;padding-top:3px;transition:gap .15s}
 .writ-link:hover{gap:7px}
+.writ-links{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
 /* ── Scroll reveal ── */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .rv.on{opacity:1;transform:none}
@@ -982,61 +983,75 @@ function openCareerNode(idx){
 // ── Writing section data (Part 4 — 7 articles, EN + ZH) ──
 const WRITING={
  en:[
-  {platform:"Foresight News · #1 weekly readership platform-wide",href:'#',
+  {platform:"Foresight News · #1 weekly readership platform-wide",
+   links:[{label:'中文',href:'https://foresightnews.pro/article/detail/88666'}],
    title:"From High Yield to Potential Collapse: Deconstructing the Logic Behind USDe's Incentive Structure",
    one:"Not another 'high yield = high risk' take — this one mapped the exact failure path, months before it happened.",
    desc:"Ethena's Liquid Leverage campaign with Aave advertised ~50% APY across three stacked yield sources. This piece deconstructs the underlying mathematics of USDe's delta-neutral model, identifies the structural loopholes baked into the incentive design, and traces the precise conditions under which the mechanism breaks. A counterintuitive data signal reinforced the thesis: during ETH's June 2025 rally, USDe and sUSDe TVL and APY fell together, showing that sophisticated participants were already pricing in exit risk. Months after publication, USDe experienced a significant breakdown that followed the collapse path outlined in the piece."},
-  {platform:'ChainCatcher 链捕手 · Exclusive interview feature',href:'#',
+  {platform:'ChainCatcher 链捕手 · Exclusive interview feature',
+   links:[{label:'中文',href:'https://www.chaincatcher.com/article/2185628'}],
    title:"From Promised Land to 'Exile Zone': 5 Web3 Professionals on Singapore's Regulatory Shift",
    one:"When everyone was saying Singapore was shutting out Web3, this piece went to the people actually there — and the lawyer who actually read the law.",
    desc:"When Singapore's FSMA took effect on June 30, 2025, the industry was flooded with panic about “the harshest crypto regulation ever.” This report worked on two levels: first, a direct interview with a specialized digital economy attorney to surface three key provisions the market had largely missed. Second, five on-the-ground interviews with Web3 practitioners based in Singapore, reconstructing what the policy actually feels like on the ground. The conclusion: this is Singapore recalibrating as a global financial center, not expelling Web3 — but the threshold has genuinely risen."},
-  {platform:'Enterprise-level research · Officially adopted by Flipflop — became my entry credential',href:'#',
+  {platform:'Enterprise-level research · Officially adopted by Flipflop — became my entry credential',
+   links:[{label:'中文',href:'https://www.notion.so/POM-Launch-37ad8316a13780de8c93db175c3bb801?source=copy_link'}],
    title:'Beyond Bots, Toward Real Users: How the POM Mechanism Could Redefine the Next Launchpad Cycle',
    one:"I wasn't part of this project before writing this report. After writing it, I was brought in as the core overseas operations lead.",
    desc:"This report starts with a structural question: why did the Meme coin Launchpad market collapse in 2025? A 1.67% graduation rate, Rug Pulls accounting for 44% of risk events, and a nearly 58% market cap drawdown. The report maps the Fair Launch landscape and its core vulnerabilities, then breaks down Flipflop's POM (Proof of Mint) mechanism in detail. Includes a multi-dimensional competitive comparison against Pump.fun, Moonshot, and other leading platforms. The fact that the project team read this report and brought me in as their core overseas operations lead is the most direct external validation of the analysis quality."},
-  {platform:'Meme-coin project whitepaper · Independently authored — used throughout the token launch',href:'#',
+  {platform:'Meme-coin project whitepaper · Independently authored — used throughout the token launch',
+   links:[{label:'中文',href:'https://www.notion.so/Flipflop-Proof-of-Mint-KOL-37ad8316a137808d8e40da617d2cea73?source=copy_link'},{label:'English',href:'https://www.notion.so/Flipflop-A-Proof-of-Mint-Based-Tokenization-Model-for-KOL-Time-Value-37ad8316a13780df895cd51f932228df?source=copy_link'}],
    title:'KOL Time Value Tokenization Model Based on Proof of Mint',
    one:"Not a project description written for readers — a mechanism design written for the token itself. Turning a person's time into a priceable, tradeable, appreciating on-chain asset.",
    desc:"The whitepaper addresses a structural problem: a KOL's time and attention are naturally scarce resources, but existing token launch models have no way to quantify that scarcity or reflect it in price. The document introduces TVI (Time Value Index), an original quantitative formula aggregating follower count, impressions, likes, reposts, and comments into a single influence anchor, then links it to POM issuance milestones and market price movement in a three-way dynamic. Also designs four token consumption scenarios and a staged buyback flywheel. Written independently — narrative framework, mathematical formulas, and mechanism design all original."},
-  {platform:'Independently planned & written · Event operations execution document',href:'#',
+  {platform:'Independently planned & written · Event operations execution document',
+   links:[{label:'中文 / EN',href:'https://www.ffpp.space/launch-contest/rules'}],
    title:'Flipflop Launch Competition — Full Rulebook',
    one:"Whether an event actually runs depends on whether the rulebook has thought through every 'what if.'",
    desc:"This rulebook covers the complete operational logic of a token launch competition running September to December, with a prize pool exceeding USD 300,000. Three sections: track design (five sub-tracks with explicit rules for merging conditions and cross-track participation), reward mechanism (three-tier system, rewards only increase never decrease), and review process (on-chain snapshot locking, 7-day DD questionnaire window, holistic jury scoring). Pre-defined handling rules for edge cases including volume manipulation, IP infringement, unclaimed rewards, and early termination. Designed and written from scratch."},
-  {platform:"Lakehead University MSc Economics thesis · Supervisor: Dr. Robert Petrunia",href:'#',
+  {platform:"Lakehead University MSc Economics thesis · Supervisor: Dr. Robert Petrunia",
+   links:[{label:'English',href:'https://www.notion.so/Covid-19-Pandemic-Impact-on-Canadian-Business-Activity-37ad8316a1378072b587e6bef8b669c4?source=copy_link'}],
    title:'Covid-19 Pandemic Impact on Canadian Business Activity',
    one:"When a systemic shock hits an economy, it doesn't hit everyone the same way. This paper mapped exactly who got hit, how hard, and why.",
    desc:"The paper builds a complete business activity dataset from Statistics Canada covering 2001 to 2020. Analysis works across three levels: historical benchmarking (comparing COVID's GDP shock of -11% against 2008 crisis -2% and 2014 oil shock -0.55%), structural decomposition by firm size, sector, and province identifying asymmetric damage patterns, and policy evaluation tracking the lag relationship between fiscal stimulus and business behavior. The same analytical framework — find the structural cause, identify asymmetric impacts, evaluate policy effectiveness — was later applied directly to Web3 regulatory analysis and token economic model stress-testing."},
-  {platform:'Independent trade review · Personal research, verified in live trading',href:'#',
+  {platform:'Independent trade review · Personal research, verified in live trading',
+   links:[{label:'Part 1',href:'https://paragraph.com/@sepremelouis/auction-3'},{label:'Part 2',href:'https://paragraph.com/@sepremelouis/auction'}],
    title:'AUCTION Short Squeeze Breakdown: Reading the Psychology and Strategy Behind the Chart',
    one:'The candlestick is the outcome. Behind it is a premeditated psychological battle between the operator and retail traders — this breakdown reconstructs the entire sequence.',
    desc:"AUCTION's price moved nearly 10x from its bottom in March 2025, then collapsed. This review reconstructs the three-stage short squeeze: on-chain wallet tracking (26% of supply withdrawn from Binance in batches), two deliberate short-trap sequences exploiting retail resistance-level psychology, and the top unwind with hedge short and phased spot distribution. A follow-up review introduces the OI (Open Interest) indicator to re-verify each key price move. Position was entered based on operator behavior pattern recognition, resulting in a profitable trade. I have several years of independent BTC and major token trading experience."}
  ],
  zh:[
-  {platform:'Foresight News · 当周全平台浏览量第一',href:'#',
+  {platform:'Foresight News · 当周全平台浏览量第一',
+   links:[{label:'中文',href:'https://foresightnews.pro/article/detail/88666'}],
    title:'从高收益到潜在崩盘：一文解构 USDe 激励背后的逻辑链',
    one:'不是在说高收益有风险，而是在说这个风险长什么样、什么时候会触发——并在几个月后被验证。',
    desc:'Ethena联合Aave推出的Liquid Leverage活动提供接近50%的年化收益。文章深入拆解了delta-neutral算法稳定币背后的数学逻辑与内生漏洞，并指出了一个反直觉的预警信号：2025年6月ETH冲高期间，USDe与sUSDe的TVL和APY同步下行，市场已在提前计价退出风险。文章发布数月后，USDe模型随即出现实质性暴雷，与文中预判的崩解路径高度吻合。'},
-  {platform:'ChainCatcher 链捕手 · 独家采访报道',href:'#',
+  {platform:'ChainCatcher 链捕手 · 独家采访报道',
+   links:[{label:'中文',href:'https://www.chaincatcher.com/article/2185628'}],
    title:'从理想国到「驱逐地」：5位Web3从业者眼中的新加坡变局',
    one:'当所有人都在说「新加坡要清退Web3」的时候，这篇文章去问了真正在场的人——以及真正读过法案的律师。',
    desc:'新加坡FSMA法案正式生效，行业内充斥着恐慌情绪。这篇报道拆分成两个层次：第一层，直接联系专业律师，梳理三个被市场普遍忽视的法案核心要点；第二层，采访5位长期在坡的Web3从业者，用真实声音还原政策落地的实际温度。结论：这是新加坡作为国际金融中心的一次自我校准，不是驱赶，但确实是门槛的全面抬高。'},
-  {platform:'企业级研报 · Flipflop官方采用·入职凭证',href:'#',
+  {platform:'企业级研报 · Flipflop官方采用·入职凭证',
+   links:[{label:'中文',href:'https://www.notion.so/POM-Launch-37ad8316a13780de8c93db175c3bb801?source=copy_link'}],
    title:'告别机器人，迎接真实用户：POM机制引爆下一轮Launch革命',
    one:'写这篇研报之前，我不在这个项目里。写完之后，我成了它的核心海外负责人。',
    desc:'这篇研报的起点是一个具体的行业问题：为什么Meme币Launchpad市场在2025年出现系统性崩盘——毕业率仅1.67%、Rug Pull占整体风险事件44%、市值缩水近58%？研报从Fair Launch赛道的现状与结构性缺陷出发，深入拆解Flipflop的POM机制，并与Pump.fun、Moonshot等主流竞品进行多维横向对比。项目方读完报告后邀请我加入，是对分析质量最直接的外部验证。'},
-  {platform:'Meme币项目白皮书 · 独立撰写·配合代币发行全程使用',href:'#',
+  {platform:'Meme币项目白皮书 · 独立撰写·配合代币发行全程使用',
+   links:[{label:'中文',href:'https://www.notion.so/Flipflop-Proof-of-Mint-KOL-37ad8316a137808d8e40da617d2cea73?source=copy_link'},{label:'English',href:'https://www.notion.so/Flipflop-A-Proof-of-Mint-Based-Tokenization-Model-for-KOL-Time-Value-37ad8316a13780df895cd51f932228df?source=copy_link'}],
    title:'基于 Proof of Mint 的 KOL 时间价值代币化模型',
    one:'不是写给读者看的项目说明书，是写给机制本身的——把一个名人的「时间」变成可以定价、可以流通、可以增值的链上资产。',
    desc:'这份白皮书解决的核心问题是：KOL的时间和注意力是稀缺资源，但现有的发币模式无法将这种稀缺性真正量化并反映到代币价格上。文件提出了TVI（时间价值指数）这一原创量化公式，并设计了四类代币消费场景和阶段化回购正向飞轮机制。叙事框架、数学公式和机制设计全部独立原创。'},
-  {platform:'独立策划·独立撰写 · 活动运营执行文件',href:'#',
+  {platform:'独立策划·独立撰写 · 活动运营执行文件',
+   links:[{label:'中文 / EN',href:'https://www.ffpp.space/launch-contest/rules'}],
    title:'Flipflop 发射大赛完整规则书',
    one:'一场活动能不能跑起来，取决于规则书有没有把所有「如果」都想清楚。',
    desc:'这份规则书覆盖了一场从9月持续到12月、奖池超过30万美元的代币发射大赛的完整运营逻辑。分为三大部分：赛道设计（五条细分赛道，明确赛道合并条件和跨赛道规则）、奖励机制（三层递进结构，奖励数量只增不减）、评审流程（链上数据截止时间锁定、7天DD问卷窗口、陪审团综合评分）。提前设定了刷量作弊、IP侵权、奖励认领超期等边缘情况的处理规则。从零独立策划完成。'},
-  {platform:'湖首大学经济学硕士毕业论文 · 指导教授：Dr. Robert Petrunia',href:'#',
+  {platform:'湖首大学经济学硕士毕业论文 · 指导教授：Dr. Robert Petrunia',
+   links:[{label:'English',href:'https://www.notion.so/Covid-19-Pandemic-Impact-on-Canadian-Business-Activity-37ad8316a1378072b587e6bef8b669c4?source=copy_link'}],
    title:'Covid-19 疫情对加拿大商业活动的冲击分析',
    one:'一个大的外部冲击，会对每一个小的商业决策产生什么影响——这篇论文用数据回答了这个问题。',
    desc:'论文以Statistics Canada的时间序列数据为基础，建立2001年至2020年的完整商业活动数据集。分析分三个层次：历史对比（COVID季度环比-11% vs. 2008年-2%）、结构性分析（按企业规模、行业、省份拆解冲击差异）、政策评估（追踪财政刺激与央行政策的有效性差异）。这套分析框架——找到结构性原因，识别非对称冲击，评估政策有效性——后来直接用在了Web3监管政策分析和代币经济模型压力测试上。'},
-  {platform:'独立交易复盘 · 个人研究·实盘验证',href:'#',
+  {platform:'独立交易复盘 · 个人研究·实盘验证',
+   links:[{label:'第一篇',href:'https://paragraph.com/@sepremelouis/auction-3'},{label:'第二篇',href:'https://paragraph.com/@sepremelouis/auction'}],
    title:'AUCTION 逼空复盘：看清K线背后的心理博弈与操盘逻辑',
    one:'K线是结果，背后是一场庄家与散户之间有预谋的心理博弈——这篇复盘是把整个过程从头拆解一遍。',
    desc:'AUCTION在2025年3月不到一个月内实现近10倍涨幅后快速归零。复盘从链上数据入手，重构了三阶段逼空过程：四个钱包地址分批提取约200万枚代币（占总供应量26%）、两轮利用散户前高阻力位心理的诱空行动、顶部套保空单与分批出货操作。后续复盘引入OI（未平仓合约）指标重新验证每个关键价格节点。全程结合实盘操作，通过判断庄家行为节点入场，实现正向盈利。本人有几年独立交易BTC和主流代币的经验。'}
@@ -1131,17 +1146,20 @@ function buildWriting(lang){
   const el=document.getElementById('writ-list');
   if(!el)return;
   const data=(lang&&WRITING[lang])||WRITING.en;
-  const readLbl=lang==='zh'?'阅读全文 →':'Read full article →';
-  el.innerHTML=data.map(a=>`
+  el.innerHTML=data.map(a=>{
+    const lks=a.links||[{label:lang==='zh'?'阅读 →':'Read →',href:a.href||'#'}];
+    const lksHtml=`<div class="writ-links">${lks.map(l=>`<a class="writ-link" href="${l.href}" target="_blank">${l.label} →</a>`).join('')}</div>`;
+    return `
     <div class="writ-item">
       <div class="writ-plat">${a.platform}</div>
       <div class="writ-hd">
         <div class="writ-title">${a.title}</div>
-        <a class="writ-link" href="${a.href}" target="_blank">${readLbl}</a>
+        ${lksHtml}
       </div>
       <p class="writ-one">${a.one}</p>
       <div class="writ-desc">${a.desc}</div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 // Scroll reveal
