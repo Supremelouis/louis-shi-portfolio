@@ -38,10 +38,20 @@ A single-file static portfolio site for Louis Shi (Weiqi Shi) — builder, produ
 Portfolio/
 ├── CLAUDE.md          # This file — auto-read by Claude Code
 ├── index.html         # The entire site — all HTML, CSS, and JS in one file
-├── hero-photo.png     # Portrait photo used in hero section
+├── hero-photo.png     # Hero section portrait photo
+├── portrait.jpg       # About modal portrait photo
+├── imgs/              # Case-study carousel background images
+│   ├── case-pathport.png
+│   ├── case-harena.png
+│   └── case-engram.png
 └── .claude/
     └── launch.json    # Preview server config (python http.server port 5500)
 ```
+
+**Asset hygiene:** every image in this repo should be referenced from `index.html`
+(check `CS_IMGS`, `<img src=...>`, `background-image:url(...)`). Remove unused
+images when they're replaced — earlier iterations left ~40 dead logo/timeline
+images in `logos/` and `imgs/exp*` that were cleaned up on 2026-06-10.
 
 ---
 
