@@ -263,10 +263,10 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .about-title{font-size:22px;font-weight:700;font-family:'DM Serif Display',serif;color:var(--txt)}
 .about-close{background:rgba(120,120,130,.12);border:1px solid var(--gb);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--txt2);font-family:inherit;line-height:1;transition:background .2s;flex-shrink:0}
 .about-close:hover{background:rgba(120,120,130,.22)}
+.about-label{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
 .about-body{margin-bottom:24px}
 .about-p{font-size:14px;font-weight:300;color:var(--txt2);line-height:1.85;margin-bottom:16px}
 .about-p:last-of-type{margin-bottom:0}
-.about-foot{font-size:12.5px;color:var(--txt3);font-style:italic;margin-top:20px;padding-top:16px;border-top:1px solid var(--gb)}
 .about-btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding-top:20px;border-top:1px solid var(--gb)}
 .about-btn{padding:10px 22px;font-size:13px}
 .about-lnk{background:none;border:none;font-family:inherit;font-size:13px;color:var(--ac);cursor:pointer;padding:0;font-weight:500;transition:opacity .2s}
@@ -284,7 +284,8 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .ft-note{font-size:11px;color:var(--txt3);margin-top:44px;letter-spacing:.03em}
 
 /* ── Portfolio Peek Carousel ── */
-.cs-carousel-wrap{position:relative;overflow:hidden;border-radius:26px;height:520px;box-shadow:0 8px 40px rgba(0,0,0,.14);user-select:none;-webkit-user-select:none}
+.cs-carousel-wrap{position:relative;overflow:hidden;border-radius:26px;height:520px;box-shadow:0 8px 40px rgba(0,0,0,.14);user-select:none;-webkit-user-select:none;transition:height .45s cubic-bezier(.4,0,.2,1)}
+.cs-carousel-wrap.cs-wrap-expanded{height:592px}
 .cs-carousel-track{position:relative;width:100%;height:100%}
 .cs-cslide{position:absolute;top:0;height:100%;border-radius:22px;overflow:hidden;cursor:pointer;transition:transform .52s cubic-bezier(.2,.8,.2,1),filter .45s,box-shadow .45s}
 .cs-cslide.cs-active{cursor:pointer;box-shadow:0 8px 32px rgba(0,0,0,.3)}
@@ -311,33 +312,34 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .cs-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:20}
 .cs-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.38);cursor:pointer;transition:background .25s,transform .25s;border:none;padding:0}
 .cs-dot.cs-dot-on{background:#fff;transform:scale(1.55)}
-@media(max-width:900px){.cs-carousel-wrap{height:400px}.cs-cslide-txt{padding:20px 22px}.cs-cslide-title{font-size:17px}}
+@media(max-width:900px){.cs-carousel-wrap{height:400px}.cs-carousel-wrap.cs-wrap-expanded{height:460px}.cs-cslide-txt{padding:20px 22px}.cs-cslide-title{font-size:17px}}
 /* ── Case Detail Panel ── */
-.cs-cslide-detail{position:absolute;inset:0;background:var(--glass2);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);border:1px solid var(--gb);padding:22px 26px 36px;color:var(--txt);opacity:0;pointer-events:none;overflow-y:auto;overflow-x:hidden;transition:opacity .35s;scrollbar-width:none;cursor:pointer}
-.cs-cslide-detail::-webkit-scrollbar{display:none}
+.cs-cslide-detail{position:absolute;inset:0;background:var(--glass2);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);border:1px solid var(--gb);padding:26px 30px;color:var(--txt);opacity:0;pointer-events:none;overflow:hidden;transition:opacity .35s;cursor:pointer;display:grid;grid-template-columns:1fr 1fr;column-gap:34px;align-content:center}
 .cs-cslide.cs-detail-open .cs-cslide-detail{opacity:1;pointer-events:auto;transition:opacity .35s .22s}
 .cs-cslide.cs-detail-open .cs-cslide-ov{opacity:0;transition:opacity .22s}
 .cs-cslide.cs-detail-open .cs-cslide-txt{opacity:0;pointer-events:none;transition:opacity .15s}
-.csd-back{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--txt2);background:rgba(0,0,0,.05);border:1px solid var(--line);border-radius:20px;padding:5px 14px;cursor:pointer;margin-bottom:20px;font-family:inherit;transition:color .2s,background .2s}
-.csd-back:hover{color:var(--txt);background:rgba(0,0,0,.09)}
-.csd-sec{margin-bottom:24px;cursor:default}
-.csd-sec-lbl{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--line)}
-.csd-body{font-size:12.5px;color:var(--txt2);line-height:1.72;margin:0}
-.csd-paras{display:flex;flex-direction:column;gap:13px}
-.csd-paras .csd-body{font-weight:300}
+.csd-close{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-family:inherit;color:var(--txt2);background:rgba(0,0,0,.05);border:1px solid var(--line);cursor:pointer;opacity:0;transform:scale(.8);transition:opacity .2s,transform .2s,background .2s,color .2s;z-index:2}
+.cs-cslide-detail:hover .csd-close{opacity:1;transform:scale(1)}
+.csd-close:hover{background:rgba(0,0,0,.1);color:var(--txt)}
+.csd-col{display:flex;flex-direction:column;min-width:0}
+.csd-sec{margin-bottom:13px;cursor:default}
+.csd-sec:last-child{margin-bottom:0}
+.csd-sec-lbl{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:9px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--txt3);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.csd-body{font-size:11px;font-weight:300;color:var(--txt2);line-height:1.62;margin:0}
+.csd-paras{display:flex;flex-direction:column;gap:7px}
 .csd-res{display:flex;flex-direction:column;gap:0;list-style:none;margin:0;padding:0}
-.csd-res li{font-size:12px;color:var(--txt2);line-height:1.6;padding:8px 0 8px 19px;position:relative;border-bottom:1px solid var(--line)}
+.csd-res li{font-size:10.5px;color:var(--txt2);line-height:1.5;padding:4px 0 4px 14px;position:relative;border-bottom:1px solid var(--line)}
 .csd-res li:last-child{border-bottom:none}
-.csd-res li::before{content:'';position:absolute;left:1px;top:15px;width:6px;height:6px;border-radius:50%;background:var(--ac)}
-.csd-flow{display:flex;flex-direction:column;gap:0}
-.csd-step{display:flex;align-items:flex-start;gap:11px;padding:9px 0}
-.csd-sn{font-size:11px;font-weight:700;font-style:italic;color:var(--txt3);min-width:22px;flex-shrink:0;line-height:1.6}
-.csd-st{font-size:12px;color:var(--txt2);line-height:1.6}
-.csd-arr{padding-left:33px;color:var(--txt3);font-size:11px;line-height:1}
-.csd-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px}
-.csd-lnk{display:inline-flex;align-items:center;font-size:12.5px;font-weight:600;color:var(--txt);text-decoration:none;padding:10px 16px;border:1px solid var(--line);border-radius:12px;background:var(--glass);transition:background .2s,border-color .2s,box-shadow .2s;width:fit-content;cursor:pointer}
-.csd-lnk:hover{background:rgba(255,255,255,.9);border-color:var(--gb);box-shadow:var(--sh)}
-.csd-lnk-dim{opacity:.38;cursor:default;pointer-events:none;font-style:italic}
+.csd-res li::before{content:'';position:absolute;left:1px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--ac)}
+.csd-ev-icons{display:flex;gap:5px;flex-shrink:0}
+.csd-ev-ic{display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:9px;color:var(--txt2);background:var(--glass);border:1px solid var(--line);text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.csd-ev-ic:hover{background:rgba(255,255,255,.9);color:var(--ac);border-color:var(--gb)}
+.csd-ev-ic-dim{opacity:.35;cursor:default}
+@media(max-width:900px){
+  .cs-cslide-detail{grid-template-columns:1fr;column-gap:0;padding:20px 22px;overflow-y:auto;align-content:start;scrollbar-width:none}
+  .cs-cslide-detail::-webkit-scrollbar{display:none}
+  .csd-close{opacity:.6;transform:scale(1)}
+}
 /* ── Writing section ── */
 .writ-list{display:flex;flex-direction:column;background:var(--glass);border:1px solid var(--gb);border-radius:20px;box-shadow:var(--sh);padding:0 30px}
 .writ-item{padding:22px 0;border-bottom:1px solid var(--line)}
@@ -363,9 +365,9 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   .hero-text{display:block}
   .hero-sub{margin-left:auto;margin-right:auto}
   .hero-actions{justify-content:center}
-  .hero-visual{min-height:400px;height:auto;margin-top:8px}
+  .hero-visual{min-height:446px;height:auto;margin-top:8px}
   .portrait{top:50%;left:50%;right:auto;transform:translate(-50%,-50%);width:260px;height:350px;border-radius:22px}
-  .fc1{left:0;top:0}.fc2{left:-6px;top:140px}.fc3{left:0;bottom:40px}
+  .fc1{left:0;top:0}.fc2{left:-6px;top:140px}.fc3{left:0;top:283px;bottom:auto}
   .fcard{width:175px}
   .engram{grid-template-columns:1fr}
 }
@@ -431,10 +433,10 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 <section class="hero">
   <div class="hero-text">
     <div class="hero-eyebrow" id="h-eyebrow">Product · Fintech · Web3 · AI</div>
-    <h1 class="hero-title" id="h-title">The world looks different<br><span class="grad">depending on where you're standing.</span></h1>
+    <h1 class="hero-title" id="h-title">I turn complex ideas into<br><span class="grad">clear, usable products.</span></h1>
     <div class="hero-sub" id="h-sub">
-      <p class="h-sub-p1">Economist, banker, researcher, operator, product manager, designer, and independent developer — each role a different vantage point.</p>
-      <p class="h-sub-p2">The goal has always been to connect these perspectives, and use the fuller picture to think about problems differently.</p>
+      <p class="h-sub-p1">Hi, I'm Weiqi — a Toronto-based product manager and researcher with experience across fintech, Web3, AI, and independent product building.</p>
+      <p class="h-sub-p2">I'm strongest at the early-to-middle stage of product work: understanding the problem, researching the market, defining the product, shaping the user experience, and moving ideas toward execution.</p>
     </div>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#work" id="h-cta1">View Work</a>
@@ -447,7 +449,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
       <img src="hero-photo.png" alt="Weiqi Shi"/>
       <div class="pcap" onclick="openAbout()">
         <div class="pcap-t" id="pcap-t">Weiqi Shi (Louis)</div>
-        <div class="pcap-s" id="pcap-s">Product · Fintech · Web3 · AI · Toronto</div>
+        <div class="pcap-s" id="pcap-s">Product Manager · Business Analyst · Fintech · Web3 · AI · Toronto</div>
       </div>
     </div>
     <div class="fcard fc1">
@@ -456,11 +458,11 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     </div>
     <div class="fcard fc2">
       <div class="fcard-ico"><i class="ti ti-users"></i></div>
-      <div class="fcard-txt" id="fc2">500+ clients · know what people actually need</div>
+      <div class="fcard-txt" id="fc2">500+ client conversations · strong problem discovery skills</div>
     </div>
     <div class="fcard fc3">
       <div class="fcard-ico"><i class="ti ti-hammer"></i></div>
-      <div class="fcard-txt" id="fc3">From whitepapers to working products · end to end</div>
+      <div class="fcard-txt" id="fc3">Research, product strategy, design, and delivery · end to end</div>
     </div>
   </div>
   <div class="scroll-hint"><span>scroll</span><i class="ti ti-chevron-down"></i></div>
@@ -522,7 +524,10 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 <div class="about-overlay" id="about-overlay" onclick="if(event.target===this)closeAbout()">
   <div class="about-card">
     <div class="about-hd">
-      <div class="about-title" id="ab-title">About Me</div>
+      <div>
+        <div class="about-label" id="ab-label">Research · Product · Execution</div>
+        <div class="about-title" id="ab-title">About Me</div>
+      </div>
       <button class="about-close" onclick="closeAbout()">×</button>
     </div>
     <div class="about-body">
@@ -530,7 +535,6 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
       <p class="about-p" id="ab-p2"></p>
       <p class="about-p" id="ab-p3"></p>
       <p class="about-p" id="ab-p4"></p>
-      <p class="about-foot" id="ab-foot"></p>
     </div>
     <div class="about-btns">
       <a class="btn btn-primary about-btn" id="ab-btn1" href="#work" onclick="closeAbout()">View Work</a>
@@ -558,17 +562,17 @@ en:{
   navSub:'Product · Fintech · Web3 · AI',navExp:'Career',navWork:'Work',navThink:'How I Think',navWr:'Writing',navContact:'Contact',
   seWrT:'Writing',seWrS:'Research, analysis, and published work — demonstrating how I collect, process, and communicate complex information.',
   hEyebrow:'Product · Fintech · Web3 · AI',
-  hTitle:'The world looks different<br><span class="grad">depending on where you\'re standing.</span>',
-  hSub:'<p class="h-sub-p1">Economist, banker, researcher, operator, product manager, designer, and independent developer — each role a different vantage point.</p><p class="h-sub-p2">The goal has always been to connect these perspectives, and use the fuller picture to think about problems differently.</p>',
+  hTitle:'I turn complex ideas into<br><span class="grad">clear, usable products.</span>',
+  hSub:'<p class="h-sub-p1">Hi, I\'m Weiqi — a Toronto-based product manager and researcher with experience across fintech, Web3, AI, and independent product building.</p><p class="h-sub-p2">I\'m strongest at the early-to-middle stage of product work: understanding the problem, researching the market, defining the product, shaping the user experience, and moving ideas toward execution.</p>',
   hCta1:'View Work',hCta2:'Resume',hAbout:'About Me →',porPh:'Portrait photo<br/>— drop portrait.jpg here',
-  pcapT:'Weiqi Shi (Louis)',pcapS:'Product · Fintech · Web3 · AI · Toronto',
-  fc1:"MSc Economics · Dean's Medal",fc2:'500+ clients · know what people actually need',fc3:'From whitepapers to working products · end to end',
+  pcapT:'Weiqi Shi (Louis)',pcapS:'Product Manager · Business Analyst · Fintech · Web3 · AI · Toronto',
+  fc1:"MSc Economics · Dean's Medal",fc2:'500+ client conversations · strong problem discovery skills',fc3:'Research, product strategy, design, and delivery · end to end',
   aboutTitle:'About Me',
-  aboutP1:"I'm Weiqi Shi — economist, banker, independent researcher, and product manager. I grew up watching markets move and trying to understand why. That instinct never went away.",
-  aboutP2:'What I do is connect dots across disciplines: financial logic, research methods, product thinking, and technical execution. The best ideas tend to live at intersections — and I\'ve spent years positioning myself at the right ones.',
-  aboutP3:'Currently I\'m building and shipping independently — from AI-powered knowledge tools to community growth systems at Web3 scale. I work end to end: research, strategy, design, product, and often the code too.',
-  aboutP4:'My goal is to join a product team where depth of thinking matters — where the question isn\'t just "what should we build?" but "why, for whom, and how do we know we got it right?"',
-  aboutFoot:'Based in Toronto · Open to full-time PM and BA roles',
+  ab2Label:'Research · Product · Execution',
+  aboutP1:"I started in economics and banking, where I learned to understand people, financial systems, and business needs from the ground up. That experience still shapes how I work today: I like to understand the real problem before jumping into solutions.",
+  aboutP2:"Over time, my work moved closer to product, research, and emerging technology. In Web3 and AI, I've worked across market research, competitor analysis, product strategy, user experience, and hands-on building. I enjoy connecting the dots between what users need, what the market is moving toward, and what can realistically be built.",
+  aboutP3:"Today, I'm co-founding Harena, an AI × Web3 project, while also independently building Engram from product definition to deployment. These projects have pushed me to work end to end — from research and strategy to design, product decisions, and implementation.",
+  aboutP4:"I'm currently looking for Product Manager or Business Analyst roles where structured thinking, curiosity, research ability, and hands-on execution are valued. I'm especially interested in fintech, AI, Web3, data-driven products, and teams that care about understanding problems deeply before building.",
   aboutBtn1:'View Work',aboutBtn2:'Resume',aboutBtn3:'Get in touch →',
   seExpEy:'Part 5 · Career Journey',seExpT:'Career Journey',seExpS:'Not a straight line — but every turn was deliberate.',
   seWorkEy:'Part 2 · Work & Portfolio',seWorkT:'Work & Portfolio',seWorkS:"Three projects. Three different problems. The same instinct: figure out what needs to exist, and build it.",
@@ -599,17 +603,17 @@ zh:{
   navSub:'产品 · 金融科技 · Web3 · AI',navExp:'经历',navWork:'作品集',navThink:'思维方式',navWr:'文章',navContact:'联系',
   seWrT:'文章',seWrS:'研究报告、采访与分析文章 —— 展示我如何收集、处理和传达复杂信息。',
   hEyebrow:'产品 · 金融科技 · Web3 · AI',
-  hTitle:'站在不同的位置，<br><span class="grad">看到的是完全不同的世界。</span>',
-  hSub:'<p class="h-sub-p1">经济学者、银行从业者、独立研究员、产品经理、设计师、独立开发者 —— 每一个角色，都是一个不同的视角。</p><p class="h-sub-p2">我一直想做的，是把这些视角连接起来，用更完整的图景，去思考那些值得被认真对待的问题。</p>',
+  hTitle:'我把复杂的想法，<br><span class="grad">变成清晰可用的产品。</span>',
+  hSub:'<p class="h-sub-p1">你好，我是史伟琪（Weiqi）—— 一名常驻多伦多的产品经理与研究者，在金融科技、Web3、AI 和独立产品开发方面都有经验。</p><p class="h-sub-p2">我最擅长产品工作的早中期阶段：理解问题、研究市场、定义产品、打磨用户体验，并推动想法走向落地执行。</p>',
   hCta1:'查看作品集',hCta2:'下载简历',hAbout:'了解更多 →',porPh:'肖像照片<br/>— 放入 portrait.jpg',
-  pcapT:'史伟琪 Louis',pcapS:'产品 · 金融科技 · Web3 · AI · 多伦多',
-  fc1:'经济学硕士 · 院长奖章',fc2:'服务500+客户 · 读懂真实需求',fc3:'从白皮书到上线产品 · 全程独立交付',
+  pcapT:'史伟琪 Louis',pcapS:'产品经理 · 商业分析师 · 金融科技 · Web3 · AI · 多伦多',
+  fc1:'经济学硕士 · 院长奖章',fc2:'500+ 次客户访谈 · 扎实的问题洞察能力',fc3:'研究、产品策略、设计与交付 · 全程参与',
   aboutTitle:'关于我',
-  aboutP1:'我叫史伟琪，经济学者、银行从业者、独立研究员，也是产品经理。从小就在观察市场的波动，然后试图弄明白背后的原因。这个习惯从未改变。',
-  aboutP2:'我做的事情，是把不同领域的逻辑连接起来：金融思维、研究方法、产品设计和技术执行。最好的想法往往存在于交叉地带——而我花了很多年，把自己放在了正确的位置上。',
-  aboutP3:'目前我在独立构建和交付项目，从 AI 知识工具到 Web3 规模的社群增长系统。我全程参与：研究、策略、设计、产品，有时候也写代码。',
-  aboutP4:'我想加入一个重视深度思考的产品团队——一个不只问「我们应该建什么」，而是会问「为什么建、为谁建、怎么判断做对了」的团队。',
-  aboutFoot:'现居多伦多 · 寻找全职产品经理 / 商业分析师职位',
+  ab2Label:'研究 · 产品 · 执行',
+  aboutP1:'我从经济学和银行业起步，在那里学会了从根本上理解人、金融系统和商业需求。这段经历至今仍影响着我的工作方式：在动手做方案之前，我喜欢先把问题本身理解清楚。',
+  aboutP2:'后来，我的工作逐渐转向产品、研究和新兴技术。在 Web3 和 AI 领域，我做过市场研究、竞品分析、产品策略、用户体验，也亲自动手搭建产品。我喜欢把用户需求、市场趋势，以及现实中能落地的方案这几件事连接起来。',
+  aboutP3:'目前，我在联合创立 Harena —— 一个 AI × Web3 项目，同时也在独立构建 Engram，从产品定义一路做到上线部署。这些项目让我习惯了全流程参与：从研究、策略到设计、产品决策与实现。',
+  aboutP4:'我目前在寻找产品经理或商业分析师方向的机会，希望能在重视结构化思维、好奇心、研究能力和动手执行力的团队里工作。我尤其关注金融科技、AI、Web3、数据驱动产品，以及那些愿意先深入理解问题再动手的团队。',
   aboutBtn1:'查看作品集',aboutBtn2:'下载简历',aboutBtn3:'发邮件联系 →',
   seExpEy:'Part 5 · Career Journey',seExpT:'Career Journey',seExpS:'不是一条直线 —— 但每一个转弯都是主动选择的。',
   seWorkEy:'Part 2 · 作品集',seWorkT:'作品集',seWorkS:'三个项目，三个不同的问题。同一个本能：搞清楚什么东西应该存在，然后把它做出来。',
@@ -627,68 +631,88 @@ zh:{
   },
   ctEy:'保持联系',ctT:'联系我',ctSub:'寻找多伦多产品经理与商业分析师职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
   narr:[
-    {cat:'运营 · 增长 · WEB3',yr:'2025',title:'PathPort 大使计划',role:'PathPort Footprint Ambassador Program',
-     outcome:'两周内从零到 1,000+ 参与者。',
-     ctx:'一个新型发币平台需要从零搭建海外社群——没有现成框架，没有历史数据，没有专属团队。',
-     did:[
-      '任务听起来简单，实际上很难：在几周内，跨时区、跨语言，从零建立一个能真实驱动平台参与的全球大使体系。',
-      '我从头开始设计整个脚印大使计划——激励结构、分层任务体系、新用户引导流程、每周规则制定，以及数据追踪机制。然后独立完成了计划页面的搭建、规则书的撰写，并完成上线。',
-      '核心的设计决策是：让参与感觉像一个规则清晰、进度可见的游戏，而不是一个模糊的「加入我们的社群」号召。每个层级有明确的行动要求，每个行动有可见的激励，整套系统的设计目标是在没有我手动管理每个参与者的情况下，自己能跑起来。',
-      '与此同时，我独立主持了Twitter Space AMA，管理了非洲和东南亚多个地区的社群频道，并实时与开发团队协调，根据真实用户行为数据动态调整页面设计。在大使计划之外，我还独立策划并落地了两项额外赛事——发币大赛和Mint铸造大赛——分别撰写了完整的规则体系，为主平台持续引流。'
+    {cat:'运营 · 增长 · WEB3',title:'把社区增长，变成一套可复制的产品系统',
+     outcome:'设计并上线了一个 Web3 大使计划，两周内吸引超过 1,000 名参与者。',
+     problem:[
+      '平台需要从零开始建立海外社区增长，但当时没有现成的大使计划框架，没有可复用的流程，也没有清晰的方式把用户兴趣转化为可衡量的参与度。'
      ],
-     results:[
-      '上线第一周Twitter单周浏览量突破10万',
-      '互动与转发总量超2万次（点赞、转发、评论）',
-      '第二周平台注册参与人数突破1,000人',
-      '独立落地两项额外赛事，均完成完整规则书并执行到位'
+     approach:[
+      '我把这个大使计划当作一个产品系统来设计，而不只是一场营销活动。',
+      '目标是设计一条清晰的参与路径：用户如何发现这个计划、理解规则、完成任务、追踪进度，并在不同语言、地区和时区下持续保持参与动力。'
+     ],
+     execution:[
+      '我从零到上线独立完成了脚印大使计划的整体设计——激励结构、分层任务体系、新用户引导流程、每周规则、奖励逻辑、数据追踪机制，以及对外的计划页面。',
+      '上线后，我独立主持 Twitter Space AMA，管理非洲和东南亚多个地区的社群频道，与开发团队保持实时协调，并根据真实用户行为持续迭代页面和规则。'
+     ],
+     impact:[
+      '上线第一周 Twitter 浏览量突破 10 万',
+      '点赞、转发、评论等互动总量超过 2 万次',
+      '第二周注册参与人数突破 1,000 人',
+      '独立策划并执行了两项额外赛事：发币大赛和 Mint 铸造大赛'
      ],
      evidence:[
-      {label:'大使计划网站',note:'完整的设计结构和任务体系，可直接查看',href:'https://www.ffpp.space/'}
+      {label:'查看计划页面',href:'https://www.ffpp.space/'}
      ],
      links:[{label:'查看上线版本',href:'https://www.ffpp.space/'}]},
-    {cat:'产品 · AI · WEB3',yr:'2025–',title:'Harena',role:'Harena AI × Web3 Product',
-     outcome:'5次转型，一个方向：拥有一个产品到底是什么样子。',
-     ctx:'一个早期AI × Web3项目，没有专职设计师，没有固定路线图，联合创始团队在摸索中寻找方向。',
-     did:[
-      '我以联合创始人的身份加入，同时担任唯一的产品经理。我首先接受的现实是：产品当时并不存在任何清晰的形态——只有一个假设，和一个我们认为有机会的市场。我的工作是把模糊变成可以执行的东西。',
-      '工作流程大致是这样的：竞品研究 → 用户访谈 → PRD需求文档 → 设计 → 开发对接 → 用户反馈 → 重复。这整条链路都由我来跑。我独立撰写了每一份PRD，在Figma和Claude里完成了每一个页面的设计，输出了全部线框图和用户流程图，并全程监督开发交付，确保最终产品与设计意图一致。',
-      '最重要的工作，不是那些设计稿，也不是那些文档——而是五次我必须说出「我们方向错了」的时候。每一次调整都来自一个具体的信号：一次推翻了我们核心假设的用户访谈，一个关闭了某个窗口的竞品动作，或者一个让某条路走不通的技术约束。我设计并发布了用户调研问卷，系统性收集早期反馈，并用这些数据向其他创始人陈述每次调整的理由。',
-      '除了产品本身，我还独立撰写了投资人路演PPT，代表项目参与多轮投资人和合作方会议——把产品逻辑翻译成对没有每天活在产品里的人来说也能听懂的语言。'
+    {cat:'产品 · AI · WEB3',title:'从模糊想法到 MVP 级产品',
+     outcome:'主导了一个早期 AI × Web3 项目的需求探索、产品定义、设计与交付。',
+     problem:[
+      'Harena 最初是一个方向明确、但形态未定的早期 AI × Web3 项目——没有固定的产品形态，没有专职设计师，也没有清晰的路线图。',
+      '团队需要把一个宽泛的市场假设，落地成一个足够具体、可以设计、验证、开发，并向用户、开发者和投资人解释清楚的产品。'
      ],
-     results:[
-      '项目当前处于MVP阶段，核心功能已完成验证，早期用户测试持续推进',
-      '5次重大产品方向调整，每次均有数据和用户反馈支撑',
-      '独立完成完整设计体系：UI界面、用户流程、原型图、组件库',
-      '多轮投资人会议完成，所有对外材料均独立撰写'
+     approach:[
+      '我把这个项目当作一个持续探索与验证的过程来推进。',
+      '我没有强行推进某一个想法，而是用三个问题检验每一个产品方向：我们在解决什么问题？这是为谁解决的？这个产品现实中能不能被做出来？',
+      '每一次方向调整，都来自一个具体的信号——用户反馈、竞品动作、技术约束，或是对市场更清晰的认知。我的工作是把这些信号转化为团队可以采取行动的产品决策。'
+     ],
+     execution:[
+      '我以联合创始人兼唯一产品经理的身份加入，负责产品研究、竞品分析、用户访谈、PRD撰写、用户流程、线框图、Figma设计、Claude辅助原型，以及开发对接。',
+      '我从零撰写了每一份PRD，设计了产品页面和流程逻辑，搭建了核心设计体系，并直接对接开发团队，确保最终交付与产品设想一致。',
+      '我还设计了用户调研问卷，收集早期反馈，归纳产品风险，并用这些发现支撑了五次重大产品方向调整。',
+      '除了产品交付，我还撰写了投资人路演材料，代表项目参与多轮投资人和合作方会议，把产品逻辑转化为清晰的商业语言。'
+     ],
+     impact:[
+      '产品从宽泛概念推进到 MVP 阶段，核心功能已完成验证',
+      '完成五次重大产品方向调整，每一次都基于研究、反馈或市场信号',
+      '独立搭建完整产品设计体系，涵盖UI、用户流程、原型与组件库',
+      '独立撰写PRD、投资人材料及产品文档',
+      '完成多轮投资人与合作方会议，具备清晰的产品叙事与支撑材料'
      ],
      evidence:[
-      {label:'Figma设计稿 1',note:'UI原型',href:'https://calm-satin-33761912.figma.site'},
-      {label:'Figma设计稿 2',note:'UI原型',href:'https://cloak-fresco-80103488.figma.site'},
-      {label:'Figma设计稿 3',note:'UI原型',href:'https://sepia-sheep-66827641.figma.site'},
-      {label:'泳道图',note:'产品流程与架构设计（Miro）',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}
+      {label:'Figma设计稿 1',href:'https://calm-satin-33761912.figma.site'},
+      {label:'Figma设计稿 2',href:'https://cloak-fresco-80103488.figma.site'},
+      {label:'Figma设计稿 3',href:'https://sepia-sheep-66827641.figma.site'},
+      {label:'泳道图',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}
      ],
      links:[{label:'设计稿 1',href:'https://calm-satin-33761912.figma.site'},{label:'设计稿 2',href:'https://cloak-fresco-80103488.figma.site'},{label:'设计稿 3',href:'https://sepia-sheep-66827641.figma.site'},{label:'泳道图',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}]},
-    {cat:'AI · 开发 · 产品',yr:'2025–',title:'Engram',role:'Engram Independent AI Product',
-     outcome:'独立构建并交付了一整个AI产品。没有工程团队，没有开发背景。',
-     ctx:'一个自我验证的实验：一个没有工程背景的产品经理，用AI辅助开发工具，能走多远？',
-     did:[
-      'Engram起源于一个问题：如果必须完全靠自己来构建一个产品，没有工程师，没有技术背景，我能走到哪一步？',
-      '结果比预想的更远。',
-      '我以Claude Code和OpenAI API作为核心开发工具，配合GitHub做版本控制，Cloudflare负责部署，VS Code作为开发环境。我不是简单地用这些工具生成代码——我必须理解代码在做什么，在它出错时找到原因，并在各个模块如何组合在一起这件事上做出架构层面的判断。',
-      '技术难度最高的部分，是自定义Skills模块的设计与实现，以及MCP（模型上下文协议）的集成。MCP是一个允许AI模型以结构化方式与外部工具和数据源交互的协议——从零实现它，既需要理解技术规范，也需要想清楚每个集成在产品逻辑上存在的理由。',
-      '整个构建过程中，我在GitHub上保留了完整的开发日志——不是为了写给别人看，而是作为一种对自己的约束。每一个重要决策、每一条走不通的路、每一个意外的行为，都被记录下来。这个习惯直接来自我的产品经理背景：你没有度量过的东西，就没办法迭代。',
-      '产品已上线。代码是真实的。日志是公开的。'
+    {cat:'AI · 产品 · 开发',title:'从产品构想到上线的 AI 应用',
+     outcome:'使用AI辅助开发工具，独立构建并上线了 Engram。',
+     problem:[
+      '我想测试一个没有传统工程背景的产品经理，借助AI辅助开发工具，到底能走多远。',
+      '挑战不只是生成代码，而是要做出一个真实的东西：一个功能可用、能够部署、具备集成能力、可调试、有版本控制，并且具备足够技术结构以支撑持续迭代的产品。'
      ],
-     results:[
-      '完整AI产品独立构建并部署上线',
-      '自定义Skills模块和MCP协议集成从零设计并实现',
-      '完整开发日志贯穿整个构建过程',
-      '产品可直接使用，GitHub日志可公开查阅'
+     approach:[
+      '我把 Engram 既当作一个产品，也当作一个学习系统来对待。',
+      '我没有只把AI工具当作代码生成器，而是把它们当作开发伙伴——同时由我自己对产品逻辑、系统决策、调试和实现质量负责。',
+      '目标是理解足够的技术架构，从而做出有意义的决策：每个功能应该做什么、系统各部分该如何连接、错误来自哪里，以及哪些地方需要简化或重做。'
+     ],
+     execution:[
+      '我以Claude Code和OpenAI API作为核心开发工具，独立构建了 Engram，配合GitHub做版本控制、Cloudflare负责部署，VS Code作为开发环境。',
+      '我从零设计并实现了自定义Skills模块和MCP集成。这不仅需要理解技术规范本身，还需要想清楚每个集成背后的产品逻辑：它为什么存在、解决了什么用户需求，以及它在产品中应该如何运作。',
+      '在整个构建过程中，我在GitHub上维护了一份公开的开发日志，记录每一个重要决策、错误、走不通的路、修复方案和意外情况，让整个构建过程变成一个可追溯的产品学习闭环。',
+      '产品已经上线，代码是真实的，开发过程也是公开可查的。'
+     ],
+     impact:[
+      '独立构建并部署了一个完整的AI产品',
+      '从零设计并实现了自定义Skills模块和MCP集成',
+      '在整个构建过程中维护了完整的开发日志',
+      '产品已上线可用，GitHub开发日志可供查阅',
+      '展示了借助AI辅助开发工具，从产品思维走向技术执行的能力'
      ],
      evidence:[
-      {label:'独立网站',note:'产品本体，运行在生产环境中',href:'https://engram-b14.pages.dev'},
-      {label:'开发日志（部分）',note:'Notion上的决策过程与构建历史',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'},
-      {label:'源代码 — 暂未开放',note:'',href:null}
+      {label:'独立网站',href:'https://engram-b14.pages.dev'},
+      {label:'开发日志',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'},
+      {label:'源代码 — 暂未开放',href:null}
      ],
      links:[{label:'查看上线版本',href:'https://engram-b14.pages.dev'},{label:'开发日志',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'}]}
   ],
@@ -716,8 +740,9 @@ function setLang(lang){
   setText('fc1',d.fc1);setText('fc2',d.fc2);setText('fc3',d.fc3);
   // About modal content
   if(d.aboutTitle){
-    setText('ab-title',d.aboutTitle);setText('ab-p1',d.aboutP1);setText('ab-p2',d.aboutP2);
-    setText('ab-p3',d.aboutP3);setText('ab-p4',d.aboutP4);setText('ab-foot',d.aboutFoot);
+    setText('ab-label',d.ab2Label);setText('ab-title',d.aboutTitle);
+    setText('ab-p1',d.aboutP1);setText('ab-p2',d.aboutP2);
+    setText('ab-p3',d.aboutP3);setText('ab-p4',d.aboutP4);
     setText('ab-btn1',d.aboutBtn1);
     document.getElementById('ab-btn2').innerHTML=`<i class="ti ti-download"></i>${d.aboutBtn2}`;
     setText('ab-btn3',d.aboutBtn3);
@@ -735,70 +760,90 @@ function setLang(lang){
 
 // ── Narrative case data (Part 2 — Work & Portfolio, EN) ──
 const NARR=[
-  {cat:'OPERATIONS · GROWTH · WEB3',yr:'2025',title:'PathPort Ambassador Program',role:'PathPort Ambassador Program',
-   outcome:'From zero to 1,000+ participants in two weeks.',
-   ctx:'A meme coin platform needed an overseas community — built from nothing, with no existing playbook.',
-   did:[
-    "The brief was simple and impossible: build a global ambassador program that drives real platform participation, across multiple time zones and languages, in weeks not months.",
-    "I started from scratch. There was no existing community, no template, no team dedicated to this. I designed the entire Footprint Ambassador Program independently — the incentive structure, the tiered task system, the onboarding flow, the weekly rules, and the tracking mechanism. Then I built the program page, wrote the rulebook, and launched it.",
-    "The core design decision was to make participation feel like a game with clear rules and visible progress — not a vague join-our-community ask. Every tier had defined actions, every action had a visible reward, and the whole system was built so it could run without me manually managing every participant.",
-    "I also ran Twitter Space AMAs independently, managed community channels across Africa and Southeast Asia, and coordinated with the development team in real time to adjust the page based on live user behavior data."
+  {cat:'OPERATIONS · GROWTH · WEB3',title:'Turned Community Growth into a Scalable Product System',
+   outcome:'Designed and launched a Web3 ambassador program that reached 1,000+ participants in two weeks.',
+   problem:[
+    "The platform needed to build overseas community growth from zero, but there was no existing ambassador framework, no repeatable process, and no clear way to turn user interest into measurable participation."
    ],
-   results:[
+   approach:[
+    "I treated the ambassador program as a product system, not just a marketing campaign.",
+    "The goal was to design a clear participation journey: how users discover the program, understand the rules, complete tasks, track progress, and stay motivated across different languages, regions, and time zones."
+   ],
+   execution:[
+    "I designed and launched the Footprint Ambassador Program end to end, including the incentive structure, tiered task system, onboarding flow, weekly rules, reward logic, tracking mechanism, and public program page.",
+    "After launch, I hosted Twitter Space AMAs, managed community channels across Africa and Southeast Asia, coordinated with the development team, and iterated the page and rules based on real user behavior."
+   ],
+   impact:[
     '100,000+ Twitter impressions in week one',
-    '20,000+ combined engagements (likes, reposts, comments)',
+    '20,000+ combined engagements across likes, reposts, and comments',
     '1,000+ registered participants by week two',
-    'Two additional standalone competitions launched and executed independently (Token Launch Contest & Mint Contest)'
+    'Two additional standalone competitions launched and executed independently: Token Launch Contest and Mint Contest'
    ],
    evidence:[
-    {label:'Program page',note:'see the full design and task structure live',href:'https://www.ffpp.space/'}
+    {label:'View Program Page',href:'https://www.ffpp.space/'}
    ],
-   links:[{label:'View live',href:'https://www.ffpp.space/'}]},
-  {cat:'PRODUCT · AI · WEB3',yr:'2025–',title:'Harena',role:'Harena AI × Web3 Product',
-   outcome:'5 pivots, one direction: what it actually looks like to own a product.',
-   ctx:"An early-stage AI × Web3 project with no dedicated designer, no fixed roadmap, and a co-founding team trying to figure out what to build.",
-   did:[
-    "I came in as co-founder and the only PM. The first thing I had to accept was that the product didn't exist yet in any clear form — only a hypothesis and a market we believed in. My job was to turn ambiguity into something buildable.",
-    "The process looked like this: competitive research → user interviews → PRD → design → dev handoff → user feedback → repeat. I ran all of it. I wrote every PRD from scratch, designed every screen in Figma and Claude, produced all wireframes and user flows, and directly supervised development to make sure what got built matched what was intended.",
-    "The most important work wasn't the design or the documentation — it was the five times I had to say 「we're going in the wrong direction.」 Each pivot came from a specific signal: a user interview that contradicted our assumption, a competitive move that closed a window, a technical constraint that made an approach unviable. I designed a user research survey, collected early feedback systematically, and used it to make the case for each change to the rest of the founding team.",
-    "I also wrote the investor pitch deck and represented the project in multiple investor and partner meetings — translating product logic into language that made sense to people who weren't living inside the product every day."
+   links:[{label:'View Live',href:'https://www.ffpp.space/'}]},
+  {cat:'PRODUCT · AI · WEB3',title:'From Ambiguous Idea to MVP-Ready Product',
+   outcome:'Led discovery, product definition, design, and delivery for an early-stage AI × Web3 project.',
+   problem:[
+    "Harena started as an early-stage AI × Web3 project with a strong direction, but no fixed product form, no dedicated designer, and no clear roadmap.",
+    "The team needed to move from a broad market hypothesis to something concrete enough to design, validate, build, and explain to users, developers, and investors."
    ],
-   results:[
-    'Project at MVP stage with core features validated',
-    '5 major product pivots, each data- and feedback-driven',
-    'Full design system built independently: UI, flows, prototypes, component library',
-    'Multiple investor meetings completed with independently authored documentation'
+   approach:[
+    "I treated the project as a continuous discovery and validation process.",
+    "Instead of forcing one idea forward, I worked through each product direction by asking three questions: what problem are we solving, who is it for, and what would make this product realistic to build?",
+    "Each pivot came from a specific signal — user feedback, competitor movement, technical constraints, or a clearer understanding of the market. My role was to turn those signals into product decisions the team could act on."
+   ],
+   execution:[
+    "I came in as co-founder and the only PM, covering product research, competitor analysis, user interviews, PRDs, user flows, wireframes, Figma designs, Claude-assisted prototypes, and development handoff.",
+    "I wrote every PRD from scratch, designed the product screens and flow logic, built the core design system, and worked directly with the development team to make sure what was built matched the intended product experience.",
+    "I also designed user research surveys, collected early feedback, summarized product risks, and used those findings to support five major product pivots.",
+    "Beyond product delivery, I wrote the investor pitch deck and represented the project in investor and partner meetings, translating product logic into clear business language."
+   ],
+   impact:[
+    'Product moved from broad concept to MVP stage with core features validated',
+    'Five major product pivots completed, each driven by research, feedback, or market signals',
+    'Full product design system built independently, including UI, user flows, prototypes, and component library',
+    'PRDs, investor deck, and product documentation authored independently',
+    'Multiple investor and partner meetings completed with clear product narrative and supporting materials'
    ],
    evidence:[
-    {label:'Figma design 1',note:'UI prototype',href:'https://calm-satin-33761912.figma.site'},
-    {label:'Figma design 2',note:'UI prototype',href:'https://cloak-fresco-80103488.figma.site'},
-    {label:'Figma design 3',note:'UI prototype',href:'https://sepia-sheep-66827641.figma.site'},
-    {label:'Swimlane diagram',note:'product flow and architecture on Miro',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}
+    {label:'Figma Design 1',href:'https://calm-satin-33761912.figma.site'},
+    {label:'Figma Design 2',href:'https://cloak-fresco-80103488.figma.site'},
+    {label:'Figma Design 3',href:'https://sepia-sheep-66827641.figma.site'},
+    {label:'Swimlane Diagram',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}
    ],
    links:[{label:'Design 1',href:'https://calm-satin-33761912.figma.site'},{label:'Design 2',href:'https://cloak-fresco-80103488.figma.site'},{label:'Design 3',href:'https://sepia-sheep-66827641.figma.site'},{label:'Swimlane',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}]},
-  {cat:'AI · DEVELOPMENT · PRODUCT',yr:'2025–',title:'Engram',role:'Engram Independent AI Product',
-   outcome:'Built and shipped a full AI product. No engineering team. No prior dev background.',
-   ctx:'A personal experiment to find out how far a non-engineer PM could go using AI-assisted development tools — and to build something actually useful in the process.',
-   did:[
-    "Engram started as a question: if I had to build a product entirely by myself, with no engineering background, how far could I get?",
-    "The answer turned out to be: further than expected.",
-    "I used Claude Code and the OpenAI API as the core development tools, with GitHub for version control, Cloudflare for deployment, and VS Code as the environment. I didn't just use these tools to generate code — I had to understand what the code was doing, debug it when it broke, and make architectural decisions about how the pieces fit together.",
-    "The most technically demanding parts were designing and implementing the custom Skills modules and the MCP (Model Context Protocol) integrations. MCP is a protocol that allows AI models to interact with external tools and data sources in a structured way — building it from scratch required understanding both the technical spec and the product logic of why each integration existed.",
-    "Throughout the build, I kept a development log on GitHub — not as documentation for others, but as a discipline for myself. Every significant decision, every dead end, every unexpected behavior got recorded. This habit came directly from my PM background: you can't iterate on something you haven't measured.",
-    "The product is live. The code is real. The log is public."
+  {cat:'AI · PRODUCT · DEVELOPMENT',title:'From Product Idea to Live AI Application',
+   outcome:'Built and deployed Engram independently using AI-assisted development tools.',
+   problem:[
+    "I wanted to test how far a product manager without a traditional engineering background could go with AI-assisted development tools.",
+    "The challenge was not only to generate code, but to build something real: a usable product with working features, deployment, integrations, debugging, version control, and enough technical structure to keep improving it."
    ],
-   results:[
+   approach:[
+    "I treated Engram as both a product and a learning system.",
+    "Instead of using AI tools only as code generators, I used them as development partners while staying responsible for product logic, system decisions, debugging, and implementation quality.",
+    "The goal was to understand enough of the technical architecture to make meaningful decisions: what each feature should do, how different parts of the system should connect, where errors were coming from, and what needed to be simplified or rebuilt."
+   ],
+   execution:[
+    "I built Engram independently using Claude Code and the OpenAI API as core development tools, with GitHub for version control, Cloudflare for deployment, and VS Code as the development environment.",
+    "I designed and implemented custom Skills modules and MCP integrations from scratch. This required understanding not only the technical specification, but also the product logic behind each integration: why it existed, what user need it served, and how it should behave inside the product.",
+    "Throughout the build, I maintained a public development log on GitHub. I recorded major decisions, errors, dead ends, fixes, and unexpected behaviors, turning the build process into a traceable product-learning loop.",
+    "The product is live, the codebase is real, and the development process is publicly documented."
+   ],
+   impact:[
     'Full AI product built and deployed independently',
-    'Custom Skills modules and MCP protocol integrations designed and implemented from scratch',
-    'Complete development log maintained throughout build process',
-    'Live product available for use; GitHub log available for review'
+    'Custom Skills modules and MCP integrations designed and implemented from scratch',
+    'Complete development log maintained throughout the build process',
+    'Live product available for use, with GitHub development log available for review',
+    'Demonstrated ability to move from product thinking to technical execution using AI-assisted development tools'
    ],
    evidence:[
-    {label:'Live website',note:'the product itself, running in production',href:'https://engram-b14.pages.dev'},
-    {label:'Dev log (partial)',note:'decisions and build history on Notion',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'},
-    {label:'Source code — not yet open',note:'',href:null}
+    {label:'Live Website',href:'https://engram-b14.pages.dev'},
+    {label:'Dev Log',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'},
+    {label:'Source Code — not yet open',href:null}
    ],
-   links:[{label:'View live',href:'https://engram-b14.pages.dev'},{label:'Dev log',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'}]}
+   links:[{label:'View Live',href:'https://engram-b14.pages.dev'},{label:'Dev Log',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'}]}
 ];
 
 // ── How I Think data (Part 3 — four lenses, EN + ZH) ──
@@ -1110,10 +1155,10 @@ function buildCarousel(data){
   const el=document.getElementById('narr-cases');
   if(!el)return;
   const lb=typeof currentLang!=='undefined'&&currentLang==='zh'
-    ?{ctx:'项目背景',did:'我做了什么',res:'结果',ev:'Evidence',back:'← 返回'}
-    :{ctx:'Context',did:'What I Did',res:'Results',ev:'Evidence',back:'← Back'};
+    ?{problem:'问题',approach:'方法',execution:'执行',impact:'成果',close:'关闭'}
+    :{problem:'Problem',approach:'Approach',execution:'Execution',impact:'Impact',close:'Close'};
   el.innerHTML=`<div class="cs-carousel-wrap" id="cs-wrap"><div class="cs-carousel-track" id="cs-track">${
-    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-back" onclick="csCloseDetail()">${lb.back}</button><div class="csd-sec"><div class="csd-sec-lbl">① ${lb.ctx}</div><p class="csd-body">${c.ctx}</p></div><div class="csd-sec"><div class="csd-sec-lbl">② ${lb.did}</div><div class="csd-paras">${c.did.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl">③ ${lb.res}</div><ul class="csd-res">${c.results.map(r=>`<li>${r}</li>`).join('')}</ul></div><div class="csd-sec"><div class="csd-sec-lbl">④ ${lb.ev}</div><div class="csd-links">${c.evidence.map(e=>e.href?`<a class="csd-lnk" href="${e.href}" target="_blank" onclick="event.stopPropagation()">${e.label} →</a>`:`<span class="csd-lnk csd-lnk-dim">${e.label}</span>`).join('')}</div></div></div></div>`).join('')
+    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-close" onclick="csCloseDetail(event)" title="${lb.close}"><i class="ti ti-x"></i></button><div class="csd-col"><div class="csd-sec"><div class="csd-sec-lbl"><span>① ${lb.problem}</span></div><div class="csd-paras">${c.problem.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl"><span>② ${lb.approach}</span></div><div class="csd-paras">${c.approach.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div></div><div class="csd-col"><div class="csd-sec"><div class="csd-sec-lbl"><span>③ ${lb.execution}</span></div><div class="csd-paras">${c.execution.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl"><span>④ ${lb.impact}</span><div class="csd-ev-icons">${c.evidence.map(e=>e.href?`<a class="csd-ev-ic" href="${e.href}" target="_blank" title="${e.label}" onclick="event.stopPropagation()"><i class="ti ti-external-link"></i></a>`:`<span class="csd-ev-ic csd-ev-ic-dim" title="${e.label}"><i class="ti ti-lock"></i></span>`).join('')}</div></div><ul class="csd-res">${c.impact.map(r=>`<li>${r}</li>`).join('')}</ul></div></div></div></div>`).join('')
   }</div><button class="cs-arr-btn cs-arr-left" id="cs-al" onclick="csNav(-1)">&#8249;</button><button class="cs-arr-btn cs-arr-right" id="cs-ar" onclick="csNav(1)">&#8250;</button><div class="cs-dots">${csData_.map((_,i)=>`<button class="cs-dot${i===csIdx?' cs-dot-on':''}" onclick="csGo(${i})"></button>`).join('')}</div></div>`;
   requestAnimationFrame(csLayout);
 }
@@ -1162,6 +1207,7 @@ function csOpenDetail(idx){
   bg.style.transition='transform .55s cubic-bezier(.4,0,.2,1)';
   bg.style.transform='translateY(-115%)';
   slide.classList.add('cs-detail-open');
+  document.getElementById('cs-wrap')?.classList.add('cs-wrap-expanded');
   [document.getElementById('cs-al'),document.getElementById('cs-ar'),document.querySelector('.cs-dots')].forEach(el=>{if(el){el.style.opacity='0';el.style.pointerEvents='none';}});
 }
 function csCloseDetail(e){
@@ -1174,6 +1220,7 @@ function csCloseDetail(e){
   bg.style.transition='transform .5s cubic-bezier(.4,0,.2,1)';
   bg.style.transform='scale(1.05)';
   slide.classList.remove('cs-detail-open');
+  document.getElementById('cs-wrap')?.classList.remove('cs-wrap-expanded');
   slide.querySelector('.cs-cslide-detail').scrollTop=0;
   [document.getElementById('cs-al'),document.getElementById('cs-ar'),document.querySelector('.cs-dots')].forEach(el=>{if(el){el.style.opacity='';el.style.pointerEvents='';}});
   csDetailOpen=false;csDetailIdx=-1;
