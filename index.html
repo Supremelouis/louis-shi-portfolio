@@ -86,7 +86,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--sh)}
 
 /* Hero visual: portrait + floating glass cards */
-.hero-visual{position:relative;min-height:440px;opacity:0;animation:rise 1s .35s cubic-bezier(.2,.8,.2,1) both}
+.hero-visual{position:relative;min-height:480px;opacity:0;animation:rise 1s .35s cubic-bezier(.2,.8,.2,1) both}
 .portrait{position:absolute;right:0;top:50%;transform:translateY(-50%);width:340px;height:440px;border-radius:28px;overflow:hidden;
   background:linear-gradient(160deg,#dfe4ee,#e9e0d6);border:1px solid var(--gb);box-shadow:var(--sh-h)}
 .portrait img{width:100%;height:100%;object-fit:cover}
@@ -96,8 +96,10 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .fcard-ico{width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;margin-bottom:9px;border:1px solid var(--gb)}
 .fcard-ico i{font-size:17px;color:var(--ac)}
 .fcard-txt{font-size:12.5px;color:var(--txt);line-height:1.45;font-weight:400}
+.fcard-title{font-size:11.5px;font-weight:600;margin-bottom:3px}
+.fcard-desc{font-size:10px;font-weight:300;color:var(--txt2);line-height:1.4}
 .fc1{top:14px;left:0;animation:float1 6s ease-in-out infinite}
-.fc2{top:172px;left:0;animation:float2 7s ease-in-out infinite}
+.fc2{top:165px;left:0;animation:float2 7s ease-in-out infinite}
 .fc3{bottom:22px;left:0;animation:float3 6.5s ease-in-out infinite}
 @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
@@ -191,6 +193,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 /* ── Hero sub two-paragraph style ── */
 .h-sub-p1{font-size:14px;line-height:1.72;color:var(--txt2);margin:0 0 10px}
 .h-sub-p2{font-size:13px;line-height:1.75;color:var(--txt2);font-weight:300;margin:0}
+.h-sub-p2-zh{font-size:11px}
 .h-about-link{background:none;border:none;font-family:inherit;font-size:13px;color:var(--ac);cursor:pointer;padding:0;font-weight:500;display:inline-flex;align-items:center;letter-spacing:.01em;transition:opacity .2s}
 .h-about-link:hover{opacity:.7}
 
@@ -311,9 +314,9 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
   .hero-text{display:block}
   .hero-sub{margin-left:auto;margin-right:auto}
   .hero-actions{justify-content:center}
-  .hero-visual{min-height:446px;height:auto;margin-top:8px}
+  .hero-visual{min-height:535px;height:auto;margin-top:8px}
   .portrait{top:50%;left:50%;right:auto;transform:translate(-50%,-50%);width:260px;height:350px;border-radius:22px}
-  .fc1{left:0;top:0}.fc2{left:-6px;top:140px}.fc3{left:0;top:283px;bottom:auto}
+  .fc1{left:0;top:0}.fc2{left:-6px;top:180px}.fc3{left:0;top:360px;bottom:auto}
   .fcard{width:175px}
 }
 </style>
@@ -480,6 +483,8 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
       <p class="about-p" id="ab-p2"></p>
       <p class="about-p" id="ab-p3"></p>
       <p class="about-p" id="ab-p4"></p>
+      <p class="about-p" id="ab-p5"></p>
+      <p class="about-p" id="ab-p6"></p>
     </div>
     <div class="about-btns">
       <a class="btn btn-primary about-btn" id="ab-btn1" href="#work" onclick="closeAbout()">View Work</a>
@@ -512,45 +517,53 @@ const D={
 en:{
   navSub:'Product · Fintech · Web3 · AI',navExp:'Career',navWork:'Work',navThink:'How I Think',navWr:'Writing',navContact:'Contact',
   seWrT:'Writing',seWrS:'Research, analysis, and published work — demonstrating how I collect, process, and communicate complex information.',
-  hEyebrow:'Product · Fintech · Web3 · AI',
-  hTitle:'I turn complex ideas into<br><span class="grad">clear, usable products.</span>',
-  hSub:'<p class="h-sub-p1">Hi, I\'m Weiqi — a Toronto-based product manager and researcher with experience across fintech, Web3, AI, and independent product building.</p><p class="h-sub-p2">I\'m strongest at the early-to-middle stage of product work: understanding the problem, researching the market, defining the product, shaping the user experience, and moving ideas toward execution.</p>',
+  hEyebrow:'Product & Operations · Web3 · Fintech · Emerging Markets',
+  hTitle:'Where finance meets Web3,<br>I turn fuzzy user problems<br><span class="grad">into validated, shippable products.</span>',
+  hSub:'<p class="h-sub-p1">From managing banking clients to building Web3 products, I\'ve trained the same skill: spotting what actually matters inside complex information, and turning that judgment into solutions people can actually use.</p><p class="h-sub-p2">To me, a product isn\'t just a requirements doc — it\'s the full arc from understanding users, to reading the market, to shipping something real.</p>',
   hCta1:'View Work',hAbout:'About Me →',resumeLabel:'Resume',rsTitle:'View Resume',rsSub:'Choose a language',
   pcapT:'Weiqi Shi (Louis)',pcapS:'Product Manager · Business Analyst · Fintech · Web3 · AI · Toronto',
-  fc1:"MSc Economics · Dean's Medal",fc2:'500+ client conversations · strong problem discovery skills',fc3:'Research, strategy, design & delivery — end to end',
+  fc1:'<div class="fcard-title">MSc Economics · Dean\'s Medal</div><div class="fcard-desc">Quantitative background — comfortable backing judgment with data and structured research</div>',
+  fc2:'<div class="fcard-title">500+ client conversations</div><div class="fcard-desc">Deep frontline experience — seeing the gap between stated needs and real motivations</div>',
+  fc3:'<div class="fcard-title">0→1 independent ownership</div><div class="fcard-desc">Covering product strategy, user research, design collaboration, documentation, and delivery</div>',
   aboutTitle:'About Me',
   ab2Label:'Research · Product · Execution',
-  aboutP1:"I started in economics and banking, where I learned to understand people, financial systems, and business needs from the ground up. That experience still shapes how I work today: I like to understand the real problem before jumping into solutions.",
-  aboutP2:"Over time, my work moved closer to product, research, and emerging technology. In Web3 and AI, I've worked across market research, competitor analysis, product strategy, user experience, and hands-on building. I enjoy connecting the dots between what users need, what the market is moving toward, and what can realistically be built.",
-  aboutP3:"Today, I'm working as Product Manager at Harena, an AI × Web3 project, while also independently building Engram from product definition to deployment. These projects have pushed me to work end to end — from research and strategy to design, product decisions, and implementation.",
-  aboutP4:"I'm currently looking for Product Manager or Business Analyst roles where structured thinking, curiosity, research ability, and hands-on execution are valued. I'm especially interested in fintech, AI, Web3, data-driven products, and teams that care about understanding problems deeply before building.",
+  aboutP1:"I started in economics and banking. That experience taught me to find the real problem inside messy, ambiguous client needs and turn it into something clear and actionable. Across 500+ client conversations, I formed a core belief: what users say they want is usually just the surface — the real product opportunity is hiding in their behavior, constraints, and decision context.",
+  aboutP2:"Later, I brought that same user-understanding skill into product work in Web3 and AI. In Web3, I've worked on market research, competitive analysis, and regulatory tracking — independently publishing dozens of in-depth reports across DeFi, Layer 2, and RWA, two of which topped a platform's weekly readership. That work shaped how I approach emerging markets and complex products: understand the structure first, then judge the opportunity, then turn it into a direction the team can execute.",
+  aboutP3:"Beyond research, I've spent a lot of time in overseas growth and product operations. In Africa and Southeast Asia, I built user communities and growth channels from zero — designing ambassador programs, task mechanics, incentive rules, and participation flows — and validated user behavior, conversion friction, and payment friction firsthand across different markets. That means I don't just understand users from a PRD; I understand whether a product works from real market feedback.",
+  aboutP4:"So I'm closer to a Product Manager with real operating depth: I can do research and strategy, but I can also get into the user's world and understand the growth funnel, conversion points, and execution details. I care less about \"what feature should we build\" and more about whether that feature solves a real problem, whether users will understand it, and whether the market will validate it.",
+  aboutP5:"At Harena, I led the product as the sole PM from kickoff to MVP — user research, competitive analysis, PRDs, user flows, prototyping, dev communication, and investor materials. The project went through 5 major pivots, each driven by user feedback, market signals, or technical constraints — never gut feeling. That experience confirmed something for me: the most important skill in early-stage product work is building a clear decision-making system under uncertainty, and using it to keep the team moving forward.",
+  aboutP6:"I'm focused on product opportunities in fintech, Web3, and AI — especially early-stage products that require understanding users, markets, business logic, and execution all at once. If you're working on something like that, I'd love to talk.",
   aboutBtn1:'View Work',aboutBtn3:'Get in touch →',
   seExpT:'Career Journey',seExpS:'Not a straight line — but every turn was deliberate.',
   seWorkT:'Work & Portfolio',seWorkS:"Three projects. Three different problems. The same instinct: figure out what needs to exist, and build it.",
   seThinkT:'How I Think',seThinkS:"Four lenses I've developed — and what I've built with each one.",
-  ctT:'Get in Touch',ctSub:'Open to Product Manager & Business Analyst roles in Toronto',ctWr:'Research & Writing',ctFt:'© 2026 Weiqi Shi · Built with Claude Code',
+  ctT:'Get in Touch',ctSub:'Open to remote or local Web3 Product & Operations roles',ctWr:'Research & Writing',ctFt:'© 2026 Weiqi Shi · Built with Claude Code',
   narr:null,// falls back to NARR global (English)
 },
 zh:{
   navSub:'产品 · 金融科技 · Web3 · AI',navExp:'经历',navWork:'作品集',navThink:'思维方式',navWr:'文章',navContact:'联系',
   seWrT:'文章',seWrS:'研究报告、采访与分析文章 —— 展示我如何收集、处理和传达复杂信息。',
-  hEyebrow:'产品 · 金融科技 · Web3 · AI',
-  hTitle:'我把复杂的想法，<br><span class="grad">变成清晰可用的产品。</span>',
-  hSub:'<p class="h-sub-p1">你好，我是史伟琪（Weiqi）—— 一名常驻多伦多的产品经理与研究者，在金融科技、Web3、AI 和独立产品开发方面都有经验。</p><p class="h-sub-p2">我最擅长产品工作的早中期阶段：理解问题、研究市场、定义产品、打磨用户体验，并推动想法走向落地执行。</p>',
+  hEyebrow:'产品与运营 · Web3 · 金融科技 · 新兴市场',
+  hTitle:'我在金融与 Web3 的交叉点上，<br>把模糊的用户问题<br><span class="grad">转化为可验证、可落地的产品。</span>',
+  hSub:'<p class="h-sub-p1">从银行客户管理到 Web3 产品实践，我一直在训练同一种能力：在复杂信息中识别真正重要的问题，并把判断推进到用户实际使用的解决方案。</p><p class="h-sub-p2 h-sub-p2-zh">对我来说，产品不只是一份需求文档，而是从用户理解、市场判断到执行落地的完整过程。</p>',
   hCta1:'查看作品集',hAbout:'了解更多 →',resumeLabel:'简历',rsTitle:'查看简历',rsSub:'选择语言',
   pcapT:'史伟琪 Louis',pcapS:'产品经理 · 商业分析师 · 金融科技 · Web3 · AI · 多伦多',
-  fc1:'经济学硕士 · 院长奖章',fc2:'500+ 次客户访谈 · 扎实的问题洞察能力',fc3:'研究、产品策略、设计与交付 · 全程参与',
+  fc1:'<div class="fcard-title">经济学硕士 · 院长奖章</div><div class="fcard-desc">定量分析背景，习惯用数据和结构化研究支撑判断</div>',
+  fc2:'<div class="fcard-title">500+ 次客户沟通</div><div class="fcard-desc">长期一线用户经验，理解需求表达与真实动机之间的差距</div>',
+  fc3:'<div class="fcard-title">从 0 到 1 独立主导</div><div class="fcard-desc">覆盖产品策略、用户研究、设计协作、文档撰写与交付推进</div>',
   aboutTitle:'关于我',
   ab2Label:'研究 · 产品 · 执行',
-  aboutP1:'我从经济学和银行业起步，在那里学会了从根本上理解人、金融系统和商业需求。这段经历至今仍影响着我的工作方式：在动手做方案之前，我喜欢先把问题本身理解清楚。',
-  aboutP2:'后来，我的工作逐渐转向产品、研究和新兴技术。在 Web3 和 AI 领域，我做过市场研究、竞品分析、产品策略、用户体验，也亲自动手搭建产品。我喜欢把用户需求、市场趋势，以及现实中能落地的方案这几件事连接起来。',
-  aboutP3:'目前，我在 Harena 担任产品经理 —— 一个 AI × Web3 项目，同时也在独立构建 Engram，从产品定义一路做到上线部署。这些项目让我习惯了全流程参与：从研究、策略到设计、产品决策与实现。',
-  aboutP4:'我目前在寻找产品经理或商业分析师方向的机会，希望能在重视结构化思维、好奇心、研究能力和动手执行力的团队里工作。我尤其关注金融科技、AI、Web3、数据驱动产品，以及那些愿意先深入理解问题再动手的团队。',
+  aboutP1:'我从经济学和银行业起步。那段经历让我学会从复杂、模糊的客户需求中识别真实问题，并将其转化为清晰、可执行的解决方案。通过 500+ 次客户沟通，我逐渐形成了一个重要判断：用户说出口的需求，往往只是问题的表层；真正的产品机会，通常藏在行为、约束和决策场景里。',
+  aboutP2:'后来，我将这种用户理解能力带入 Web3 和 AI 方向的产品实践中。在 Web3 行业，我持续参与市场研究、竞品分析和监管趋势跟踪，独立产出数十篇深度研究内容，覆盖 DeFi、Layer 2、RWA 等赛道，其中 2 篇发布当周登上平台流量榜首。这段经历强化了我对新兴市场和复杂产品的判断方式：先理解结构，再判断机会，最后形成可被执行的产品方向。',
+  aboutP3:'除了研究，我也长期参与海外增长和产品运营。在非洲和东南亚市场，我从零搭建用户社群和增长渠道，设计大使计划、任务机制、激励规则和用户参与路径，亲自验证不同市场中的用户行为、转化阻力和支付摩擦。这让我不是只从产品文档里理解用户，而是从真实市场反馈中理解产品是否成立。',
+  aboutP4:'因此，我更接近一名有运营深度的产品经理：我能做研究和策略，也能进入用户场景，理解增长链路、转化节点和执行细节。我关心的不只是"应该做什么功能"，而是这个功能是否解决真实问题，是否能被用户理解，是否能在市场中被验证。',
+  aboutP5:'在 Harena 项目中，我以唯一 PM 的身份主导产品从立项到 MVP 的完整流程，包括用户研究、竞品分析、PRD、用户流程、原型设计、开发沟通和投资人材料。项目经历了 5 次方向调整，每一次都基于用户反馈、市场信号或技术约束，而不是主观判断。这段经历让我进一步确认：早期产品最重要的能力，是在不确定性中建立清晰的判断系统，并推动团队持续向前。',
+  aboutP6:'我关注金融科技、Web3 和 AI 方向的产品机会，尤其是那些需要同时理解用户、市场、业务逻辑和执行路径的早期产品。如果你正在做这类事情，欢迎交流。',
   aboutBtn1:'查看作品集',aboutBtn3:'发邮件联系 →',
   seExpT:'Career Journey',seExpS:'不是一条直线 —— 但每一个转弯都是主动选择的。',
   seWorkT:'作品集',seWorkS:'三个项目，三个不同的问题。同一个本能：搞清楚什么东西应该存在，然后把它做出来。',
   seThinkT:'How I Think',seThinkS:'四个视角，以及我用它们分别做了什么。',
-  ctT:'联系我',ctSub:'寻找多伦多产品经理与商业分析师职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
+  ctT:'联系我',ctSub:'寻找远程或本地的 Web3 产品、运营方向相关职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
   narr:[
     {cat:'运营 · 增长 · WEB3',title:'把社区增长，变成一套可复制的产品系统',
      outcome:'设计并上线了一个 Web3 大使计划，两周内吸引超过 1,000 名参与者。',
@@ -658,6 +671,7 @@ function setLang(lang){
     setText('ab-label',d.ab2Label);setText('ab-title',d.aboutTitle);
     setText('ab-p1',d.aboutP1);setText('ab-p2',d.aboutP2);
     setText('ab-p3',d.aboutP3);setText('ab-p4',d.aboutP4);
+    setText('ab-p5',d.aboutP5);setText('ab-p6',d.aboutP6);
     setText('ab-btn1',d.aboutBtn1);
     setText('ab-resume-label',d.resumeLabel);
     setText('ab-btn3',d.aboutBtn3);
