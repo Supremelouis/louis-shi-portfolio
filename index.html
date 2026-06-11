@@ -214,6 +214,11 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .about-lnk:hover{opacity:.7}
 .pcap{cursor:pointer}
 
+/* ── Resume Modal ── */
+.about-card.resume-card{max-width:320px;text-align:center}
+.resume-links{display:flex;flex-direction:column;gap:10px}
+.resume-links .btn{justify-content:center;width:100%}
+
 /* ── Contact ── */
 .contact{padding:70px 0 50px;text-align:center}
 .contact-title{font-size:clamp(30px,4vw,46px);font-weight:700;letter-spacing:-.02em;margin-bottom:12px;font-family:'DM Serif Display',serif}
@@ -380,6 +385,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     </div>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#work" id="h-cta1">View Work</a>
+      <button class="btn btn-ghost" id="h-resume" onclick="openResume()"><i class="ti ti-file-text"></i><span id="h-resume-label">Resume</span></button>
       <button class="h-about-link" id="h-about" onclick="openAbout()">About Me →</button>
     </div>
   </div>
@@ -477,7 +483,23 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
     </div>
     <div class="about-btns">
       <a class="btn btn-primary about-btn" id="ab-btn1" href="#work" onclick="closeAbout()">View Work</a>
+      <button class="btn btn-ghost about-btn" id="ab-resume" onclick="openResume()"><i class="ti ti-file-text"></i><span id="ab-resume-label">Resume</span></button>
       <button class="about-lnk" id="ab-btn3" onclick="window.location.href='mailto:founder@aurgo.ai'">Get in touch →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Resume Modal — must be BEFORE <script> so setLang() can populate it on page load -->
+<div class="about-overlay" id="resume-overlay" onclick="if(event.target===this)closeResume()">
+  <div class="about-card resume-card">
+    <div class="about-hd">
+      <div class="about-title" id="rs-title">View Resume</div>
+      <button class="about-close" onclick="closeResume()">×</button>
+    </div>
+    <p class="about-p" id="rs-sub">Choose a language</p>
+    <div class="resume-links">
+      <a class="btn btn-primary" href="https://app.notion.com/p/Weiqi-Shi-Louis-_Resume_EN-37cd8316a137801fbabfe9e27a484f22?source=copy_link" target="_blank" rel="noopener noreferrer">English</a>
+      <a class="btn btn-ghost" href="https://app.notion.com/p/Louis-Shi-_Resume_ZH-37cd8316a13780fbb63bedbd099efacc?source=copy_link" target="_blank" rel="noopener noreferrer">中文</a>
     </div>
   </div>
 </div>
@@ -493,7 +515,7 @@ en:{
   hEyebrow:'Product · Fintech · Web3 · AI',
   hTitle:'I turn complex ideas into<br><span class="grad">clear, usable products.</span>',
   hSub:'<p class="h-sub-p1">Hi, I\'m Weiqi — a Toronto-based product manager and researcher with experience across fintech, Web3, AI, and independent product building.</p><p class="h-sub-p2">I\'m strongest at the early-to-middle stage of product work: understanding the problem, researching the market, defining the product, shaping the user experience, and moving ideas toward execution.</p>',
-  hCta1:'View Work',hAbout:'About Me →',
+  hCta1:'View Work',hAbout:'About Me →',resumeLabel:'Resume',rsTitle:'View Resume',rsSub:'Choose a language',
   pcapT:'Weiqi Shi (Louis)',pcapS:'Product Manager · Business Analyst · Fintech · Web3 · AI · Toronto',
   fc1:"MSc Economics · Dean's Medal",fc2:'500+ client conversations · strong problem discovery skills',fc3:'Research, strategy, design & delivery — end to end',
   aboutTitle:'About Me',
@@ -515,7 +537,7 @@ zh:{
   hEyebrow:'产品 · 金融科技 · Web3 · AI',
   hTitle:'我把复杂的想法，<br><span class="grad">变成清晰可用的产品。</span>',
   hSub:'<p class="h-sub-p1">你好，我是史伟琪（Weiqi）—— 一名常驻多伦多的产品经理与研究者，在金融科技、Web3、AI 和独立产品开发方面都有经验。</p><p class="h-sub-p2">我最擅长产品工作的早中期阶段：理解问题、研究市场、定义产品、打磨用户体验，并推动想法走向落地执行。</p>',
-  hCta1:'查看作品集',hAbout:'了解更多 →',
+  hCta1:'查看作品集',hAbout:'了解更多 →',resumeLabel:'简历',rsTitle:'查看简历',rsSub:'选择语言',
   pcapT:'史伟琪 Louis',pcapS:'产品经理 · 商业分析师 · 金融科技 · Web3 · AI · 多伦多',
   fc1:'经济学硕士 · 院长奖章',fc2:'500+ 次客户访谈 · 扎实的问题洞察能力',fc3:'研究、产品策略、设计与交付 · 全程参与',
   aboutTitle:'关于我',
@@ -628,6 +650,7 @@ function setLang(lang){
   setText('h-eyebrow',d.hEyebrow);setText('h-title',d.hTitle);setText('h-sub',d.hSub);
   setText('h-cta1',d.hCta1);
   if(d.hAbout)setText('h-about',d.hAbout);
+  setText('h-resume-label',d.resumeLabel);
   setText('pcap-t',d.pcapT);setText('pcap-s',d.pcapS);
   setText('fc1',d.fc1);setText('fc2',d.fc2);setText('fc3',d.fc3);
   // About modal content
@@ -636,8 +659,11 @@ function setLang(lang){
     setText('ab-p1',d.aboutP1);setText('ab-p2',d.aboutP2);
     setText('ab-p3',d.aboutP3);setText('ab-p4',d.aboutP4);
     setText('ab-btn1',d.aboutBtn1);
+    setText('ab-resume-label',d.resumeLabel);
     setText('ab-btn3',d.aboutBtn3);
   }
+  // Resume modal content
+  setText('rs-title',d.rsTitle);setText('rs-sub',d.rsSub);
   setText('se-exp-t',d.seExpT);setText('se-exp-s',d.seExpS);
   if(d.seWorkT)setText('se-work-t',d.seWorkT);if(d.seWorkS)setText('se-work-s',d.seWorkS);
   if(d.seWrT)setText('se-wr-t',d.seWrT);if(d.seWrS)setText('se-wr-s',d.seWrS);
@@ -1192,15 +1218,15 @@ function initTree(){
 setLang('en');initRv();initTree();window.addEventListener('resize',csLayout,{passive:true}); // initTree = flow field
 
 // ── About modal ──
-function openAbout(){
-  document.getElementById('about-overlay').classList.add('ab-open');
-  document.body.style.overflow='hidden';
+function syncBodyScroll(){
+  const open=document.getElementById('about-overlay').classList.contains('ab-open')||document.getElementById('resume-overlay').classList.contains('ab-open');
+  document.body.style.overflow=open?'hidden':'';
 }
-function closeAbout(){
-  document.getElementById('about-overlay').classList.remove('ab-open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAbout();});
+function openAbout(){document.getElementById('about-overlay').classList.add('ab-open');syncBodyScroll();}
+function closeAbout(){document.getElementById('about-overlay').classList.remove('ab-open');syncBodyScroll();}
+function openResume(){document.getElementById('resume-overlay').classList.add('ab-open');syncBodyScroll();}
+function closeResume(){document.getElementById('resume-overlay').classList.remove('ab-open');syncBodyScroll();}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeResume();closeAbout();}});
  </script>
 
 
