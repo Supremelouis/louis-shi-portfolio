@@ -284,10 +284,30 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .csd-ev-ic{display:flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:9px;color:var(--txt2);background:var(--glass);border:1px solid var(--line);text-decoration:none;transition:background .2s,color .2s,border-color .2s}
 .csd-ev-ic:hover{background:rgba(255,255,255,.9);color:var(--ac);border-color:var(--gb)}
 .csd-ev-ic-dim{opacity:.35;cursor:default}
+/* ── Grouped detail layout (visual hierarchy: background / core judgment / key decisions / summary) ── */
+.csd-grouped{display:block;overflow-y:auto;padding:32px 36px;scrollbar-width:thin;scrollbar-color:var(--gb) transparent}
+.csd-grouped::-webkit-scrollbar{width:5px}
+.csd-grouped::-webkit-scrollbar-thumb{background:var(--gb);border-radius:4px}
+.csd-scroll{display:flex;flex-direction:column;gap:16px}
+.csd-group-title{font-size:13px;font-weight:700;color:var(--txt);letter-spacing:-.01em;margin-bottom:8px}
+.csd-group-bg{padding-bottom:14px;border-bottom:1px solid var(--line)}
+.csd-group-bg .csd-group-title{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.13em;color:var(--txt3);margin-bottom:8px}
+.csd-group-judgment{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:16px 20px}
+.csd-group-judgment .csd-group-title{color:var(--ac)}
+.csd-group-decisions{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:16px 20px;display:flex;flex-direction:column;gap:14px}
+.csd-decision{padding-bottom:14px;border-bottom:1px solid var(--line)}
+.csd-decision:last-child{padding-bottom:0;border-bottom:none}
+.csd-decision-title{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:6px}
+.csd-group-summary{background:linear-gradient(135deg,var(--ac),var(--ac2));border-radius:14px;padding:18px 20px;color:#fff}
+.csd-group-summary .csd-group-title{color:#fff}
+.csd-group-summary .csd-body{color:rgba(255,255,255,.9)}
+.csd-summary-link{display:inline-block;margin-top:10px;font-size:11px;font-weight:600;color:#fff;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:900px){
   .cs-cslide-detail{grid-template-columns:1fr;column-gap:0;padding:20px 22px;overflow-y:auto;align-content:start;scrollbar-width:none}
   .cs-cslide-detail::-webkit-scrollbar{display:none}
   .csd-close{opacity:.6;transform:scale(1)}
+  .cs-cslide-detail.csd-grouped{padding:22px 20px;scrollbar-width:none}
+  .csd-grouped::-webkit-scrollbar{display:none}
 }
 /* ── Writing section ── */
 .writ-list{display:flex;flex-direction:column;background:var(--glass);border:1px solid var(--gb);border-radius:20px;box-shadow:var(--sh);padding:0 30px}
@@ -565,28 +585,44 @@ zh:{
   seThinkT:'How I Think',seThinkS:'四个视角，以及我用它们分别做了什么。',
   ctT:'联系我',ctSub:'寻找远程或本地的 Web3 产品、运营方向相关职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
   narr:[
-    {cat:'运营 · 增长 · WEB3',title:'把社区增长，变成一套可复制的产品系统',
-     outcome:'设计并上线了一个 Web3 大使计划，两周内吸引超过 1,000 名参与者。',
-     problem:[
-      '平台需要从零开始建立海外社区增长，但当时没有现成的大使计划框架，没有可复用的流程，也没有清晰的方式把用户兴趣转化为可衡量的参与度。'
-     ],
-     approach:[
-      '我把这个大使计划当作一个产品系统来设计，而不只是一场营销活动。',
-      '目标是设计一条清晰的参与路径：用户如何发现这个计划、理解规则、完成任务、追踪进度，并在不同语言、地区和时区下持续保持参与动力。'
-     ],
-     execution:[
-      '我从零到上线独立完成了脚印大使计划的整体设计——激励结构、分层任务体系、新用户引导流程、每周规则、奖励逻辑、数据追踪机制，以及对外的计划页面。',
-      '上线后，我独立主持 Twitter Space AMA，管理非洲和东南亚多个地区的社群频道，与开发团队保持实时协调，并根据真实用户行为持续迭代页面和规则。'
-     ],
-     impact:[
-      '上线第一周 Twitter 浏览量突破 10 万',
-      '点赞、转发、评论等互动总量超过 2 万次',
-      '第二周注册参与人数突破 1,000 人',
-      '独立策划并执行了两项额外赛事：发币大赛和 Mint 铸造大赛'
-     ],
-     evidence:[
-      {label:'查看计划页面',href:'https://www.ffpp.space/'}
-     ],
+    {cat:'FlipFlop · 海外运营 · 2025',title:'从零搭建一个能自己运转的社群系统',
+     outcome:'在资源有限、没有用户基础的情况下，为一个Web3发币平台设计了大使计划的完整运营机制——核心问题不是怎么吸引用户，而是怎么让系统在没有我的情况下继续运转。',
+     detail:{
+      bg:{title:'背景：接手时的状态',paras:[
+       'FlipFlop 是一个基于 POM 机制的公平发币平台。项目上线初期已有 Twitter 粉丝基础和早期节点支持者，但缺少真正活跃的用户社群：用户参与度有限，内容生产不稳定，传播路径尚未形成，平台也缺少一套可复制的社区增长机制。',
+       '我的任务是从零建立这套机制，让用户能够被吸引进来、理解规则、参与任务、持续贡献，并在不同阶段沉淀出真正有价值的社区成员。'
+      ]},
+      judgment:{title:'核心判断：短期声量和长期沉淀需要分层设计',paras:[
+       '币圈用户普遍具备三个特征：利益驱动强、传播意愿高、注意力周期短。激励机制可以快速带来参与者，但其中会混入大量短期套利用户。社群系统需要同时服务两个目标：冷启动阶段制造声量，长期阶段筛选真正愿意持续贡献的人。',
+       '因此，大使计划从第一天就加入了等级系统。用户可以通过持续参与获得更高等级、更高权益和资源优先权。这个设计用时间成本筛选长期贡献者，也让早期用户从一开始就能看到持续投入的回报路径。'
+      ]},
+      decisions:[
+       {title:'关键决策一：冷启动阶段优先使用非洲社群',paras:[
+        '项目早期存在一个争议：非洲用户内容质量不稳定，是否适合作为第一批增长用户。',
+        '我的判断是，冷启动阶段最重要的目标是验证机制和获得声量，而不是追求最理想的用户结构。团队当时拥有非洲 KOL 资源，可以用较低成本快速测试大使机制、任务设计和奖励规则是否成立。',
+        '最终结果显示，这个判断有效：上线首周 Twitter 浏览量突破 100,000，互动超过 20,000 次，两周内平台参与人数突破 1,000 人。大使计划的基础机制得到验证。'
+       ]},
+       {title:'关键决策二：把执行压力转移进系统',paras:[
+        '参与度提升后，人工审核开始跟不上内容增长。单纯依赖运营团队处理审核、引导和解释，系统会很快进入瓶颈。',
+        '我重新调整了规则设计，引入检举机制，让社区成员参与维护公平性。用户维护规则的动力来自保护自身利益，这让审核压力从运营团队部分转移到社群内部。',
+        '同时，我设计了每周话题任务，由大使在社群内发起讨论，而不是完全依赖官方账号引导。这样可以让大使成为内容和讨论的发起点，提高社群内部的自运转能力。',
+        '在基础任务降权时，我预判短期数据会下滑，但仍推动调整上线。这个变化让团队看清哪些数据依赖低质量激励，哪些用户真正愿意留下来继续贡献。'
+       ]},
+       {title:'关键决策三：识别真正的长期用户',paras:[
+        '当大众激励降低、优质内容奖励提高后，部分短期用户流失，但也出现了一批更稳定的创作者。他们继续产出内容，并在社群中主动解释规则、引导讨论、带动其他成员参与。',
+        '这批用户成为大使计划真正需要服务的核心人群。后续资源分配也因此调整：激励不再平均分散，而是向高质量贡献者倾斜，提升长期用户的获得感和留存动力。',
+        '这个阶段让我更清楚地看到，社群价值不只来自参与人数，也来自谁愿意在激励下降后继续留下来。'
+       ]},
+       {title:'关键决策四：识别增长天花板并提前转向',paras:[
+        '第三个月，非洲社群的数据增长开始放缓。通过社群活跃度、内容扩散路径和用户行为数据，我判断现有传播网络已经接近边界。继续投入可以加深已有市场渗透，但难以带来新的增长空间。',
+        '我主导了一次跨团队会议，提出向韩国、印度和东南亚扩展。方案采用小 KOL 切入，降低试错成本，并设计地区积分对抗机制，通过不同地区社群之间的竞争制造新的传播动力。该方案在我离开前完成设计，并进入执行阶段。'
+       ]}
+      ],
+      summary:{title:'我的总结',paras:[
+       '这个 case 最重要的价值，不只是完成了一次增长活动，而是把一个没有社群基础的 Web3 项目，转化成一个可以持续吸引、筛选和激励用户的运营系统。',
+       '我从中验证了一个判断：好的社群运营不是持续靠人维持热度，而是通过机制设计，让用户知道为什么参与、如何贡献、如何获得反馈，以及为什么值得继续留下来。'
+      ]}
+     },
      links:[{label:'查看上线版本',href:'https://www.ffpp.space/'}]},
     {cat:'产品 · AI · WEB3',title:'从模糊想法到 MVP 级产品',
      outcome:'主导了一个早期 AI × Web3 项目的需求探索、产品定义、设计与交付。',
@@ -1076,6 +1112,15 @@ const WRITING={
 let csIdx=1,csData_=[],csDetailOpen=false,csDetailIdx=-1;
 const CS_IMGS=['imgs/case-pathport.jpg','imgs/case-harena.jpg','imgs/case-engram.jpg'];
 
+function csDetailHtml(c,lb){
+  const paras=ps=>ps.map(p=>`<p class="csd-body">${p}</p>`).join('');
+  if(c.detail){
+    const d=c.detail,link=c.links&&c.links[0];
+    return `<div class="cs-cslide-detail csd-grouped" onclick="csCloseDetail(event)"><button class="csd-close" onclick="csCloseDetail(event)" title="${lb.close}"><i class="ti ti-x"></i></button><div class="csd-scroll"><div class="csd-group csd-group-bg"><div class="csd-group-title">${d.bg.title}</div><div class="csd-paras">${paras(d.bg.paras)}</div></div><div class="csd-group csd-group-judgment"><div class="csd-group-title">${d.judgment.title}</div><div class="csd-paras">${paras(d.judgment.paras)}</div></div><div class="csd-group csd-group-decisions">${d.decisions.map(dec=>`<div class="csd-decision"><div class="csd-decision-title">${dec.title}</div><div class="csd-paras">${paras(dec.paras)}</div></div>`).join('')}</div><div class="csd-group csd-group-summary"><div class="csd-group-title">${d.summary.title}</div><div class="csd-paras">${paras(d.summary.paras)}</div>${link?`<a class="csd-summary-link" href="${link.href}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${link.label} →</a>`:''}</div></div></div>`;
+  }
+  return `<div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-close" onclick="csCloseDetail(event)" title="${lb.close}"><i class="ti ti-x"></i></button><div class="csd-col"><div class="csd-sec"><div class="csd-sec-lbl"><span>① ${lb.problem}</span></div><div class="csd-paras">${paras(c.problem)}</div></div><div class="csd-sec"><div class="csd-sec-lbl"><span>② ${lb.approach}</span></div><div class="csd-paras">${paras(c.approach)}</div></div></div><div class="csd-col"><div class="csd-sec"><div class="csd-sec-lbl"><span>③ ${lb.execution}</span></div><div class="csd-paras">${paras(c.execution)}</div></div><div class="csd-sec"><div class="csd-sec-lbl"><span>④ ${lb.impact}</span><div class="csd-ev-icons">${c.evidence.map(e=>e.href?`<a class="csd-ev-ic" href="${e.href}" target="_blank" rel="noopener noreferrer" title="${e.label}" onclick="event.stopPropagation()"><i class="ti ti-external-link"></i></a>`:`<span class="csd-ev-ic csd-ev-ic-dim" title="${e.label}"><i class="ti ti-lock"></i></span>`).join('')}</div></div><ul class="csd-res">${c.impact.map(r=>`<li>${r}</li>`).join('')}</ul></div></div></div>`;
+}
+
 function buildCarousel(data){
   csData_=data||NARR;
   csDetailOpen=false;csDetailIdx=-1;
@@ -1085,7 +1130,7 @@ function buildCarousel(data){
     ?{problem:'问题',approach:'方法',execution:'执行',impact:'成果',close:'关闭'}
     :{problem:'Problem',approach:'Approach',execution:'Execution',impact:'Impact',close:'Close'};
   el.innerHTML=`<div class="cs-carousel-wrap" id="cs-wrap"><div class="cs-carousel-track" id="cs-track">${
-    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div><div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-close" onclick="csCloseDetail(event)" title="${lb.close}"><i class="ti ti-x"></i></button><div class="csd-col"><div class="csd-sec"><div class="csd-sec-lbl"><span>① ${lb.problem}</span></div><div class="csd-paras">${c.problem.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl"><span>② ${lb.approach}</span></div><div class="csd-paras">${c.approach.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div></div><div class="csd-col"><div class="csd-sec"><div class="csd-sec-lbl"><span>③ ${lb.execution}</span></div><div class="csd-paras">${c.execution.map(p=>`<p class="csd-body">${p}</p>`).join('')}</div></div><div class="csd-sec"><div class="csd-sec-lbl"><span>④ ${lb.impact}</span><div class="csd-ev-icons">${c.evidence.map(e=>e.href?`<a class="csd-ev-ic" href="${e.href}" target="_blank" rel="noopener noreferrer" title="${e.label}" onclick="event.stopPropagation()"><i class="ti ti-external-link"></i></a>`:`<span class="csd-ev-ic csd-ev-ic-dim" title="${e.label}"><i class="ti ti-lock"></i></span>`).join('')}</div></div><ul class="csd-res">${c.impact.map(r=>`<li>${r}</li>`).join('')}</ul></div></div></div></div>`).join('')
+    csData_.map((c,i)=>`<div class="cs-cslide${i===csIdx?' cs-active':''}" onclick="csClickSlide(${i})"><div class="cs-cslide-bg" style="background-image:url('${CS_IMGS[i]}')"></div><div class="cs-cslide-ov"></div><div class="cs-cslide-txt"><div class="cs-cslide-cat">${c.cat}</div><div class="cs-cslide-title">${c.title}</div><div class="cs-cslide-role">${c.outcome}</div><div class="cs-cslide-links">${c.links.map(l=>`<a class="cs-cslide-link" href="${l.href}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${l.label} →</a>`).join('')}</div></div>${csDetailHtml(c,lb)}</div>`).join('')
   }</div><button class="cs-arr-btn cs-arr-left" id="cs-al" onclick="csNav(-1)">&#8249;</button><button class="cs-arr-btn cs-arr-right" id="cs-ar" onclick="csNav(1)">&#8250;</button><div class="cs-dots">${csData_.map((_,i)=>`<button class="cs-dot${i===csIdx?' cs-dot-on':''}" onclick="csGo(${i})"></button>`).join('')}</div></div>`;
   requestAnimationFrame(csLayout);
 }
