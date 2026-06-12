@@ -137,7 +137,7 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 .cj-node:hover .cj-kw,.cj-node.cj-on .cj-kw{color:var(--cj-c)}
 .cj-period{font-size:10px;color:var(--txt3);margin-top:3px;font-weight:500}
 .cj-card-wrap{overflow:hidden;max-height:0;opacity:0;transition:max-height .45s cubic-bezier(.2,.8,.2,1),opacity .35s,margin-top .4s;margin-top:0}
-.cj-card-wrap.cj-open{max-height:600px;opacity:1;margin-top:26px}
+.cj-card-wrap.cj-open{max-height:900px;opacity:1;margin-top:26px}
 .cj-card{background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid var(--gb);border-radius:22px;box-shadow:var(--sh);padding:26px 30px;border-top:3px solid var(--cj-c,var(--ac))}
 .cj-card-role{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:4px}
 .cj-card-period{font-size:11px;color:var(--txt3);font-weight:500;margin-bottom:14px;letter-spacing:.04em}
@@ -551,9 +551,9 @@ en:{
   aboutP5:"At Harena, I led the product as the sole PM from kickoff to MVP — user research, competitive analysis, PRDs, user flows, prototyping, dev communication, and investor materials. The project went through 5 major pivots, each driven by user feedback, market signals, or technical constraints — never gut feeling. That experience confirmed something for me: the most important skill in early-stage product work is building a clear decision-making system under uncertainty, and using it to keep the team moving forward.",
   aboutP6:"I'm focused on product opportunities in fintech, Web3, and AI — especially early-stage products that require understanding users, markets, business logic, and execution all at once. If you're working on something like that, I'd love to talk.",
   aboutBtn1:'View Work',aboutBtn3:'Get in touch →',
-  seExpT:'Career Journey',seExpS:'Not a straight line — but every turn was deliberate.',
-  seWorkT:'Work & Portfolio',seWorkS:"Three projects. Three different problems. The same instinct: figure out what needs to exist, and build it.",
-  seThinkT:'How I Think',seThinkS:"Four lenses I've developed — and what I've built with each one.",
+  seExpT:'My Career Path',seExpS:'From economics to banking, from research to product — every step trained the same ability: understanding complex problems and turning judgment into real-world decisions.',
+  seWorkT:'Work & Portfolio',seWorkS:"Three projects, three problems from different stages — the same core ability: turning fuzzy judgment into a system that ships.",
+  seThinkT:'How I Think',seThinkS:"Four lenses for how I read problems, form judgments, and turn them into execution.",
   ctT:'Get in Touch',ctSub:'Open to remote or local Web3 Product & Operations roles',ctWr:'Research & Writing',ctFt:'© 2026 Weiqi Shi · Built with Claude Code',
   narr:null,// falls back to NARR global (English)
 },
@@ -577,9 +577,9 @@ zh:{
   aboutP5:'在 Harena 项目中，我以唯一 PM 的身份主导产品从立项到 MVP 的完整流程，包括用户研究、竞品分析、PRD、用户流程、原型设计、开发沟通和投资人材料。项目经历了 5 次方向调整，每一次都基于用户反馈、市场信号或技术约束，而不是主观判断。这段经历让我进一步确认：早期产品最重要的能力，是在不确定性中建立清晰的判断系统，并推动团队持续向前。',
   aboutP6:'我关注金融科技、Web3 和 AI 方向的产品机会，尤其是那些需要同时理解用户、市场、业务逻辑和执行路径的早期产品。如果你正在做这类事情，欢迎交流。',
   aboutBtn1:'查看作品集',aboutBtn3:'发邮件联系 →',
-  seExpT:'Career Journey',seExpS:'不是一条直线 —— 但每一个转弯都是主动选择的。',
-  seWorkT:'作品集',seWorkS:'三个项目，三个不同的问题。同一个本能：搞清楚什么东西应该存在，然后把它做出来。',
-  seThinkT:'How I Think',seThinkS:'四个视角，以及我用它们分别做了什么。',
+  seExpT:'我的职业路径',seExpS:'从经济学到银行，从研究到产品；每一步都在训练同一种能力：理解复杂问题，并把判断落到真实场景里。',
+  seWorkT:'作品集',seWorkS:'三个项目，三个不同阶段的问题；同一个核心能力：把模糊判断变成可落地的系统。',
+  seThinkT:'我的思考方式',seThinkS:'四个视角，解释我如何理解问题、做出判断，并推动事情落地。',
   ctT:'联系我',ctSub:'寻找远程或本地的 Web3 产品、运营方向相关职位',ctWr:'文章与研究',ctFt:'© 2026 Weiqi Shi · 由 Claude Code 构建',
   narr:[
     {cat:'FlipFlop · 海外运营 · 2025',title:'从零搭建一个能自己运转的社群系统',
@@ -1037,55 +1037,103 @@ function initThinkScroll(){
 const CAREER={
  en:[
   {period:'2017–2021',keyword:'ECONOMICS · Foundations',color:'#1A1A2E',
-   role:'Student, Lakehead University',
-   body:"Started with a question: how do systems actually work? Chose to study math and economics not for a specific career path, but because I wanted tools to think with. Graduated with a Master's in Economics (GPA 3.9, Dean's Medal) in accelerated time — and spent the final year building quantitative models I'd still use years later.",
-   trans:"The models were interesting. But I wanted to see how decisions actually get made — inside an institution."},
+   role:'MSc Economics, Lakehead University',
+   body:[
+    "Choosing math and economics wasn't about having a clear career path — it was about wanting to understand one question: how do complex systems actually work?",
+    "I completed my Master's in Economics on an accelerated timeline, GPA 3.9, and received the Dean's Medal. In my final year, I built a VAR quantitative model for interest rate forecasting and defended it in front of a former Governor of the Bank of Canada, winning the Governor's Challenge.",
+    "What economics gave me wasn't just a credential — it was a way of seeing problems: every phenomenon has a structural cause behind it, and finding that cause usually matters more than following the surface conclusion."
+   ],
+   trans:"The models were interesting. But I also wanted to know how decisions actually get made inside a real institution."},
   {period:'2022–2024',keyword:'BANKING · People',color:'#4A6CF7',
-   role:'Personal Banker → Premium Banker, HSBC Canada / Banking Advisor, RBC',
-   body:"Joined HSBC as a Personal Banker and moved to Premium Banker within 13 months. Managed 500+ clients, CAD 20M+ in assets, and eventually went through the HSBC → RBC acquisition — one of the more operationally complex things I've been part of. Learned that financial decisions are emotional before they're rational, and that trust is built in small moments, not big pitches.",
-   trans:"I understood clients well. But I kept wondering what it would look like to build the product they were using — rather than just selling it."},
+   role:'Personal Banker → Premium Banker (HSBC) / Banking Advisor (RBC)',
+   body:[
+    "I joined HSBC as a Personal Banker and was promoted to Premium Banker within 13 months, managing 500+ client relationships and CAD 20M+ in assets. I then went through the integration when HSBC's Canadian business was acquired by RBC — one of the most complex client-communication and operational-transition events I've been part of.",
+    "The most important thing I learned: financial decisions are emotional before they're rational. When a client says they want to buy a product, the real issue underneath is often liquidity anxiety, uncertainty about the market, or simply needing someone trustworthy to confirm a decision.",
+    "Trust isn't built through one big pitch — it's built gradually, in every explanation, follow-up, and small detail."
+   ],
+   trans:"I started to really understand clients. But I also began wondering what it would look like if I were the one designing the product they used."},
   {period:'2024–2025',keyword:'RESEARCH · Markets',color:'#10b981',
-   role:'Overseas Client Manager, Futu Moomoo → Research Analyst, ChainCatcher & Trendverse Lab',
-   body:"Left traditional banking to explore what was happening at the edges. Spent time at Futu Moomoo covering the Singapore market — high-volume, fast feedback, different regulatory context. Then moved into Web3 research and journalism, writing dozens of reports on DeFi, regulatory policy, and emerging market structure. Ranked #1 on Foresight News. Learned to synthesize fast, form views under uncertainty, and communicate clearly under deadline pressure.",
-   trans:"I could analyze markets. I could explain them. The next question was: could I build inside one?"},
-  {period:'2025 (Apr–Jan)',keyword:'OPERATIONS · Execution',color:'#f59e0b',
-   role:'Oversea Operation Manager, FlipFlop / PathPort, Shenzhen',
-   body:"Joined a Web3 token launch platform and ran the overseas operation from scratch — ambassador program, community cold-start, bilingual whitepaper, two competition formats. Built systems that had to work without me in the room. Drove 100K+ impressions and 1,000+ participants in under two weeks. Learned that execution is a design problem, not a hustle problem.",
-   trans:"I'd built the growth layer. Now I wanted to own the product layer."},
+   role:'Overseas Client Manager (Futu Moomoo) → Research Analyst (ChainCatcher & Trendverse Lab)',
+   body:[
+    "After leaving traditional banking, I started paying attention to what was happening at the intersection of finance and emerging technology. At Futu Moomoo, I handled overseas client outreach for the Singapore market — high-frequency communication, cross-jurisdiction regulatory contexts, and trading products gave me my first direct exposure to how fiat, securities, and crypto markets connect.",
+    "I then moved into Web3 research, independently producing dozens of in-depth reports covering DeFi, regulatory policy, RWA, Layer 2, and market structure — two of which topped Foresight News's weekly readership the week they were published.",
+    "This experience reinforced my research method: rely less on secondhand interpretation, look more for primary signals — interview lawyers directly, talk to project teams, track policy text, and form judgments quickly under time pressure."
+   ],
+   trans:"I could analyze markets, and I could explain them. The next question was whether I could build something inside one."},
+  {period:'Apr 2025 – Jan 2026',keyword:'OPERATIONS · Execution',color:'#f59e0b',
+   role:'Overseas Operations Manager, FlipFlop, Shenzhen',
+   body:[
+    "I joined a Web3 token-launch platform and led overseas operations from zero — ambassador program, community cold-start, a bilingual whitepaper, and two competition formats.",
+    "After enough time at the execution layer, I started to see something clearly: many operational problems don't actually originate in execution — they originate further upstream, in product judgment. No matter how good the channel work is, if the product itself hasn't answered \"why would a user come here,\" growth becomes a bucket that keeps leaking.",
+    "This experience gave me a real understanding of the constraints behind growth, community, and incentive design — and made me want to move further upstream, into the process where the product itself gets defined."
+   ],
+   trans:"I'd been through the problems at the execution layer. I wanted to know how those product decisions actually get made."},
   {period:'2025–Present',keyword:'PRODUCT · Building',color:'#8b5cf6',
    role:'Product Manager, Harena, Toronto',
-   body:"Joined Harena, an AI × Web3 project, as Product Manager. Took on the full PM role — PRD writing, UI/UX design in Figma and Claude, competitive research, investor meetings. Led 5 product pivots. In parallel, built Engram independently using Claude Code and OpenAI API — a full-stack AI product, shipped end to end without an engineering team.",
-   trans:"Building taught me that the most valuable skill isn't any single tool — it's knowing which problem to solve first."},
+   body:[
+    "I joined Harena, an AI × Web3 project, as the sole Product Manager. This was the first time I was truly responsible for a product's entire path — direction-setting, market research, user interviews, PRDs, prototyping, dev communication, and pushing toward MVP.",
+    "Along the way, I led 5 product pivots. None of them happened because the team simply changed its mind — each one happened because external user feedback, market signals, or technical constraints made the real problem clearer.",
+    "At the same time, I independently built Engram end to end — frontend, backend, database, cloud deployment, and AI integration, all with Claude Code, and shipped it without an engineering team."
+   ],
+   trans:"Building taught me that the most valuable skill isn't mastering any single tool — it's continuously judging, in a noisy environment, what problem actually needs to be solved next."},
   {period:'Now',keyword:"AI-NATIVE · What's next",color:'#caa53a',
-   role:'Builder at the intersection of finance, product, and AI',
-   body:"The through-line across everything I've done — banking, research, operations, product — is the same question: how do you take something complex and make it work for real people, in the real world? AI is the most interesting version of that question right now. And I intend to keep building at that intersection.",
-   trans:''}
+   role:'At the intersection of finance, product, and AI',
+   body:[
+    "Running through this whole path is the same question: how does a complex system get understood, used, and made to create real value for real people?",
+    "From economics to banking, from research to operations, from product to independent development — every step trained the same ability: in early-stage, noisy, direction-unclear environments, identify the problem that actually matters and push that judgment toward something that ships.",
+    "AI makes this more imaginative — and makes clear product judgment more necessary than ever. I want to keep building at the intersection of fintech, Web3, and AI, on products that require understanding users, markets, systems, and execution all at once."
+   ],
+   trans:"If you're working on something in fintech, Web3, or AI, I'd love to talk."}
  ],
  zh:[
   {period:'2017–2021',keyword:'经济学 · 底层工具',color:'#1A1A2E',
    role:'湖首大学经济学硕士',
-   body:'从一个问题开始：系统是怎么运转的？选择数学和经济学，不是因为清楚职业方向，而是想要一套思考工具。用加速方式完成了经济学硕士（GPA 3.9，院长奖章），最后一年建的量化模型，几年后还在用。',
-   trans:'模型很有意思。但我想看看决策在真实机构里是怎么发生的。'},
+   body:[
+    '选择数学和经济学，最初并不是因为有明确的职业路径，而是因为我想理解一个问题：复杂系统是如何运转的。',
+    '我以加速方式完成经济学硕士学位，GPA 3.9，并获得院长奖章。最后一年，我搭建 VAR 量化模型用于利率预测，并在加拿大央行前行长面前完成答辩，获得 Governor’s Challenge 奖项。',
+    '经济学给我的，不只是一个专业背景，而是一种看问题的方式：任何现象背后都有结构性原因。找到那个原因，往往比跟随表面的结论更重要。'
+   ],
+   trans:'模型很有意思。但我也想知道，真实机构里的决策是如何发生的。'},
   {period:'2022–2024',keyword:'银行 · 理解人',color:'#4A6CF7',
-   role:'个人银行顾问 → 高端银行顾问（汇丰）/ 银行顾问（RBC）',
-   body:'以个人银行顾问身份加入汇丰，13个月内晋升为高端顾问。管理500+客户、逾2,000万加元资产，后来经历了汇丰被RBC收购——这是我参与过的最复杂的运营事件之一。学到最重要的一件事：金融决策在理性之前先是情绪的，信任是在小细节里建立的，不是靠大型pitch。',
-   trans:'我很了解客户。但我一直在想，如果是我来做他们用的那个产品，会是什么样。'},
+   role:'个人银行顾问 → 高端银行顾问（HSBC）/ 银行顾问（RBC）',
+   body:[
+    '我以个人银行顾问身份加入 HSBC，13 个月内晋升为高端银行顾问，管理 500+ 客户关系和 2,000 万加元以上资产。之后，我经历了 HSBC 加拿大业务被 RBC 收购的整合过程，这是我参与过最复杂的客户沟通与运营转换事件之一。',
+    '这段经历让我学到最重要的一点：金融决策在进入理性分析之前，往往先是情绪问题。客户说想买某个产品，背后真正的问题可能是流动性焦虑、对市场判断的不确定，或者只是需要一个值得信任的人帮他们确认决策。',
+    '信任不是靠一次大型 pitch 建立的，而是在每一次解释、跟进和细节处理里慢慢形成的。'
+   ],
+   trans:'我开始真正理解客户。但我也在想，如果由我来设计他们使用的产品，会是什么样。'},
   {period:'2024–2025',keyword:'研究 · 理解市场',color:'#10b981',
    role:'海外客户经理（富途证券）→ 研究分析师（ChainCatcher & Trendverse Lab）',
-   body:'离开传统银行，去探索边缘地带正在发生的事。在富途做新加坡市场的海外客户经理——高频触达，快速反馈，不同的监管语境。之后转向Web3研究和内容创作，写了数十篇覆盖DeFi、监管政策和市场结构的深度报告，2篇登上Foresight News当周阅读榜首。学会了在不确定性下快速建立判断，并在截止日期压力下清晰表达。',
-   trans:'我能分析市场，也能解释市场。下一个问题是：我能不能在市场里做出一个东西？'},
-  {period:'2025（4月–1月）',keyword:'运营 · 执行',color:'#f59e0b',
-   role:'海外运营经理，FlipFlop / PathPort，深圳',
-   body:'加入一家Web3发币平台，从零开始主导海外运营——大使计划、社群冷启动、双语白皮书、两套赛事体系。搭建的系统要在没有我盯着的情况下自己跑起来。两周内实现了10万+浏览量和1,000+参与人数。学到的最重要的事：执行是设计问题，不是蛮力问题。',
-   trans:'增长层做好了。我想接着做产品层。'},
+   body:[
+    '离开传统银行后，我开始关注金融与新兴技术交叉地带正在发生的变化。在富途证券，我负责新加坡市场的海外客户触达，在高频沟通、跨监管语境和交易产品场景中，第一次更直接地接触到法币、证券和加密市场之间的连接。',
+    '之后，我转向 Web3 研究，独立产出数十篇覆盖 DeFi、监管政策、RWA、Layer 2 和市场结构的深度报告，其中 2 篇在发布当周登上 Foresight News 阅读榜首。',
+    '这段经历强化了我的研究方法：少依赖二手解读，多寻找原始信号。直接采访律师、对接项目方、追踪政策文本，并在时间压力下快速形成判断。'
+   ],
+   trans:'我能分析市场，也能解释市场。下一个问题是：我能不能在市场里做出一个东西。'},
+  {period:'2025.04–2026.01',keyword:'运营 · 执行',color:'#f59e0b',
+   role:'海外运营经理，FlipFlop，深圳',
+   body:[
+    '我加入一家 Web3 发币平台，从零主导海外运营，包括大使计划、社群冷启动、双语白皮书和两套赛事体系。',
+    '在执行层待得足够久之后，我开始看清一个问题：很多运营问题的根源并不在执行，而在更上游的产品判断。渠道做得再好，如果产品本身没有回答“用户为什么来”，增长就会变成一个持续漏水的桶。',
+    '这段经历让我理解了增长、社群和激励机制的真实约束，也让我开始想往更上游走，参与产品本身被定义的过程。'
+   ],
+   trans:'执行层的问题我已经走过一遍。我想知道，那些产品决策是怎么做出来的。'},
   {period:'2025–至今',keyword:'产品 · 构建',color:'#8b5cf6',
    role:'产品经理，Harena，多伦多',
-   body:'加入Harena，一个AI × Web3项目，担任产品经理。承担完整的PM职责——需求文档、Figma/Claude UI设计、竞品研究、投资人会议，主导了5次产品方向调整。同期独立完成了Engram的全链路开发，用Claude Code和OpenAI API，没有工程团队，独立交付上线。',
-   trans:'做产品让我意识到，最有价值的能力不是某个具体工具，而是知道先解决哪个问题。'},
-  {period:'现在',keyword:'AI原生 · 接下来',color:'#caa53a',
-   role:'在金融、产品与AI交叉点上持续构建',
-   body:'贯穿整条路的是同一个问题：怎么把复杂的东西，做成真实世界里真实的人能用的产品？AI是这个问题目前最有意思的版本。我打算继续在这个交叉点上建东西。',
-   trans:''}
+   body:[
+    '我加入 Harena，一个 AI × Web3 项目，担任唯一产品经理。这是我第一次真正对一个产品的完整路径负责：从方向定义、市场调研、用户访谈、PRD、原型设计，到开发沟通和 MVP 推进。',
+    '在这个过程中，我主导了 5 次产品方向调整。每一次调整都不是单纯因为团队想法变化，而是因为外部用户反馈、市场信号或技术约束让问题变得更清楚。',
+    '同期，我也独立完成了 Engram 的全链路开发，用 Claude Code 从零完成前端、后端、数据库、云端部署和 AI 接入，在没有工程团队的情况下将产品上线。'
+   ],
+   trans:'做产品让我意识到，最有价值的能力不是掌握某个工具，而是在充满噪音的环境里，持续判断下一步真正该解决什么问题。'},
+  {period:'现在',keyword:'AI 原生 · 接下来',color:'#caa53a',
+   role:'在金融、产品与 AI 的交叉点上',
+   body:[
+    '贯穿这条路径的，始终是同一个问题：复杂系统如何被真实的人理解、使用，并持续产生价值。',
+    '从经济学到银行，从研究到运营，从产品到独立开发，每一步都在训练同一种能力：在信息混乱、方向模糊的早期阶段，识别真正重要的问题，并把判断推进到可落地的解决方案。',
+    'AI 让这件事变得更有想象力，也更需要清晰的产品判断。我希望继续在金融科技、Web3 和 AI 的交叉点上，参与那些需要同时理解用户、市场、系统和执行路径的产品。'
+   ],
+   trans:'如果你正在做金融科技、Web3 或 AI 方向的产品，欢迎交流。'}
  ]
 };
 
@@ -1113,7 +1161,7 @@ function toggleCareerNode(idx){
   allNodes.forEach((el,i)=>el.classList.toggle('cj-on',i===idx));
   card.style.setProperty('--cj-c',n.color);
   card.style.borderTopColor=n.color;
-  card.innerHTML=`<div class="cj-card-role">${n.role}</div><div class="cj-card-period">${n.keyword} · ${n.period}</div><p class="cj-card-body">${n.body}</p>${n.trans?`<p class="cj-card-trans">${n.trans}</p>`:''}`;
+  card.innerHTML=`<div class="cj-card-role">${n.role}</div><div class="cj-card-period">${n.keyword} · ${n.period}</div>${n.body.map(p=>`<p class="cj-card-body">${p}</p>`).join('')}${n.trans?`<p class="cj-card-trans">${n.trans}</p>`:''}`;
   wrap.classList.add('cj-open');
 }
 function openCareerNode(idx){
