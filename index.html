@@ -171,13 +171,8 @@ nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:200;widt
 @keyframes thinkIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .think-pey{font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--tp-c);margin-bottom:18px;text-transform:uppercase}
 .think-parg{font-size:28px;font-weight:700;line-height:1.25;letter-spacing:-.02em;margin-bottom:20px}
-.think-pbody{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:28px}
-.think-pev-lbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:11px}
-.think-pev{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
-.think-pev-item{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:var(--glass);border:1px solid var(--gb);border-radius:10px}
-.think-pev-dot{width:6px;height:6px;border-radius:50%;background:var(--tp-c);flex-shrink:0;margin-top:5px}
-.think-pev-txt{font-size:13px;color:var(--txt2);line-height:1.55}
-.think-pout{font-size:13px;font-style:italic;color:var(--txt3);border-left:2px solid var(--tp-c);padding-left:14px;line-height:1.7}
+.think-pbody{font-size:14px;color:var(--txt2);line-height:1.8;margin-bottom:14px}
+.think-pout{font-size:13px;font-style:italic;color:var(--txt3);border-left:2px solid var(--tp-c);padding-left:14px;line-height:1.7;margin-top:14px}
 .think-skip{display:flex;justify-content:center;padding:40px 0 8px}
 .think-skip a{font-size:12px;color:var(--txt2);text-decoration:none;display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:20px;padding:8px 20px;transition:all .25s;font-family:system-ui,sans-serif}
 .think-skip a:hover{background:var(--glass);border-color:var(--ac);color:var(--ac)}
@@ -918,88 +913,86 @@ const NARR=[
 // ── How I Think data (Part 3 — four lenses, EN + ZH) ──
 const THINK={
  en:[
-  {num:'01',key:'CUSTOMERS',title:'01 · CUSTOMERS',accent:'#4A6CF7',
-   arg:'Understanding people before understanding products.',
-   body:"Two years in banking taught me one discipline above all others: ask before you pitch. Managing 500+ clients and CAD 20M+ in assets meant understanding financial goals, anxieties, and constraints before recommending anything. That instinct — listen first, diagnose second, recommend third — carried directly into how I run user interviews and product research.",
-   evidence:[
-    'Managed 500+ clients and CAD 20M+ AUM at HSBC — built relationships before pitching solutions',
-    'Handled HSBC → RBC merger transition: de-escalated client anxiety, translated system changes into plain language',
-    'Designed and deployed user research surveys at Harena; used interview insights to drive 5 product pivots',
-    'At Futu Moomoo: 100 client touchpoints per day, 20–25% conversion — driven by need-matching, not volume'
+  {num:'01',key:'CUSTOMERS',title:'01 · CUSTOMERS — Understanding People',accent:'#4A6CF7',
+   arg:'Before you can understand a product, understand the person in front of you.',
+   body:[
+    "What a user says they want is usually the solution they could imagine — not necessarily the real problem.",
+    "During my two years as a private banking advisor, I managed 500+ client relationships. That taught me something: when a client said \"I want to buy this product,\" the real issue underneath was often liquidity anxiety, uncertainty about the market, or simply needing someone they trusted to confirm a decision they'd already half-made.",
+    "The first need someone says out loud is usually just the entry point. The real need is hiding in the complaints, the hesitation, and the sentences people don't finish.",
+    "That habit later shaped how I do user research. During product interviews at Harena, I kept finding that the feature users said they wanted, and the feature they'd actually use, were often two different things."
    ],
-   outcome:'The discipline of listening first is how I avoid building the wrong thing.'},
-  {num:'02',key:'MARKETS',title:'02 · MARKETS',accent:'#10b981',
-   arg:'Markets are information problems. The signal is always there — the skill is knowing where to look.',
-   body:"My economics training gave me a framework: any market phenomenon has a structural cause. In grad school, I built VAR models in R to forecast interest rates, applied the Phillips Curve for monetary policy analysis, and backtested predictions before presenting to the Bank of Canada Governor. Later, tracking Web3 regulatory shifts across the U.S. and Singapore used the exact same process — find the data, identify the signal, form a judgment.",
-   evidence:[
-    'MSc Economics, GPA 3.9 — built VAR models in R, applied Phillips Curve for monetary policy forecasting',
-    "Governor's Challenge: presented rate recommendations to Bank of Canada Governor Poloz — model backtested and validated before presentation",
-    'Produced dozens of Web3 research reports across DeFi, RWA, Layer 2, Meme coins; 2 ranked #1 in weekly platform readership on Foresight News',
-    'Tracked U.S. CLARITY Act and Singapore MAS regulatory developments through direct interviews with legal professionals'
+   outcome:'Listen to the person first — that’s how you avoid building the wrong thing.'},
+  {num:'02',key:'MARKETS',title:'02 · MARKETS — Understanding Markets',accent:'#10b981',
+   arg:'Markets are, at their core, information problems. The signal is always there — the skill is knowing where to look.',
+   body:[
+    "Most people are looking at the same information, which is exactly why they tend to land on similar conclusions.",
+    "My economics training gave me a habit: every market phenomenon has a structural cause, and finding that cause matters more than following the conclusion. In grad school I built VAR models to forecast interest rates; later, at ChainCatcher, I tracked U.S. crypto regulation as it developed. Both used the same method — spend less time on secondhand takes, more time on primary signals.",
+    "While doing market research at Harena, I signed up for and walked through the full user path on every major EA (trading-bot) platform on the market. Once I'd organized the data, one question stood out: if a strategy is mature and genuinely effective, why would anyone sell it?",
+    "That question cracked open the commercial paradox at the center of the whole industry.",
+    "Real judgment doesn't come from seeing more — it comes from asking deeper."
    ],
-   outcome:"Whether it's interest rates or token markets, the analytical process is the same — and I've stress-tested it in both."},
-  {num:'03',key:'PRODUCTS',title:'03 · PRODUCTS',accent:'#f59e0b',
-   arg:'A product is a hypothesis. You ship it to find out if you’re right.',
-   body:"I came into the PM role without training — Harena had no dedicated designer, no full-time engineer, just me and an ambiguous direction. That forced me to understand what a product actually is from day one: not a feature list, but a bet on user behavior. Every PRD I wrote, every design I shipped, every pivot I pushed for was a test of a specific assumption.",
-   evidence:[
-    'Product Manager at Harena: wrote all PRDs, designed all UI/UX in Figma and Claude, directly supervised development — 5 major pivots based on user data',
-    'Built Engram independently: Claude Code + OpenAI API + GitHub + Cloudflare — full-stack AI product from zero, live and documented',
-    'Tools used: Figma, Claude, Canva, Mirror, VS Code, MCP protocol design — no engineering background, shipped anyway',
-    'Harena currently at MVP stage with early user testing underway'
+   outcome:"Whether it's interest rates or token markets, the analytical process is the same — and I've put it to the test in both."},
+  {num:'03',key:'PRODUCTS',title:'03 · PRODUCTS — Understanding Products',accent:'#f59e0b',
+   arg:'A product is a hypothesis. You build it to find out whether the judgment behind it holds up.',
+   body:[
+    "I came into the product role with no standard training path. Harena had no dedicated designer, no full-time engineer — just a vague direction and a product hypothesis that needed validating.",
+    "If anything, that helped me understand the nature of product work earlier: a product isn't a feature list — it's a judgment about user behavior.",
+    "Before we had outside user feedback, internal discussion easily turned into an echo chamber. A handful of people's shifting opinions don't actually represent the market. Harena went through five direction changes, and each one came from user data, market signals, or technical constraints — not just personal preference.",
+    "I went out and found beta users myself, designed a survey, collected feedback, and turned it into a presentation to drive the discussion. That meeting was different from every internal discussion before it — because the input came from outside, and for the first time the product was being judged against a real user context.",
+    "External validation isn't something you add after launch — it's the precondition for making early product decisions at all."
    ],
-   outcome:"I've learned that the fastest way to understand a product is to be the person responsible for it breaking."},
-  {num:'04',key:'EXECUTION',title:'04 · EXECUTION',accent:'#8b5cf6',
-   arg:'Strategy means nothing without a system that moves.',
-   body:"The Footprint Ambassador Program was the best execution training I've had — no existing framework, no team, just a goal and a deadline. The discipline I learned: execution is a design problem. You build the system so it runs without you, or it doesn't run at all.",
-   evidence:[
-    'Footprint Ambassador Program: designed from scratch — page, rulebook, task system, tracking — 100K+ Twitter impressions and 20K+ engagements in week one, 1,000+ participants by week two',
-    'Wrote complete competition rulebooks for two standalone events (Token Launch Contest & Mint Contest) independently',
-    'At Harena: cold-start product operations — survey design, early user outreach, feedback loops, roadmap adjustment',
-    'Produced 60+ page bilingual whitepaper solo as the project’s external documentation backbone'
+   outcome:"The fastest way to understand a product is to be the person responsible when it breaks."},
+  {num:'04',key:'EXECUTION',title:'04 · EXECUTION — Understanding Execution',accent:'#8b5cf6',
+   arg:"A strategy is worth nothing unless it becomes a system that actually runs.",
+   body:[
+    "Execution is a design problem, not a brute-force problem.",
+    "Leading the Footprint Ambassador Program at FlipFlop, the constraints were clear: limited budget, weak brand recognition, not enough people to review content. The core question wasn't \"how do we get more people to participate\" — it was \"how do we design a mechanism that runs without me constantly putting more into it.\"",
+    "A reporting mechanism shifted the work of enforcing the rules from the ops team to the community itself. Users had a direct incentive to protect fairness because it protected their own interests — which is more stable than relying on manual review alone. Weekly topic tasks turned ambassadors into the source of discussion instead of relying entirely on the official account, because what the community says tends to carry more weight than what the brand says.",
+    "I used the same logic building Engram on my own: a three-document system, a local-verification routine, version control through Git. The point of process isn't to add complexity — it's to make the system something that can be understood, reviewed, and kept moving forward.",
+    "Anything that only keeps running because a person is constantly propping it up is an execution plan — not yet a system."
    ],
-   outcome:"Execution is a design problem. The system either runs without you, or it doesn't run at all."}
+   outcome:"Execution is a design problem. A system either keeps running without you, or it isn't finished yet."}
  ],
  zh:[
   {num:'01',key:'CUSTOMERS',title:'01 · CUSTOMERS — 理解人',accent:'#4A6CF7',
-   arg:'在搞清楚产品之前，先搞清楚眼前这个人。',
-   body:'在汇丰做了两年高端顾问，管理500+客户和逾2,000万加元的资产，让我形成了一个习惯：先问问题，再给方案。这套习惯后来直接影响了我做用户调研和产品访谈的方式——听到的第一个需求，往往不是真正的需求。',
-   evidence:[
-    '汇丰500+客户关系、2,000万加元资产组合管理——建立信任先于推荐方案',
-    '经历HSBC→RBC合并过渡：安抚客户情绪，将系统变更翻译成普通人听得懂的语言',
-    '在Harena独立设计并发布用户调研问卷，访谈洞察直接驱动了5次产品方向调整',
-    '富途每日触达100名客户，转化率20–25%——靠的是需求匹配，不是话术量'
+   arg:'在理解产品之前，先理解眼前这个人。',
+   body:[
+    '用户说出的需求，往往是他们能想到的解决方案，不一定是真正的问题。',
+    '在银行做高端客户顾问的两年里，我管理过 500+ 客户关系。那段经历让我学会一件事：当客户说"我想买这个产品"时，背后真正的问题常常是流动性焦虑、对市场的不确定，或者只是需要一个值得信任的人帮他们确认判断。',
+    '第一个被说出口的需求，通常只是入口。真正的需求藏在抱怨、犹豫和没说完的半句话里。',
+    '这个习惯后来直接影响了我的用户调研方式。在 Harena 做产品访谈时，我发现用户说想要的功能，和他们实际愿意使用的功能，经常是两件不同的事。'
    ],
    outcome:'先听懂人，才能避免做错东西。'},
   {num:'02',key:'MARKETS',title:'02 · MARKETS — 理解市场',accent:'#10b981',
    arg:'市场本质上是信息问题。信号一直都在，关键是知道去哪里找。',
-   body:'经济学训练给了我一个框架：任何市场现象背后都有结构性原因。研究生阶段用VAR模型做利率预测，后来做Web3研报追踪美新两国监管立法——用的是同一套逻辑：找数据，识别信号，形成判断。',
-   evidence:[
-    '经济学硕士，GPA 3.9，用R语言建立VAR模型，应用菲利普斯曲线做货币政策预测',
-    'Governor’s Challenge：在加拿大央行前行长Poloz面前完成利率建议陈述——模型经过回测验证',
-    '在ChainCatcher独立产出数十篇研报，覆盖DeFi、RWA、Layer 2、Meme币，2篇登上Foresight News当周阅读榜首',
-    '通过直接采访法律专业人士追踪美国CLARITY法案和新加坡MAS监管动态'
+   body:[
+    '大多数人看的是同一批信息，也容易得出相似的结论。',
+    '经济学训练给了我一个习惯：任何市场现象背后都有结构性原因，找到原因比跟随结论更重要。研究生阶段，我用 VAR 模型做利率预测；后来在 ChainCatcher 追踪美国加密监管立法。两件事用的是同一套方法：少看二手解读，多找原始信号。',
+    '在 Harena 做市场调研时，我注册并走完了市面上主流 EA 平台的完整路径。数据整理之后，我问了一个关键问题：一个成熟好用的策略，为什么要卖给别人？',
+    '这个问题打开了整个行业的商业悖论。',
+    '真正的判断优势不来自看得更多，而来自问得更深。'
    ],
-   outcome:'无论是利率市场还是代币市场，分析过程是一样的——而我在两个场景都经过了压力测试。'},
+   outcome:'无论是利率市场还是代币市场，分析过程是一样的——而我在两个场景里都经历过验证。'},
   {num:'03',key:'PRODUCTS',title:'03 · PRODUCTS — 理解产品',accent:'#f59e0b',
-   arg:'产品是一个假设。你把它做出来，是为了验证自己是否判断正确。',
-   body:'我进入产品角色没有经过培训，而是被迫学会的——Harena没有专职设计师，没有全职开发，只有我和一个方向模糊的目标。这反而让我从第一天就理解了产品的本质：它不是功能列表，而是一个关于用户行为的赌注。',
-   evidence:[
-    'Harena产品经理：独立完成所有PRD、Figma/Claude UI设计，直接对接开发——5次方向调整均基于用户数据',
-    '独立完成Engram全链路开发：Claude Code + OpenAI API + GitHub + Cloudflare，从零到上线，有完整开发日志',
-    '工具链：Figma、Claude、Canva、Mirror、VS Code、MCP协议设计——没有工程背景，照样交付',
-    'Harena当前处于MVP阶段，早期用户测试持续推进中'
+   arg:'产品是一个假设。做出来，是为了验证判断是否成立。',
+   body:[
+    '我进入产品角色时，没有标准训练路径。Harena 没有专职设计师，没有全职开发，只有一个模糊方向和需要被验证的产品假设。',
+    '这反而让我更早理解了产品的本质：产品不是功能列表，而是一个关于用户行为的判断。',
+    '在拿到外部用户反馈之前，团队内部讨论很容易变成信息茧房。几个人反复变化的判断，并不能真正代表市场。Harena 经历了五次方向调整，每一次都来自用户数据、市场信号或技术约束，而不是单纯的主观偏好。',
+    '我主动寻找内测用户，设计问卷，收集反馈，并整理成 presentation 推动团队讨论。那次会议和以往内部讨论不同，因为信息来自外部，也让产品第一次被放回真实用户场景里判断。',
+    '外部验证不是上线后的补充动作，而是推动早期产品决策的前提。'
    ],
-   outcome:'我发现，理解一个产品最快的方式，就是成为那个对它出错负责的人。'},
+   outcome:'理解一个产品最快的方式，是成为那个对它出错负责的人。'},
   {num:'04',key:'EXECUTION',title:'04 · EXECUTION — 理解执行',accent:'#8b5cf6',
-   arg:'策略什么都不是，除非有一套能动起来的系统。',
-   body:'脚印大使计划是我做过最好的执行训练——没有现成框架，只有一个目标和一个截止日期。学到的最重要的事：执行是设计问题，不是蛮力问题。这套系统要么能在没有你的情况下运转，要么根本不算建好。',
-   evidence:[
-    '脚印大使计划：从零设计——页面、规则书、任务体系、数据追踪——第一周Twitter浏览量破10万、互动超2万，第二周参与人数破1,000',
-    '独立撰写发币大赛和Mint铸造大赛两套完整规则书',
-    'Harena冷启动运营：问卷设计、早期用户触达、反馈收集、路线图动态调整',
-    '独立完成60+页双语白皮书，作为项目核心对外文件'
+   arg:'策略没有价值，除非它能变成一套跑得动的系统。',
+   body:[
+    '执行是一个设计问题，不是蛮力问题。',
+    '在 FlipFlop 主导脚印大使计划时，我面对的约束很明确：预算有限、品牌认知弱、审核人手不足。核心问题不是"怎么让更多人参与"，而是"怎么设计一套不依赖我持续投入也能运转的机制"。',
+    '检举机制把规则执行压力从运营团队转移给社群本身。用户维护公平的动力来自保护自己的利益，这比单纯人工审核更稳定。每周话题任务让大使成为讨论发起点，而不是完全依赖官方账号引导，因为群体风向往往比官方声音更有影响力。',
+    '在 Engram 独立开发过程中，我也使用了同样的逻辑：三文档体系、本地验证规范、Git 版本管理。流程不是为了增加复杂度，而是为了让系统可以被理解、复盘和持续推进。',
+    '一个需要持续靠人撑着才能运转的东西，只是执行计划，还没有真正形成系统。'
    ],
-   outcome:'执行是一个设计问题。这套系统要么能在没有你的情况下运转，要么根本不算建好。'}
+   outcome:'执行是一个设计问题。系统要么能在没有你的情况下继续运转，要么还没有建好。'}
  ]
 };
 
@@ -1007,7 +1000,6 @@ function buildThink(lang){
   const el=document.getElementById('think-grid');
   if(!el)return;
   const data=THINK[lang]||THINK.en;
-  const evLbl=lang==='zh'?'证据':'Evidence';
   const navHtml=data.map((m,i)=>`
     <div class="think-snav-item${i===0?' tson':''}" style="--tsi-c:${m.accent}" data-tidx="${i}">
       <div class="think-snav-dot"></div>
@@ -1017,11 +1009,7 @@ function buildThink(lang){
     <div class="think-panel${i===0?' tson':''}" style="--tp-c:${m.accent}" data-tidx="${i}">
       <div class="think-pey">${m.title}</div>
       <div class="think-parg">${m.arg}</div>
-      <p class="think-pbody">${m.body}</p>
-      <div class="think-pev-lbl">${evLbl}</div>
-      <div class="think-pev">${m.evidence.map(e=>`
-        <div class="think-pev-item"><div class="think-pev-dot"></div><div class="think-pev-txt">${e}</div></div>`).join('')}
-      </div>
+      ${m.body.map(p=>`<p class="think-pbody">${p}</p>`).join('')}
       <p class="think-pout">${m.outcome}</p>
     </div>`).join('');
   el.innerHTML=`
