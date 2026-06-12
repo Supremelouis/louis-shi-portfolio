@@ -626,7 +626,7 @@ zh:{
       ]}
      },
      links:[{label:'查看上线版本',href:'https://www.ffpp.space/'}]},
-    {cat:'Harena · 产品经理 · 2025',title:'在噪音里持续追问核心问题',
+    {cat:'Harena · 产品经理 · 2026',title:'在噪音里持续追问核心问题',
      outcome:'作为唯一 PM，我主导一款 AI × Web3 产品从立项到 MVP 的全过程。项目经历 5 次方向调整，每一次调整都来自对用户需求、商业逻辑和技术约束的重新验证，而不是单纯的想法变化。',
      detail:{
       bg:{title:'项目背景：接手时的状态',paras:[
@@ -680,35 +680,54 @@ zh:{
       ]}
      },
      links:[{label:'设计稿 1',href:'https://calm-satin-33761912.figma.site'},{label:'设计稿 2',href:'https://cloak-fresco-80103488.figma.site'},{label:'设计稿 3',href:'https://sepia-sheep-66827641.figma.site'},{label:'泳道图',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}]},
-    {cat:'AI · 产品 · 开发',title:'从产品构想到上线的 AI 应用',
-     outcome:'使用AI辅助开发工具，独立构建并上线了 Engram。',
-     problem:[
-      '我想测试一个没有传统工程背景的产品经理，借助AI辅助开发工具，到底能走多远。',
-      '挑战不只是生成代码，而是要做出一个真实的东西：一个功能可用、能够部署、具备集成能力、可调试、有版本控制，并且具备足够技术结构以支撑持续迭代的产品。'
-     ],
-     approach:[
-      '我把 Engram 既当作一个产品，也当作一个学习系统来对待。',
-      '我没有只把AI工具当作代码生成器，而是把它们当作开发伙伴——同时由我自己对产品逻辑、系统决策、调试和实现质量负责。',
-      '目标是理解足够的技术架构，从而做出有意义的决策：每个功能应该做什么、系统各部分该如何连接、错误来自哪里，以及哪些地方需要简化或重做。'
-     ],
-     execution:[
-      '我以Claude Code和OpenAI API作为核心开发工具，独立构建了 Engram，配合GitHub做版本控制、Cloudflare负责部署，VS Code作为开发环境。',
-      '我从零设计并实现了自定义Skills模块和MCP集成。这不仅需要理解技术规范本身，还需要想清楚每个集成背后的产品逻辑：它为什么存在、解决了什么用户需求，以及它在产品中应该如何运作。',
-      '在整个构建过程中，我在GitHub上维护了一份公开的开发日志，记录每一个重要决策、错误、走不通的路、修复方案和意外情况，让整个构建过程变成一个可追溯的产品学习闭环。',
-      '产品已经上线，代码是真实的，开发过程也是公开可查的。'
-     ],
-     impact:[
-      '独立构建并部署了一个完整的AI产品',
-      '从零设计并实现了自定义Skills模块和MCP集成',
-      '在整个构建过程中维护了完整的开发日志',
-      '产品已上线可用，GitHub开发日志可供查阅',
-      '展示了借助AI辅助开发工具，从产品思维走向技术执行的能力'
-     ],
-     evidence:[
-      {label:'独立网站',href:'https://engram-b14.pages.dev'},
-      {label:'开发日志',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'},
-      {label:'源代码 — 暂未开放',href:null}
-     ],
+    {cat:'Engram · 独立开发 · 2026',title:'两周，走完产品开发全链路',
+     outcome:'我独立完成从前端、后端、数据库、云端部署到 AI 接入的完整闭环。这个项目的真正价值，不只是验证我能用 AI 辅助开发上线产品，更是让我重新理解了产品经理、工程系统和 AI 协作之间的边界。',
+     detail:{
+      judgment:{title:'引言',paras:[
+       'Engram 最初不是一个"我要学写代码"的项目，而是一次边界验证。',
+       '在 Harena 担任 PM 期间，我经常遇到一个问题：当开发团队反馈"实现复杂"或"AI 做不到"时，我很难判断这是真实的技术限制，还是沟通、理解和执行方式的问题。',
+       '所以我决定自己走完一次完整的开发闭环。目的不是成为工程师，而是理解一个产品从设计到上线之间，真正复杂的部分在哪里。',
+       '两周后，我用 Claude Code 完成了从 Figma 前端、REST API 后端、本地 SQLite 数据库、Cloudflare 云端部署，到 Claude API 接入和 MCP 协议集成的完整流程。Engram 最终成为一个真实运行的个人知识系统。',
+       '但我真正带走的，不是这些技术名词，而是对产品、工程和 AI 协作方式的重新理解。'
+      ]},
+      decisions:[
+       {title:'第一个发现：MVP 阶段真正复杂的，不一定是技术本身',paras:[
+        '在 Harena 项目中，我一度认为后端在 MVP 阶段天然复杂，因为开发团队经常这样反馈。',
+        '自己走完一遍后，我对这件事有了更清晰的判断：基础框架搭建并没有想象中复杂。真正复杂的部分通常出现在后期，例如用户规模增长后的性能优化、安全加固、并发处理、权限管理和系统稳定性。但这些是产品验证之后的问题，不应该过早压住 MVP 的推进。',
+        '这让我重新理解了需求文档的价值。',
+        '好的需求文档不能只停留在功能描述，而要把执行路径说清楚：接口如何连接、数据如何流动、状态如何变化、异常如何处理。尤其在 AI-assisted development 的环境下，AI 可以承接一部分从想法到实现的过程，但前提是产品逻辑足够清晰。',
+        '这也让我意识到，未来更有价值的产品角色，不是只会提出需求的人，也不是只会等待工程执行的人，而是能把问题、流程、数据结构和实现边界讲清楚，并能判断技术反馈是否合理的人。'
+       ]},
+       {title:'第二个发现：工作系统比工具能力更重要',paras:[
+        '开发过程中踩过最多的坑，并不是某一个具体技术点，而是流程管理问题。',
+        '每次开启新的 AI 对话，AI 都需要重新理解项目背景；AI 修改代码后如果直接推送，问题出现时回滚成本很高；如果跳过本地验证，云端报错后很难判断问题出在前端、后端、环境变量、数据库还是部署配置。',
+        '这些问题让我逐步建立了一套开发工作规范：本地验证 → 人工确认 → 推送部署 → 文档更新 → 一次性 commit。',
+        '同时，我也建立了三套文档：',
+        {list:[
+         'README：给外部用户和访问者看，说明项目是什么、如何使用、如何部署。',
+         'CLAUDE.md：给 AI 看，作为 AI 的项目入职手册，记录项目结构、开发规则和协作边界。',
+         'deployment-journey：给自己看，记录部署过程、错误路径、修复方式和关键决策。'
+        ]},
+        '这个过程让我真正理解了 Git 的价值：Git 是项目的时间机器。AI 可以快速修改代码，但如果没有版本管理、验证流程和回滚机制，开发速度越快，系统风险也会越高。',
+        '工具能力很重要，但没有工作系统的开发过程会迅速变重、变乱、变得不可维护。'
+       ]},
+       {title:'第三个发现：不要试图改变 AI 的局限，要设计绕过局限的系统',paras:[
+        '走完整个开发链路后，我发现另一个问题：系统搭好了，但 AI 辅助效果并不总是稳定。',
+        '我开始复盘原因。AI 没有真正的时间连续性，它依赖上下文工作；上下文一旦断开，它对项目的理解就会下降。最开始我想解决这个问题，后来我意识到，这并不是上层应用能完全解决的问题，而是当前 AI 工具的底层局限。',
+        '正确的问题不是"如何让 AI 变得更像一个全能执行者"，而是"如何把 AI 放在它最适合的位置"。',
+        '例如，让 AI 直接生成一份完整分析报告，结果往往泛泛而谈，因为它缺少足够稳定的上下文和判断标准。但如果把任务拆成多个具体问题，让 AI 分别分析，再由人进行判断、取舍和汇总，质量会明显提高。',
+        '这个认知影响了我在 Engram 里的 MCP 接入设计。我没有让 AI 直接写入正式数据库，而是先让 AI 将提炼出的内容放入 inbox，由用户确认后再进入正式知识库。',
+        '这个设计背后的逻辑很简单：AI 负责提炼和组织，人负责判断和确认。系统不依赖 AI 自己判断什么是对的，而是为人机协作设计了一层安全缓冲。',
+        'AI 应该被当作一个高能力但需要边界的协作者，而不是一个无需校验的决策者。'
+       ]}
+      ],
+      summary:{title:'我从这个项目带走的',paras:[
+       'Engram 让我确认了一件事：搞清楚一个系统最快的方式，是亲自走完一遍。',
+       '这并不意味着产品经理必须变成工程师。真正重要的是理解边界：哪些复杂性是真实存在的，哪些复杂性来自沟通不清，哪些问题可以在 MVP 阶段暂时不处理，哪些问题必须从一开始就设计好。',
+       '这个项目也改变了我对 AI 协作的理解。人和 AI 的关系，不是让 AI 替代所有判断，而是设计一个系统，让 AI 的能力被放大，让 AI 的局限被隔离，让人保留最终判断权。',
+       '这个项目让我理解了 AI 时代产品经理的新边界：不仅要知道用户需要什么，也要理解系统如何被构建、AI 如何参与协作，以及哪些判断必须由人来完成。'
+      ]}
+     },
      links:[{label:'查看上线版本',href:'https://engram-b14.pages.dev'},{label:'开发日志',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'}]}
   ],
 }
@@ -791,7 +810,7 @@ const NARR=[
     ]}
    },
    links:[{label:'View Live',href:'https://www.ffpp.space/'}]},
-  {cat:'Harena · Product Manager · 2025',title:'Staying With the Core Question Through the Noise',
+  {cat:'Harena · Product Manager · 2026',title:'Staying With the Core Question Through the Noise',
    outcome:"As the sole PM, I led an AI × Web3 product from initial concept through to MVP. The project went through 5 pivots — each one grounded in re-validating user needs, business logic, and technical constraints, not just a change of idea.",
    detail:{
     bg:{title:'Project Background: Where Things Stood',paras:[
@@ -845,35 +864,54 @@ const NARR=[
     ]}
    },
    links:[{label:'Design 1',href:'https://calm-satin-33761912.figma.site'},{label:'Design 2',href:'https://cloak-fresco-80103488.figma.site'},{label:'Design 3',href:'https://sepia-sheep-66827641.figma.site'},{label:'Swimlane',href:'https://miro.com/app/board/uXjVJsWsdzk=/?share_link_id=352256133027'}]},
-  {cat:'AI · PRODUCT · DEVELOPMENT',title:'From Product Idea to Live AI Application',
-   outcome:'Built and deployed Engram independently using AI-assisted development tools.',
-   problem:[
-    "I wanted to test how far a product manager without a traditional engineering background could go with AI-assisted development tools.",
-    "The challenge was not only to generate code, but to build something real: a usable product with working features, deployment, integrations, debugging, version control, and enough technical structure to keep improving it."
-   ],
-   approach:[
-    "I treated Engram as both a product and a learning system.",
-    "Instead of using AI tools only as code generators, I used them as development partners while staying responsible for product logic, system decisions, debugging, and implementation quality.",
-    "The goal was to understand enough of the technical architecture to make meaningful decisions: what each feature should do, how different parts of the system should connect, where errors were coming from, and what needed to be simplified or rebuilt."
-   ],
-   execution:[
-    "I built Engram independently using Claude Code and the OpenAI API as core development tools, with GitHub for version control, Cloudflare for deployment, and VS Code as the development environment.",
-    "I designed and implemented custom Skills modules and MCP integrations from scratch. This required understanding not only the technical specification, but also the product logic behind each integration: why it existed, what user need it served, and how it should behave inside the product.",
-    "Throughout the build, I maintained a public development log on GitHub. I recorded major decisions, errors, dead ends, fixes, and unexpected behaviors, turning the build process into a traceable product-learning loop.",
-    "The product is live, the codebase is real, and the development process is publicly documented."
-   ],
-   impact:[
-    'Full AI product built and deployed independently',
-    'Custom Skills modules and MCP integrations designed and implemented from scratch',
-    'Complete development log maintained throughout the build process',
-    'Live product available for use, with GitHub development log available for review',
-    'Demonstrated ability to move from product thinking to technical execution using AI-assisted development tools'
-   ],
-   evidence:[
-    {label:'Live Website',href:'https://engram-b14.pages.dev'},
-    {label:'Dev Log',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'},
-    {label:'Source Code — not yet open',href:null}
-   ],
+  {cat:'Engram · Solo Build · 2026',title:'Two Weeks, End to End: Shipping a Product Alone',
+   outcome:"I independently built and shipped the full loop — frontend, backend, database, cloud deployment, and AI integration. The real value of this project wasn't proving I could use AI to ship a product; it was rethinking where the boundaries actually sit between product management, engineering systems, and working with AI.",
+   detail:{
+    judgment:{title:'Introduction',paras:[
+     "Engram didn't start as a \"let me learn to code\" project — it started as a test of boundaries.",
+     "During my time as PM at Harena, I kept running into the same problem: when the dev team said something was \"too complex to build\" or \"AI can't do that,\" I had no reliable way to tell whether that was a real technical limit, or a problem of communication, understanding, or execution.",
+     "So I decided to walk through a complete development loop myself. The goal wasn't to become an engineer — it was to find out where the real complexity actually lives between design and shipping.",
+     "Two weeks later, using Claude Code, I'd gone from a Figma frontend and a REST API backend, through a local SQLite database and Cloudflare deployment, to Claude API integration and the MCP protocol. Engram became a real, working personal knowledge system.",
+     "But what I actually took away wasn't any of these technical terms — it was a different understanding of how product, engineering, and AI collaboration fit together."
+    ]},
+    decisions:[
+     {title:"First Discovery: What's Actually Complex at the MVP Stage Isn't Always the Technology",paras:[
+      "At Harena, I used to assume the backend was inherently complex at the MVP stage — because that's what the dev team kept telling me.",
+      "After building it myself, I came away with a clearer view: setting up the basic framework wasn't nearly as complex as I'd assumed. The real complexity tends to show up later — performance optimization as the user base grows, security hardening, concurrency, permissions, system stability. But those are problems for after product validation, and they shouldn't be allowed to stall an MVP early on.",
+      "This changed how I think about the value of a requirements doc.",
+      "A good requirements doc can't just describe features — it has to spell out the execution path: how the interfaces connect, how data flows, how state changes, how errors get handled. That matters even more in an AI-assisted development environment, where AI can carry part of the path from idea to implementation — but only if the product logic is clear enough to begin with.",
+      "It also made me realize what kind of product role will be more valuable going forward — not someone who only writes requirements, and not someone who only waits for engineering to execute, but someone who can clearly lay out the problem, the flow, the data structures, and the implementation boundaries, and who can tell whether technical pushback actually holds up."
+     ]},
+     {title:'Second Discovery: A Working System Matters More Than Tool Capability',paras:[
+      "The most common problems I hit during development weren't about any specific technical issue — they were about process.",
+      "Every new AI conversation meant the AI had to re-learn the project's context from scratch. Pushing AI-edited code straight to production made rollbacks expensive when something broke. And skipping local verification meant that when something failed in the cloud, it was hard to tell whether the problem was the frontend, the backend, environment variables, the database, or the deployment config.",
+      "These problems pushed me to build a development workflow: verify locally → confirm by hand → push and deploy → update docs → a single commit.",
+      "Alongside that, I built three sets of docs:",
+      {list:[
+       "README — for external users and visitors, explaining what the project is, how to use it, and how to deploy it.",
+       "CLAUDE.md — for the AI, as its onboarding manual for the project: structure, development rules, and the boundaries of collaboration.",
+       "deployment-journey — for myself, recording the deployment process, dead ends, fixes, and key decisions."
+      ]},
+      "This is where I really understood the value of Git: it's the project's time machine. AI can change code fast, but without version control, a verification process, and a way to roll back, the faster development goes, the more risk builds up in the system.",
+      "Tool capability matters, but a development process without a working system quickly becomes heavy, messy, and unmaintainable."
+     ]},
+     {title:"Third Discovery: Don't Try to Fix AI's Limits — Design Systems That Work Around Them",paras:[
+      "Once the whole pipeline was up and running, I ran into another problem: the system was in place, but AI assistance wasn't consistently reliable.",
+      "When I dug into why, the answer was: AI doesn't have real continuity over time — it works off context, and once that context breaks, its understanding of the project degrades. At first I tried to solve this directly. Then I realized it wasn't something an application layer could fully fix — it's a fundamental limitation of current AI tools.",
+      "The right question isn't \"how do I make AI a more capable, do-everything executor\" — it's \"where does AI actually belong in this system.\"",
+      "For example, asking AI to produce a complete analysis report in one shot tends to come back generic, because it lacks stable enough context and judgment criteria. But if you break the task into specific questions, let AI analyze each one separately, and have a person make the calls and pull it together, the quality improves noticeably.",
+      "That understanding shaped how I designed the MCP integration in Engram. Instead of letting AI write directly to the production database, AI first drops what it extracts into an inbox — and only after the user confirms it does it move into the real knowledge base.",
+      "The logic behind that is simple: AI handles extraction and organization, a person handles judgment and confirmation. The system doesn't rely on AI to decide what's correct on its own — it builds in a safety buffer for human-AI collaboration.",
+      "AI should be treated as a highly capable collaborator that needs boundaries — not a decision-maker that doesn't need checking."
+     ]}
+    ],
+    summary:{title:'What I Took From This Project',paras:[
+     "Engram confirmed one thing for me: the fastest way to understand a system is to walk through it yourself.",
+     "That doesn't mean a PM has to become an engineer. What matters is understanding the boundaries: which complexity is real, which comes from unclear communication, which problems can wait past the MVP stage, and which ones have to be designed correctly from the start.",
+     "This project also changed how I think about working with AI. The relationship between people and AI isn't about letting AI replace all judgment — it's about designing a system that amplifies what AI is good at, contains its limitations, and keeps final judgment with the person.",
+     "This project gave me a clearer picture of what a PM's role becomes in the AI era: not just knowing what users need, but understanding how the system is built, how AI fits into the work, and which decisions have to stay with a person."
+    ]}
+   },
    links:[{label:'View Live',href:'https://engram-b14.pages.dev'},{label:'Dev Log',href:'https://www.notion.so/Engram-37ad8316a1378027b392e71af52383b5?source=copy_link'}]}
 ];
 
@@ -1180,7 +1218,8 @@ function csDetailHtml(c,lb){
   const paras=ps=>ps.map(p=>typeof p==='string'?`<p class="csd-body">${p}</p>`:`<ul class="csd-summary-list">${p.list.map(i=>`<li>${i}</li>`).join('')}</ul>`).join('');
   if(c.detail){
     const d=c.detail,link=c.links&&c.links[0];
-    return `<div class="cs-cslide-detail csd-grouped" onclick="csCloseDetail(event)"><button class="csd-close" onclick="csCloseDetail(event)" title="${lb.close}"><i class="ti ti-x"></i></button><div class="csd-scroll"><div class="csd-group csd-group-bg"><div class="csd-group-title">${d.bg.title}</div><div class="csd-paras">${paras(d.bg.paras)}</div></div><div class="csd-group csd-group-judgment"><div class="csd-group-title">${d.judgment.title}</div><div class="csd-paras">${paras(d.judgment.paras)}</div></div><div class="csd-group csd-group-decisions">${d.decisions.map(dec=>`<div class="csd-decision"><div class="csd-decision-title">${dec.title}</div><div class="csd-paras">${paras(dec.paras)}</div></div>`).join('')}</div><div class="csd-group csd-group-summary"><div class="csd-group-title">${d.summary.title}</div><div class="csd-paras">${paras(d.summary.paras)}</div>${link?`<a class="csd-summary-link" href="${link.href}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${link.label} →</a>`:''}</div></div></div>`;
+    const bgHtml=d.bg?`<div class="csd-group csd-group-bg"><div class="csd-group-title">${d.bg.title}</div><div class="csd-paras">${paras(d.bg.paras)}</div></div>`:'';
+    return `<div class="cs-cslide-detail csd-grouped" onclick="csCloseDetail(event)"><button class="csd-close" onclick="csCloseDetail(event)" title="${lb.close}"><i class="ti ti-x"></i></button><div class="csd-scroll">${bgHtml}<div class="csd-group csd-group-judgment"><div class="csd-group-title">${d.judgment.title}</div><div class="csd-paras">${paras(d.judgment.paras)}</div></div><div class="csd-group csd-group-decisions">${d.decisions.map(dec=>`<div class="csd-decision"><div class="csd-decision-title">${dec.title}</div><div class="csd-paras">${paras(dec.paras)}</div></div>`).join('')}</div><div class="csd-group csd-group-summary"><div class="csd-group-title">${d.summary.title}</div><div class="csd-paras">${paras(d.summary.paras)}</div>${link?`<a class="csd-summary-link" href="${link.href}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${link.label} →</a>`:''}</div></div></div>`;
   }
   return `<div class="cs-cslide-detail" onclick="csCloseDetail(event)"><button class="csd-close" onclick="csCloseDetail(event)" title="${lb.close}"><i class="ti ti-x"></i></button><div class="csd-col"><div class="csd-sec"><div class="csd-sec-lbl"><span>① ${lb.problem}</span></div><div class="csd-paras">${paras(c.problem)}</div></div><div class="csd-sec"><div class="csd-sec-lbl"><span>② ${lb.approach}</span></div><div class="csd-paras">${paras(c.approach)}</div></div></div><div class="csd-col"><div class="csd-sec"><div class="csd-sec-lbl"><span>③ ${lb.execution}</span></div><div class="csd-paras">${paras(c.execution)}</div></div><div class="csd-sec"><div class="csd-sec-lbl"><span>④ ${lb.impact}</span><div class="csd-ev-icons">${c.evidence.map(e=>e.href?`<a class="csd-ev-ic" href="${e.href}" target="_blank" rel="noopener noreferrer" title="${e.label}" onclick="event.stopPropagation()"><i class="ti ti-external-link"></i></a>`:`<span class="csd-ev-ic csd-ev-ic-dim" title="${e.label}"><i class="ti ti-lock"></i></span>`).join('')}</div></div><ul class="csd-res">${c.impact.map(r=>`<li>${r}</li>`).join('')}</ul></div></div></div>`;
 }
